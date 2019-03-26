@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+	#search-box {
+	 height: 100px;
+	 background-color: black;
+	}
+	
+	#map-api {
+	 height: 520px;
+	}
+	
+	#list {
+	 height: 520px;
+	}
+
+	#card-all {
+	 height: 10rem; 
+	 width: 18rem;
+	}
+	
+	.card-header {
+	 height: 5rem;
+	 background-color: #e1f1f6; 
+	}
+	
+	.card-body {
+	 height: 5rem;
+	}
+	
+	#nav-under {
+	 height: 3rem;
+	}
+	
+	#card-content {
+		height: 10rem;
+		width: 10rem;
+	}
+	
+	#picture,
+	#map,
+	#list {
+		height: 33rem;
+	}

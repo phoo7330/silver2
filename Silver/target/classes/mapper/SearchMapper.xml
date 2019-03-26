@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 시설좌표 불러오기  SQL -->
+<mapper namespace="com.scit.silver.dao.SearchMapper">
+	<select id="selectmap" parameterType="int" resultType="SilverSearch">
+	SELECT
+		SEACH_SEQ,
+		TYPE,
+		AREAA,
+		AREAB,
+		AREAC,
+		SILVERNAME,
+		SERVICE,
+		GRADE,
+		LAUITUDE,
+		LONGITUDE
+	FROM
+		SILVERSEARCH
+	WHERE
+		TYPE=#{type}
+	 ORDER BY
+        GRADE
+	</select>
+	<select id="selectmap2" parameterType="SilverSearch" resultType="SilverSearch">
+	SELECT 
+		SEACH_SEQ,
+		TYPE,
+		AREAA,
+		AREAB,
+		AREAC,
+		SILVERNAME,
+		SERVICE,
+		GRADE,
+		LAUITUDE,
+		LONGITUDE
+	FROM
+		SILVERSEARCH
+	WHERE
+	LONGITUDE IN 
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+
+
+        #{item.longitude}
+		
+    </foreach>
+		AND
+		LAUITUDE IN 
+	<foreach collection="list" item="item" index="index"  open="(" separator="," close=")">
+        #{item.lauitude}
+		
+    </foreach>
+	ORDER BY
+        GRADE
+		
+	
+	</select>
+
+<select id="countRecord" parameterType="int" resultType="int">
+	
+	SELECT 
+		COUNT(SEACH_SEQ) 
+	FROM 
+		SILVERSEARCH
+	WHERE
+		TYPE=#{type}
+</select>
+
+<select id="countRecord2" parameterType="SilverSearch" resultType="int">
+	
+	SELECT 
+		COUNT(SEACH_SEQ) 
+	FROM 
+		SILVERSEARCH
+	WHERE
+	LONGITUDE IN 
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+
+
+        #{item.longitude}
+		
+    </foreach>
+		AND
+		LAUITUDE IN 
+	<foreach collection="list" item="item" index="index"  open="(" separator="," close=")">
+        #{item.lauitude}
+		
+    </foreach>
+</select>
+
+
+	<!--   시설db 정보 불러오기 sql   -->
+	<select id="selectmap3" parameterType="int" resultType="Details">
+		 SELECT 
+			A.SEACH_SEQ
+			,A.TYPE
+			,A.AREAA
+			,A.AREAB
+			,A.AREAC
+			,A.SILVERNAME
+			,A.SERVICE
+			,A.GRADE
+			,A.LAUITUDE
+			,A.LONGITUDE
+			,B.DETAIL_NUMBER
+			,B.ESTABLISHMENT
+			,B.APPROVAL
+			,B.ADDRESS
+			,B.HOUSE_NUMBER
+			,B.PARKINGLOT
+		from 
+			SILVERSEARCH A 
+			,DETAILS B		  
+		where 
+			A.SEACH_SEQ = B.SEACH_SEQ	
+		ORDER BY
+			GRADE
+			 
+	</select>	
+		 
+</mapper>
