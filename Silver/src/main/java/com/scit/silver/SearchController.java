@@ -98,12 +98,14 @@ public class SearchController {
 		int type = dao.TypeSearch(seach_seq); //시퀀스번호에 맞는 컬럼의 타입이 담긴값 
 		if(type==1) {
 			DetailsOne DetailsOne = dao.selectmap4(seach_seq); //타입이 1일경우 요양병원에서 값을 가져온다. 
+			System.out.println("타입이 1일경우");
 			System.out.println("[detail1의 객체정보]: "+DetailsOne);
 			model.addAttribute("DetailsOne",DetailsOne);
 			return "searchDetail";
 		} else{
 			DetailsTwo DetailsTwo = dao.selectmap3(seach_seq); //그외의 경우 통일된컬럼에서 값을 가져온다.
-			System.out.println(DetailsTwo);
+			System.out.println("나머지 타입일경우");
+			System.out.println("[detail2의 객체정보]: "+DetailsTwo);
 			model.addAttribute("DetailsTwo",DetailsTwo);
 			return "searchDetail2";
 		} 

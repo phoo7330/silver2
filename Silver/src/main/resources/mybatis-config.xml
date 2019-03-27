@@ -9,7 +9,6 @@
 		<typeAlias type="com.scit.silver.vo.SilverSearch" alias="SilverSearch" />
 		<typeAlias type="com.scit.silver.vo.DetailsOne" alias="DetailsOne" />
 		<typeAlias type="com.scit.silver.vo.DetailsTwo" alias="DetailsTwo" />
-		<typeAlias type="com.scit.silver.vo.Information_Detail" alias="Information_Detail" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
