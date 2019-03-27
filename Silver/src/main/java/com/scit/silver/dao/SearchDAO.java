@@ -8,7 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.scit.silver.vo.Details;
+import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.SilverSearch;
 import com.test.fileTest.util.PageNavigator;
 
@@ -77,12 +78,22 @@ public class SearchDAO {
       return result;
    }
    
-   public ArrayList<Details> selectmap3(int type){
-		ArrayList<Details> result = null;
+   public ArrayList<DetailsTwo> selectmap3(int type){
+		ArrayList<DetailsTwo> result = null;
 		
 		SearchMapper mapper = session.getMapper(SearchMapper.class);
 		
 		result = mapper.selectmap3(type);
+
+		return result;	
+	}
+   
+   public ArrayList<DetailsOne> selectmap4(int type){
+		ArrayList<DetailsOne> result = null;
+		
+		SearchMapper mapper = session.getMapper(SearchMapper.class);
+		
+		result = mapper.selectmap4(type);
 
 		return result;	
 	}
