@@ -15,12 +15,12 @@
 	</properties>
 	
 <!-- ojdbc6.jar 레퍼런스 주소 -->
-	<repositories>
+<!-- 	<repositories>
 		<repository>
        		<id>codelds</id> 
        		<url>https://code.lds.org/nexus/content/groups/main-repo</url>
 		</repository>
-	</repositories>
+	</repositories> -->
 	
 	<dependencies>
 		<!-- Spring -->
@@ -140,11 +140,11 @@
 		</dependency>
 		
 		<!-- ojdbc6 --> 
-		<dependency> 
+		<!-- <dependency> 
 			<groupId>com.oracle</groupId> 
 			<artifactId>ojdbc6</artifactId> 
 			<version>11.2.0.3</version> 
-		</dependency>
+		</dependency> -->
 		
 		<!-- spring-jdbc 추가 -->
 		<dependency>
