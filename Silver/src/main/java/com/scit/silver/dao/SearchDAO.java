@@ -78,23 +78,35 @@ public class SearchDAO {
       return result;
    }
    
-   public ArrayList<DetailsTwo> selectmap3(int type){
-		ArrayList<DetailsTwo> result = null;
+   public DetailsTwo selectmap3(int seach_seq){
+		DetailsTwo result = null;
 		
 		SearchMapper mapper = session.getMapper(SearchMapper.class);
 		
-		result = mapper.selectmap3(type);
+		result = mapper.selectmap3(seach_seq);
 
 		return result;	
 	}
    
-   public ArrayList<DetailsOne> selectmap4(int type){
-		ArrayList<DetailsOne> result = null; 
+   public DetailsOne selectmap4(int seach_seq){
+		DetailsOne result = null; 
 		
 		SearchMapper mapper = session.getMapper(SearchMapper.class);
 		
-		result = mapper.selectmap4(type);
+		result = mapper.selectmap4(seach_seq);
 
 		return result;	
 	}
+   
+   public int TypeSearch(int seach_seq) {
+	   int result = 0;
+	   
+	   SearchMapper mapper = session.getMapper(SearchMapper.class);
+		
+	   result = mapper.TypeSearch(seach_seq);
+	   
+	   return result;
+   }
+   
+   
 }
