@@ -12,9 +12,7 @@
 	<meta  name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit=no">
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ynuycabqm2"></script>
 	<script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
-    
-    	
-	<!-- jQuery javaScript 추가 -->
+    <!-- jQuery javaScript 추가 -->
 	<script src="resources/js/jquery.min.js"></script>
 	
 	<!-- Popper javaScript 추가 -->
@@ -22,6 +20,7 @@
 	
 	<!-- Bootstrap javaScript 추가 -->
 	<script src="resources/js/bootstrap.min.js"></script>
+    
 	<!-- Bootstrap CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
@@ -127,7 +126,7 @@ $(function(){
 						<div class="card-header">
 							<h4 class="my-4 font-weight-normal">${DetailsTwo.grade}</h4>
 						</div>
-						<div class="card-body"><!-- 등급에따라서 js에서 문자로 바꿔서 출력  -->
+						<div class="card-body">
 					        <h4 id="grade" class="card-title pricing-card-title"></h4>
 						</div>
 					</div>
@@ -330,7 +329,7 @@ $(function(){
 			</li>
 		</ul>
 	</div>	
-
-
+	
+	
 </body>
 </html>
