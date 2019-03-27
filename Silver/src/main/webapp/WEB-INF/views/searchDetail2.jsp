@@ -137,7 +137,7 @@ $(function(){
 		</div>
 	</div>
 
-	<!-- 하단 네비게이션 바 -->
+	<!-- 하단 네비게이션 바  -->
 	
 	<nav class="nav-scroller py-1 mb-2 sticky-top bg-light border-bottom" id="nav-under">
 		<div class="container">
