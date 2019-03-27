@@ -92,7 +92,7 @@ public class SearchController {
 	public String searchDetail(int seach_seq) {
 
 		System.out.println(seach_seq);
-		//오늘 할것,코딩하고싶다111116665
+		//오늘 할것,코딩하고싶다11111666577
 		return "redirect:/search"; 
 	}
 }
