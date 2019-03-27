@@ -93,6 +93,6 @@ public class SearchController {
 
 		System.out.println(seach_seq);
 		//오늘 할것,코딩하고싶다11111
-		return "redirect:/search";
+		return "redirect:/search"; 
 	}
 }
