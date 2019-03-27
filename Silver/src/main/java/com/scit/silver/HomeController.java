@@ -32,4 +32,10 @@ public class HomeController {
 
 		return "searchDetail2";
 	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(Locale locale, Model model) {
+
+		return "mypage";
+	}
 }

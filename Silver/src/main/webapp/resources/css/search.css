@@ -41,3 +41,15 @@
 	#list {
 		height: 33rem;
 	}
+	
+	.modal-header {
+		height: 3rem;
+		background-color: #e4ebf2;
+	}
+	
+	#write-board {
+		top: 50%;
+		transform: translate(0, -50%);
+		margin: 0 auto;
+		height: 720px;
+	}

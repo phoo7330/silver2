@@ -62,10 +62,22 @@ $(function(){
 			return;
 		}
 		console.log(stgrade);
-	
-		
-	
 });
+
+/* 게시글작성페이지 이동 
+ $(function(){
+	 $('.select-table').on('click',function(){
+		 console.log("aaa");
+		 $("#tab-basic").hide();
+		 $("#tab-time").hide();
+		 $("#tab-facility").hide();
+		 $("#tab-address").hide();
+		 $("#tab-board").hide();
+		 $("#tab-contents").show(); 
+	 });
+});  
+
+ */
 </script>
 <!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -172,7 +184,7 @@ $(function(){
 	-->
 	
 	<!-- 1. 기본정보 탭  -->
-	<div class="container" id="basic">
+	<div class="container" id="tab-basic">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>기본정보</small></h4>
 		</div>
@@ -260,7 +272,7 @@ $(function(){
 	</div><br>
 
 	<!-- 2. 진료시간  -->
-	<div class="container">
+	<div class="container" id="tab-time">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>진료시간</small></h4>
 		</div>
@@ -301,7 +313,7 @@ $(function(){
 	<br>
 
 	<!-- 3. 시설정보 탭  현재 토요일 진료시간이 들어있음.-->
-	<div class="container">
+	<div class="container" id="tab-facility">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>시설정보</small></h4>
 		</div>
@@ -320,7 +332,7 @@ $(function(){
 	<br>
 	
 	<!-- 4. 사진 & 주소  -->
-	<div class="container" id="picandmap">
+	<div class="container" id="tab-address">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>사진/주소</small></h4>
 		</div>
@@ -354,7 +366,7 @@ $(function(){
 	<br>
 	
 	<!-- 5. 시설게시판  -->
-	<div class="container" id="board">
+	<div class="container" id="tab-board">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
@@ -370,17 +382,56 @@ $(function(){
 				</tr>
 			</thead>
 			<tbody class="table-sm">
-				<tr>
-					<td>sequence</td>
-					<td>contents</td>
+				<tr class="select-table">
+					<td>"sb_seq"</td>
+					<td>"sbtitle"</td>
 					<td>"userid"</td>
-					<td>sysdate</td>
+					<td>"sbdate"</td>
 				</tr>
 			</tbody>
 		</table>
-		<!-- 글쓰기버튼 : 모달로 창을 띄울지, 새로운 jsp 페이지로 만들지 논의 필요 -->
-		<a href="#" class="btn btn-info btn-sm float-right">글쓰기</a>
-		
+		<!-- 모달버튼 -->
+		<button type="button" class="btn-sm btn-info float-right" data-toggle="modal" data-target="#write-board">
+  		글쓰기 
+		</button>
+		<!-- 모달 -->
+		<div class="modal fade" id="write-board" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    
+		      <div class="modal-header">
+		        <h6 class="modal-write">게시글쓰기</h6>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      
+		      <div class="modal-body">
+				<form>
+					<fieldset disabled>
+					<div class="form-group">
+				      <label for="disabledText">아이디</label>
+				      <input type="text" id="disabledText" class="form-control" placeholder="">
+				    </div>
+				    </fieldset>
+					<div class="form-group">
+						<label>제목</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea class="form-control" style="height: 15rem;"></textarea>
+					</div>
+				</form>   
+		      </div>
+		      <!-- 버튼-취소/저장 -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-info btn-sm">저장</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<!-- 페이징 -->
 		<ul class="pagination pagination-sm justify-content-center">
 			<li class="page-item disabled">
@@ -397,7 +448,32 @@ $(function(){
 		</ul>
 	</div>	
 	
-
-
+	<!-- 6. 내용확인  -->
+	<div class="container" id="tab-contents">
+		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
+		</div>
+		<!-- 게시판 : 게시판 VO가 없어서 매칭되지 않는 부분 확인 바라요. 번호/제목/날짜-->
+		<p class="lead"><small>전체 이용후기 0</small></p>
+		<table class="table text-center">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">"userid"</th>
+					<th scope="col">"sysdate"</th>
+				</tr>
+			</thead>
+			<tbody class="table-sm">
+				<tr class="select-table">
+					<td>"sb_seq"</td>
+					<td>"sbtitle"</td>
+					<td>"userid"</td>
+					<td>"sbdate"</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
 </body>
 </html>

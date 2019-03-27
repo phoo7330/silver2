@@ -337,8 +337,48 @@ function ty(){
 				</tr>
 			</tbody>
 		</table>
-		<!-- 글쓰기버튼 : 모달로 창을 띄울지, 새로운 jsp 페이지로 만들지 논의 필요 -->
-		<a href="#" class="btn btn-info btn-sm float-right">글쓰기</a>
+		<!-- 모달버튼 -->
+		<button type="button" class="btn-sm btn-info float-right" data-toggle="modal" data-target="#write-board">
+  		글쓰기 
+		</button>
+		<!-- 모달 -->
+		<div class="modal fade" id="write-board" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    
+		      <div class="modal-header">
+		        <h6 class="modal-write">게시글쓰기</h6>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      
+		      <div class="modal-body">
+				<form>
+					<fieldset disabled>
+					<div class="form-group">
+				      <label for="disabledText">아이디</label>
+				      <input type="text" id="disabledText" class="form-control" placeholder="">
+				    </div>
+				    </fieldset>
+					<div class="form-group">
+						<label>제목</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>내용</label>
+						<textarea class="form-control" style="height: 15rem;"></textarea>
+					</div>
+				</form>   
+		      </div>
+		      <!-- 버튼-취소/저장 -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-info btn-sm">저장</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		
 		<!-- 페이징 -->
 		<ul class="pagination pagination-sm justify-content-center">

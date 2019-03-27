@@ -88,13 +88,13 @@
 		<img class="mb-4" src="resources/image/login.svg" alt="" width="72" height="72"> 
 		<h1 class="h3 mb-3 font-weight-normal">로그인</h1>
 		<!-- 로그인선택 -->
-		<div class="form-check form-check-inline my-2">
-		  <input class="form-check-input" type="radio" name="" id="custom" value="option1">
-		  <label class="form-check-label" for="custom">일반사용자</label>
+		<div class="custom-control custom-radio custom-control-inline my-2">
+		  <input class="custom-control-input" type="radio" id="customRadio1"  name="custom-radio1" value="option1">
+		  <label class="custom-control-label" for="customRadio1">일반사용자</label>
 		</div>
-		<div class="form-check form-check-inline">
-		  <input class="form-check-input" type="radio" name="" id="institution" value="option2">
-		  <label class="form-check-label" for="institution">기관관리자</label>
+		<div class="custom-control custom-radio custom-control-inline">
+		  <input class="custom-control-input" type="radio" id="customRadio2" name="custom-radio1" value="option2">
+		  <label class="custom-control-label" for="customRadio2">기관관리자</label>
 		</div>
 
 		<!-- 아이디&비밀번호 -->
