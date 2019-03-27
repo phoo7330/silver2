@@ -12,7 +12,17 @@
 	<meta  name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit=no">
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ynuycabqm2"></script>
 	<script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
-     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<!-- jQuery javaScript 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
+	
+	<!-- Popper javaScript 추가 -->
+	<script src="resources/js/popper.min.js"></script>
+	
+	<!-- Bootstrap javaScript 추가 -->
+	<script src="resources/js/bootstrap.min.js"></script>
+	
+	
+	
 	<!-- Bootstrap CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
@@ -189,7 +199,7 @@ $(function(){
 							<div class="mb-1 my-3 text-musted">봉사활동</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"hp_service"</div>
+							<div class="mb-1 text-musted">${DetailsOne.hp_service}</div>
 						</div>
 					</div>
 				</div>
@@ -202,7 +212,7 @@ $(function(){
 							<div class="mb-1 my-3 text-musted">간병형태</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"protection"</div>
+							<div class="mb-1 text-musted">${DetailsOne.protection}</div>
 						</div>
 					</div>
 				</div>
@@ -215,7 +225,7 @@ $(function(){
 							<div class="mb-1 my-3 text-musted">입지정보</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"location"</div>
+							<div class="mb-1 text-musted">${DetailsOne.location}</div>
 						</div>
 					</div>
 				</div>
@@ -228,7 +238,7 @@ $(function(){
 							<div class="mb-1 my-3 text-musted">종교활동</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"religion"</div>
+							<div class="mb-1 text-musted">${DetailsOne.religion}</div>
 						</div>
 					</div>
 				</div>
@@ -241,7 +251,7 @@ $(function(){
 							<div class="mb-1 my-3 text-musted">전화번호</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"hp_address"</div>
+							<div class="mb-1 text-musted">${DetailsOne.hospital_tel}</div>
 						</div>
 					</div>
 				</div>
@@ -262,7 +272,7 @@ $(function(){
 					<img class="mb-2 mt-3" src="resources/image/clock.svg" alt="" width="72" height="72"> 
 					<div class="mb-1 my-3 text-musted">쉬는날</div>
 				<div class="card-body">
-	              	<div class="mb-1 text-musted">"holliday"</div>
+	              	<div class="mb-1 text-musted">${DetailsOne.holiday}</div>
 				</div>
 				</div>
 			</div>
@@ -272,7 +282,7 @@ $(function(){
 					<img class="mb-2 mt-3" src="resources/image/coffee.svg" alt="" width="72" height="72"> 
 					<div class="mb-1 my-3 text-musted">점심시간</div>
 				<div class="card-body">
-	              	<div class="mb-1 text-musted">"lunchtime"</div>
+	              	<div class="mb-1 text-musted">${DetailsOne.lunchtime}</div>
 				</div>
 				</div>
 			</div>
@@ -282,7 +292,7 @@ $(function(){
 					<img class="mb-2 mt-3" src="resources/image/calendar.svg" alt="" width="72" height="72"> 
 					<div class="mb-1 my-3 text-musted">접수시간</div>
 				<div class="card-body">
-	              	<div class="mb-1 text-musted">"receipttime"</div>
+	              	<div class="mb-1 text-musted">${DetailsOne.receipttime}</div>
 				</div>
 				</div>
 			</div>
@@ -290,7 +300,7 @@ $(function(){
 	</div>		
 	<br>
 
-	<!-- 3. 시설정보 탭  -->
+	<!-- 3. 시설정보 탭  현재 토요일 진료시간이 들어있음.-->
 	<div class="container">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>시설정보</small></h4>
@@ -302,7 +312,7 @@ $(function(){
 				<img class="mb-1 mt-3" src="resources/image/info.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-1 my-3 text-musted">"facilityinformation"</div>
+				<div class="mb-1 my-3 text-musted">${DetailsOne.facilityinformation}</div>
 				</div>
 			</div>
 		</div>
@@ -321,7 +331,7 @@ $(function(){
 				<img class="mb-3 my-3" src="resources/image/mappin.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-3 my-3 text-musted">"hp_address"</div>
+				<div class="mb-3 my-3 text-musted">${DetailsOne.hp_address}</div>
 				</div>
 			</div>
 		</div>
@@ -387,14 +397,7 @@ $(function(){
 		</ul>
 	</div>	
 	
-	<!-- jQuery javaScript 추가 -->
-	<script src="resources/js/jquery.min.js"></script>
-	
-	<!-- Popper javaScript 추가 -->
-	<script src="resources/js/popper.min.js"></script>
-	
-	<!-- Bootstrap javaScript 추가 -->
-	<script src="resources/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

@@ -20,14 +20,14 @@ public class DetailsTwo {
 	private String establishment;//설립일
 	private String approval;
 	private String address;
-	private String house_number;
+	private String tel;
 	private String parkinglot;
 	public DetailsTwo() {
 		super();
 	}
 	public DetailsTwo(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, int detail_seq, long detail_number,
-			String establishment, String approval, String address, String house_number, String parkinglot) {
+			String establishment, String approval, String address, String tel, String parkinglot) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -44,7 +44,7 @@ public class DetailsTwo {
 		this.establishment = establishment;
 		this.approval = approval;
 		this.address = address;
-		this.house_number = house_number;
+		this.tel = tel;
 		this.parkinglot = parkinglot;
 	}
 	public int getSeach_seq() {
@@ -137,11 +137,11 @@ public class DetailsTwo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getHouse_number() {
-		return house_number;
+	public String getTel() {
+		return tel;
 	}
-	public void setHouse_number(String house_number) {
-		this.house_number = house_number;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getParkinglot() {
 		return parkinglot;
@@ -155,8 +155,7 @@ public class DetailsTwo {
 				+ ", areac=" + areac + ", silvername=" + silvername + ", service=" + service + ", grade=" + grade
 				+ ", lauitude=" + lauitude + ", longitude=" + longitude + ", detail_seq=" + detail_seq
 				+ ", detail_number=" + detail_number + ", establishment=" + establishment + ", approval=" + approval
-				+ ", address=" + address + ", house_number=" + house_number + ", parkinglot=" + parkinglot + "]";
+				+ ", address=" + address + ", tel=" + tel + ", parkinglot=" + parkinglot + "]";
 	}
-	
 	
 }

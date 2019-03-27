@@ -13,6 +13,15 @@
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ynuycabqm2"></script>
 	<script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
     
+    	
+	<!-- jQuery javaScript 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
+	
+	<!-- Popper javaScript 추가 -->
+	<script src="resources/js/popper.min.js"></script>
+	
+	<!-- Bootstrap javaScript 추가 -->
+	<script src="resources/js/bootstrap.min.js"></script>
 	<!-- Bootstrap CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
@@ -22,7 +31,41 @@
 
 </head>
 <body>
-
+<script>
+$(function(){
+	
+		var grade= null;
+		var stgrade = '';
+		grade='${DetailsTwo.grade}';
+		console.log(grade);
+		if(grade=='A'){
+			stgrade += '최우수';
+			$('#grade').html(stgrade);
+			return;
+		}else if(grade=='B'){
+			stgrade += '우수';
+			$('#grade').html(stgrade);
+			return;
+		}else if(grade=='C'){
+			stgrade += '양호';
+			$('#grade').html(stgrade);
+			return;
+		}else if(grade=='D'){
+			stgrade += '보통';
+			$('#grade').html(stgrade);
+			return;
+		}
+		else if(grade=='정보없음'){
+			stgrade += '정보없음';
+			$('#grade').html(stgrade);
+			return;
+		}
+		console.log(stgrade);
+	
+		
+	
+});
+</script>
 <!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
  		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
@@ -70,9 +113,9 @@
     		<div class="col-md-4" id="ilist">
 	    		<div class="col p-4 d-flex flex-column position-static">
 		    		<strong class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg">"siltype"</strong>
-		    		<h2 class="mb-0">"item.silvername"</h2>
-					<div class="mb-1 text-musted">"item.areaa+item.areab+item.areac"</div>
-		    		<p class="text-light bg-dark" style="width: 6rem;">"item.service"</p>
+		    		<h2 class="mb-0">${DetailsTwo.silvername}</h2>
+					<div class="mb-1 text-musted">${DetailsTwo.areaa} ${DetailsTwo.areab} ${DetailsTwo.areac}</div>
+		    		<p class="text-light bg-dark" style="width: 6rem;">${DetailsTwo.service}</p>
 				</div>
 			</div>
 		<div class="col-md-2">
@@ -82,10 +125,10 @@
 				<div class="card-deck p-4 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-all">
 						<div class="card-header">
-							<h4 class="my-4 font-weight-normal">"item.grade"</h4>
+							<h4 class="my-4 font-weight-normal">${DetailsTwo.grade}</h4>
 						</div>
-						<div class="card-body">
-					        <h4 class="card-title pricing-card-title">최우수기관</h4>
+						<div class="card-body"><!-- 등급에따라서 js에서 문자로 바꿔서 출력  -->
+					        <h4 id="grade" class="card-title pricing-card-title"></h4>
 						</div>
 					</div>
 				</div>
@@ -137,7 +180,7 @@
 							<div class="mb-1 my-3 text-musted">기관일련번호</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"detail_number"</div>
+							<div class="mb-1 text-musted">${DetailsTwo.detail_number}</div>
 						</div>
 					</div>
 				</div>
@@ -150,7 +193,7 @@
 							<div class="mb-1 my-3 text-musted">설립일</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"establishment"</div>
+							<div class="mb-1 text-musted">${DetailsTwo.establishment}</div>
 						</div>
 					</div>
 				</div>
@@ -163,7 +206,7 @@
 							<div class="mb-1 my-3 text-musted">승인일</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"approval"</div>
+							<div class="mb-1 text-musted">${DetailsTwo.approval}</div>
 						</div>
 					</div>
 				</div>
@@ -176,7 +219,7 @@
 							<div class="mb-1 my-3 text-musted">연락처</div>
 						</div>
 						<div class="card-body">
-							<div class="mb-1 text-musted">"house_number"</div>
+							<div class="mb-1 text-musted">${DetailsTwo.tel}</div>
 						</div>
 					</div>
 				</div>
@@ -203,7 +246,7 @@
 				<img class="mb-1 mt-3" src="resources/image/info.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-1 my-3 text-musted">"parkinglot"</div>
+				<div class="mb-1 my-3 text-musted">${DetailsTwo.parkinglot}</div>
 				</div>
 			</div>
 		</div>
@@ -222,7 +265,7 @@
 				<img class="mb-3 my-3" src="resources/image/mappin.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-3 my-3 text-musted">"address"</div>
+				<div class="mb-3 my-3 text-musted">${DetailsTwo.address}</div>
 				</div>
 			</div>
 		</div>
@@ -287,15 +330,7 @@
 			</li>
 		</ul>
 	</div>	
-	
-	<!-- jQuery javaScript 추가 -->
-	<script src="resources/js/jquery.min.js"></script>
-	
-	<!-- Popper javaScript 추가 -->
-	<script src="resources/js/popper.min.js"></script>
-	
-	<!-- Bootstrap javaScript 추가 -->
-	<script src="resources/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

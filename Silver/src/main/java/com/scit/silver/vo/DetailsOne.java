@@ -24,14 +24,17 @@ public class DetailsOne {
 	private String religion;
 	private String hospital_tel;
 	private String hp_address;
-	private String holliday;
+	private String holiday;
 	private String lunchtime;
 	private String receipttime;
 	private String facilityinformation;
+	public DetailsOne() {
+		super();
+	}
 	public DetailsOne(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, int hp_details_seq, int information_seq,
 			String establishment, String hp_service, String protection, String location, String religion,
-			String hospital_tel, String hp_address, String holliday, String lunchtime, String receipttime,
+			String hospital_tel, String hp_address, String holiday, String lunchtime, String receipttime,
 			String facilityinformation) {
 		super();
 		this.seach_seq = seach_seq;
@@ -53,13 +56,10 @@ public class DetailsOne {
 		this.religion = religion;
 		this.hospital_tel = hospital_tel;
 		this.hp_address = hp_address;
-		this.holliday = holliday;
+		this.holiday = holiday;
 		this.lunchtime = lunchtime;
 		this.receipttime = receipttime;
 		this.facilityinformation = facilityinformation;
-	}
-	public DetailsOne() {
-		super();
 	}
 	public int getSeach_seq() {
 		return seach_seq;
@@ -175,11 +175,11 @@ public class DetailsOne {
 	public void setHp_address(String hp_address) {
 		this.hp_address = hp_address;
 	}
-	public String getHolliday() {
-		return holliday;
+	public String getHoliday() {
+		return holiday;
 	}
-	public void setHolliday(String holliday) {
-		this.holliday = holliday;
+	public void setHoliday(String holiday) {
+		this.holiday = holiday;
 	}
 	public String getLunchtime() {
 		return lunchtime;
@@ -206,10 +206,10 @@ public class DetailsOne {
 				+ ", lauitude=" + lauitude + ", longitude=" + longitude + ", hp_details_seq=" + hp_details_seq
 				+ ", information_seq=" + information_seq + ", establishment=" + establishment + ", hp_service="
 				+ hp_service + ", protection=" + protection + ", location=" + location + ", religion=" + religion
-				+ ", hospital_tel=" + hospital_tel + ", hp_address=" + hp_address + ", holliday=" + holliday
+				+ ", hospital_tel=" + hospital_tel + ", hp_address=" + hp_address + ", holiday=" + holiday
 				+ ", lunchtime=" + lunchtime + ", receipttime=" + receipttime + ", facilityinformation="
 				+ facilityinformation + "]";
 	}
-
+	
 	
 }

@@ -105,14 +105,14 @@
 			,A.LAUITUDE
 			,A.LONGITUDE
             ,B.DETAIL_NUMBER
-            ,B.establishment
-            ,B.approval
+            ,TO_CHAR(B.ESTABLISHMENT, 'YYYY-MM-DD') ESTABLISHMENT
+            ,TO_CHAR(B.APPROVAL, 'YYYY-MM-DD') APPROVAL
             ,B.address
             ,B.tel
             ,B.parkinglot
-         from 
+         FROM 
              SILVERSEARCH A 	
-            ,Details B
+            ,DETAILS B
     	where 
             B.SEACH_SEQ = #{seach_seq} and
     		A.SEACH_SEQ = #{seach_seq} 
