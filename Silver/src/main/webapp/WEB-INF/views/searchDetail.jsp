@@ -121,7 +121,7 @@ $(function(){
 			</div>
 		<div class="col-md-2">
 		</div>
-		<!-- 오른쪽/등급 -->
+		<!-- 오른쪽/등급  -->
 			<div class="col-md-4">
 				<div class="card-deck p-4 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-all">
