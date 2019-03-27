@@ -58,6 +58,8 @@
 			</c:if>
 		</div>  
 	</nav>	
+	
+	
 	<!-- 1. 기본정보 탭  -->
 	<div class="container" id="basic">
 		<div class="pt-5 pb-3 border-bottom">
@@ -65,19 +67,25 @@
 		</div>
 	
 		<!-- 사이드바 -->
-		<div class="card-group pt-3">
-			<!-- 사이드 메뉴 -->
+		<div class="col-md-4">
+			<div class="card card-side">
+			
+			</div>
+		</div>
+<!-- 		<div class="card-group pt-3">
+			사이드 메뉴
 			<div class="col-md-4">
 				<div class="pt-4 pb-1 border-bottom">
 					<h6 class="text-secondary"><small>계정정보</small></h6>
 				</div>
-				<!-- 사이드바 -->
+				사이드바
 				<div class="list-group pt-5 border border-white">
 					<a href="#" class="list-group-item list-group-item-action border-white">회원정보수정</a>
 					<a href="#" class="list-group-item list-group-item-action border-white">어르신정보</a>
 					<a href="#" class="list-group-item list-group-item-action border-white">쪽지함</a>
-				</div>
-			</div>
+				</div> 
+				
+			</div> -->
 			
 			<!-- 내용 -->
 			<div class="col-md-8">
@@ -89,7 +97,6 @@
 			</div>
 			
 			
-		</div>
 	</div>
 
 
