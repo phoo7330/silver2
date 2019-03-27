@@ -21,8 +21,10 @@ public interface SearchMapper {
 	
 	public int countRecord2(ArrayList<SilverSearch> SilverSearch);
 
-	public ArrayList<DetailsTwo> selectmap3(int type);
+	public DetailsTwo selectmap3(int type);
 
-	public ArrayList<DetailsOne> selectmap4(int type);
+	public DetailsOne selectmap4(int type);
+	
+	public int TypeSearch (int seach_seq);
 }
  

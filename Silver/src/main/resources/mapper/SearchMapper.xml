@@ -92,7 +92,7 @@
 </select>
 
 <!--   시설db 정보 불러오기 sql   -->
- <select id="selectmap3" parameterType="int" resultType="DetailsOne">	
+ <select id="selectmap3" parameterType="int" resultType="DetailsTwo">	
 		select  
 			A.SEACH_SEQ
 			,A.TYPE
@@ -104,7 +104,7 @@
 			,A.GRADE
 			,A.LAUITUDE
 			,A.LONGITUDE
-            ,B.detail_number
+            ,B.DETAIL_NUMBER
             ,B.establishment
             ,B.approval
             ,B.address
@@ -152,5 +152,12 @@
     		A.SEACH_SEQ = #{seach_seq} 
 	 
 	</select>	
+		 
+	<select id="TypeSearch" parameterType="int" resultType="int">
+		SELECT TYPE FROM SILVERSEARCH WHERE SEACH_SEQ = #{seach_seq}
+	
+	
+	
+	</select>	 
 		 
 </mapper>

@@ -1,7 +1,6 @@
 package com.scit.silver;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.SearchDAO;
+import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.SilverSearch;
 import com.test.fileTest.util.PageNavigator;
 
@@ -89,10 +90,26 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "/searchDetail", method = RequestMethod.GET)
-	public String searchDetail(int seach_seq) {
-
+	public String searchDetail(int seach_seq, Model model) {
+		
+		System.out.println("최신작업");
+		System.out.println("타입받아와야합니다");
 		System.out.println(seach_seq);
-		//오늘 할것 
-		return "redirect:/search";
+
+		int type = dao.TypeSearch(seach_seq); //시퀀스번호에 맞는 컬럼의 타입이 담긴값 
+		if(type==1) {
+			DetailsOne DetailsOne = dao.selectmap4(seach_seq); //타입이 1일경우 요양병원에서 값을 가져온다. 
+			System.out.println("타입이 1일경우");
+			System.out.println("[detail1의 객체정보]: "+DetailsOne);
+			model.addAttribute("DetailsOne",DetailsOne);
+			return "searchDetail";
+		} else{
+			DetailsTwo DetailsTwo = dao.selectmap3(seach_seq); //그외의 경우 통일된컬럼에서 값을 가져온다.
+			System.out.println("나머지 타입일경우");
+			System.out.println("[detail2의 객체정보]: "+DetailsTwo);
+			model.addAttribute("DetailsTwo",DetailsTwo);
+			return "searchDetail2";
+		} 
+
 	}
 }
