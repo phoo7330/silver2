@@ -89,7 +89,7 @@ public class SearchDAO {
 	}
    
    public ArrayList<DetailsOne> selectmap4(int type){
-		ArrayList<DetailsOne> result = null;
+		ArrayList<DetailsOne> result = null; 
 		
 		SearchMapper mapper = session.getMapper(SearchMapper.class);
 		
