@@ -303,7 +303,7 @@ for(var i = 0;i < data.length ;i++){
          "grd_la":data[i].lauitude});
 }
 return makers_temp;
-}
+} 
 function wlist(accidentDeath){
    if(accidentDeath.length==0){
       return;
