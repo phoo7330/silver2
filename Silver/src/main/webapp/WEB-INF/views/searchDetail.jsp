@@ -113,10 +113,10 @@ $(function(){
 		</div>
     		<div class="col-md-4" id="ilist">
 	    		<div class="col p-4 d-flex flex-column position-static">
-		    		<strong class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg">"siltype"</strong>
+		    		<strong class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg">요양병원</strong>
 		    		<h2 class="mb-0">${DetailsOne.silvername}</h2>
 					<div class="mb-1 text-musted">${DetailsOne.areaa} ${DetailsOne.areab} ${DetailsOne.areac}</div>
-		    		<p class="text-light bg-dark" style="width: 6rem;">${DetailsOne.service}</p>
+		    		<p class="text-light bg-dark" style="width: 5rem;">${DetailsOne.service}</p>
 				</div>
 			</div>
 		<div class="col-md-2">

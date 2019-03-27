@@ -30,40 +30,65 @@
 
 </head>
 <body>
-<script>
-$(function(){
+<script>$(function(){
 	
-		var grade= null;
-		var stgrade = '';
-		grade='${DetailsTwo.grade}';
-		console.log(grade);
-		if(grade=='A'){
-			stgrade += '최우수';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='B'){
-			stgrade += '우수';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='C'){
-			stgrade += '양호';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='D'){
-			stgrade += '보통';
-			$('#grade').html(stgrade);
-			return;
-		}
-		else if(grade=='정보없음'){
-			stgrade += '정보없음';
-			$('#grade').html(stgrade);
-			return;
-		}
-		console.log(stgrade);
+	gr();
+	ty();
 	
-		
 	
 });
+
+
+function gr(){
+	var grade= null;
+	var stgrade = '';
+	grade='${DetailsTwo.grade}';
+	console.log(grade);
+	if(grade=='A'){
+		stgrade += '최우수';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='B'){
+		stgrade += '우수';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='C'){
+		stgrade += '양호';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='D'){
+		stgrade += '보통';
+		$('#grade').html(stgrade);
+		return;
+	}
+	else if(grade=='정보없음'){
+		stgrade += '정보없음';
+		$('#grade').html(stgrade);
+		return;
+	}
+	console.log(stgrade);
+
+}
+	
+function ty(){
+	var type= 0;
+	var typename = '';
+	type='${DetailsTwo.type}';
+	console.log(type);
+	if(type==2){
+		typename += '요양원';
+		$('#siltype').html(typename);
+		return;
+	}else if(type==3){
+		typename += '방문시설';
+		$('#siltype').html(typename);
+		return;
+	}else if(type==4){
+		typename += '치매전담';
+		$('#siltype').html(typename);
+		return;
+	}
+}	
 </script>
 <!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -111,10 +136,10 @@ $(function(){
 		</div>
     		<div class="col-md-4" id="ilist">
 	    		<div class="col p-4 d-flex flex-column position-static">
-		    		<strong class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg">"siltype"</strong>
+		    		<strong id="siltype" class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg"></strong>
 		    		<h2 class="mb-0">${DetailsTwo.silvername}</h2>
 					<div class="mb-1 text-musted">${DetailsTwo.areaa} ${DetailsTwo.areab} ${DetailsTwo.areac}</div>
-		    		<p class="text-light bg-dark" style="width: 6rem;">${DetailsTwo.service}</p>
+		    		<p class="text-light bg-dark" style="width: 4rem;">${DetailsTwo.service}</p>
 				</div>
 			</div>
 		<div class="col-md-2">
