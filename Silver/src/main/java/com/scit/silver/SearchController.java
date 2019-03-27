@@ -109,5 +109,7 @@ public class SearchController {
 			model.addAttribute("DetailsTwo",DetailsTwo);
 			return "searchDetail2";
 		} 
+
+
 	}
 }

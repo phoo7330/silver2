@@ -16,14 +16,17 @@ public class DetailsTwo {
 	private String longitude;//경도
 	
 	private int detail_seq;//시퀀스
-	private int detail_number;//기관일련번호
+	private long detail_number;//기관일련번호
 	private String establishment;//설립일
 	private String approval;
 	private String address;
 	private String house_number;
 	private String parkinglot;
+	public DetailsTwo() {
+		super();
+	}
 	public DetailsTwo(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
-			String service, String grade, String lauitude, String longitude, int detail_seq, int detail_number,
+			String service, String grade, String lauitude, String longitude, int detail_seq, long detail_number,
 			String establishment, String approval, String address, String house_number, String parkinglot) {
 		super();
 		this.seach_seq = seach_seq;
@@ -43,9 +46,6 @@ public class DetailsTwo {
 		this.address = address;
 		this.house_number = house_number;
 		this.parkinglot = parkinglot;
-	}
-	public DetailsTwo() {
-		super();
 	}
 	public int getSeach_seq() {
 		return seach_seq;
@@ -113,10 +113,10 @@ public class DetailsTwo {
 	public void setDetail_seq(int detail_seq) {
 		this.detail_seq = detail_seq;
 	}
-	public int getDetail_number() {
+	public long getDetail_number() {
 		return detail_number;
 	}
-	public void setDetail_number(int detail_number) {
+	public void setDetail_number(long detail_number) {
 		this.detail_number = detail_number;
 	}
 	public String getEstablishment() {
@@ -157,5 +157,6 @@ public class DetailsTwo {
 				+ ", detail_number=" + detail_number + ", establishment=" + establishment + ", approval=" + approval
 				+ ", address=" + address + ", house_number=" + house_number + ", parkinglot=" + parkinglot + "]";
 	}
+	
 	
 }

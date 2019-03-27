@@ -104,7 +104,7 @@
 			,A.GRADE
 			,A.LAUITUDE
 			,A.LONGITUDE
-            ,B.detail_number
+            ,B.DETAIL_NUMBER
             ,B.establishment
             ,B.approval
             ,B.address
