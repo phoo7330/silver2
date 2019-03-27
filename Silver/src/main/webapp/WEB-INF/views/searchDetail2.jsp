@@ -34,8 +34,7 @@
 	
 	gr();
 	ty();
-	
-	
+
 });
 
 
@@ -77,15 +76,17 @@ function ty(){
 	console.log(type);
 	if(type==2){
 		typename += '요양원';
-		$('#siltype').html(typename);
+		
+		$('#siltype').append(typename);
 		return;
 	}else if(type==3){
+		
 		typename += '방문시설';
-		$('#siltype').html(typename);
+		$('#siltype').append(typename);
 		return;
 	}else if(type==4){
 		typename += '치매전담';
-		$('#siltype').html(typename);
+		$('#siltype').append(typename);
 		return;
 	}
 }	

@@ -16,11 +16,28 @@
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
 	<!-- Custom CSS 추가 -->
-	<link rel="stylesheet" href="resources/css/custom.css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>">
 	<link rel="stylesheet" href="resources/css/mypage.css">
+	
+	<!-- jQuery javaScript 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
+	
+	<!-- Popper javaScript 추가 -->
+	<script src="resources/js/popper.min.js"></script>
+	
+	<!-- Bootstrap javaScript 추가 -->
+	<script src="resources/js/bootstrap.min.js"></script>
 	
 </head>
 <body>
+	<script>
+	  $(function() {
+		  $('#myTab li a').on('click',function() {
+			var item = $(this).html();
+			$("#inform-tabContent").html(item);
+		 });
+	  });
+	</script>
 	
 	<!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,60 +76,50 @@
 		</div>  
 	</nav>	
 	
-	
-	<!-- 1. 기본정보 탭  -->
-	<div class="container" id="basic">
+	<div class="container">
+		<!-- 1. 기본정보 탭  -->
 		<div class="pt-5 pb-3 border-bottom">
-		<h4 class="text-secondary"><small>계정정보</small></h4>
+			<div class="tab-content">
+		      <h5 class="text-secondary" id="inform-tabContent">계정정보</h5>  
+		    </div>
 		</div>
-	
-		<!-- 사이드바 -->
-		<div class="col-md-4">
-			<div class="card card-side">
-			
-			</div>
-		</div>
-<!-- 		<div class="card-group pt-3">
-			사이드 메뉴
-			<div class="col-md-4">
-				<div class="pt-4 pb-1 border-bottom">
-					<h6 class="text-secondary"><small>계정정보</small></h6>
-				</div>
-				사이드바
-				<div class="list-group pt-5 border border-white">
-					<a href="#" class="list-group-item list-group-item-action border-white">회원정보수정</a>
-					<a href="#" class="list-group-item list-group-item-action border-white">어르신정보</a>
-					<a href="#" class="list-group-item list-group-item-action border-white">쪽지함</a>
-				</div> 
-				
-			</div> -->
-			
-			<!-- 내용 -->
-			<div class="col-md-8">
-          		<div class="pt-3 pb-1 border-bottom">
-					<h4 class="text-secondary">회원정보수정</h4>
-				</div>
-				
-				
-			</div>
-			
-			
 	</div>
-
-
-
-
-
-
-	<!-- jQuery javaScript 추가 -->
-	<script src="resources/js/jquery.min.js"></script>
 	
-	<!-- Popper javaScript 추가 -->
-	<script src="resources/js/popper.min.js"></script>
+	<div class="container">
+		<div class="row pt-5">
+			<!-- 2. 사이드바 -->
+			<div class="col-4">
+			<ul class="nav flex-column nav-pills" id="myTab" role="tablist" aria-orientation="vertical">
+			  <li class="nav-item border-bottom">
+			    <a class="nav-link text-muted active" id="edit-account" data-toggle="pill" href="#tab-edit-account" role="tab" aria-controls="v-pills-home" aria-selected="true">계정정보</a>
+			  </li>
+			  <li class="nav-item border-bottom">
+			    <a class="nav-link text-muted" id="input-elder" data-toggle="pill" href="#tab-input-elder" role="tab" aria-controls="v-pills-profile" aria-selected="false">어르신정보</a>
+			  </li>
+			  <li class="nav-item border-bottom">
+			    <a class="nav-link text-muted" id="message-box" data-toggle="pill" href="#tab-message-box" role="tab" aria-controls="v-pills-messages" aria-selected="false">쪽지함</a>
+			  </li>
+			  <li class="nav-item border-bottom">
+			    <a class="nav-link text-muted" id="resume-box" data-toggle="pill" href="#tab-resume-box" role="tab" aria-controls="v-pills-settings" aria-selected="false">이력서</a>
+			  </li>
+			</ul>
+		  </div>
+		  <!-- 3. 내용 -->
+		  <div class="col-8">
+		    <div class="tab-content" id="nav-tabContent">
+		      <div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">1</div>
+		      <div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">2</div>
+		      <div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">3</div>
+		      <div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">4</div>
+		    </div>
+		  </div>
+		</div>
+	</div>
 	
-	<!-- Bootstrap javaScript 추가 -->
-	<script src="resources/js/bootstrap.min.js"></script>
 	
+
+
+
 
 </body>
 </html>
