@@ -116,7 +116,7 @@ $(function(){
 		    		<strong class="d-inline-block md-2 my-3 text-danger"><img src="resources/image/plussquare.svg">요양병원</strong>
 		    		<h2 class="mb-0">${DetailsOne.silvername}</h2>
 					<div class="mb-1 text-musted">${DetailsOne.areaa} ${DetailsOne.areab} ${DetailsOne.areac}</div>
-		    		<p class="text-light bg-dark" style="width: 5rem;">${DetailsOne.service}</p>
+		    		<p class="text-light bg-dark" style="width: 4.5rem;">${DetailsOne.service}</p>
 				</div>
 			</div>
 		<div class="col-md-2">
@@ -292,7 +292,7 @@ $(function(){
 					<img class="mb-2 mt-3" src="resources/image/calendar.svg" alt="" width="72" height="72"> 
 					<div class="mb-1 my-3 text-musted">접수시간</div>
 				<div class="card-body">
-	              	<div class="mb-1 text-musted">${DetailsOne.receipttime}</div>
+	              	<div class="mb-1 text-musted">평일 : ${DetailsOne.receipttime}</br>토요일 : ${DetailsOne.facilityinformation}</div>
 				</div>
 				</div>
 			</div>
@@ -312,7 +312,7 @@ $(function(){
 				<img class="mb-1 mt-3" src="resources/image/info.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-1 my-3 text-musted">${DetailsOne.facilityinformation}</div>
+				<div class="mb-1 my-3 text-musted"></div>
 				</div>
 			</div>
 		</div>
