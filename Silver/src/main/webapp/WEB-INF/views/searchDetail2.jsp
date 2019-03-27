@@ -128,9 +128,9 @@
 		<h4 class="n1 text-secondary"><small>기본정보</small></h4>
 		</div>
 		<!-- 내용 -->
-		<div class="row">
+		<div class="card-deck col-md-12">
 			<!-- 기관일련번호 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -141,9 +141,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 			<!-- 설립일 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -154,9 +154,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 			<!-- 승인일 -->
-			<div class="col-md-2">
+		
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -167,9 +167,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+				
 			<!-- 연락처 -->
-			<div class="col-md-2">
+		
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -180,7 +180,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 	
 			<div class="col-md-2">
 			</div>

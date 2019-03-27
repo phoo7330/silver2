@@ -133,9 +133,9 @@
 		<h4 class="n1 text-secondary"><small>기본정보</small></h4>
 		</div>
 		<!-- 내용 -->
-		<div class="row">
+		<div class="card-deck col-md-12">
 			<!-- 설립정보 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -146,9 +146,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 			<!-- 봉사활동 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -159,9 +159,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 			<!-- 간병형태 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -172,9 +172,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 			<!-- 입지정보 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -185,9 +185,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		
 			<!-- 종교활동 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -198,9 +198,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		
 			<!-- 전화번호 -->
-			<div class="col-md-2">
+			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-content">
 						<div class="card-header">
@@ -211,7 +211,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</div>
 	</div><br>
 

@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 	<title>실버서퍼에 오신 것을 환영합니다.</title>
 	
 	<!-- 인코딩 -->
@@ -15,7 +17,8 @@
 	
 	<!-- Custom CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/custom.css">
-
+	<link rel="stylesheet" href="resources/css/mypage.css">
+	
 </head>
 <body>
 	
@@ -50,53 +53,48 @@
 		  	<!-- 계정정보/어르신정보/쪽지함/로그아웃 -->
 		  	<c:if test="${sessionScope.loginId!=null}">
 		  	<div class="navbar-nav mr-sm-2">
-		  		<div class="nav-item dropdown mx-2">
-		  			<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small>${sessionScope.loginId}님 내정보  </small><img src="resources/image/lock.svg"></a>
-		  			<div class="dropdown-menu">
-		  				<a class="dropdown-item" href="mypage">계정정보</a>
-		  				<a class="dropdown-item" href="">어르신정보</a>
-		  				<a class="dropdown-item" href="">쪽지함</a>
-		  				<a class="dropdown-item" href="logout">로그아웃 </a>
-		  			</div>
-		  		</div>
+		  		<a class="dropdown-item" href="logout">로그아웃 </a>
 		  	</div>
 			</c:if>
 		</div>  
 	</nav>	
-
-	<!-- 점보트론 --> 
-	<header class="mathead">
-		<div class="jumbotron">			
-			<div class="row mb-3">
-			    <div class="col-md-7">
-					<h1 class="display-4 my-5 mx-5">전국 요양기관 정보 </h1>
-					<h2 class="display-5 mx-5">실버서퍼에서 확인하세요.</h2>
-			    </div>  
-				<div class="col-md-4">
-					<div class="card border-light bg-light my-5">
-						<div class="card-body">
-							<p class="lead font-weight-normal my-4">원하시는 지역 혹은 기관을 <br> 검색해보세요.</p>
-							
-							<hr class="my-4">
-							
-					        <form class="form-inline" action="search"> 
-					            <div class="form-row col-12">
-									<div class="col-md-10 mb-5 mb-md-0">
-										<input class="form-control h-110 w-100 mr-lg-1 " type="text" placeholder="지역 혹은 기관명 검색을 검색하세요.">
-									</div>
-									<div class="col-md-2">
-										<button class="btn btn-block btn-lg btn-light btn-sm" type="submit"><img src="resources/image/search.svg" ></button>
-									</div> 
-					            </div>
-					        </form>
-						</div>
-					</div>
-				</div>	
-				<div class="col-md-1">
-				</div>
-			</div>  
+	<!-- 1. 기본정보 탭  -->
+	<div class="container" id="basic">
+		<div class="pt-5 pb-3 border-bottom">
+		<h4 class="text-secondary"><small>계정정보</small></h4>
 		</div>
-	</header>
+	
+		<!-- 사이드바 -->
+		<div class="card-group pt-3">
+			<!-- 사이드 메뉴 -->
+			<div class="col-md-4">
+				<div class="pt-4 pb-1 border-bottom">
+					<h6 class="text-secondary"><small>계정정보</small></h6>
+				</div>
+				<!-- 사이드바 -->
+				<div class="list-group pt-5 border border-white">
+					<a href="#" class="list-group-item list-group-item-action border-white">회원정보수정</a>
+					<a href="#" class="list-group-item list-group-item-action border-white">어르신정보</a>
+					<a href="#" class="list-group-item list-group-item-action border-white">쪽지함</a>
+				</div>
+			</div>
+			
+			<!-- 내용 -->
+			<div class="col-md-8">
+          		<div class="pt-3 pb-1 border-bottom">
+					<h4 class="text-secondary">회원정보수정</h4>
+				</div>
+				
+				
+			</div>
+			
+			
+		</div>
+	</div>
+
+
+
+
 
 
 	<!-- jQuery javaScript 추가 -->
