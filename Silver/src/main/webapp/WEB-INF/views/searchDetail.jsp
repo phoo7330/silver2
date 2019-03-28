@@ -29,6 +29,7 @@
 	<!-- Custom CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/custom.css">
 	<link rel="stylesheet" href="resources/css/search.css">
+	<link rel="stylesheet" href="resources/css/board.css">
 
 </head>
 <body>
@@ -370,7 +371,7 @@ $(function(){
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
-		<!-- 게시판 : 게시판 VO가 없어서 매칭되지 않는 부분 확인 바라요. 번호/제목/날짜-->
+		
 		<p class="lead"><small>전체 이용후기 0</small></p>
 		<table class="table text-center">
 			<thead class="thead-light">
@@ -448,32 +449,55 @@ $(function(){
 		</ul>
 	</div>	
 	
-	<!-- 6. 내용확인  -->
-	<div class="container" id="tab-contents">
+	
+	
+	<!-- 7. 게시판 세부내용 -->
+	<div class="container" id="tab-board-detail">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
-		<!-- 게시판 : 게시판 VO가 없어서 매칭되지 않는 부분 확인 바라요. 번호/제목/날짜-->
-		<p class="lead"><small>전체 이용후기 0</small></p>
-		<table class="table text-center">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">번호</th>
-					<th scope="col">제목</th>
-					<th scope="col">"userid"</th>
-					<th scope="col">"sysdate"</th>
-				</tr>
-			</thead>
-			<tbody class="table-sm">
-				<tr class="select-table">
-					<td>"sb_seq"</td>
-					<td>"sbtitle"</td>
-					<td>"userid"</td>
-					<td>"sbdate"</td>
-				</tr>
-			</tbody>
+		
+		<table class="table table-bordered" id="board-table">
+			<!-- 게시판 타이틀 -->
+			<tr>
+				<td class="board-title pb-0">
+					<h3>"SBTITLE"</h3>
+					<div class="form-group row mb-2">
+						<h5 class="col-sm-6 mb-0">"userid"</h5>
+						<div class="col-sm-6">
+						<button type="button" class="btn btn-outline-secondary btn-sm float-right"><small>댓글</small> <span class="badge badge-light">4</span></button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<!-- 게시판 내용 -->
+			<tr>
+				<td class="board-contents">
+				
+				</td>
+			</tr>
+			<!-- 게시판 댓글-->
+			<tr>
+				<td class="board-comment">
+					<div class="col-md-5">
+						<h5 class="mb-0">댓글쓰기</h5>
+						<!-- value : 기존 userid 들어가는 부분 - static -->
+						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="value:userid">
+					</div>
+					<!-- 댓글입력 -->
+					<div class="form-group row p-1 mb-0">
+						<div class="col-md-10 pr-0">
+							<textarea class="form-control mx-1" id="form-textarea" rows="2"></textarea>
+						</div>
+						<div class="col-md-2">
+						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
+						</div>
+					</div>
+
+				</td>
+			</tr>
 		</table>
-	</div>
+		</div>
 	
 </body>
 </html>

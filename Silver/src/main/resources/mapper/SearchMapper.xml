@@ -122,20 +122,20 @@
 
 	<!--   시설db 정보 불러오기 sql   -->
  <select id="selectmap4" parameterType="int" resultType="DetailsOne">	
-		select 
-			A.SEACH_SEQ
-			,A.TYPE
-			,A.AREAA
-			,A.AREAB
-			,A.AREAC
-			,A.SILVERNAME
-			,A.SERVICE
-			,A.GRADE
-			,A.LAUITUDE
-			,A.LONGITUDE
+		   select 
+         A.SEACH_SEQ
+         ,A.TYPE
+         ,A.AREAA
+         ,A.AREAB
+         ,A.AREAC
+         ,A.SILVERNAME
+         ,A.SERVICE
+         ,A.GRADE
+         ,A.LAUITUDE
+         ,A.LONGITUDE
             ,C.Establishment
-            ,C.HP_service
-            ,C.Protection
+            ,C.HP_SERVICE
+            ,C.PROTECTION
             ,C.Location
             ,C.Religion
             ,C.Hospital_tel
@@ -144,13 +144,15 @@
             ,C.lunchTime
             ,C.ReceiptTime
             ,C.Facilityinformation
+            ,C.treatment
+            ,C.higher
+            ,C.General
          from 
-             SILVERSEARCH A 	
+             SILVERSEARCH A    
             ,Hospital_details C
-    	where 
-			C.SEACH_SEQ = #{seach_seq} and
-    		A.SEACH_SEQ = #{seach_seq} 
-	 
+       where 
+         C.SEACH_SEQ = #{seach_seq} and
+          A.SEACH_SEQ = #{seach_seq}
 	</select>	
 		 
 	<select id="TypeSearch" parameterType="int" resultType="int">
