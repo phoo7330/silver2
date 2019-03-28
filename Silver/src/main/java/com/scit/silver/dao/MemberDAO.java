@@ -38,4 +38,15 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public Member selectMember2(String userid) {
+		Member result = null;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		try {
+			result = mapper.selectMember2(userid);
+		} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+		}
+		return result;
+	}
 }
