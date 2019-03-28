@@ -34,6 +34,7 @@
 	
 	gr();
 	ty();
+	mark();
 
 });
 
@@ -89,6 +90,25 @@ function ty(){
 		$('#siltype').append(typename);
 		return;
 	}
+}
+
+function mark(){
+	
+	//vo에 담겨있는 위도,경도를 꺼내 지도와 마커를 표시
+	var grd_lo = '${DetailsTwo.longitude}';
+ 		grd_la = '${DetailsTwo.lauitude}';
+ 		
+ 		console.log("lo"+grd_lo+"la"+grd_la);
+	 
+	var map = new naver.maps.Map('map', {
+	    center: new naver.maps.LatLng(grd_la, grd_lo),
+	    zoom: 12,
+	});
+
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(grd_la, grd_lo),
+	    map: map
+	}); 
 }	
 </script>
 <!-- 네비게이션 바 -->

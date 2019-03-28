@@ -32,38 +32,65 @@
 	<link rel="stylesheet" href="resources/css/board.css">
 
 </head>
-<body>
+<body>  
 <script>
 $(function(){
+	grade();
+	mark();
 	
-		var grade= null;
-		var stgrade = '';
-		grade='${DetailsOne.grade}';
-		console.log(grade);
-		if(grade=='A'){
-			stgrade += '최우수';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='B'){
-			stgrade += '우수';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='C'){
-			stgrade += '양호';
-			$('#grade').html(stgrade);
-			return;
-		}else if(grade=='D'){
-			stgrade += '보통';
-			$('#grade').html(stgrade);
-			return;
-		}
-		else if(grade=='정보없음'){
-			stgrade += '정보없음';
-			$('#grade').html(stgrade);
-			return;
-		}
-		console.log(stgrade);
 });
+
+function grade(){
+	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
+	var grade= null;
+	var stgrade = '';
+	grade='${DetailsOne.grade}';
+	console.log(grade);
+	if(grade=='A'){
+		stgrade += '최우수';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='B'){
+		stgrade += '우수';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='C'){
+		stgrade += '양호';
+		$('#grade').html(stgrade);
+		return;
+	}else if(grade=='D'){
+		stgrade += '보통';
+		$('#grade').html(stgrade);
+		return;
+	}
+	else if(grade=='정보없음'){
+		stgrade += '정보없음';
+		$('#grade').html(stgrade);
+		return;
+	}
+	console.log(stgrade);
+}
+		
+function mark(){
+	
+	//vo에 담겨있는 위도,경도를 꺼내 지도와 마커를 표시
+	var grd_lo = '${DetailsOne.longitude}';
+ 		grd_la = '${DetailsOne.lauitude}';
+ 		
+ 		console.log("lo"+grd_lo+"la"+grd_la);
+	 
+	var map = new naver.maps.Map('map', {
+	    center: new naver.maps.LatLng(grd_la, grd_lo),
+	    zoom: 12,
+	});
+
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(grd_la, grd_lo),
+	    map: map
+	}); 
+}	
+		
+	
 
 /* 게시글작성페이지 이동 
  $(function(){
@@ -325,7 +352,7 @@ $(function(){
 				<img class="mb-1 mt-3" src="resources/image/info.svg">
 				</div>
 				<div class="p-1 align-self-end">
-				<div class="mb-1 my-3 text-musted"></div>
+				<div id="info" class="mb-1 my-3 text-musted">${DetailsOne.treatment}</div>
 				</div>
 			</div>
 		</div>

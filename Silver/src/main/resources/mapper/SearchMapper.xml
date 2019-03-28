@@ -145,8 +145,6 @@
             ,C.ReceiptTime
             ,C.Facilityinformation
             ,C.treatment
-            ,C.higher
-            ,C.General
          from 
              SILVERSEARCH A    
             ,Hospital_details C

@@ -29,9 +29,6 @@ public class DetailsOne {
 	private String receipttime;
 	private String facilityinformation;
 	private String treatment;
-	private String higher;
-	private String General;
-	
 	public DetailsOne() {
 		super();
 	}
@@ -39,7 +36,7 @@ public class DetailsOne {
 			String service, String grade, String lauitude, String longitude, int hp_details_seq, int information_seq,
 			String establishment, String hp_service, String protection, String location, String religion,
 			String hospital_tel, String hp_address, String holiday, String lunchtime, String receipttime,
-			String facilityinformation, String treatment, String higher, String general) {
+			String facilityinformation, String treatment) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -65,8 +62,6 @@ public class DetailsOne {
 		this.receipttime = receipttime;
 		this.facilityinformation = facilityinformation;
 		this.treatment = treatment;
-		this.higher = higher;
-		General = general;
 	}
 	public int getSeach_seq() {
 		return seach_seq;
@@ -212,18 +207,6 @@ public class DetailsOne {
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
 	}
-	public String getHigher() {
-		return higher;
-	}
-	public void setHigher(String higher) {
-		this.higher = higher;
-	}
-	public String getGeneral() {
-		return General;
-	}
-	public void setGeneral(String general) {
-		General = general;
-	}
 	@Override
 	public String toString() {
 		return "DetailsOne [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab
@@ -233,7 +216,7 @@ public class DetailsOne {
 				+ hp_service + ", protection=" + protection + ", location=" + location + ", religion=" + religion
 				+ ", hospital_tel=" + hospital_tel + ", hp_address=" + hp_address + ", holiday=" + holiday
 				+ ", lunchtime=" + lunchtime + ", receipttime=" + receipttime + ", facilityinformation="
-				+ facilityinformation + ", treatment=" + treatment + ", higher=" + higher + ", General=" + General
-				+ "]";
+				+ facilityinformation + ", treatment=" + treatment + "]";
 	}
+	
 }
