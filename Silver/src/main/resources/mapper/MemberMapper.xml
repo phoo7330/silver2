@@ -63,7 +63,25 @@
   
   </select>
   
+   <select id="selectMember2" parameterType="String" resultType="Member">
+ 	SELECT
+	 	CODE_SEQ
+	  	,TYPE
+	  	,USERID
+	  	,USERPWD
+	  	,USERNAME
+	  	,BIRTHDAY
+	  	,GENDER
+	  	,ADDRESS
+	  	,REGISTRATION
+	  	,EMAIL
+	  	,WARNING
+	FROM
+		MEMBER
+	WHERE
+		USERID=#{userid}
   
+  </select>
   
   
   </mapper>

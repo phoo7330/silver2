@@ -32,4 +32,6 @@ public class HomeController {
 
 		return "searchDetail2";
 	}
+	
+	
 }
