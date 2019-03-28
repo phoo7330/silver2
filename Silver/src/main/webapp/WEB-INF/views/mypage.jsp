@@ -108,6 +108,7 @@
 		  <div class="col-8">
 		    <div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">1</div>
+		      <div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">${member.userid}</div>
 		      <div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">2</div>
 		      <div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">3</div>
 		      <div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">4</div>

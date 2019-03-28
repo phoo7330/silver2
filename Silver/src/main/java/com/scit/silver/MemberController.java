@@ -1,5 +1,7 @@
 package com.scit.silver;
 
+import java.util.Locale;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +97,20 @@ public class MemberController {
 		System.out.println("[세션에 입력된 아이디]: "+result.getUserid());
 		System.out.println("[세션에서 입력된 회원타입]: "+session.getAttribute("usertype"));
 		return "index";
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(Member member, HttpSession session, Model model) {
+		if (session.getAttribute("loginId") == null) {
+			return "redirect:/";
+		}
+		Member result = null;
+		String loginId = (String) session.getAttribute("loginId");
+
+		result = dao.selectMember2(loginId);
+		
+		model.addAttribute("member", result);
+		
+		return "mypage";
 	}
 }
