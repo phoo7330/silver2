@@ -89,26 +89,26 @@ function mark(){
 	    map: map
 	}); 
 }	
+
+/* 게시글작성페이지 이동  */
+	$(function() {
+		$("#tab-board-detail").hide();
 		
-	
+		$('#tr-facility').on('click', function() {
+			console.log("aaa");
+			$("#tab-basic").hide();
+		 	$("#tab-time").hide();
+		 	$("#tab-facility").hide();
+		 	$("#tab-address").hide();
+		 	$("#tab-board").hide();
+		 	$("#nav-top").show();
+		 	$("#tab-board-detail").show(); 
+		});
+	}); 
 
-/* 게시글작성페이지 이동 
- $(function(){
-	 $('.select-table').on('click',function(){
-		 console.log("aaa");
-		 $("#tab-basic").hide();
-		 $("#tab-time").hide();
-		 $("#tab-facility").hide();
-		 $("#tab-address").hide();
-		 $("#tab-board").hide();
-		 $("#tab-contents").show(); 
-	 });
-});  
-
- */
 </script>
 <!-- 네비게이션 바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-top">
  		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
 	    <span class="navbar-toggler-icon"></span>
@@ -184,11 +184,11 @@ function mark(){
 	<nav class="nav-scroller py-1 mb-2 sticky-top bg-light border-bottom" id="nav-under">
 		<div class="container">
 			<div class="nav"> 
-		  		<a class="nav-item nav-link text-secondary active" href="#basic">
+		  		<a class="nav-item nav-link text-secondary active" id="nav-under-basic" href="#tab-basic">
 		  			<strong>상세정보</strong> <span class="sr-only">(current)</span> </a>
-		  		<a class="nav-item nav-link text-secondary" href="#picandmap">
+		  		<a class="nav-item nav-link text-secondary" id="nav-under-address" href="#tab-address">
 		  			<strong>사진/주소</strong> </a>
-		  		<a class="nav-item nav-link text-secondary" href="#board">
+		  		<a class="nav-item nav-link text-secondary" id="nav-under-board" href="#tab-board">
 		  			<strong>게시판</strong> </a>	
 			</div>
 		</div>
@@ -295,9 +295,8 @@ function mark(){
 						</div>
 					</div>
 				</div>
-			
-		</div>
-	</div><br>
+		</div><br>
+	</div>
 
 	<!-- 2. 진료시간  -->
 	<div class="container" id="tab-time">
@@ -332,13 +331,13 @@ function mark(){
 					<img class="mb-2 mt-3" src="resources/image/calendar.svg" alt="" width="72" height="72"> 
 					<div class="mb-1 my-3 text-musted">접수시간</div>
 				<div class="card-body">
-	              	<div class="mb-1 text-musted">평일 : ${DetailsOne.receipttime}</br>토요일 : ${DetailsOne.facilityinformation}</div>
+	              	<div class="mb-1 text-musted">평일 : ${DetailsOne.receipttime}<br>토요일 : ${DetailsOne.facilityinformation}</div>
 				</div>
 				</div>
 			</div>
-		</div>	
+		</div><br>	
 	</div>		
-	<br>
+
 
 	<!-- 3. 시설정보 탭  현재 토요일 진료시간이 들어있음.-->
 	<div class="container" id="tab-facility">
@@ -355,10 +354,9 @@ function mark(){
 				<div id="info" class="mb-1 my-3 text-musted">${DetailsOne.treatment}</div>
 				</div>
 			</div>
-		</div>
+		</div><br>
 	</div>
-	<br>
-	
+
 	<!-- 4. 사진 & 주소  -->
 	<div class="container" id="tab-address">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -389,9 +387,9 @@ function mark(){
 				<img src="resources/image/map.svg" class="rounded my-auto" alt="">
 			</div>
 		</div>
-		</div>
+		</div><br>
 	</div>	
-	<br>
+
 	
 	<!-- 5. 시설게시판  -->
 	<div class="container" id="tab-board">
@@ -410,7 +408,7 @@ function mark(){
 				</tr>
 			</thead>
 			<tbody class="table-sm">
-				<tr class="select-table">
+				<tr class="select-table" id="tr-facility">
 					<td>"sb_seq"</td>
 					<td>"sbtitle"</td>
 					<td>"userid"</td>
@@ -475,56 +473,106 @@ function mark(){
 			</li>
 		</ul>
 	</div>	
-	
-	
-	
+
 	<!-- 7. 게시판 세부내용 -->
 	<div class="container" id="tab-board-detail">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
+			<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
-		
+		<button type="button" class="btn btn-outline-secondary btn-sm float-right my-2">목록보기</button>
 		<table class="table table-bordered" id="board-table">
 			<!-- 게시판 타이틀 -->
 			<tr>
-				<td class="board-title pb-0">
-					<h3>"SBTITLE"</h3>
+				<td class="pb-0">
+					<h3 id="board-title">"SBTITLE"</h3>
+					<h6 id="board-date"><small>"(sysdate)2019-03-28"</small></h6>
 					<div class="form-group row mb-2">
 						<h5 class="col-sm-6 mb-0">"userid"</h5>
 						<div class="col-sm-6">
-						<button type="button" class="btn btn-outline-secondary btn-sm float-right"><small>댓글</small> <span class="badge badge-light">4</span></button>
+							<!-- *** 댓글 수 뱃지에 연결 필요 -->
+							<div class="form-group row float-right mx-1">
+							<button type="button" class="btn btn-outline-secondary btn-sm mx-1"><small>댓글</small><span class="badge badge-light">4</span></button>
+								<!-- 게시글 수정/삭제 -->
+								<div class="dropdown">
+									<a class="btn btn-outline-light btn-sm dropdown-toggle mx-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<small><img src="resources/image/morevertical.svg"></small>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+										<a class="dropdown-item" href="#"><small>수정</small></a>
+										<a class="dropdown-item" href="#"><small>삭제</small></a>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</td>
 			</tr>
 			<!-- 게시판 내용 -->
 			<tr>
-				<td class="board-contents">
-				
+				<td class="board-text" style="height: 20rem;">
+					<p class="text-justify font-weight-light p-3" id="board-contents"> </p>
 				</td>
 			</tr>
-			<!-- 게시판 댓글-->
+			<!-- 게시판 댓글 쓰기 -->
 			<tr>
 				<td class="board-comment">
-					<div class="col-md-5">
+					<div class="col-md-4">
 						<h5 class="mb-0">댓글쓰기</h5>
-						<!-- value : 기존 userid 들어가는 부분 - static -->
-						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="value:userid">
+						<!-- *** value : 기존 userid 들어가는 부분 - static -->
+						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="value:userid(static)">
 					</div>
 					<!-- 댓글입력 -->
 					<div class="form-group row p-1 mb-0">
 						<div class="col-md-10 pr-0">
-							<textarea class="form-control mx-1" id="form-textarea" rows="2"></textarea>
+							<textarea class="form-control mx-1" id="textarea-comment" rows="2"></textarea>
 						</div>
 						<div class="col-md-2">
 						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
 						</div>
 					</div>
-
+				</td>
+			</tr>
+			<!-- 게시판 댓글 목록 -->
+			<tr>
+				<td class="nav-comment">
+					<ul class="nav nav-tabs">
+					  <li class="nav-item">
+					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글</a>
+					  </li>
+					</ul>
+					<!-- 댓글 테이블 -->
+					<div class="tab-content pt-3" id="myTabContent">
+						<div class="tab-pane fade show active" id="comment-list">
+							<table class="col-md-12">
+								<tr>
+									<td>
+										<div class="form-group row">
+										<!-- 댓글 등록 아이디/날짜 -->
+										<h6 class="col-md-6" id="table-static"><small>"userid" | "(sysdate)2019-03-28"</small></h6>		
+										<!-- 댓글 수정/삭제 -->
+										<div class="col-md-6">
+											<div class="dropdown float-right">
+											  <a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											  <small><img src="resources/image/morevertical.svg"></small>
+											  </a>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+											    <a class="dropdown-item" href="#"><small>수정</small></a>
+											    <a class="dropdown-item" href="#"><small>삭제</small></a>
+											  </div>
+											</div>
+										</div>
+										</div>
+										<!-- 콘텐츠:예시 -->
+										<h6 id="table-contents">Example) Bootstrap’s form controls expand on our Rebooted form styles with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</h6>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
 				</td>
 			</tr>
 		</table>
-		</div>
+	</div>
 	
 </body>
 </html>
