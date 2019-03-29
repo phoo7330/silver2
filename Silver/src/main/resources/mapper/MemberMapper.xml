@@ -10,9 +10,8 @@
   INSERT INTO
   	MEMBER
   	(
-  	CODE_SEQ
+  	USERID
   	,TYPE
-  	,USERID
   	,USERPWD
   	,USERNAME
   	,BIRTHDAY
@@ -25,9 +24,8 @@
   	
   	VALUES
   	(
-  	CODE_SEQ.nextval
+	 #{userid}
   	,#{type}
-  	,#{userid}
   	,#{userpwd}
   	,#{username}
   	,#{birthday}
@@ -43,9 +41,8 @@
   <!--로그인 -->
   <select id="selectMember" parameterType="Member" resultType="Member">
  	SELECT
-	 	CODE_SEQ
-	  	,TYPE
-	  	,USERID
+ 		USERID
+	 	,TYPE
 	  	,USERPWD
 	  	,USERNAME
 	  	,BIRTHDAY
@@ -65,9 +62,8 @@
   
    <select id="selectMember2" parameterType="String" resultType="Member">
  	SELECT
-	 	CODE_SEQ
-	  	,TYPE
-	  	,USERID
+ 		USERID
+	 	,TYPE
 	  	,USERPWD
 	  	,USERNAME
 	  	,BIRTHDAY

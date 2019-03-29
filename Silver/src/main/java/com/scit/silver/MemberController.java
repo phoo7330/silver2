@@ -108,7 +108,7 @@ public class MemberController {
 		String loginId = (String) session.getAttribute("loginId");
 
 		result = dao.selectMember2(loginId);
-		
+		System.out.println("마이페이지"+result);
 		model.addAttribute("member", result);
 		
 		return "mypage";

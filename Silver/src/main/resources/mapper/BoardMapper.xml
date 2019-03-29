@@ -6,17 +6,17 @@
   
   <mapper namespace="com.scit.silver.dao.BoardMapper">
   
-<insert id="insertsb" parameterType="SilerBoard">
+<insert id="insertsb" parameterType="SilverBoard">
 INSERT INTO SILVERBOARD(
     SB_SEQ,
-    CODE_SEQ,
+    USERID,
     SEACH_SEQ,
     SBTITLE,
     SBWRITE,
     SBDATE
 )VALUES(
     SB_SEQ.NEXTVAL,
-    #{code_seq},
+    #{userid},
     #{seach_seq},
     #{sbtitle},
     #{sbwrite},
@@ -27,26 +27,28 @@ INSERT INTO SILVERBOARD(
 
 
 <select id="selectsbone" parameterType="int" resultType="SilverBoard">
-SELECT 
+ SELECT 
     SBTITLE,
     SBWRITE,
+    USERID,
     TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
 FROM
     SILVERBOARD
 WHERE
-    SB_SEQ=#{sb_seq};
-
+    SB_SEQ=#{sb_seq}
 </select>
 
 <select id="selectall" parameterType="int" resultType="SilverBoard">
 SELECT 
     SBTITLE,
-    SBWRITE,
+    USERID,
     TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
 FROM
     SILVERBOARD
 WHERE
-    SEACH_SEQ=9
+    SEACH_SEQ = #{seach_seq}
+ORDER BY
+    SBDATE DESC
 
 
 

@@ -5,7 +5,7 @@ import java.util.Date;
 public class SilverBoard {
 
 	private int sb_seq;
-	private int code_seq;
+	private String userid;
 	private int seach_seq;
 	private String sbtitle;
 	private String sbwrite;
@@ -13,10 +13,10 @@ public class SilverBoard {
 	public SilverBoard() {
 		super();
 	}
-	public SilverBoard(int sb_seq, int code_seq, int seach_seq, String sbtitle, String sbwrite, Date sbdate) {
+	public SilverBoard(int sb_seq, String userid, int seach_seq, String sbtitle, String sbwrite, Date sbdate) {
 		super();
 		this.sb_seq = sb_seq;
-		this.code_seq = code_seq;
+		this.userid = userid;
 		this.seach_seq = seach_seq;
 		this.sbtitle = sbtitle;
 		this.sbwrite = sbwrite;
@@ -28,11 +28,11 @@ public class SilverBoard {
 	public void setSb_seq(int sb_seq) {
 		this.sb_seq = sb_seq;
 	}
-	public int getCode_seq() {
-		return code_seq;
+	public String getUserid() {
+		return userid;
 	}
-	public void setCode_seq(int code_seq) {
-		this.code_seq = code_seq;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public int getSeach_seq() {
 		return seach_seq;
@@ -60,9 +60,10 @@ public class SilverBoard {
 	}
 	@Override
 	public String toString() {
-		return "SilverBoard [sb_seq=" + sb_seq + ", code_seq=" + code_seq + ", seach_seq=" + seach_seq + ", sbtitle="
+		return "SilverBoard [sb_seq=" + sb_seq + ", userid=" + userid + ", seach_seq=" + seach_seq + ", sbtitle="
 				+ sbtitle + ", sbwrite=" + sbwrite + ", sbdate=" + sbdate + "]";
 	}
+	
 	
 	
 	

@@ -3,9 +3,8 @@ package com.scit.silver.vo;
 
 public class Member {
 	
-	private int code_seq;
-	private int type;
 	private	String userid;
+	private int type;
 	private String userpwd;
 	private	String username;
 	private	String birthday;
@@ -14,12 +13,14 @@ public class Member {
 	private	String registration;
 	private	String email;
 	private	int warning;
-	public Member(int code_seq, int type, String userid, String userpwd, String username, String birthday,
-			String gender, String address, String registration, String email, int warning) {
+	public Member() {
 		super();
-		this.code_seq = code_seq;
-		this.type = type;
+	}
+	public Member(String userid, int type, String userpwd, String username, String birthday, String gender,
+			String address, String registration, String email, int warning) {
+		super();
 		this.userid = userid;
+		this.type = type;
 		this.userpwd = userpwd;
 		this.username = username;
 		this.birthday = birthday;
@@ -29,26 +30,17 @@ public class Member {
 		this.email = email;
 		this.warning = warning;
 	}
-	public Member() {
-		super();
+	public String getUserid() {
+		return userid;
 	}
-	public int getCode_seq() {
-		return code_seq;
-	}
-	public void setCode_seq(int code_seq) {
-		this.code_seq = code_seq;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public int getType() {
 		return type;
 	}
 	public void setType(int type) {
 		this.type = type;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 	public String getUserpwd() {
 		return userpwd;
@@ -100,10 +92,11 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [code_seq=" + code_seq + ", type=" + type + ", userid=" + userid + ", userpwd=" + userpwd
-				+ ", username=" + username + ", birthday=" + birthday + ", gender=" + gender + ", address=" + address
-				+ ", registration=" + registration + ", email=" + email + ", warning=" + warning + "]";
+		return "Member [userid=" + userid + ", type=" + type + ", userpwd=" + userpwd + ", username=" + username
+				+ ", birthday=" + birthday + ", gender=" + gender + ", address=" + address + ", registration="
+				+ registration + ", email=" + email + ", warning=" + warning + "]";
 	}
-	 
+	
+	
 	
 }

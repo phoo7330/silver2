@@ -37,9 +37,34 @@
 $(function(){
 	grade();
 	mark();
-	
+	$("#insertbt").on("click",function(){
+		insertBoard();
+	});	
 });
-
+function insertBoard(){
+	var title = $("#sbtitle").val().length;
+	var write = $("#sbwrite").val().length;
+	if(title<1){
+		alert("제목을 입력하세요");
+		return;
+	}
+	if(write<1){
+		alert("내용을 입력하세요");
+		return;
+	}
+	var SilverBoard = $("form[name=insertform]").serialize();
+	$.ajax({
+        type : 'post',
+        url : 'insertsb',
+        data : SilverBoard,
+        dataType : 'json',
+        success : function(){
+        	alert("등록되었습니다");
+        	//$('#write-board').modal("hide");
+        	//$("#write-board").toggle();
+        }
+    });
+}
 function grade(){
 	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
 	var grade= null;
@@ -90,7 +115,12 @@ function mark(){
 	}); 
 }	
 		
-	
+
+
+
+
+
+
 
 /* 게시글작성페이지 이동 
  $(function(){
@@ -403,7 +433,6 @@ function mark(){
 		<table class="table text-center">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">번호</th>
 					<th scope="col">제목</th>
 					<th scope="col">"userid"</th>
 					<th scope="col">"sysdate"</th>
@@ -411,7 +440,6 @@ function mark(){
 			</thead>
 			<tbody class="table-sm">
 				<tr class="select-table">
-					<td>"sb_seq"</td>
 					<td>"sbtitle"</td>
 					<td>"userid"</td>
 					<td>"sbdate"</td>
@@ -435,27 +463,30 @@ function mark(){
 		      </div>
 		      
 		      <div class="modal-body">
-				<form>
+				<form id="insertform" name="insertform" action="insertsb" method="post" >
 					<fieldset disabled>
 					<div class="form-group">
 				      <label for="disabledText">아이디</label>
-				      <input type="text" id="disabledText" class="form-control" placeholder="">
+				      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
+					  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
 				    </div>
 				    </fieldset>
 					<div class="form-group">
 						<label>제목</label>
-						<input type="text" class="form-control">
+						<input type="text" id="sbtitle" name="sbtitle" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>내용</label>
-						<textarea class="form-control" style="height: 15rem;"></textarea>
+						<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
 					</div>
-				</form>   
+					<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
+				    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+				 </form>   
 		      </div>
 		      <!-- 버튼-취소/저장 -->
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-		        <button type="button" class="btn btn-info btn-sm">저장</button>
+		        <button type="button" id="insertbt" class="btn btn-info btn-sm">저장</button>
 		      </div>
 		    </div>
 		  </div>
