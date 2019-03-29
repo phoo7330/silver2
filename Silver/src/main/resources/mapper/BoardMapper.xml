@@ -40,6 +40,7 @@ WHERE
 
 <select id="selectall" parameterType="int" resultType="SilverBoard">
 SELECT 
+	SB_SEQ,
     SBTITLE,
     USERID,
     TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
@@ -50,7 +51,15 @@ WHERE
 ORDER BY
     SBDATE DESC
 
+</select>
 
-
+<select id="countRecord" parameterType="int" resultType="int">
+	
+	SELECT 
+		COUNT(SEACH_SEQ) 
+	FROM 
+		SILVERBOARD
+	WHERE
+		SEACH_SEQ = #{seach_seq}
 </select>
   </mapper>

@@ -9,11 +9,11 @@ public class SilverBoard {
 	private int seach_seq;
 	private String sbtitle;
 	private String sbwrite;
-	private Date sbdate;
+	private String sbdate;
 	public SilverBoard() {
 		super();
 	}
-	public SilverBoard(int sb_seq, String userid, int seach_seq, String sbtitle, String sbwrite, Date sbdate) {
+	public SilverBoard(int sb_seq, String userid, int seach_seq, String sbtitle, String sbwrite, String sbdate) {
 		super();
 		this.sb_seq = sb_seq;
 		this.userid = userid;
@@ -52,10 +52,10 @@ public class SilverBoard {
 	public void setSbwrite(String sbwrite) {
 		this.sbwrite = sbwrite;
 	}
-	public Date getSbdate() {
+	public String getSbdate() {
 		return sbdate;
 	}
-	public void setSbdate(Date sbdate) {
+	public void setSbdate(String sbdate) {
 		this.sbdate = sbdate;
 	}
 	@Override
@@ -63,8 +63,6 @@ public class SilverBoard {
 		return "SilverBoard [sb_seq=" + sb_seq + ", userid=" + userid + ", seach_seq=" + seach_seq + ", sbtitle="
 				+ sbtitle + ", sbwrite=" + sbwrite + ", sbdate=" + sbdate + "]";
 	}
-	
-	
 	
 	
 }

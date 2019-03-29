@@ -37,6 +37,7 @@
 $(function(){
 	grade();
 	mark();
+	selectBoard();
 	$("#insertbtn").on("click",function(){	
 		insertBoard(); 
 		//$('#write-board').modal('hide');
@@ -47,6 +48,52 @@ $(function(){
 	});
 });
 
+function selectBoard(){
+	var seach_seq='${DetailsOne.seach_seq}';
+	console.log(seach_seq);
+	 $.ajax({
+        type : 'get',
+        url : 'pageboard',
+        data : {seach_seq:seach_seq},
+        success : printB
+	}); 
+}
+function printB(data){
+	console.log(data);
+	var list = '';
+	 $.each(data, function (index, item){
+		 list+='<tr class="select-table" data-value="'+item.sb_seq+'">';
+		 list+='<td>'+item.sbtitle+'</td>';
+		 list+='<td>'+item.userid+'</td>';
+		 list+='<td>'+item.sbdate+'</td></tr>';
+	 });
+	 $('#sbList').html(list);
+	 
+	 $('.select-table').on('click', function() {
+		 	$("#tab-board-detail").show(); 
+			$("#tab-basic").hide();
+		 	$("#tab-time").hide();
+		 	$("#tab-facility").hide();
+		 	$("#tab-address").hide();
+		 	$("#tab-board").hide();
+		 	location.href="#nav-top";
+		var sb_seq=$(this).attr('data-value');
+		console.log(sb_seq);
+		$.ajax({
+	        type : 'get',
+	        url : 'oneboard',
+	        data : {sb_seq:sb_seq},
+	        success : printOneB
+		}); 
+			function printOneB(data){
+				console.log(data);
+				$('#board-title').html(data.sbtitle);
+				$('#board-date').html(data.sbdate);
+				$('#board-id').html(data.userid);
+				$('#board-contents').html(data.sbwrite);
+			}
+		});
+}
 function insertBoard(){
 	var title = $("#sbtitle").val().length;
 	var write = $("#sbwrite").val().length;
@@ -83,7 +130,6 @@ function grade(){
 	var grade= null;
 	var stgrade = '';
 	grade='${DetailsOne.grade}';
-	console.log(grade);
 	if(grade=='A'){
 		stgrade += '최우수';
 		$('#grade').html(stgrade);
@@ -106,7 +152,7 @@ function grade(){
 		$('#grade').html(stgrade);
 		return;
 	}
-	console.log(stgrade);
+
 }
 		
 function mark(){
@@ -114,9 +160,7 @@ function mark(){
 	//vo에 담겨있는 위도,경도를 꺼내 지도와 마커를 표시
 	var grd_lo = '${DetailsOne.longitude}';
  		grd_la = '${DetailsOne.lauitude}';
- 		
- 		console.log("lo"+grd_lo+"la"+grd_la);
-	 
+
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(grd_la, grd_lo),
 	    zoom: 12,
@@ -131,20 +175,6 @@ function mark(){
 /* 게시글작성페이지 이동  */
 	$(function() {
 		$("#tab-board-detail").hide();
-		
-
-		$('#tr-facility').on('click', function() {
-			console.log("aaa");
-			
-		 	$("#tab-board-detail").show(); 
-			$("#tab-basic").hide();
-		 	$("#tab-time").hide();
-		 	$("#tab-facility").hide();
-		 	$("#tab-address").hide();
-		 	$("#tab-board").hide();
-		 	location.href="#nav-top";
- 	
-		});
 		
 		$('#nav-under-basic').on('click', function() {
 			console.log("aaa");
@@ -184,6 +214,12 @@ function mark(){
 	$(function() {
 		$('#btn-return').on('click', function() {
 			console.log("aaa");
+			// 목록가기를 누르면 현재 게시글을 비운다.
+			$('#board-title').html('');
+			$('#board-date').html('');
+			$('#board-id').html('');
+			$('#board-contents').html('');
+			
 			$("#tab-board-detail").hide();
 			$("#tab-basic").show();
 		 	$("#tab-time").show();
@@ -493,16 +529,12 @@ function mark(){
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">제목</th>
-					<th scope="col">"userid"</th>
-					<th scope="col">"sysdate"</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성날짜</th>
 				</tr>
 			</thead>
-			<tbody class="table-sm">
-				<tr class="select-table" id="tr-facility">
-					<td>"sbtitle"</td>
-					<td>"userid"</td>
-					<td>"sbdate"</td>
-				</tr>
+			<tbody class="table-sm" id="sbList">
+						<!-- 게시글출력. 5개씩 -->
 			</tbody>
 		</table>
 		<!-- 모달버튼 -->
@@ -576,10 +608,10 @@ function mark(){
 			<!-- 게시판 타이틀 -->
 			<tr>
 				<td class="pb-0">
-					<h3 id="board-title">"SBTITLE"</h3>
-					<h6 id="board-date"><small>"(sysdate)2019-03-28"</small></h6>
+					<h3 id="board-title"></h3>
+					<h6 id="board-date"><small></small></h6>
 					<div class="form-group row mb-2">
-						<h5 class="col-sm-6 mb-0">"userid"</h5>
+						<h5 id="board-id" class="col-sm-6 mb-0"></h5>
 						<div class="col-sm-6">
 							<!-- *** 댓글 수 뱃지에 연결 필요 -->
 							<div class="form-group row float-right mx-1">
