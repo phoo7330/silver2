@@ -103,8 +103,23 @@ function mark(){
 		 	$("#tab-board").hide();
 		 	$("#nav-top").show();
 		 	$("#tab-board-detail").show(); 
+
 		});
+		
 	}); 
+	
+	$(function() {
+		$('#btn-return').on('click', function() {
+			console.log("aaa");
+			$("#tab-board-detail").hide();
+			$("#tab-basic").show();
+		 	$("#tab-time").show();
+		 	$("#tab-facility").show();
+		 	$("#tab-address").show();
+		 	$("#tab-board").show();
+		});
+		
+	});
 
 </script>
 <!-- 네비게이션 바 -->
@@ -479,7 +494,7 @@ function mark(){
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 			<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
-		<button type="button" class="btn btn-outline-secondary btn-sm float-right my-2">목록보기</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm float-right my-2" id="btn-return">목록보기</button>
 		<table class="table table-bordered" id="board-table">
 			<!-- 게시판 타이틀 -->
 			<tr>
