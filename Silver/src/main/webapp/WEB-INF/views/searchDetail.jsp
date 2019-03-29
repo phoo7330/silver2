@@ -214,7 +214,7 @@ function mark(){
 	$(function() {
 		$('#btn-return').on('click', function() {
 			console.log("aaa");
-			// 목록가기를 누르면 현재 게시글을 비운다.
+			// 목록가기를 누르면 현재 게시글을 비운다. 
 			$('#board-title').html('');
 			$('#board-date').html('');
 			$('#board-id').html('');
