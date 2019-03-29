@@ -37,10 +37,16 @@
 $(function(){
 	grade();
 	mark();
-	$("#insertbt").on("click",function(){
-		insertBoard();
+	$("#insertbtn").on("click",function(){	
+		insertBoard(); 
+		//$('#write-board').modal('hide');
 	});	
+	
+	$("#cancelbtn").on("click",function(){
+		$('#insertform')[0].reset(); 
+	});
 });
+
 function insertBoard(){
 	var title = $("#sbtitle").val().length;
 	var write = $("#sbwrite").val().length;
@@ -58,13 +64,20 @@ function insertBoard(){
         url : 'insertsb',
         data : SilverBoard,
         dataType : 'json',
-        success : function(){
-        	alert("등록되었습니다");
+        success : init()
+
         	//$('#write-board').modal("hide");
         	//$("#write-board").toggle();
-        }
+        
     });
 }
+function init(){
+	alert("저장되었습니다!");
+	$('#write-board').modal('hide');
+	$('#insertform')[0].reset(); 
+}
+
+
 function grade(){
 	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
 	var grade= null;
@@ -168,7 +181,6 @@ function mark(){
 		
 	}); 
 	
-	
 	$(function() {
 		$('#btn-return').on('click', function() {
 			console.log("aaa");
@@ -178,13 +190,10 @@ function mark(){
 		 	$("#tab-facility").show();
 		 	$("#tab-address").show();
 		 	$("#tab-board").show();
+		 	location.href="#tab-board";
 		});
 		
 	});
-
-
-
-
 
 
 
@@ -535,8 +544,8 @@ function mark(){
 		      </div>
 		      <!-- 버튼-취소/저장 -->
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-		        <button type="button" id="insertbt" class="btn btn-info btn-sm">저장</button>
+		        <button type="button" id="cancelbtn" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
+		        <button type="button" id="insertbtn" class="btn btn-info btn-sm">저장</button>
 		      </div>
 		    </div>
 		  </div>
