@@ -9,11 +9,12 @@
 		<typeAlias type="com.scit.silver.vo.SilverSearch" alias="SilverSearch" />
 		<typeAlias type="com.scit.silver.vo.DetailsOne" alias="DetailsOne" />
 		<typeAlias type="com.scit.silver.vo.DetailsTwo" alias="DetailsTwo" />
+		<typeAlias type="com.scit.silver.vo.SilverBoard" alias="SilverBoard" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
 		<mapper resource="mapper/SearchMapper.xml" />
-		
+		<mapper resource="mapper/BoardMapper.xml" />
 		
 		
 	</mappers>

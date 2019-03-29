@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.scit.silver.dao.BoardMapper">
+  
+<insert id="insertsb" parameterType="SilerBoard">
+INSERT INTO SILVERBOARD(
+    SB_SEQ,
+    CODE_SEQ,
+    SEACH_SEQ,
+    SBTITLE,
+    SBWRITE,
+    SBDATE
+)VALUES(
+    SB_SEQ.NEXTVAL,
+    #{code_seq},
+    #{seach_seq},
+    #{sbtitle},
+    #{sbwrite},
+    SYSDATE
+)
+  	
+</insert>
+
+
+<select id="selectsbone" parameterType="int" resultType="SilverBoard">
+SELECT 
+    SBTITLE,
+    SBWRITE,
+    TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
+FROM
+    SILVERBOARD
+WHERE
+    SB_SEQ=#{sb_seq};
+
+</select>
+
+<select id="selectall" parameterType="int" resultType="SilverBoard">
+SELECT 
+    SBTITLE,
+    SBWRITE,
+    TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
+FROM
+    SILVERBOARD
+WHERE
+    SEACH_SEQ=9
+
+
+
+</select>
+  </mapper>
