@@ -96,17 +96,52 @@ function mark(){
 		
 		$('#tr-facility').on('click', function() {
 			console.log("aaa");
+			
+		 	$("#tab-board-detail").show(); 
 			$("#tab-basic").hide();
 		 	$("#tab-time").hide();
 		 	$("#tab-facility").hide();
 		 	$("#tab-address").hide();
 		 	$("#tab-board").hide();
-		 	$("#nav-top").show();
-		 	$("#tab-board-detail").show(); 
-
+		 	location.href="#nav-top";
+ 	
+		});
+		
+		$('#nav-under-basic').on('click', function() {
+			console.log("aaa");
+			$("#tab-board-detail").hide(); 
+			$("#tab-basic").show();  
+		 	$("#tab-time").show(); 
+		 	$("#tab-facility").show(); 
+		 	$("#tab-address").show(); 
+		 	$("#tab-board").show(); 
+		 	$("#nav-top").show();  	
+		});
+		
+		$('#nav-under-address').on('click', function() {
+			console.log("aaa");
+			$("#tab-board-detail").hide(); 
+			$("#tab-basic").show();  
+		 	$("#tab-time").show(); 
+		 	$("#tab-facility").show(); 
+		 	$("#tab-address").show(); 
+		 	$("#tab-board").show(); 
+		 	$("#nav-top").show(); 
+		});
+		
+		$('#nav-under-board').on('click', function() {
+			console.log("aaa");
+			$("#tab-board-detail").hide(); 
+			$("#tab-basic").show();  
+		 	$("#tab-time").show(); 
+		 	$("#tab-facility").show(); 
+		 	$("#tab-address").show(); 
+		 	$("#tab-board").show(); 
+		 	$("#nav-top").show(); 
 		});
 		
 	}); 
+	
 	
 	$(function() {
 		$('#btn-return').on('click', function() {
