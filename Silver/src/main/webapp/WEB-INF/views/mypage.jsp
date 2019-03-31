@@ -508,7 +508,6 @@
 							</div>
 						</div>	
 					</div>
-					
 				</div>
 				<!-- 3-3. 쪽지함 -->
 				<div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">
