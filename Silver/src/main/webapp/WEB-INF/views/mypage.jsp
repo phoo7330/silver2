@@ -267,6 +267,7 @@
 								<div class="tab-content">
 							      <h5 class="text-secondary" id="inform-tabContent">기본정보</h5>  
 							    </div>
+							    <small id="selecteHelp" class="form-text text-muted">요양시설 돌봄이 필요한 어르신 정보를 입력하세요.</small>
 							</div>
 							<!-- 생년월일 등록 -->
 							<form>
@@ -401,7 +402,7 @@
 							    </div>
 							    <small id="selecteHelp" class="form-text text-muted">가지고 계신 질환을 선택해 주세요.</small>
 							</div>
-							<!-- 생년월일 등록 -->
+							<!-- 질환정보 등록 -->
 							<form>
 								<div class="form-group row pt-5 text-center">
 								    <div class="col-sm-12">
