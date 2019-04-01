@@ -15,7 +15,8 @@ import com.scit.silver.vo.Member;
 @Controller
 public class MemberController {
 
-
+	
+	
 	@Autowired
 	MemberDAO dao;
 	
@@ -52,7 +53,6 @@ public class MemberController {
 		if (result == 0) {
 			model.addAttribute("message", "ID중복으로 가입실패");
 			model.addAttribute("member", member);
-			System.out.println("테스트!");
 			System.out.println("[회원가입실패!]");
 			return "signup";
 		}

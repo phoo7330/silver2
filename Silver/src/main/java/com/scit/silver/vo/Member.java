@@ -3,6 +3,7 @@ package com.scit.silver.vo;
 
 public class Member {
 	
+	
 	private	String userid;
 	private int type;
 	private String userpwd;

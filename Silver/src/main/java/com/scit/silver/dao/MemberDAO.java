@@ -9,7 +9,8 @@ import com.scit.silver.vo.Member;
 
 @Repository
 public class MemberDAO {
-
+	
+	
 	@Autowired
 	SqlSession session;
 	
