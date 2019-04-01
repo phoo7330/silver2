@@ -81,7 +81,7 @@ function printB(data){
 	 for(var i=start; start<end+1; start++){
 		
 			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectBoard('+start+')">'+start+'</a></b></li>';
-			//console.log("스타트"+start+"현재페이지"+data.navi.currentPage);
+			//console.log("스타트"+start+"현재페이지"+data.navi.currentPage); 
 			 console.log("반복"+data.navi.currentPage);
 
 	 }
