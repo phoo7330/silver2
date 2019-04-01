@@ -158,8 +158,8 @@
 							    <div class="col-sm-8">
 									 <select class="custom-select custom-select-sm my-1 mr-sm-2" name="gender" id="inputGender">
 									    <option selected>선택</option>
-									    <option name="gender" value="man">남성</option>
-									    <option name="gender" value="woman">여성</option>
+									    <option id="gender" value="man">남성</option>
+									    <option id="gender" value="woman">여성</option>
 									  </select>
 							    </div>
 							</div>		
@@ -407,95 +407,95 @@
 								<div class="form-group row pt-5 text-center">
 								    <div class="col-sm-12">
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="jaundice">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="jaundice">
 										  <label class="form-check-label" for="inlineCheckbox1">황달</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="hypertension">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="hypertension">
 										  <label class="form-check-label" for="inlineCheckbox2">고혈압</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="hypotension">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="hypotension">
 										  <label class="form-check-label" for="inlineCheckbox3">저혈압</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="arthritis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="arthritis">
 										  <label class="form-check-label" for="inlineCheckbox4">관절염</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="muscle-dystrophy">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="muscle-dystrophy">
 										  <label class="form-check-label" for="inlineCheckbox5">근육장애</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Dorsopathies">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="Dorsopathies">
 										  <label class="form-check-label" for="inlineCheckbox6">등병증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="dysbasia">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="dysbasia">
 										  <label class="form-check-label" for="inlineCheckbox7">보행장애</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="incontinence">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="incontinence">
 										  <label class="form-check-label" for="inlineCheckbox8">요실금</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="depression">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="depression">
 										  <label class="form-check-label" for="inlineCheckbox9">우울증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="cerebral1">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral1">
 										  <label class="form-check-label" for="inlineCheckbox10">뇌졸증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="cerebral2">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral2">
 										  <label class="form-check-label" for="inlineCheckbox11">뇌출혈</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox12" value="cerebral3">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral3">
 										  <label class="form-check-label" for="inlineCheckbox12">뇌경색증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox13" value="fracture">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="fracture">
 										  <label class="form-check-label" for="inlineCheckbox13">골절</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox14" value="diabetes">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="diabetes">
 										  <label class="form-check-label" for="inlineCheckbox14">당뇨</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox15" value="gastritis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="gastritis">
 										  <label class="form-check-label" for="inlineCheckbox15">위장염</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox16" value="facial-pain">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="facial-pain">
 										  <label class="form-check-label" for="inlineCheckbox16">안면통증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox17" value="frozen-shoulder">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="frozen-shoulder">
 										  <label class="form-check-label" for="inlineCheckbox17">오십견</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox18" value="decubitus">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="decubitus">
 										  <label class="form-check-label" for="inlineCheckbox18">욕창</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox19" value="spondylopathy">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="spondylopathy">
 										  <label class="form-check-label" for="inlineCheckbox19">척추병</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox20" value="alzheimer">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="alzheimer">
 										  <label class="form-check-label" for="inlineCheckbox20">치매</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox21" value="parkinson">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="parkinson">
 										  <label class="form-check-label" for="inlineCheckbox21">파킨슨병</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox22" value="sepsis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="sepsis">
 										  <label class="form-check-label" for="inlineCheckbox22">패혈증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="inlineCheckbox23" value="pneumonia">
+										  <input class="form-check-input" type="checkbox" id="disease_information" value="pneumonia">
 										  <label class="form-check-label" for="inlineCheckbox23">폐렴</label>
 										</div>
 								    </div>
@@ -512,11 +512,151 @@
 				</div>
 				<!-- 3-3. 쪽지함 -->
 				<div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">
-
+					<div class="card border mb-3" id="card-edit-account">
+						<div class="container">
+							<!-- 쪽지함 네비게이션 1)받은쪽지함 2)보낸쪽지함 3)쪽지쓰기 -->
+							<ul class="nav nav-tabs nav-fill pt-3" id="message-tab" role="tablist">
+							  <li class="nav-item">
+							    <a class="nav-link active" id="receive-message" data-toggle="pill" href="#pills-receive" role="tab" aria-controls="pills-home" aria-selected="true">받은쪽지함</a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="send-message" data-toggle="pill" href="#pills-send" role="tab" aria-controls="pills-profile" aria-selected="false">보낸쪽지함</a>
+							  </li>
+							  <li class="nav-item">
+							    <a class="nav-link" id="write-message" data-toggle="pill" href="#pills-write" role="tab" aria-controls="pills-contact" aria-selected="false">쪽지쓰기</a>
+							  </li>
+							</ul>
+							<!-- 네비게이션 연결 -->
+							<div class="tab-content" id="pills-tabContent">
+								<!-- 받은쪽지함 -->
+								<div class="tab-pane fade show active" id="pills-receive" role="tabpanel" aria-labelledby="pills-home-tab">
+									<!-- 삭제/답장 버튼 -->
+									<div class="form-group row pt-3 pb-0">
+										<div class="col-sm-12">
+								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
+								   			<button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm">답장</button>
+										</div>
+									</div>
+									<!-- 쪽지 리스트 테이블 -->
+									<table class="table table-sm">
+									  <thead>
+									    <tr class="table-bordered text-center">
+									      <th scope="col"><small>선택</small></th>
+									      <th scope="col"><small>보낸사람</small></th>
+									      <th scope="col"><small>내용</small></th>
+									      <th scope="col"><small>날짜</small></th>
+									    </tr>
+									  </thead>
+									  <!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
+									  <tbody>
+									    <tr class="text-center">
+									      <th scope="row">
+											<div class="form-check">
+												<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1">
+											</div></th>
+										  <td>"Sender"</td>
+										  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
+										  <td>"sysdate"</td>
+									    </tr>
+									  </tbody>
+									</table>
+									<!-- 페이지네이션 -->
+									<nav aria-label="Page navigation">
+									  <ul class="pagination pagination-sm justify-content-center">
+									    <li class="page-item">
+									      <a class="page-link" aria-label="Previous">
+									        <span aria-hidden="true">&laquo;</span>
+									      </a>
+									    </li>
+									    <li class="page-item"><a class="page-link">1</a></li>
+									    <li class="page-item"><a class="page-link">2</a></li>
+									    <li class="page-item"><a class="page-link">3</a></li>
+									    <li class="page-item">
+									      <a class="page-link" aria-label="Next">
+									        <span aria-hidden="true">&raquo;</span>
+									      </a>
+									    </li>
+									  </ul>
+									</nav>
+								</div>
+								<!-- 보낸쪽지함 -->
+								<div class="tab-pane fade" id="pills-send" role="tabpanel" aria-labelledby="pills-profile-tab">
+									<!-- 삭제 버튼 -->
+									<div class="form-group row pt-3 pb-0">
+										<div class="col-sm-12">
+								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
+										</div>
+									</div>
+									<!-- 쪽지 리스트 테이블 -->
+									<table class="table table-sm">
+									  <thead>
+									    <tr class="table-bordered text-center">
+									      <th scope="col"><small>선택</small></th>
+									      <th scope="col"><small>받는사람</small></th>
+									      <th scope="col"><small>내용</small></th>
+									      <th scope="col"><small>날짜</small></th>
+									    </tr>
+									  </thead>
+									  <!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
+									  <tbody>
+									    <tr class="text-center">
+									      <th scope="row">
+											<div class="form-check">
+												<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1">
+											</div></th>
+										  <td>"Recipient"</td>
+										  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
+										  <td>"sysdate"</td>
+									    </tr>
+									  </tbody>
+									</table>
+									<!-- 페이지네이션 -->
+									<nav aria-label="Page navigation">
+									  <ul class="pagination pagination-sm justify-content-center">
+									    <li class="page-item">
+									      <a class="page-link" aria-label="Previous">
+									        <span aria-hidden="true">&laquo;</span>
+									      </a>
+									    </li>
+									    <li class="page-item"><a class="page-link">1</a></li>
+									    <li class="page-item"><a class="page-link">2</a></li>
+									    <li class="page-item"><a class="page-link">3</a></li>
+									    <li class="page-item">
+									      <a class="page-link" aria-label="Next">
+									        <span aria-hidden="true">&raquo;</span>
+									      </a>
+									    </li>
+									  </ul>
+									</nav>
+								</div>
+								<!-- 쪽지쓰기 -->
+								<div class="tab-pane fade" id="pills-write" role="tabpanel" aria-labelledby="pills-contact-tab">
+								<!-- 보내기 버튼 -->
+									<div class="form-group row pt-3 pb-0">
+										<div class="col-sm-12">
+								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
+										</div>
+									</div>
+								<!-- 받는사람 -->
+								<form>
+								  <div class="form-group row">
+								    <label for="writeRecipient" class="col-sm-2 col-form-label col-form-label-sm"><small>받는사람</small></label>
+								    <div class="col-sm-10">
+								      <input type="text" class="form-control form-control-sm" id="writeRecipient" placeholder="받는사람을 입력하세요.">
+								    </div>
+								   </div>
+								</form>
+									<div class="form-group pb-3">
+									    <textarea class="form-control" id="writeMessage" rows="10"></textarea>
+									</div>
+								</div>
+							</div>									
+						</div>
+					</div>
 				</div>
 				<!-- 3-4. 이력서 / 종사자 계정 구분 만든 후 -->
 				<div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">
-
+					
 				</div>
 		    </div>
 		  </div>
