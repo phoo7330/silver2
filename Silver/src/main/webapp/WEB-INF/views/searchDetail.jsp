@@ -48,27 +48,48 @@ $(function(){
 	});
 });
 
-function selectBoard(){
+function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
-	console.log(seach_seq);
+	var page=page; 
+	console.log("셀렉트보드"+page);
 	 $.ajax({
         type : 'get',
         url : 'pageboard',
-        data : {seach_seq:seach_seq},
+        data : {seach_seq:seach_seq,
+        		page:page	
+        },
         success : printB
 	}); 
 }
 function printB(data){
-	console.log(data);
+	console.log(data.result);
+	console.log(data.navi);
 	var list = '';
-	 $.each(data, function (index, item){
+	var paging = '';
+	var page = 1;
+	 $.each(data.result, function (index, item){
 		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
 		 list+='<td>'+item.sbtitle+'</td>';
 		 list+='<td>'+item.userid+'</td>';
 		 list+='<td>'+item.sbdate+'</td></tr>';
 	 });
-	 $('#sbList').html(list);
+	 var start= data.navi.startPageGroup;
+	 var end=data.navi.endPageGroup;
+	
+	 //console.log(start);
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
+	 for(var i=start; start<end+1; start++){
+		
+			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectBoard('+start+')">'+start+'</a></b></li>';
+			//console.log("스타트"+start+"현재페이지"+data.navi.currentPage);
+			 console.log("반복"+data.navi.currentPage);
+
+	 }
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
+
 	 
+	 $('#sbList').html(list);
+	 $('#pag').html(paging);
 	 $('.select-table').on('click', function() {
 		 	$("#tab-board-detail").show(); 
 			$("#tab-basic").hide();
@@ -583,18 +604,22 @@ function mark(){
 		  </div>
 		</div>
 		<!-- 페이징 -->
-		<ul class="pagination pagination-sm justify-content-center">
-			<li class="page-item disabled">
+		<ul id="pag" class="pagination pagination-sm justify-content-center">
+			<%-- <li style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage-1})'" class="page-item disabled">
 				<span class="page-link">&laquo;</span>
 			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
+			<div id=pag></div>
+			<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
+				<c:if test="${navi.currentPage==page}">
+					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
+				</c:if>
+				<c:if test="${navi.currentPage!=page}">
+					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
+				</c:if>
+			</c:forEach>  
 			<li class="page-item">
-				<span class="page-link">&raquo;</span>
-			</li>
+				<span style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage+1})'"  class="page-link">&raquo;</span>
+			</li>  --%>
 		</ul>
 	</div>	
 
@@ -697,6 +722,5 @@ function mark(){
 			</tr>
 		</table>
 	</div>
-	
 </body>
 </html>

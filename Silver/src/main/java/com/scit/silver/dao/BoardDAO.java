@@ -49,7 +49,7 @@ public class BoardDAO {
 		RowBounds rb=new RowBounds(pn.getStartBoardCurrentPage(),pn.getBoardPerPage());//어디위치부터, 몇개까지
 	      
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		System.out.println(rb);
+
 		result = mapper.selectall(rb, seach_seq);
 		
 		return result;

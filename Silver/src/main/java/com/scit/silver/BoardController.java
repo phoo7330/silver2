@@ -1,6 +1,7 @@
 package com.scit.silver;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.scit.silver.dao.BoardDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.SilverBoard;
-import com.scit.silver.vo.SilverSearch;
-import com.test.fileTest.util.PageNavigator;
 import com.test.fileTest.util.PageNavigator2;
 
 @Controller
@@ -26,7 +25,7 @@ public class BoardController {
 	BoardDAO dao;
 	SearchDAO sdao;
 	private static final int boardPerPage=5;
-	private static final int pagePerGroup=3;
+	private static final int pagePerGroup=5;
 
 	@RequestMapping(value = "/insertsb", method = { RequestMethod.POST, RequestMethod.GET })
 	public String insertsb(SilverBoard sb, HttpSession session) {
@@ -35,23 +34,29 @@ public class BoardController {
 		}
 
 		int result = dao.insertsb(sb);
-
-		return "redirect:/";
+		int seq= sb.getSb_seq();
+		
+		
+		return "redirect:/searchDetail?seach_seq="+sb;
 	}
 
 	@RequestMapping(value = "/pageboard", method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody ArrayList<SilverBoard> pageboard(Model model,
+	public @ResponseBody HashMap<String,Object> pageboard(Model model,
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "") int seach_seq) {
 
-		
-		int totalRecord=dao.countRecord(seach_seq);
-		
-		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalRecord);
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		int totalBoard=dao.countRecord(seach_seq);
+		System.out.println(totalBoard);
+		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
 
-		ArrayList<SilverBoard> result = dao.selectall(pn, seach_seq);
+		ArrayList<SilverBoard> sult = dao.selectall(pn, seach_seq);
 
 		System.out.println(result);
+		model.addAttribute("navi",pn);
+		System.out.println(pn);
+		result.put("navi", pn);
+		result.put("result", sult);
 		return result;
 	}
 	

@@ -17,7 +17,8 @@ public class PageNavigator2 {
 	public PageNavigator2(int boardPerPage,int pagePerGroup,int currentPage,int totalBoard) {
 	this.boardPerPage=boardPerPage;
 	this.pagePerGroup=pagePerGroup;
-	
+	this.currentPage=currentPage;
+	this.totalBoard=totalBoard;
 	//전체페이지=(총글 레코드수+페이지당 글목록수-1)/페이지당 글목록수;
 	totalPage=(totalBoard+boardPerPage-1)/boardPerPage;
 	
