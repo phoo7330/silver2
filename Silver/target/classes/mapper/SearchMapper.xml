@@ -91,10 +91,9 @@
     </foreach>
 </select>
 
-
-	<!--   시설db 정보 불러오기 sql   -->
-	<select id="selectmap3" parameterType="int" resultType="Details">
-		 SELECT 
+<!--   시설db 정보 불러오기 sql   -->
+ <select id="selectmap3" parameterType="int" resultType="DetailsTwo">	
+		select  
 			A.SEACH_SEQ
 			,A.TYPE
 			,A.AREAA
@@ -105,20 +104,60 @@
 			,A.GRADE
 			,A.LAUITUDE
 			,A.LONGITUDE
-			,B.DETAIL_NUMBER
-			,B.ESTABLISHMENT
-			,B.APPROVAL
-			,B.ADDRESS
-			,B.HOUSE_NUMBER
-			,B.PARKINGLOT
-		from 
-			SILVERSEARCH A 
-			,DETAILS B		  
-		where 
-			A.SEACH_SEQ = B.SEACH_SEQ	
-		ORDER BY
-			GRADE
-			 
+            ,B.DETAIL_NUMBER
+            ,TO_CHAR(B.ESTABLISHMENT, 'YYYY-MM-DD') ESTABLISHMENT
+            ,TO_CHAR(B.APPROVAL, 'YYYY-MM-DD') APPROVAL
+            ,B.address
+            ,B.tel
+            ,B.parkinglot
+         FROM 
+             SILVERSEARCH A 	
+            ,DETAILS B
+    	where 
+            B.SEACH_SEQ = #{seach_seq} and
+    		A.SEACH_SEQ = #{seach_seq} 
 	</select>	
+
+
+
+	<!--   시설db 정보 불러오기 sql   -->
+ <select id="selectmap4" parameterType="int" resultType="DetailsOne">	
+		   select 
+         A.SEACH_SEQ
+         ,A.TYPE
+         ,A.AREAA
+         ,A.AREAB
+         ,A.AREAC
+         ,A.SILVERNAME
+         ,A.SERVICE
+         ,A.GRADE
+         ,A.LAUITUDE
+         ,A.LONGITUDE
+            ,C.Establishment
+            ,C.HP_SERVICE
+            ,C.PROTECTION
+            ,C.Location
+            ,C.Religion
+            ,C.Hospital_tel
+            ,C.hp_address
+            ,C.holiday
+            ,C.lunchTime
+            ,C.ReceiptTime
+            ,C.Facilityinformation
+            ,C.treatment
+         from 
+             SILVERSEARCH A    
+            ,Hospital_details C
+       where 
+         C.SEACH_SEQ = #{seach_seq} and
+          A.SEACH_SEQ = #{seach_seq}
+	</select>	
+		 
+	<select id="TypeSearch" parameterType="int" resultType="int">
+		SELECT TYPE FROM SILVERSEARCH WHERE SEACH_SEQ = #{seach_seq}
+	
+	
+	
+	</select>	 
 		 
 </mapper>

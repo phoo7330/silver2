@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   
+  
   <mapper namespace="com.scit.silver.dao.MemberMapper">
   <!--회원 가입-->
   <insert id="insertMember" parameterType="Member">
   INSERT INTO
   	MEMBER
   	(
-  	CODE_SEQ
+  	USERID
   	,TYPE
-  	,USERID
   	,USERPWD
   	,USERNAME
   	,BIRTHDAY
@@ -25,9 +25,8 @@
   	
   	VALUES
   	(
-  	CODE_SEQ.nextval
+	 #{userid}
   	,#{type}
-  	,#{userid}
   	,#{userpwd}
   	,#{username}
   	,#{birthday}
@@ -43,9 +42,8 @@
   <!--로그인 -->
   <select id="selectMember" parameterType="Member" resultType="Member">
  	SELECT
-	 	CODE_SEQ
-	  	,TYPE
-	  	,USERID
+ 		USERID
+	 	,TYPE
 	  	,USERPWD
 	  	,USERNAME
 	  	,BIRTHDAY
@@ -63,7 +61,59 @@
   
   </select>
   
+   <select id="selectMember2" parameterType="String" resultType="Member">
+ 	SELECT
+ 		USERID
+	 	,TYPE
+	  	,USERPWD
+	  	,USERNAME
+	  	,BIRTHDAY
+	  	,GENDER
+	  	,ADDRESS
+	  	,REGISTRATION
+	  	,EMAIL
+	  	,WARNING
+	FROM
+		MEMBER
+	WHERE
+		USERID=#{userid}
   
-  
-  
+  </select>
+  	
+  <!-- 회원정보 수정 1-->
+  	<update id="updateMember1" parameterType="Member">
+  	
+  	UPDATE MEMBER 
+		SET 
+		    USERPWD = #{userpwd}
+		    ,BIRTHDAY = #{birthday}
+		    ,GENDER = #{gender}
+		WHERE 
+		    USERID= #{userid}
+  	
+  	</update>
+  <!-- 회원정보 수정 2 -->
+  	<update id="updateMember2" parameterType="Member">
+  	
+  	UPDATE MEMBER 
+		SET 
+		    EMAIL = #{email}
+		    ,TELEPHONE = #{telephone}
+		   
+		WHERE 
+		    USERID= #{userid}
+		    
+  	</update>
+  	
+  <!-- 회원정보 수정 3 -->
+  	<update id="updateMember3" parameterType="Member">
+  	
+  	UPDATE MEMBER 
+		SET 
+		    TYPE = #{type}
+		WHERE 
+		    USERID= #{userid}
+		    
+  	</update>
+  	
   </mapper>

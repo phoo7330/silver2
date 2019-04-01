@@ -39,14 +39,24 @@ $(function(){
 	mark();
 	selectBoard();
 	$("#insertbtn").on("click",function(){	
-		insertBoard(); 
+		insertBoard();  //게시글 저장버튼
 		//$('#write-board').modal('hide');
 	});	
 	
 	$("#cancelbtn").on("click",function(){
-		$('#insertform')[0].reset(); 
+		$('#insertform')[0].reset(); //게시글 취소버튼
 	});
+	
+	
 });
+function updateBoard(){
+	console.log("수정버튼 클릭");
+}
+
+function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다.
+	var sb_seq=$('#sb_seq').val();
+	console.log(sb_seq);
+}
 
 function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
@@ -67,6 +77,7 @@ function printB(data){
 	var list = '';
 	var paging = '';
 	var page = 1;
+	var countBoard = '';
 	 $.each(data.result, function (index, item){
 		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
 		 list+='<td>'+item.sbtitle+'</td>';
@@ -86,8 +97,9 @@ function printB(data){
 
 	 }
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
-
+	 countBoard+=data.navi.totalBoard;
 	 
+	 $('#cb').append(countBoard);
 	 $('#sbList').html(list);
 	 $('#pag').html(paging);
 	 $('.select-table').on('click', function() {
@@ -108,6 +120,8 @@ function printB(data){
 		}); 
 			function printOneB(data){
 				console.log(data);
+				
+				$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
 				$('#board-title').html(data.sbtitle);
 				$('#board-date').html(data.sbdate);
 				$('#board-id').html(data.userid);
@@ -143,6 +157,7 @@ function init(){
 	alert("저장되었습니다!");
 	$('#write-board').modal('hide');
 	$('#insertform')[0].reset(); 
+	selectBoard();
 }
 
 
@@ -545,7 +560,7 @@ function mark(){
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
 		
-		<p class="lead"><small>전체 이용후기 0</small></p>
+		<p class="lead"><small id="cb" >전체 이용후기 </small></p>
 		<table class="table text-center">
 			<thead class="thead-light">
 				<tr>
@@ -558,10 +573,12 @@ function mark(){
 						<!-- 게시글출력. 5개씩 -->
 			</tbody>
 		</table>
-		<!-- 모달버튼 -->
+		<!-- 모달버튼 --> <!-- 로그인된사람만 보이게 -->
+	<c:if test="${sessionScope.loginId!=null}">	
 		<button type="button" class="btn-sm btn-info float-right" data-toggle="modal" data-target="#write-board">
   		글쓰기 
 		</button>
+	</c:if>	
 		<!-- 모달 -->
 		<div class="modal fade" id="write-board" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
@@ -647,8 +664,8 @@ function mark(){
 									<small><img src="resources/image/morevertical.svg"></small>
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-										<a class="dropdown-item" href="#"><small>수정</small></a>
-										<a class="dropdown-item" href="#"><small>삭제</small></a>
+										<a class="dropdown-item" href="javascript:updateBoard()"><small>수정</small></a>
+										<a class="dropdown-item" href="javascript:deleteBoard()"><small>삭제</small></a>
 									</div>
 								</div>
 							</div>
