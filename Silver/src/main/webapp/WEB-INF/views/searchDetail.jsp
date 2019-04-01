@@ -62,7 +62,7 @@ function printB(data){
 	console.log(data);
 	var list = '';
 	 $.each(data, function (index, item){
-		 list+='<tr class="select-table" data-value="'+item.sb_seq+'">';
+		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
 		 list+='<td>'+item.sbtitle+'</td>';
 		 list+='<td>'+item.userid+'</td>';
 		 list+='<td>'+item.sbdate+'</td></tr>';

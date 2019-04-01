@@ -328,7 +328,7 @@ function wlist(accidentDeath){
        }
           
          list += '<tbody>';//개별 tr 클릭시 search_seq값을 컨트롤러로 넘긴다.
-         list += '<tr onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
+         list += '<tr style="cursor:pointer" onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
          list += '<td scope="row"><p class="text-primary font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 4.5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
          list += '</tr>';
          list += '</tbody>';
@@ -354,7 +354,7 @@ function wlist(accidentDeath){
        }
          
          list += '<tbody>'; //개별 tr 클릭시 search_seq값을 컨트롤러로 넘긴다.
-         list += '<tr onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
+         list += '<tr style="cursor:pointer" onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
          list += '<td scope="row"><p class="text-primary font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
          list += '</tr>';
          list += '</tbody>';
