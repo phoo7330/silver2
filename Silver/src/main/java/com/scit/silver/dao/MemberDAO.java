@@ -49,4 +49,40 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public int updateMember(Member member) {
+		int result = 0;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		try {
+			result = mapper.updateMember(member);
+		} catch (Exception e) {
+				e.printStackTrace();
+				return result;
+		}
+		return result;
+	}
+	
+	public int updateMember2(Member member) {
+		int result = 0;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		try {
+			result = mapper.updateMember2(member);
+		} catch (Exception e) {
+				e.printStackTrace();
+				return result;
+		}
+		return result;
+	}
+	
+	public int updateMember3(Member member) {
+		int result = 0;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		try {
+			result = mapper.updateMember3(member);
+		} catch (Exception e) {
+				e.printStackTrace();
+				return result;
+		}
+		return result;
+	}
 }

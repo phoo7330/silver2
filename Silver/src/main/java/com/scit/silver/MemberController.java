@@ -1,7 +1,5 @@
 package com.scit.silver;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +96,57 @@ public class MemberController {
 		System.out.println("[세션에 입력된 아이디]: "+result.getUserid());
 		System.out.println("[세션에서 입력된 회원타입]: "+session.getAttribute("usertype"));
 		return "index";
+	}
+	
+	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	public String updateMember(Member member, HttpSession session, Model model) {
+		int result = 0;
+		String loginId = (String) session.getAttribute("loginId");
+		member.setUserid(loginId);
+		result = dao.updateMember(member);
+		
+		if(result==0) {
+			System.out.println("[회원정보수정실패]!");
+			return "mypage";
+		}
+		model.addAttribute("message", "회원정보수정성공");
+		System.out.println("[업데이트된 정보1]: "+result);
+		
+		return "mypage";
+	}
+	
+	@RequestMapping(value = "/updateMember2", method = RequestMethod.GET)
+	public String updateMember2(Member member, HttpSession session, Model model) {
+		int result = 0;
+		String loginId = (String) session.getAttribute("loginId");
+		member.setUserid(loginId);
+		result = dao.updateMember2(member);
+		
+		if(result==0) {
+			System.out.println("[회원정보2수정실패]!");
+			return "mypage";
+		}
+		model.addAttribute("message", "회원정보2수정성공");
+		System.out.println("[업데이트된 정보2]: "+result);
+		
+		return "mypage";
+	}
+	
+	@RequestMapping(value = "/updateMember3", method = RequestMethod.GET)
+	public String updateMember3(Member member, HttpSession session, Model model) {
+		int result = 0;
+		String loginId = (String) session.getAttribute("loginId");
+		member.setUserid(loginId);
+		result = dao.updateMember3(member);
+		
+		if(result==0) {
+			System.out.println("[회원정보3수정실패]!");
+			return "mypage";
+		}
+		model.addAttribute("message", "회원정보3수정성공");
+		System.out.println("[업데이트된 정보3]: "+result);
+		
+		return "mypage";
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
