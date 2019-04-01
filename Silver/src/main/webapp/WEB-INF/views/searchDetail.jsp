@@ -53,7 +53,7 @@ function updateBoard(){
 	console.log("수정버튼 클릭");
 }
 
-function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다.
+function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다. 
 	var sb_seq=$('#sb_seq').val();
 	console.log(sb_seq);
 }
