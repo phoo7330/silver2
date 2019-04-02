@@ -20,7 +20,8 @@ import com.test.fileTest.util.PageNavigator2;
 
 @Controller
 public class BoardController {
-
+	
+	
 	@Autowired
 	BoardDAO dao;
 	SearchDAO sdao;
