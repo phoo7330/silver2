@@ -767,7 +767,8 @@ function mark(){
 										<h6 class="col-md-6" id="table-static"><small>"userid" | "(sysdate)2019-03-28"</small></h6>		
 										<!-- 댓글 수정/삭제 -->
 										<div class="col-md-6">
-											
+											<button type="submit" class="btn btn-outline-secondary btn-sm float-right" id="btn-comment">삭제</button>
+											<!-- 
 											<div class="dropdown float-right">
 											  <a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  <small><img src="resources/image/morevertical.svg"></small>
@@ -777,6 +778,7 @@ function mark(){
 											    <a class="dropdown-item" href="#"><small>삭제</small></a>
 											  </div>
 											</div>
+											 -->
 										</div>
 										</div>
 										<!-- 콘텐츠:예시 -->
