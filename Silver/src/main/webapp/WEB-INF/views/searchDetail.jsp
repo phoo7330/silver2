@@ -49,6 +49,7 @@ $(function(){
 	
 	
 });
+
 function updateBoard(){
 	console.log("수정버튼 클릭");
 }
