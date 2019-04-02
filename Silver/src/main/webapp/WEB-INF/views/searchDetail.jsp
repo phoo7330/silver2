@@ -49,8 +49,12 @@ $(function(){
 	
 	
 });
+
 function updateBoard(){
 	console.log("수정버튼 클릭");
+	$("#editbtn").click('show.bs.modal', function(){
+		   alert("Hello World!");
+		});
 }
 
 function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다. 
@@ -80,8 +84,8 @@ function printB(data){
 	var countBoard = '';
 	 $.each(data.result, function (index, item){
 		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
-		 list+='<td>'+item.sbtitle+'</td>';
 		 list+='<td>'+item.userid+'</td>';
+		 list+='<td>'+item.sbtitle+'</td>';
 		 list+='<td>'+item.sbdate+'</td></tr>';
 	 });
 	 var start= data.navi.startPageGroup;
@@ -209,6 +213,7 @@ function mark(){
 }	
 
 /* 게시글작성페이지 이동  */
+
 	$(function() {
 		$("#tab-board-detail").hide();
 		
@@ -221,6 +226,7 @@ function mark(){
 		 	$("#tab-address").show(); 
 		 	$("#tab-board").show(); 
 		 	$("#nav-top").show();  	
+		 	location.replace=("#tab-basic"); 
 		});
 		
 		$('#nav-under-address').on('click', function() {
@@ -232,6 +238,7 @@ function mark(){
 		 	$("#tab-address").show(); 
 		 	$("#tab-board").show(); 
 		 	$("#nav-top").show(); 
+		 	location.replace=("#tab-address");
 		});
 		
 		$('#nav-under-board').on('click', function() {
@@ -243,6 +250,7 @@ function mark(){
 		 	$("#tab-address").show(); 
 		 	$("#tab-board").show(); 
 		 	$("#nav-top").show(); 
+		 	location.replace=("#tab-board"); 
 		});
 		
 	}); 
@@ -262,7 +270,7 @@ function mark(){
 		 	$("#tab-facility").show();
 		 	$("#tab-address").show();
 		 	$("#tab-board").show();
-		 	location.href="#tab-board";
+		 	location.replace=("#tab-board");
 		});
 		
 	});
@@ -343,20 +351,20 @@ function mark(){
 	</div>
 
 	<!-- 하단 네비게이션 바 -->
-	
+
 	<nav class="nav-scroller py-1 mb-2 sticky-top bg-light border-bottom" id="nav-under">
 		<div class="container">
-			<div class="nav"> 
+		  	<div class="nav"> 
 		  		<a class="nav-item nav-link text-secondary active" id="nav-under-basic" href="#tab-basic">
 		  			<strong>상세정보</strong> <span class="sr-only">(current)</span> </a>
 		  		<a class="nav-item nav-link text-secondary" id="nav-under-address" href="#tab-address">
 		  			<strong>사진/주소</strong> </a>
 		  		<a class="nav-item nav-link text-secondary" id="nav-under-board" href="#tab-board">
 		  			<strong>게시판</strong> </a>	
-			</div>
+		  	</div>	
 		</div>
 	</nav>
-	
+
 	<!--  
 	private int hp_details_seq;
 	private int seach_seq;
@@ -373,7 +381,7 @@ function mark(){
 	private String receipttime; // 접수시간 - 컬럼 따로 (2)
 	private String facilityinformation; // 시설정보 - 컬럼 따로 (3)
 	-->
-	
+
 	<!-- 1. 기본정보 탭  -->
 	<div class="container" id="tab-basic">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -564,8 +572,8 @@ function mark(){
 		<table class="table text-center">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">제목</th>
 					<th scope="col">작성자</th>
+					<th scope="col" style="width: 50%;">제목</th>
 					<th scope="col">작성날짜</th>
 				</tr>
 			</thead>
@@ -574,11 +582,11 @@ function mark(){
 			</tbody>
 		</table>
 		<!-- 모달버튼 --> <!-- 로그인된사람만 보이게 -->
-	<c:if test="${sessionScope.loginId!=null}">	
-		<button type="button" class="btn-sm btn-info float-right" data-toggle="modal" data-target="#write-board">
-  		글쓰기 
-		</button>
-	</c:if>	
+		<c:if test="${sessionScope.loginId!=null}">	
+			<button type="button" class="btn-sm btn-info float-right" data-toggle="modal" data-target="#write-board">
+	  		글쓰기 
+			</button>
+		</c:if>	
 		<!-- 모달 -->
 		<div class="modal fade" id="write-board" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
@@ -621,8 +629,9 @@ function mark(){
 		  </div>
 		</div>
 		<!-- 페이징 -->
-		<ul id="pag" class="pagination pagination-sm justify-content-center">
-			<%-- <li style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage-1})'" class="page-item disabled">
+		<ul id="pag" class="pagination pagination-circle pg-blue justify-content-center">
+			<%-- 
+			<li style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage-1})'" class="page-item disabled">
 				<span class="page-link">&laquo;</span>
 			</li>
 			<div id=pag></div>
@@ -636,10 +645,52 @@ function mark(){
 			</c:forEach>  
 			<li class="page-item">
 				<span style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage+1})'"  class="page-link">&raquo;</span>
-			</li>  --%>
+			</li>  
+			--%>
 		</ul>
 	</div>	
-
+			<!-- 7-1. 게시글 수정 모달 : 제목, 내용 기존 값 그대로 입력되어있어야함 / 모달의 경우 다른 div에 포함되면 안돼서 7번 게시글 위로 위치 -->
+			<div class="modal fade" id="edit-board" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+					<!-- 헤더 -->			    
+					<div class="modal-header">
+				        <h6 class="modal-write">게시글수정</h6>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+					</div>
+			      <!-- 바디 -->
+			      <div class="modal-body">
+					<form id="insertform" name="insertform" action="insertsb" method="post" >
+						<fieldset disabled>
+						<div class="form-group">
+					      <label for="disabledText">아이디</label>
+					      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
+						  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					    </div>
+					    </fieldset>
+						<div class="form-group">
+							<label>제목</label>
+							<input type="text" id="sbtitle" name="sbtitle" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>내용</label>
+							<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+						</div>
+						<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
+					    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					 </form>   
+			      </div>
+			      <!-- 버튼-취소/저장 -->
+			      <div class="modal-footer">
+			        <button type="button" id="cancelbtn" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
+			        <button type="button" id="insertbtn" class="btn btn-info btn-sm">수정</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
 	<!-- 7. 게시판 세부내용 -->
 	<div class="container" id="tab-board-detail">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -655,16 +706,14 @@ function mark(){
 					<div class="form-group row mb-2">
 						<h5 id="board-id" class="col-sm-6 mb-0"></h5>
 						<div class="col-sm-6">
-							<!-- *** 댓글 수 뱃지에 연결 필요 -->
 							<div class="form-group row float-right mx-1">
-							<button type="button" class="btn btn-outline-secondary btn-sm mx-1"><small>댓글</small><span class="badge badge-light">4</span></button>
 								<!-- 게시글 수정/삭제 -->
 								<div class="dropdown">
 									<a class="btn btn-outline-light btn-sm dropdown-toggle mx-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<small><img src="resources/image/morevertical.svg"></small>
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-										<a class="dropdown-item" href="javascript:updateBoard()"><small>수정</small></a>
+										<a class="dropdown-item" data-toggle="modal" data-target="#edit-board" href="javascript:updateBoard()"><small>수정</small></a>
 										<a class="dropdown-item" href="javascript:deleteBoard()"><small>삭제</small></a>
 									</div>
 								</div>
@@ -673,6 +722,7 @@ function mark(){
 					</div>
 				</td>
 			</tr>
+
 			<!-- 게시판 내용 -->
 			<tr>
 				<td class="board-text" style="height: 20rem;">
@@ -703,7 +753,7 @@ function mark(){
 				<td class="nav-comment">
 					<ul class="nav nav-tabs">
 					  <li class="nav-item">
-					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글</a>
+					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글<span class="badge badge-light">4</span></a>
 					  </li>
 					</ul>
 					<!-- 댓글 테이블 -->
@@ -717,6 +767,8 @@ function mark(){
 										<h6 class="col-md-6" id="table-static"><small>"userid" | "(sysdate)2019-03-28"</small></h6>		
 										<!-- 댓글 수정/삭제 -->
 										<div class="col-md-6">
+											<button type="submit" class="btn btn-outline-secondary btn-sm float-right" id="btn-comment">삭제</button>
+											<!-- 
 											<div class="dropdown float-right">
 											  <a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  <small><img src="resources/image/morevertical.svg"></small>
@@ -726,6 +778,7 @@ function mark(){
 											    <a class="dropdown-item" href="#"><small>삭제</small></a>
 											  </div>
 											</div>
+											 -->
 										</div>
 										</div>
 										<!-- 콘텐츠:예시 -->
