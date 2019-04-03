@@ -38,10 +38,7 @@ $(function(){
 	grade();
 	mark();
 	selectBoard();
-	$("#insertbtn").on("click",function(){	
-		insertBoard();  //게시글 저장버튼
-		//$('#write-board').modal('hide');
-	});	
+	
 	
 	$("#cancelbtn").on("click",function(){
 		$('#insertform')[0].reset(); //게시글 취소버튼
@@ -50,7 +47,9 @@ $(function(){
 	$("#btn-comment").on("click",function(){
 		insertComment();
 	});
-	
+	$("#insertbtn").on("click",function(){	
+		insertBoard();  //게시글 저장버튼
+	});	
 });
 
 
@@ -202,11 +201,11 @@ function insertBoard(){
 		return;
 	}
 	var SilverBoard = $("form[name=insertform]").serialize();
+	console.log(SilverBoard);
 	$.ajax({
         type : 'post',
         url : 'insertsb',
         data : SilverBoard,
-        dataType : 'json',
         success : init()
 
         	//$('#write-board').modal("hide");
@@ -653,12 +652,11 @@ function mark(){
 		      </div>
 		      
 		      <div class="modal-body">
-				<form id="insertform" name="insertform" action="insertsb" method="post" >
+				<form id="insertform" name="insertform">
 					<fieldset disabled>
 					<div class="form-group">
 				      <label for="disabledText">아이디</label>
 				      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
-					  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
 				    </div>
 				    </fieldset>
 					<div class="form-group">
@@ -670,7 +668,8 @@ function mark(){
 						<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
 					</div>
 					<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
-				    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					<input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					
 				 </form>   
 		      </div>
 		      <!-- 버튼-취소/저장 -->
@@ -683,23 +682,7 @@ function mark(){
 		</div>
 		<!-- 페이징 -->
 		<ul id="pag" class="pagination pagination-circle pg-blue justify-content-center">
-			<%-- 
-			<li style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage-1})'" class="page-item disabled">
-				<span class="page-link">&laquo;</span>
-			</li>
-			<div id=pag></div>
-			<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
-				<c:if test="${navi.currentPage==page}">
-					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
-				</c:if>
-				<c:if test="${navi.currentPage!=page}">
-					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
-				</c:if>
-			</c:forEach>  
-			<li class="page-item">
-				<span style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage+1})'"  class="page-link">&raquo;</span>
-			</li>  
-			--%>
+			
 		</ul>
 	</div>	
 			<!-- 7-1. 게시글 수정 모달 : 제목, 내용 기존 값 그대로 입력되어있어야함 / 모달의 경우 다른 div에 포함되면 안돼서 7번 게시글 위로 위치 -->
@@ -715,7 +698,7 @@ function mark(){
 					</div>
 			      <!-- 바디 -->
 			      <div class="modal-body">
-					<form id="insertform" name="insertform" action="insertsb" method="post" >
+					<form id="updateform" name="updateform" action="insertsb" method="post" >
 						<fieldset disabled>
 						<div class="form-group">
 					      <label for="disabledText">아이디</label>
