@@ -14,9 +14,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		HttpSession session = request.getSession();
-		System.out.println("커밋용테스트");
+		
 		String contextPath = request.getContextPath();
-		System.out.println(contextPath);
+		
 		String nomalId = (String) session.getAttribute("nomalId");
 		System.out.println(nomalId);
 		String workerId = (String) session.getAttribute("workerId");
