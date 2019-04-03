@@ -698,7 +698,7 @@ function mark(){
 					</div>
 			      <!-- 바디 -->
 			      <div class="modal-body">
-					<form id="updateform" name="updateform" action="insertsb" method="post" >
+					<form id="updateform" name="updateform">
 						<fieldset disabled>
 						<div class="form-group">
 					      <label for="disabledText">아이디</label>
