@@ -73,22 +73,22 @@ public class MemberController {
 		}
 
 		if(result.getType()==1) {
-			session.setAttribute("loginId", result.getUserid());
+			
 			session.setAttribute("nomalId", result.getUserid());
 			session.setAttribute("usertype", "1");
 			System.out.println("[일반회원]: "+result.getUserid());
 		} else if(result.getType()==2){
-			session.setAttribute("loginId", result.getUserid());
-			session.setAttribute("workerId", result.getUserid());
+			
+			session.setAttribute("jobId", result.getUserid());
 			session.setAttribute("usertype", "2");
 			System.out.println("[구직자]: "+result.getUserid());
 		} else if(result.getType()==3) {
-			session.setAttribute("loginId", result.getUserid());
-			session.setAttribute("managerId", result.getUserid());
+			
+			session.setAttribute("mId", result.getUserid());
 			session.setAttribute("usertype", "3");
 			System.out.println("[시설관리자]: "+result.getUserid());
 		} else if(result.getType()==10) {
-			session.setAttribute("loginId", result.getUserid());
+			
 			session.setAttribute("adminId", result.getUserid());
 			session.setAttribute("usertype", "10");
 			System.out.println("[사이트관리자]: "+result.getUserid());

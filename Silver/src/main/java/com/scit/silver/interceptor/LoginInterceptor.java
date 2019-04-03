@@ -19,9 +19,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		String nomalId = (String) session.getAttribute("nomalId");
 		System.out.println(nomalId);
-		String workerId = (String) session.getAttribute("workerId");
+		String workerId = (String) session.getAttribute("jobId");
 		System.out.println(workerId);
-		String managerId= (String) session.getAttribute("managerId");
+		String managerId= (String) session.getAttribute("mId");
 		System.out.println(managerId);
 		String adminId= (String) session.getAttribute("adminId");
 		System.out.println(adminId);
