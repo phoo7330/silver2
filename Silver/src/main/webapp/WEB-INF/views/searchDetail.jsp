@@ -270,62 +270,62 @@ function mark(){
 
 /* 게시글작성페이지 이동  */
 
-	$(function() {
-		$("#tab-board-detail").hide();
-		
-		$('#nav-under-basic').on('click', function() {
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show();  	
-		 	location.replace=("#tab-basic"); 
-		});
-		
-		$('#nav-under-address').on('click', function() {
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show(); 
-		 	location.replace=("#tab-address");
-		});
-		
-		$('#nav-under-board').on('click', function() {
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show(); 
-		 	location.replace=("#tab-board"); 
-		});
-		
-	}); 
+$(function() {
+	$("#tab-board-detail").hide();
 	
-	$(function() {
-		$('#btn-return').on('click', function() {
-			// 목록가기를 누르면 현재 게시글을 비운다. 
-			$('#board-title').html('');
-			$('#board-date').html('');
-			$('#board-id').html('');
-			$('#board-contents').html('');
-			
-			$("#tab-board-detail").hide();
-			$("#tab-basic").show();
-		 	$("#tab-time").show();
-		 	$("#tab-facility").show();
-		 	$("#tab-address").show();
-		 	$("#tab-board").show();
-		 	location.replace=("#tab-board");
-		});
-		
+	$('#nav-under-basic').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show();  	
+	 	window.location.replace("#tab-basic"); 
 	});
+	
+	$('#nav-under-address').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show(); 
+	 	window.location.replace("#tab-address");
+	});
+	
+	$('#nav-under-board').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show(); 
+	 	window.location.replace("#tab-board"); 
+	});
+	
+}); 
+
+$(function() {
+	$('#btn-return').on('click', function() {
+		// 목록가기를 누르면 현재 게시글을 비운다. 
+		$('#board-title').html('');
+		$('#board-date').html('');
+		$('#board-id').html('');
+		$('#board-contents').html('');
+		
+		$("#tab-board-detail").hide();
+		$("#tab-basic").show();
+	 	$("#tab-time").show();
+	 	$("#tab-facility").show();
+	 	$("#tab-address").show();
+	 	$("#tab-board").show();
+	 	window.location.replace("#tab-board");
+	});
+	
+});
 
 
 
