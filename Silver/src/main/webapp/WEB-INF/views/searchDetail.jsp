@@ -47,8 +47,72 @@ $(function(){
 		$('#insertform')[0].reset(); //게시글 취소버튼
 	});
 	
+	$("#btn-comment").on("click",function(){
+		insertComment();
+	});
 	
 });
+
+
+function insertComment(){
+	var sb_seq=$('#sb_seq').val();
+	var sbc_write=$('#sbc_write').val();
+	var userid=$('#comment-userid').val();
+	$('#sbc_write').val('');
+	$.ajax({
+        type : 'post',
+        url : 'insertComment',
+        data : {userid:userid,
+        		sb_seq:sb_seq,
+        		sbc_write:sbc_write	
+        },
+        success : printC
+	});  
+}
+function printC(page){
+	var sb_seq=$('#sb_seq').val();
+	var page=page;
+	$.ajax({
+        type : 'get',
+        url : 'selectComment',
+        data : {sb_seq:sb_seq,
+        		page:page
+        },
+        success : listC        	
+	}); 
+}
+function listC(data){
+	var list = '';
+	var paging = '';
+	var page = 1;
+	var countComent=0;
+	$.each(data.result, function (index, item){
+		list += '<tr><td><div class="form-group row">';
+		list += '<h6 class="col-md-6" id="table-static">';
+		list += '<small>'+item.userid+' | '+item.sbc_date+'</small></h6>';
+		list += '<div class="col-md-6"><div class="dropdown float-right">';
+		list += '<a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><img src="resources/image/morevertical.svg"></small></a> ';
+		list += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+		list += '<a class="dropdown-item" href="#"><small>수정</small></a>';
+		list += '<a class="dropdown-item" href="#"><small>삭제</small></a></div></div></div>';
+		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>';
+	}); 
+	 var start= data.navi.startPageGroup;
+	 var end=data.navi.endPageGroup;
+	
+
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:printC('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
+	 for(var i=start; start<end+1; start++){
+			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:printC('+start+')">'+start+'</a></b></li>';
+	 }
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:printC('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
+	 countComent+=data.navi.totalBoard;
+	 
+	$('#countcoment').html(countComent);
+	$('#cList').html(list);
+	$('#pag2').html(paging);
+}
+
 
 function updateBoard(){
 	console.log("수정버튼 클릭");
@@ -65,7 +129,7 @@ function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다.
 function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
 	var page=page; 
-	console.log("셀렉트보드"+page);
+	
 	 $.ajax({
         type : 'get',
         url : 'pageboard',
@@ -76,8 +140,7 @@ function selectBoard(page){
 	}); 
 }
 function printB(data){
-	console.log(data.result);
-	console.log(data.navi);
+
 	var list = '';
 	var paging = '';
 	var page = 1;
@@ -91,19 +154,15 @@ function printB(data){
 	 var start= data.navi.startPageGroup;
 	 var end=data.navi.endPageGroup;
 	
-	 //console.log(start);
+
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
 	 for(var i=start; start<end+1; start++){
-		
 			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectBoard('+start+')">'+start+'</a></b></li>';
-			//console.log("스타트"+start+"현재페이지"+data.navi.currentPage); 
-			 console.log("반복"+data.navi.currentPage);
-
 	 }
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
-	 countBoard+=data.navi.totalBoard;
+	 countBoard+='전체 이용후기 '+data.navi.totalBoard;
 	 
-	 $('#cb').append(countBoard);
+	 $('#cb').html(countBoard);
 	 $('#sbList').html(list);
 	 $('#pag').html(paging);
 	 $('.select-table').on('click', function() {
@@ -115,7 +174,6 @@ function printB(data){
 		 	$("#tab-board").hide();
 		 	location.href="#nav-top";
 		var sb_seq=$(this).attr('data-value');
-		console.log(sb_seq);
 		$.ajax({
 	        type : 'get',
 	        url : 'oneboard',
@@ -123,13 +181,12 @@ function printB(data){
 	        success : printOneB
 		}); 
 			function printOneB(data){
-				console.log(data);
-				
 				$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
 				$('#board-title').html(data.sbtitle);
 				$('#board-date').html(data.sbdate);
 				$('#board-id').html(data.userid);
 				$('#board-contents').html(data.sbwrite);
+				printC();
 			}
 		});
 }
@@ -218,7 +275,6 @@ function mark(){
 		$("#tab-board-detail").hide();
 		
 		$('#nav-under-basic').on('click', function() {
-			console.log("aaa");
 			$("#tab-board-detail").hide(); 
 			$("#tab-basic").show();  
 		 	$("#tab-time").show(); 
@@ -230,7 +286,6 @@ function mark(){
 		});
 		
 		$('#nav-under-address').on('click', function() {
-			console.log("aaa");
 			$("#tab-board-detail").hide(); 
 			$("#tab-basic").show();  
 		 	$("#tab-time").show(); 
@@ -242,7 +297,6 @@ function mark(){
 		});
 		
 		$('#nav-under-board').on('click', function() {
-			console.log("aaa");
 			$("#tab-board-detail").hide(); 
 			$("#tab-basic").show();  
 		 	$("#tab-time").show(); 
@@ -257,7 +311,6 @@ function mark(){
 	
 	$(function() {
 		$('#btn-return').on('click', function() {
-			console.log("aaa");
 			// 목록가기를 누르면 현재 게시글을 비운다. 
 			$('#board-title').html('');
 			$('#board-date').html('');
@@ -568,7 +621,7 @@ function mark(){
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
 		
-		<p class="lead"><small id="cb" >전체 이용후기 </small></p>
+		<p class="lead"><small id="cb"> </small></p>
 		<table class="table text-center">
 			<thead class="thead-light">
 				<tr>
@@ -735,12 +788,12 @@ function mark(){
 					<div class="col-md-4">
 						<h5 class="mb-0">댓글쓰기</h5>
 						<!-- *** value : 기존 userid 들어가는 부분 - static -->
-						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="value:userid(static)">
+						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="${sessionScope.loginId}">
 					</div>
 					<!-- 댓글입력 -->
 					<div class="form-group row p-1 mb-0">
 						<div class="col-md-10 pr-0">
-							<textarea class="form-control mx-1" id="textarea-comment" rows="2"></textarea>
+							<textarea name="sbc_write" class="form-control mx-1" id="sbc_write" rows="2"></textarea>
 						</div>
 						<div class="col-md-2">
 						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
@@ -753,39 +806,19 @@ function mark(){
 				<td class="nav-comment">
 					<ul class="nav nav-tabs">
 					  <li class="nav-item">
-					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글<span class="badge badge-light">4</span></a>
+					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글<span id="countcoment" class="badge badge-light"></span></a>
 					  </li>
 					</ul>
 					<!-- 댓글 테이블 -->
 					<div class="tab-content pt-3" id="myTabContent">
 						<div class="tab-pane fade show active" id="comment-list">
-							<table class="col-md-12">
-								<tr>
-									<td>
-										<div class="form-group row">
-										<!-- 댓글 등록 아이디/날짜 -->
-										<h6 class="col-md-6" id="table-static"><small>"userid" | "(sysdate)2019-03-28"</small></h6>		
-										<!-- 댓글 수정/삭제 -->
-										<div class="col-md-6">
-											<button type="submit" class="btn btn-outline-secondary btn-sm float-right" id="btn-comment">삭제</button>
-											<!-- 
-											<div class="dropdown float-right">
-											  <a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  <small><img src="resources/image/morevertical.svg"></small>
-											  </a>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											    <a class="dropdown-item" href="#"><small>수정</small></a>
-											    <a class="dropdown-item" href="#"><small>삭제</small></a>
-											  </div>
-											</div>
-											 -->
-										</div>
-										</div>
-										<!-- 콘텐츠:예시 -->
-										<h6 id="table-contents">Example) Bootstrap’s form controls expand on our Rebooted form styles with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</h6>
-									</td>
-								</tr>
+							<table id="cList" class="col-md-12">
+								
+								<!-- 댓글들어가는 공간  -->
+
 							</table>
+						<ul id="pag2" class="pagination pagination-sm justify-content-center"></ul>
+				
 						</div>
 					</div>
 				</td>
