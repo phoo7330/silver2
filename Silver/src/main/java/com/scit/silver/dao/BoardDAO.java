@@ -22,7 +22,6 @@ public class BoardDAO {
 		int result = 0;
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		System.out.println(sb);
 		try {
 			result = mapper.insertsb(sb);
 		}catch(Exception e){
