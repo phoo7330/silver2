@@ -51,8 +51,6 @@ $(function(){
 		insertBoard();  //게시글 저장버튼
 	});	
 });
-
-
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
 	var sbc_write=$('#sbc_write').val();
@@ -99,7 +97,6 @@ function listC(data){
 	 var start= data.navi.startPageGroup;
 	 var end=data.navi.endPageGroup;
 	
-
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:printC('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
 	 for(var i=start; start<end+1; start++){
 			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:printC('+start+')">'+start+'</a></b></li>';
@@ -111,20 +108,16 @@ function listC(data){
 	$('#cList').html(list);
 	$('#pag2').html(paging);
 }
-
-
 function updateBoard(){
 	console.log("수정버튼 클릭");
 	$("#editbtn").click('show.bs.modal', function(){
 		   alert("Hello World!");
 		});
 }
-
 function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다. 
 	var sb_seq=$('#sb_seq').val();
 	console.log(sb_seq);
 }
-
 function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
 	var page=page; 
@@ -139,7 +132,6 @@ function selectBoard(page){
 	}); 
 }
 function printB(data){
-
 	var list = '';
 	var paging = '';
 	var page = 1;
@@ -153,7 +145,6 @@ function printB(data){
 	 var start= data.navi.startPageGroup;
 	 var end=data.navi.endPageGroup;
 	
-
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
 	 for(var i=start; start<end+1; start++){
 			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectBoard('+start+')">'+start+'</a></b></li>';
@@ -207,7 +198,6 @@ function insertBoard(){
         url : 'insertsb',
         data : SilverBoard,
         success : init()
-
         	//$('#write-board').modal("hide");
         	//$("#write-board").toggle();
         
@@ -219,8 +209,6 @@ function init(){
 	$('#insertform')[0].reset(); 
 	selectBoard();
 }
-
-
 function grade(){
 	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
 	var grade= null;
@@ -248,7 +236,6 @@ function grade(){
 		$('#grade').html(stgrade);
 		return;
 	}
-
 }
 		
 function mark(){
@@ -256,20 +243,16 @@ function mark(){
 	//vo에 담겨있는 위도,경도를 꺼내 지도와 마커를 표시
 	var grd_lo = '${DetailsOne.longitude}';
  		grd_la = '${DetailsOne.lauitude}';
-
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(grd_la, grd_lo),
 	    zoom: 12,
 	});
-
 	var marker = new naver.maps.Marker({
 	    position: new naver.maps.LatLng(grd_la, grd_lo),
 	    map: map
 	}); 
 }	
-
 /* 게시글작성페이지 이동  */
-
 $(function() {
 	$("#tab-board-detail").hide();
 	
@@ -307,7 +290,6 @@ $(function() {
 	});
 	
 }); 
-
 $(function() {
 	$('#btn-return').on('click', function() {
 		// 목록가기를 누르면 현재 게시글을 비운다. 
@@ -326,9 +308,6 @@ $(function() {
 	});
 	
 });
-
-
-
 </script>
 <!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-top">
