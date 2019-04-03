@@ -35,10 +35,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String nomalURI ="";
 		
 		// 구직자만 가능한 요청
-		String workerURI ="";
+		String jobURI ="";
 		
 		// 기관관리자만 가능한 요청
-		String managerURI = "";
+		String mURI = "";
 		
 		// 사이트관리자만 가능한 요청
 		String adminURI = "";
@@ -51,8 +51,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		// 사용자타입별 권한검사	
 		} else {
 			if(usertype.equals("1")  && nomalURI.contains(uri) || 
-				usertype.equals("2") && workerURI.contains(uri) ||
-				usertype.equals("3") && managerURI.contains(uri) ||
+				usertype.equals("2") && jobURI.contains(uri) ||
+				usertype.equals("3") && mURI.contains(uri) ||
 				usertype.equals("10") && adminURI.contains(uri)) {
 				
 				//session.removeAttribute("loginId"); 세션에 있는값 지우기

@@ -77,11 +77,13 @@ public class MemberController {
 			session.setAttribute("nomalId", result.getUserid());
 			session.setAttribute("usertype", "1");
 			System.out.println("[일반회원]: "+result.getUserid());
+			return "index";
 		} else if(result.getType()==2){
 			
 			session.setAttribute("jobId", result.getUserid());
 			session.setAttribute("usertype", "2");
 			System.out.println("[구직자]: "+result.getUserid());
+			return "index";
 		} else if(result.getType()==3) {
 			
 			session.setAttribute("mId", result.getUserid());
@@ -95,7 +97,7 @@ public class MemberController {
 		} 
 		System.out.println("[세션에 입력된 아이디]: "+result.getUserid());
 		System.out.println("[세션에서 입력된 회원타입]: "+session.getAttribute("usertype"));
-		return "index";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
