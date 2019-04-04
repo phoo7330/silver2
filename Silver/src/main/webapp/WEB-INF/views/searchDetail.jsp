@@ -97,7 +97,7 @@ function listC(data){
 		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
 		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
 		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
-
+ 
 		
 	}); 
 	 var start= data.navi.startPageGroup;
