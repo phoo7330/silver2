@@ -22,5 +22,13 @@ public interface BoardMapper {
 	public ArrayList<SilverBoardComent> selectComent(RowBounds rb, int sb_seq);
 	
 	public int countRecord2(int sb_seq);
+	
+	public int delsb(int sb_seq);
+	
+	public int updatesb(SilverBoard sb);
+	
+	public int delcom(int sbc_seq);
+	
+	public int updatecom(SilverBoardComent sbc);
 }
  

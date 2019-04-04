@@ -102,4 +102,38 @@ ORDER BY
 	WHERE
 		SB_SEQ=#{sb_seq}
 </select>
+
+<delete id="delsb" parameterType="int">
+DELETE 
+	FROM SILVERBOARD 
+WHERE 
+	SB_SEQ = #{sb_seq}
+</delete>
+
+<update id="updatesb" parameterType="SilverBoard">
+ UPDATE SILVERBOARD
+	SET
+	
+		SBTITLE = #{sbtitle},
+    	SBWRITE = #{sbwrite}
+	WHERE
+		SB_SEQ=#{sb_seq}
+</update>
+
+<update id="delcom" parameterType="int">
+UPDATE SILVERBOARDCOMENT
+	SET
+	
+		SBC_WRITE='삭제된 댓글입니다.'
+	WHERE
+		SBC_SEQ=#{sbc_seq}
+</update>
+
+<update id="updatecom" parameterType="SilverBoardComent">
+ UPDATE SILVERBOARDCOMENT
+	SET
+		SBC_WRITE=#{sbc_write}
+	WHERE
+		SBC_SEQ=#{sbc_seq}
+</update>
   </mapper>

@@ -97,4 +97,46 @@ public class BoardDAO {
 		return result;
 		
 	}
+	
+	public int delsb(int sb_seq) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.delsb(sb_seq);
+		
+		return result;
+		
+	}
+	
+	public int updatesb(SilverBoard sb) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.updatesb(sb);
+		
+		return result;
+	}
+	
+	
+	public int delcom(int sbc_seq) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.delcom(sbc_seq);
+		
+		return result;
+	}
+	
+	public int updatecom(SilverBoardComent sbc) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.updatecom(sbc);
+		
+		return result;
+	}
 }

@@ -50,6 +50,9 @@ $(function(){
 	$("#insertbtn").on("click",function(){	
 		insertBoard();  //게시글 저장버튼
 	});	
+	$("#editbtn").click('show.bs.modal', function(){
+		updateBoard2();
+		});
 });
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
@@ -83,6 +86,7 @@ function listC(data){
 	var paging = '';
 	var page = 1;
 	var countComent=0;
+	var loginId="${sessionScope.loginId}";
 	$.each(data.result, function (index, item){
 		list += '<tr><td><div class="form-group row">';
 		list += '<h6 class="col-md-6" id="table-static">';
@@ -90,9 +94,11 @@ function listC(data){
 		list += '<div class="col-md-6"><div class="dropdown float-right">';
 		list += '<a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><img src="resources/image/morevertical.svg"></small></a> ';
 		list += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
-		list += '<a class="dropdown-item" href="#"><small>수정</small></a>';
-		list += '<a class="dropdown-item" href="#"><small>삭제</small></a></div></div></div>';
+		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
+		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
 		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>';
+
+		
 	}); 
 	 var start= data.navi.startPageGroup;
 	 var end=data.navi.endPageGroup;
@@ -106,17 +112,106 @@ function listC(data){
 	 
 	$('#countcoment').html(countComent);
 	$('#cList').html(list);
+
+
 	$('#pag2').html(paging);
 }
-function updateBoard(){
+function updatecom(sbc_seq){
+	console.log("댓글수정을 눌렀을떄"+sbc_seq);
+}
+function delcom(sbc_seq){
+	console.log("댓글삭제를 눌렀을떄"+sbc_seq);
+
+}
+
+function updateBoard(){ //수정창이 뜨면서 기존값이 입력됨
+	var sb_seq=$('#sb_seq').val();
 	console.log("수정버튼 클릭");
-	$("#editbtn").click('show.bs.modal', function(){
-		   alert("Hello World!");
-		});
+	$.ajax({
+        type : 'get',
+        url : 'oneboard',
+        data : {sb_seq:sb_seq},
+        success : upboardprint
+	}); 
+	function upboardprint(data){
+		$('#uptitle').val(data.sbtitle);
+		$('#upwrite').val(data.sbwrite);
+		$('#up_seq').val(data.sb_seq);
+	}
+}
+function updateBoard2(){
+	var title = $("#uptitle").val().length;
+	var write = $("#upwrite").val().length;
+	if(title<1){
+		alert("제목을 입력하세요");
+		return;
+	}
+	if(write<1){
+		alert("내용을 입력하세요");
+		return;
+	}
+	var SilverBoard = $("form[name=updateform]").serialize();
+	console.log(SilverBoard);
+	$.ajax({
+        type : 'post',
+        url : 'updatesb',
+        data : SilverBoard,
+        success : init2()
+        	//$('#write-board').modal("hide");
+        	//$("#write-board").toggle();
+        
+    });
+}
+
+function init2(){
+	alert("수정되었습니다!");
+	$('#edit-board').modal('hide');
+	$('#updateform')[0].reset(); 
+
+	$('#board-title').html('');
+	$('#board-date').html('');
+	$('#board-id').html('');
+	$('#board-contents').html('');
+	
+	$("#tab-board-detail").hide();
+	$("#tab-basic").show();
+ 	$("#tab-time").show();
+ 	$("#tab-facility").show();
+ 	$("#tab-address").show();
+ 	$("#tab-board").show();
+ 	window.location.replace("#tab-board");
+	selectBoard();
 }
 function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다. 
 	var sb_seq=$('#sb_seq').val();
-	console.log(sb_seq);
+
+	
+	$.ajax({
+        type : 'post',
+        url : 'delsb',
+        data : {sb_seq:sb_seq},
+        success : function(data){
+        	if(data==1){
+        	selectBoard();
+        	alert("삭제되었습니다");
+        	$('#board-title').html('');
+    		$('#board-date').html('');
+    		$('#board-id').html('');
+    		$('#board-contents').html('');
+    		
+    		$("#tab-board-detail").hide();
+    		$("#tab-basic").show();
+    	 	$("#tab-time").show();
+    	 	$("#tab-facility").show();
+    	 	$("#tab-address").show();
+    	 	$("#tab-board").show();
+    	 	window.location.replace("#tab-board");
+        	}
+        	else{
+        		alert("삭제실패");
+        	}
+        }
+	}); 
 }
 function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
@@ -171,11 +266,14 @@ function printB(data){
 	        success : printOneB
 		}); 
 			function printOneB(data){
-				$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
-				$('#board-title').html(data.sbtitle);
+				//$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
+				$('#board-title').html(data.sbtitle+'<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
 				$('#board-date').html(data.sbdate);
 				$('#board-id').html(data.userid);
 				$('#board-contents').html(data.sbwrite);
+				if (data.userid != "${sessionScope.loginId}") {
+					$(".dropdown").hide();
+				}
 				printC();
 			}
 		});
@@ -293,6 +391,7 @@ $(function() {
 $(function() {
 	$('#btn-return').on('click', function() {
 		// 목록가기를 누르면 현재 게시글을 비운다. 
+		
 		$('#board-title').html('');
 		$('#board-date').html('');
 		$('#board-id').html('');
@@ -305,6 +404,7 @@ $(function() {
 	 	$("#tab-address").show();
 	 	$("#tab-board").show();
 	 	window.location.replace("#tab-board");
+		
 	});
 	
 });
@@ -682,25 +782,26 @@ $(function() {
 						<div class="form-group">
 					      <label for="disabledText">아이디</label>
 					      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
-						  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+						  
 					    </div>
 					    </fieldset>
 						<div class="form-group">
 							<label>제목</label>
-							<input type="text" id="sbtitle" name="sbtitle" class="form-control">
+							<input type="text" id="uptitle" name="sbtitle" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>내용</label>
-							<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+							<textarea class="form-control" id="upwrite" name="sbwrite" style="height: 15rem;"></textarea>
 						</div>
 						<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
 					    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+						<input type="hidden" id="up_seq" name="sb_seq">
 					 </form>   
 			      </div>
 			      <!-- 버튼-취소/저장 -->
 			      <div class="modal-footer">
 			        <button type="button" id="cancelbtn" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-			        <button type="button" id="insertbtn" class="btn btn-info btn-sm">수정</button>
+			        <button type="button" id="editbtn" class="btn btn-info btn-sm">수정</button>
 			      </div>
 			    </div>
 			  </div>
@@ -728,7 +829,7 @@ $(function() {
 									<small><img src="resources/image/morevertical.svg"></small>
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-										<a class="dropdown-item" data-toggle="modal" data-target="#edit-board" href="javascript:updateBoard()"><small>수정</small></a>
+										<a class="dropdown-item" data-toggle="modal" data-target="#edit-board" onclick="location.href='javascript:updateBoard()'"><small>수정</small></a>
 										<a class="dropdown-item" href="javascript:deleteBoard()"><small>삭제</small></a>
 									</div>
 								</div>
