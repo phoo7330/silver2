@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>실버서퍼에 오신 것을 환영합니다.</title>
+	<title>SilverSurfer</title>
 	
 	<!-- 인코딩 -->
 	<meta charset="UTF-8">
@@ -18,85 +17,171 @@
 
 </head>
 <body>
-	
-	<!-- 네비게이션 바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
- 		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-	    <span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse justify-content-between" id="navbar">
-		  <!-- 왼쪽 자동 정렬 -->
-		  	<div class="navbar-nav"> 
-		  		<a class="nav-item nav-link active" href="institution">
-		  			요양기관 <span class="sr-only">(current)</span> </a>
-		  		<a class="nav-item nav-link" href="worker">
-		  			종사자 </a>
-		  		<a class="nav-item nav-link" href="inquiry">
-		  			자주하는질문 </a>	
-		  		<a class="nav-item nav-link" href="searchDetail">
-		  			검색상세페이지 </a>	
-			</div>
-		  <!-- 오른쪽 자동 정렬 -->
-		  	<c:if test="${sessionScope.loginId==null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<a class="nav-item nav-link" href="login">
-		  			로그인 </a>
-		  		<a class="nav-item nav-link" href="signup">
-		  			회원가입 </a>
-		  	</div>
-		  	</c:if>
-		  	<!-- 계정정보/어르신정보/쪽지함/로그아웃 -->
-		  	<c:if test="${sessionScope.loginId!=null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<div class="nav-item dropdown mx-2">
-		  			<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small>${sessionScope.loginId}님 내정보  </small><img src="resources/image/lock.svg"></a>
-		  			<div class="dropdown-menu">
-		  				<a class="dropdown-item" href="mypage">계정정보</a>
-		  				<a class="dropdown-item" href="">어르신정보</a>
-		  				<a class="dropdown-item" href="">쪽지함</a>
-		  				<a class="dropdown-item" href="logout">로그아웃 </a>
-		  			</div>
-		  		</div>
-		  	</div>
-			</c:if>
-		</div>  
-	</nav>	
-
-	<!-- 점보트론 --> 
-	<header class="mathead">
-		<div class="jumbotron">			
-			<div class="row mb-3">
-			    <div class="col-md-7">
-					<h1 class="display-4 my-5 mx-5">전국 요양기관 정보 </h1>
-					<h2 class="display-5 mx-5">실버서퍼에서 확인하세요.</h2>
-			    </div>  
-				<div class="col-md-4">
-					<div class="card border-light bg-light my-5">
-						<div class="card-body">
-							<p class="lead font-weight-normal my-4">원하시는 지역 혹은 기관을 <br> 검색해보세요.</p>
-							
-							<hr class="my-4">
-							
-					        <form class="form-inline" action="search"> 
-					            <div class="form-row col-12">
-									<div class="col-md-10 mb-5 mb-md-0">
-										<input class="form-control h-110 w-100 mr-lg-1 " type="text" placeholder="지역 혹은 기관명 검색을 검색하세요.">
-									</div>
-									<div class="col-md-2">
-										<button class="btn btn-block btn-lg btn-light btn-sm" type="submit"><img src="resources/image/search.svg" ></button>
-									</div> 
-					            </div>
-					        </form>
-						</div>
-					</div>
-				</div>	
-				<div class="col-md-1">
-				</div>
+	<!-- 메인 네비게이션 -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
+	 		<a class="navbar-brand mr-5 pb-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<!-- 오른쪽 상단 토글러 버튼 -->
+			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      	<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 네비게이션 상단 메뉴 -->
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="worker"><strong>종사자</strong></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  		</li>
+			  	</ul>
+				<!-- 로그인 안한 경우 -->
+			  	<c:if test="${sessionScope.loginId==null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
+			  		</li>
+			  	</ul>
+			  	</c:if>
+			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
+			  	<c:if test="${sessionScope.loginId!=null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="log">
+			  			<div class="dropdown mr-5">
+			  				<span class="welcome"><small>환영합니다</small></span>
+			  					<a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  						<small>${sessionScope.loginId}님</small>
+			  					</a>
+				  			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				  				<a class="dropdown-item" href="mypage"><small>마이페이지</small></a>
+				  				<a class="dropdown-item" href="logout"><small>로그아웃</small></a>
+				  			</div>
+			  			</div>
+			  		</li>
+				</ul>
+			  	</c:if>
 			</div>  
-		</div>
+		</nav>	
 	</header>
+	
+	<!-- 메인 캐러셀 -->
+	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between" data-ride="carousel">
+	    <div class="carousel-inner" role="listbox">
+			<div class="carousel-item active">
+				<!--Mask color-->
+				<div class="view">
+		        	<img class="d-block w-100" src="resources/image/main01.png" alt="First slide">
+		        	<div class="mask rgba-black-light"></div>
+				</div>
+				<div class="carousel-caption">
+		        	<h3 class="h3-responsive text-dark">전국 요양 서비스</h3>
+					<p class="text-dark">전국의 노인 요양 시설,<br>실버서퍼에서 찾아보세요.</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+			<!--Mask color-->
+				<div class="view">
+					<img class="d-block w-100" src="resources/image/main02.png" alt="Second slide">
+					<div class="mask rgba-black-strong"></div>
+				</div>
+				<div class="carousel-caption">
+					<h3 class="h3-responsive text-dark">요양 종사자 마당</h3>
+					<p class="text-dark">전국 요양기관 구인 구직,<br>실버서퍼에서 찾아보세요.</p>
+				</div>
+			</div>
+			<!--Logo-->
+		  <a class="carousel-control-prev w-50 active" href="#index" role="button" data-slide="prev">
+		    <span class="pb-2 pr-5"><img src="resources/image/carouselLogo.png"></span>
+		  </a>
+		</div>
+	</div>
+
+	<!-- 검색 네비게이션 -->
+	<nav class="navbar" id="main-nav">
+		<div class="col-1"></div>
+			<div class="col">
+				<form action="search">
+					<div class="input-group md-form form-sm form-2 pl-0">
+					  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
+				
+					  <div class="input-group-append">
+					  	<button class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" type="submit"><img src="resources/image/search.svg" ></button>
+					   <!-- 
+					    <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+					        aria-hidden="true"><img src="resources/image/search.svg"></i></span>
+					  -->
+					  </div>
+					
+					</div>
+				</form>
+			</div>
+		<div class="col-1"></div>
+	</nav>
+
+	<!-- 기관 종류 설명 -->
+	<div class="container">
+		<div class="row mt-5">
+			<!-- 카드01 -->
+	  		<div class="col-md-4 mb-4">
+				<div class="card border-white ">
+					<!--Card image-->
+					<div class="view">
+						<img src="resources/image/card01.jpg" class="card-img-top" alt="photo">
+					</div>
+					<!--Card content-->
+					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#f8ae4c;">
+					<!--Title-->
+			        <h4 class="card-title white-text">Title of the news</h4>
+			        <!--Text-->
+			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
+			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
+					</div>
+				</div>
+			</div>
+	 		<!-- 카드02 -->
+	 		<div class="col-md-4 mb-4">
+				<div class="card border-white ">
+					<!--Card image-->
+					<div class="view">
+						<img src="resources/image/card02.jpg" class="card-img-top" alt="photo">
+					</div>
+					<!--Card content-->
+					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#d6dc3b;">
+					<!--Title-->
+			        <h4 class="card-title white-text">Title of the news</h4>
+			        <!--Text-->
+			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
+			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
+					</div>
+				</div>
+			</div>
+	 		<!-- 카드03 -->
+	 		<div class="col-md-4 mb-4 pb-5">
+				<div class="card border-white ">
+					<!--Card image-->
+					<div class="view">
+						<img src="resources/image/card03.jpg" class="card-img-top" alt="photo">
+					</div>
+					<!--Card content-->
+					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#4ac5e2;">
+					<!--Title-->
+			        <h4 class="card-title white-text">Title of the news</h4>
+			        <!--Text-->
+			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
+			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	
 
 
 	<!-- jQuery javaScript 추가 -->
