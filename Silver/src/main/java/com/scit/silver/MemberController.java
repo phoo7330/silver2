@@ -73,31 +73,29 @@ public class MemberController {
 		}
 
 		if(result.getType()==1) {
-			
+			session.setAttribute("loginId", result.getUserid());
 			session.setAttribute("nomalId", result.getUserid());
 			session.setAttribute("usertype", "1");
 			System.out.println("[일반회원]: "+result.getUserid());
-			return "index";
 		} else if(result.getType()==2){
-			
-			session.setAttribute("jobId", result.getUserid());
+			session.setAttribute("loginId", result.getUserid());
+			session.setAttribute("workerId", result.getUserid());
 			session.setAttribute("usertype", "2");
 			System.out.println("[구직자]: "+result.getUserid());
-			return "index";
 		} else if(result.getType()==3) {
-			
-			session.setAttribute("mId", result.getUserid());
+			session.setAttribute("loginId", result.getUserid());
+			session.setAttribute("managerId", result.getUserid());
 			session.setAttribute("usertype", "3");
 			System.out.println("[시설관리자]: "+result.getUserid());
 		} else if(result.getType()==10) {
-			
+			session.setAttribute("loginId", result.getUserid());
 			session.setAttribute("adminId", result.getUserid());
 			session.setAttribute("usertype", "10");
 			System.out.println("[사이트관리자]: "+result.getUserid());
 		} 
 		System.out.println("[세션에 입력된 아이디]: "+result.getUserid());
 		System.out.println("[세션에서 입력된 회원타입]: "+session.getAttribute("usertype"));
-		return "login";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
