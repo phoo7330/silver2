@@ -115,41 +115,9 @@ public class MemberController {
 		return "mypage";
 	}
 	
-	@RequestMapping(value = "/updateMember2", method = RequestMethod.POST)
-	public String updateMember2(Member member, HttpSession session, Model model) {
-		int result = 0;
-		String loginId = (String) session.getAttribute("loginId");
-		member.setUserid(loginId);
-		result = dao.updateMember2(member);
-		
-		if(result==0) {
-			System.out.println("[회원정보2수정실패]!");
-			return "mypage";
-		}
-		model.addAttribute("message", "회원정보2수정성공");
-		System.out.println("[업데이트된 정보2]: "+result);
-		
-		return "mypage";
-	}
 	
-	@RequestMapping(value = "/updateMember3", method = RequestMethod.POST)
-	public String updateMember3(Member member, HttpSession session, Model model) {
-		int result = 0;
-		String loginId = (String) session.getAttribute("loginId");
-		member.setUserid(loginId);
-		result = dao.updateMember3(member);
-		
-		if(result==0) {
-			System.out.println("[회원정보3수정실패]!");
-			return "mypage";
-		}
-		model.addAttribute("message", "회원정보3수정성공");
-		System.out.println("[업데이트된 정보3]: "+result);
-		
-		return "mypage";
-	}
 	
-	//
+	
 	
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)

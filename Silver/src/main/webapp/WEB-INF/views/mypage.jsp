@@ -110,6 +110,7 @@
 		    	
 				<div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">
 				<!-- 1) 개인정보 -->
+				<form action="updateMember" method="post">
 				<div class="card border mb-3" id="card-edit-account">
 					<div class="container">
 						<div class="pt-5 pb-1 border-bottom">
@@ -118,7 +119,7 @@
 						    </div>
 						</div>
 						<!-- 아이디 : disabled (form 부분통합,김동우 수정)-->
-						<form action="updateMember" method="post">
+						
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editName" class="col-sm-2 col-form-label col-form-label-sm"><small>아이디</small></label>
@@ -146,7 +147,7 @@
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
 							    <div class="col-sm-8">
-									<input type="date" class="form-control form-control-sm" id="editBirth" name="birthday" placeholder="${member.birthday}">
+									<input type="date" class="form-control form-control-sm" id="editBirth" name="birthday" >
 							    </div>
 							</div>
 						
@@ -163,7 +164,7 @@
 									  </select>
 							    </div>
 							</div>		
-					</form>	
+					
 					</div>	
 				</div>
 				<!-- 1-2. 연락처 -->
@@ -175,7 +176,7 @@
 						    </div>
 						</div>
 						<!-- 이메일 : 기존 정보가 디폴트로 들어가 있어야 함 (김동우 수정 form부분통합) -->
-						<form action="updateMember2" method="post">
+						
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>이메일</small></label>
@@ -194,7 +195,7 @@
 							    	<small id="phoneHelp" class="form-text text-muted">"-" 없이 연락처를 입력하세요.</small>
 							    </div>
 							</div>
-						</form>
+						
 					</div>	
 				</div>
 				<!-- 1-3. 가입자구분 -->
@@ -206,7 +207,7 @@
 						    </div>
 						</div>
 						<!-- 가입자 구분 : 기존 정보가 디폴트로 들어가 있어야 함 -->
-						<form action="updateMember3" method="post">
+						
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editType" class="col-sm-2 col-form-label col-form-label-sm"><small>가입자 구분</small></label>
@@ -236,15 +237,17 @@
 									</div>
 							    </div>
 							</div>
-						</form>
+						
 					</div>	
+				
 				</div>	
 					<!-- 수정 버튼  -->
 					<div class="text-center pt-3 pb-5">
 						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">수정</button>
 					</div>
-					
+					</form>
 				</div>
+				
 				<!-- 2) 어르신정보 -->
 				<div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">
 					<!-- 2-1. 기본정보 -->
