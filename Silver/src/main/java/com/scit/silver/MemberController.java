@@ -149,7 +149,7 @@ public class MemberController {
 		return "mypage";
 	}
 	
-	//
+	//jsp페이지
 	
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
