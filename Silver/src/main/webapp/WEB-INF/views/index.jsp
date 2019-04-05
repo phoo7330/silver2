@@ -180,9 +180,13 @@
 			</div>
 		</div>
 	</div>	
+<<<<<<< HEAD
 	
 	
 	<!-- 정리해야함 -->
+=======
+
+>>>>>>> branch 'lee' of https://github.com/phoo7330/silver2.git
 	
 
 
