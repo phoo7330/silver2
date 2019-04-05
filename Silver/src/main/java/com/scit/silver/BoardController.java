@@ -51,7 +51,7 @@ public class BoardController {
 	public String updatesb(SilverBoard sb, HttpSession session) {
 		if (session.getAttribute("loginId") == null) {
 			return "redirect:/";
-		}
+		} 
 
 		int result = dao.updatesb(sb);
 		int seq= sb.getSeach_seq();
