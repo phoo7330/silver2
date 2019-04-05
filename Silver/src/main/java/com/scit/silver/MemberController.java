@@ -97,7 +97,7 @@ public class MemberController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(Member member, HttpSession session, Model model) {
 		int result = 0;
 		String loginId = (String) session.getAttribute("loginId");
@@ -114,7 +114,7 @@ public class MemberController {
 		return "mypage";
 	}
 	
-	@RequestMapping(value = "/updateMember2", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateMember2", method = RequestMethod.POST)
 	public String updateMember2(Member member, HttpSession session, Model model) {
 		int result = 0;
 		String loginId = (String) session.getAttribute("loginId");
@@ -131,7 +131,7 @@ public class MemberController {
 		return "mypage";
 	}
 	
-	@RequestMapping(value = "/updateMember3", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateMember3", method = RequestMethod.POST)
 	public String updateMember3(Member member, HttpSession session, Model model) {
 		int result = 0;
 		String loginId = (String) session.getAttribute("loginId");
