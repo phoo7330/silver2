@@ -19,7 +19,7 @@
 <body>
 	<!-- 메인 네비게이션 -->
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark" id="main-nav">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top" id="main-nav">
 	 		<a class="navbar-brand mr-5 pb-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
 	 		<!-- 오른쪽 상단 토글러 버튼 -->
 			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 			<!-- 네비게이션 상단 메뉴 -->
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<ul class="navbar-nav">
-					<li class="nav-item active">
+					<li class="nav-item active" style="color: black;">
 			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
 			  		</li>
 			  		<li class="nav-item">
@@ -69,9 +69,8 @@
 			</div>  
 		</nav>	
 	</header>
-	
 	<!-- 메인 캐러셀 -->
-	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between" data-ride="carousel">
+	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between pt-5 mt-1" data-ride="carousel">
 	    <div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
 				<!--Mask color-->
