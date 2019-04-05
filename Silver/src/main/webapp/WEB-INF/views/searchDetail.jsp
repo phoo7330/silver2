@@ -56,18 +56,43 @@ $(function(){
 });
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
+	var sbc_seq=$('#sbc_seq').val();
 	var sbc_write=$('#sbc_write').val();
 	var userid=$('#comment-userid').val();
-	$('#sbc_write').val('');
-	$.ajax({
-        type : 'post',
-        url : 'insertComment',
-        data : {userid:userid,
-        		sb_seq:sb_seq,
-        		sbc_write:sbc_write	
-        },
-        success : printC
-	});  
+	var btn_comment=$("#btn-comment").html();
+	 $('#sbc_write').val('');
+	
+	 if(btn_comment=='등록'){
+		 $.ajax({
+		        type : 'post',
+		        url : 'insertComment',
+		        data : {userid:userid,
+		        		sb_seq:sb_seq,
+		        		sbc_write:sbc_write	
+		        },
+		        success : function(){
+		        	alert("등록되었습니다!");
+		        	printC();
+		        }
+			});   
+	 }else{
+		 $("#btn-comment").html('등록');
+		 $('#sbc_1').html("댓글쓰기");
+		 $.ajax({
+		        type : 'post',
+		        url : 'updatecom',
+		        data : {userid:userid,
+		        		sbc_seq:sbc_seq,
+		        		sb_seq:sb_seq,
+		        		sbc_write:sbc_write	
+		        },
+		        success : function(){
+		        	alert("수정되었습니다!");
+		        	printC();
+		        }
+			});   
+	 }
+	
 }
 function printC(page){
 	var sb_seq=$('#sb_seq').val();
@@ -82,6 +107,7 @@ function printC(page){
 	}); 
 }
 function listC(data){
+
 	var list = '';
 	var paging = '';
 	var page = 1;
@@ -95,6 +121,7 @@ function listC(data){
 		list += '<a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><img src="resources/image/morevertical.svg"></small></a> ';
 		list += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
 		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
+		list += '<input type="hidden" id="sbc_seq" value="'+item.sbc_seq+'">'
 		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
 		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
  
@@ -117,16 +144,55 @@ function listC(data){
 	$('#pag2').html(paging);
 }
 function updatecom(sbc_seq){
-	console.log("댓글수정을 눌렀을떄"+sbc_seq);
+	var sbc_seq=sbc_seq;
+	$.ajax({
+        type : 'get',
+        url : 'selonecom',
+        data : {sbc_seq:sbc_seq},
+        success : function(data){
+        	
+        	if(data==''){
+        		alert("본인의 댓글만 수정할 수 있습니다.");
+        		return;
+        	}else{
+        		updatecom2(data);
+        	}
+        	
+        }
+	});
 }
+function updatecom2(data){
+	$('#sbc_write').html(data.sbc_write);
+	console.log(data.sbc_write);
+	$('#sbc_1').html("댓글수정하기");
+	$('#btn-comment').html("수정");
+	
+}
+
 function delcom(sbc_seq){
-	console.log("댓글삭제를 눌렀을떄"+sbc_seq);
+	
+	var sbc_seq=sbc_seq;
+	$.ajax({
+        type : 'post',
+        url : 'delcom',
+        data : {sbc_seq:sbc_seq},
+        success : function(data){
+        	if(data==0){
+        		alert("본인의 댓글만 삭제할 수 있습니다.");
+        		return;
+        	}else{
+        		alert("삭제되었습니다");
+        		printC();
+        	}
+        	
+        }
+        	       	
+	}); 
 
 }
 
 function updateBoard(){ //수정창이 뜨면서 기존값이 입력됨
 	var sb_seq=$('#sb_seq').val();
-	console.log("수정버튼 클릭");
 	$.ajax({
         type : 'get',
         url : 'oneboard',
@@ -151,7 +217,7 @@ function updateBoard2(){
 		return;
 	}
 	var SilverBoard = $("form[name=updateform]").serialize();
-	console.log(SilverBoard);
+
 	$.ajax({
         type : 'post',
         url : 'updatesb',
@@ -290,14 +356,12 @@ function insertBoard(){
 		return;
 	}
 	var SilverBoard = $("form[name=insertform]").serialize();
-	console.log(SilverBoard);
+
 	$.ajax({
         type : 'post',
         url : 'insertsb',
         data : SilverBoard,
         success : init()
-        	//$('#write-board').modal("hide");
-        	//$("#write-board").toggle();
         
     });
 }
@@ -846,10 +910,11 @@ $(function() {
 				</td>
 			</tr>
 			<!-- 게시판 댓글 쓰기 -->
+			<c:if test="${sessionScope.loginId!=null}">
 			<tr>
 				<td class="board-comment">
 					<div class="col-md-4">
-						<h5 class="mb-0">댓글쓰기</h5>
+						<h5 id="sbc_1" class="mb-0">댓글쓰기</h5>
 						<!-- *** value : 기존 userid 들어가는 부분 - static -->
 						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="${sessionScope.loginId}">
 					</div>
@@ -864,6 +929,7 @@ $(function() {
 					</div>
 				</td>
 			</tr>
+			</c:if>
 			<!-- 게시판 댓글 목록 -->
 			<tr>
 				<td class="nav-comment">

@@ -120,14 +120,14 @@ WHERE
 		SB_SEQ=#{sb_seq}
 </update>
 
-<update id="delcom" parameterType="int">
-UPDATE SILVERBOARDCOMENT
-	SET
+<delete id="delcom" parameterType="int">
+DELETE 
+	FROM SILVERBOARDCOMENT 
+WHERE 
+	SBC_SEQ=#{sbc_seq}
 	
-		SBC_WRITE='삭제된 댓글입니다.'
-	WHERE
-		SBC_SEQ=#{sbc_seq}
-</update>
+		
+</delete>
 
 <update id="updatecom" parameterType="SilverBoardComent">
  UPDATE SILVERBOARDCOMENT
@@ -136,4 +136,18 @@ UPDATE SILVERBOARDCOMENT
 	WHERE
 		SBC_SEQ=#{sbc_seq}
 </update>
+
+<select id="selectonec" parameterType="int" resultType="SilverBoardComent">
+	SELECT 
+		SBC_SEQ,
+		USERID,
+		SB_SEQ,
+		SBC_DATE,
+		SBC_WRITE
+	FROM
+		SILVERBOARDCOMENT
+	WHERE
+		SBC_SEQ=#{sbc_seq}
+
+</select>
   </mapper>
