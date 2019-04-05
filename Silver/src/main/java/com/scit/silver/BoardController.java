@@ -36,8 +36,7 @@ public class BoardController {
 
 		int result = dao.insertsb(sb);
 		int seq= sb.getSeach_seq();
-		
-		
+
 		return "redirect:/searchDetail?seach_seq="+seq;
 	}
 
@@ -48,7 +47,6 @@ public class BoardController {
 			return "redirect:/";
 		}
 
-		System.out.println(sb);
 		int result = dao.updatesb(sb);
 		int seq= sb.getSeach_seq();
 		
@@ -76,7 +74,6 @@ public class BoardController {
 
 		SilverBoard result = dao.selectsbone(sb_seq);
 
-		// System.out.println(result);
 		return result;
 	}
 	@RequestMapping(value = "/insertComment", method = { RequestMethod.POST, RequestMethod.GET })
@@ -84,7 +81,6 @@ public class BoardController {
 
 		int result = dao.insertComment(sbc);
 
-		// System.out.println(result);
 		return result;
 	}
 	
@@ -101,7 +97,7 @@ public class BoardController {
 
 		result.put("navi", pn);
 		result.put("result", sult);
-		//System.out.println(result);
+
 		return result;
 	}
 	@RequestMapping(value = "/delsb", method = { RequestMethod.POST, RequestMethod.GET })
@@ -109,16 +105,55 @@ public class BoardController {
 		SilverBoard sb = dao.selectsbone(sb_seq);
 		String loginId=(String)session.getAttribute("loginId");
 		
-		if(sb.getUserid()==loginId) {
+		if(sb.getUserid().equals(loginId)) {
 			int result = dao.delsb(sb_seq);
+
+			return result;
+		}else {
+			return 0;
+		}
+	}
+	
+	@RequestMapping(value = "/delcom", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int delcom(int sbc_seq, HttpSession session) {
+		SilverBoardComent sbc = dao.selectonec(sbc_seq);
+		String loginId=(String)session.getAttribute("loginId");
+		
+		System.out.println(sbc.getUserid()+"로그인아이디"+loginId);
+		if(sbc.getUserid().equals(loginId)) {
+			int result = dao.delcom(sbc_seq);
+
+			return result;
+		}else {
+			return 0;
+		}
+	}
+	@RequestMapping(value = "/selonecom", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody SilverBoardComent selonecom(int sbc_seq, HttpSession session) {
+		SilverBoardComent sbc = dao.selectonec(sbc_seq);
+		String loginId=(String)session.getAttribute("loginId");
+		
+		if(sbc.getUserid().equals(loginId)) {
+			
+			return sbc;
+		}else {
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "/updatecom", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int updatecom(SilverBoardComent sbc, HttpSession session) {
+		
+		String loginId=(String)session.getAttribute("loginId");
+		
+		
+		if(sbc.getUserid().equals(loginId)) {
+			int result = dao.updatecom(sbc);
 
 			System.out.println(result);
 			return result;
 		}else {
 			return 0;
 		}
-		
-		
 	}
-	
 }

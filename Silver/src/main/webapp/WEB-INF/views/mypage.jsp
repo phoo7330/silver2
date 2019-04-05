@@ -117,8 +117,8 @@
 						      <h5 class="text-secondary" id="inform-tabContent">개인정보</h5>  
 						    </div>
 						</div>
-						<!-- 아이디 : disabled -->
-						<form>
+						<!-- 아이디 : disabled (form 부분통합,김동우 수정)-->
+						<form action="updateMember" method="post">
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editName" class="col-sm-2 col-form-label col-form-label-sm"><small>아이디</small></label>
@@ -126,50 +126,44 @@
 									<input type="text" class="form-control form-control-sm" id="editName" placeholder="${member.userid}" disabled>
 							    </div>
 							</div>
-						</form>
+						
 						<!-- 패스워드 : 두 컬럼의 패스워드 두개가 일치하지 않는 경우 수정 불가-->
-						<form>
+						
 							<div class="form-group row pt-4">
 							<div class="col-sm-1"></div>
 								<label for="editPassword" class="col-sm-2 col-form-label col-form-label-sm"><small>비밀번호</small></label>
 							    <div class="col-sm-4 pr-1">
-									<input type="password" class="form-control form-control-sm" id="editPassword" placeholder="비밀번호">
+									<input type="password" class="form-control form-control-sm" name="userpwd" id="editPassword" placeholder="비밀번호">
 							    </div>
 							    <div class="col-sm-4 pl-1">
 									<input type="password" class="form-control form-control-sm" id="editPassword" placeholder="비밀번호 확인">
 							    </div>
 							</div>
-						</form>	
+							
 						<!-- 생년월일 : 기존 정보가 디폴트로 들어가 있어야 함 -->
-						<form>
+						
 							<div class="form-group row pt-4">
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
 							    <div class="col-sm-8">
-									<input type="date" class="form-control form-control-sm" id="editBirth">
+									<input type="date" class="form-control form-control-sm" id="editBirth" name="birthday" placeholder="${member.birthday}">
 							    </div>
 							</div>
-						</form>
+						
 						<!-- 성별 : 기존 정보가 디폴트로 들어가 있어야 함 -->
-						<form>
+						
 							<div class="form-group row pt-4">
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>성별</small></label>
 							    <div class="col-sm-8">
 									 <select class="custom-select custom-select-sm my-1 mr-sm-2" name="gender" id="inputGender">
 									    <option selected>선택</option>
-									    <option id="gender" value="man">남성</option>
-									    <option id="gender" value="woman">여성</option>
+									    <option id="gender" value="남성">남성</option>
+									    <option id="gender" value="여성">여성</option>
 									  </select>
 							    </div>
 							</div>		
-						</form>
-						<!-- 수정버튼 : 1-1 id: 1-1btn -->
-						<div class="form-group row pt-4 pb-3">
-							<div class="col-sm-11">
-							   <button type="button" id="1-1btn" class="btn btn-outline-secondary btn-sm float-right">수정</button>
-							</div>
-						</div>
+					</form>	
 					</div>	
 				</div>
 				<!-- 1-2. 연락처 -->
@@ -180,33 +174,27 @@
 						      <h5 class="text-secondary" id="inform-tabContent">연락처</h5>  
 						    </div>
 						</div>
-						<!-- 이메일 : 기존 정보가 디폴트로 들어가 있어야 함 -->
-						<form>
+						<!-- 이메일 : 기존 정보가 디폴트로 들어가 있어야 함 (김동우 수정 form부분통합) -->
+						<form action="updateMember2" method="post">
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>이메일</small></label>
      							<div class="col-sm-8">
-     								<input type="email" class="form-control form-control-sm" id="editEmail" placeholder="이메일을 입력하세요.">
+     								<input type="email" class="form-control form-control-sm" id="editEmail" name="email" placeholder="이메일을 입력하세요.">
 							    </div>
 							</div>
-						</form>
+						
 						<!-- 전화번호 : 가입 시 없는 정보이기 때문에 빈 값 -->
-						<form>
+						
 							<div class="form-group row pt-4 pb-0">
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>전화번호</small></label>
      							<div class="col-sm-8">
-     								<input type="email" class="form-control form-control-sm" id="editEmail" placeholder="전화번호를 입력하세요.">
+     								<input type="number" class="form-control form-control-sm" id="editEmail" name="telephone" placeholder="전화번호를 입력하세요.">
 							    	<small id="phoneHelp" class="form-text text-muted">"-" 없이 연락처를 입력하세요.</small>
 							    </div>
 							</div>
 						</form>
-						<!-- 수정버튼 : 1-2 id: 1-2btn -->
-						<div class="form-group row pt-3 pb-3">
-							<div class="col-sm-11">
-							   <button type="button" id="1-2btn" class="btn btn-outline-secondary btn-sm float-right">수정</button>
-							</div>
-						</div>
 					</div>	
 				</div>
 				<!-- 1-3. 가입자구분 -->
@@ -218,7 +206,7 @@
 						    </div>
 						</div>
 						<!-- 가입자 구분 : 기존 정보가 디폴트로 들어가 있어야 함 -->
-						<form>
+						<form action="updateMember3" method="post">
 							<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editType" class="col-sm-2 col-form-label col-form-label-sm"><small>가입자 구분</small></label>
@@ -235,9 +223,9 @@
 									</div>
 							    </div>
 							</div>
-						</form>
+						
 						<!-- 첨부파일 : 첨부파일 없을 시 '종사자'로 수정 불가 -->
-						<form>
+					
 							<div class="form-group row pt-4">
 							<div class="col-sm-1"></div>
 								<label for="uploadLicense" class="col-sm-2 col-form-label col-form-label-sm"><small>자격증</small></label>
@@ -249,14 +237,13 @@
 							    </div>
 							</div>
 						</form>
-						<!-- 수정버튼 : 1-3 id: 1-3btn -->
-						<div class="form-group row pt-3 pb-3">
-							<div class="col-sm-11">
-							   <button type="button" id="1-3btn" class="btn btn-outline-secondary btn-sm float-right">제출</button>
-							</div>
-						</div>
 					</div>	
 				</div>	
+					<!-- 수정 버튼  -->
+					<div class="text-center pt-3 pb-5">
+						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">수정</button>
+					</div>
+					
 				</div>
 				<!-- 2) 어르신정보 -->
 				<div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">
@@ -305,12 +292,6 @@
 								    </div>
 								</div>		
 							</form>
-							<!-- 등록버튼 : 2-1 id: 2-1btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-11">
-								   <button type="button" id="2-1btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
 					<!-- 2-2. 일상생활 수행정도 -->
@@ -385,12 +366,6 @@
 								    </div>
 								</div>						
 							</form>
-							<!-- 등록버튼 : 2-1 id: 2-1btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-12">
-								   <button type="button" id="2-1btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
 					<!-- 2-3. 질환정보 -->
@@ -501,14 +476,12 @@
 								    </div>
 								</div>
 							</form>
-							<!-- 등록버튼 : 2-3 id: 2-3btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-12">
-								   <button type="button" id="2-3btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
+					<!-- 수정 버튼  -->
+					<div class="text-center pt-3 pb-5">
+						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">등록</button>
+					</div>	
 				</div>
 				<!-- 3-3. 쪽지함 -->
 				<div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">

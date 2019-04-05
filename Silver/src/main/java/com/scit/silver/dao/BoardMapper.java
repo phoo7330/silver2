@@ -9,7 +9,7 @@ import com.scit.silver.vo.SilverBoardComent;
 
 public interface BoardMapper {
 
-	public int insertsb(SilverBoard sb);
+public int insertsb(SilverBoard sb);
 	
 	public SilverBoard selectsbone(int sb_seq);
 	
@@ -30,5 +30,7 @@ public interface BoardMapper {
 	public int delcom(int sbc_seq);
 	
 	public int updatecom(SilverBoardComent sbc);
+	
+	public SilverBoardComent selectonec(int sbc_seq);
 }
  

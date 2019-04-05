@@ -14,14 +14,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		HttpSession session = request.getSession();
-		System.out.println("커밋용테스트");
+		
 		String contextPath = request.getContextPath();
-		System.out.println(contextPath);
+		
 		String nomalId = (String) session.getAttribute("nomalId");
 		System.out.println(nomalId);
-		String workerId = (String) session.getAttribute("workerId");
+		String workerId = (String) session.getAttribute("jobId");
 		System.out.println(workerId);
-		String managerId= (String) session.getAttribute("managerId");
+		String managerId= (String) session.getAttribute("mId");
 		System.out.println(managerId);
 		String adminId= (String) session.getAttribute("adminId");
 		System.out.println(adminId);
@@ -35,10 +35,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String nomalURI ="";
 		
 		// 구직자만 가능한 요청
-		String workerURI ="";
+		String jobURI ="";
 		
 		// 기관관리자만 가능한 요청
-		String managerURI = "";
+		String mURI = "";
 		
 		// 사이트관리자만 가능한 요청
 		String adminURI = "";
@@ -51,8 +51,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		// 사용자타입별 권한검사	
 		} else {
 			if(usertype.equals("1")  && nomalURI.contains(uri) || 
-				usertype.equals("2") && workerURI.contains(uri) ||
-				usertype.equals("3") && managerURI.contains(uri) ||
+				usertype.equals("2") && jobURI.contains(uri) ||
+				usertype.equals("3") && mURI.contains(uri) ||
 				usertype.equals("10") && adminURI.contains(uri)) {
 				
 				//session.removeAttribute("loginId"); 세션에 있는값 지우기
