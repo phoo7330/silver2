@@ -126,33 +126,34 @@
 
 	<!-- 기관 종류 설명 -->
 	<div class="container">
-		<div class="row mt-5">
+		<div class="card-deck col-md-12 row mt-5">
 			<!-- 카드01 -->
-	  		<div class="col-md-4 mb-4">
-				<div class="card border-white ">
+	  		<div class="col-md-4 p-0 ">
+				<div class="card">
 					<!--Card image-->
-					<div class="view">
+					<div class="view overlay">
 						<img src="resources/image/card01.jpg" class="card-img-top" alt="photo">
+						<div class="mask rgba-white-slight"></div>
 					</div>
 					<!--Card content-->
-					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#f8ae4c;">
+					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#f8ae4c;">
 					<!--Title-->
 			        <h4 class="card-title white-text">Title of the news</h4>
 			        <!--Text-->
-			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
+			        <p class="card-text white-text">For</p>
 			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
 					</div>
 				</div>
 			</div>
 	 		<!-- 카드02 -->
-	 		<div class="col-md-4 mb-4">
+	 		<div class="col-md-4 p-0">
 				<div class="card border-white ">
 					<!--Card image-->
 					<div class="view">
 						<img src="resources/image/card02.jpg" class="card-img-top" alt="photo">
 					</div>
 					<!--Card content-->
-					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#d6dc3b;">
+					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#d6dc3b;">
 					<!--Title-->
 			        <h4 class="card-title white-text">Title of the news</h4>
 			        <!--Text-->
@@ -162,14 +163,14 @@
 				</div>
 			</div>
 	 		<!-- 카드03 -->
-	 		<div class="col-md-4 mb-4 pb-5">
+	 		<div class="col-md-4 p-0">
 				<div class="card border-white ">
 					<!--Card image-->
 					<div class="view">
 						<img src="resources/image/card03.jpg" class="card-img-top" alt="photo">
 					</div>
 					<!--Card content-->
-					<div class="card-body text-center shadow-lg p-3 mb-5 rounded" style="background-color:#4ac5e2;">
+					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#4ac5e2;">
 					<!--Title-->
 			        <h4 class="card-title white-text">Title of the news</h4>
 			        <!--Text-->
@@ -180,13 +181,9 @@
 			</div>
 		</div>
 	</div>	
-<<<<<<< HEAD
 	
 	
 	<!-- 정리해야함 -->
-=======
-
->>>>>>> branch 'lee' of https://github.com/phoo7330/silver2.git
 	
 
 
