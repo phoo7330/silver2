@@ -29,15 +29,21 @@ public class BoardController {
 	private static final int pagePerGroup=5;
 
 	@RequestMapping(value = "/insertsb", method = { RequestMethod.POST, RequestMethod.GET })
-	public String insertsb(SilverBoard sb, HttpSession session) {
+	public String insertsb(SilverBoard sb, HttpSession session, Model model) {
 		if (session.getAttribute("loginId") == null) {
 			return "redirect:/";
 		}
 
 		int result = dao.insertsb(sb);
 		int seq= sb.getSeach_seq();
-
-		return "redirect:/searchDetail?seach_seq="+seq;
+		
+		int type = sdao.TypeSearch(sb.getSeach_seq());
+		if (type == 1) {
+			return "redirect:/searchDetail?seach_seq="+seq;
+		}
+		else {
+			return "redirect:/searchDetail2?seach_seq="+seq;
+		}
 	}
 
 	
@@ -49,9 +55,13 @@ public class BoardController {
 
 		int result = dao.updatesb(sb);
 		int seq= sb.getSeach_seq();
-		
-		
-		return "redirect:/searchDetail?seach_seq="+seq;
+		int type = sdao.TypeSearch(sb.getSeach_seq());
+		if (type == 1) {
+			return "redirect:/searchDetail?seach_seq="+seq;
+		}
+		else {
+			return "redirect:/searchDetail2?seach_seq="+seq;
+		}
 	}
 	@RequestMapping(value = "/pageboard", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody HashMap<String,Object> pageboard(
