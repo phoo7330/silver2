@@ -149,6 +149,9 @@ public class MemberController {
 		return "mypage";
 	}
 	
+	//
+	
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(Member member, HttpSession session, Model model) {
 		if (session.getAttribute("loginId") == null) {
