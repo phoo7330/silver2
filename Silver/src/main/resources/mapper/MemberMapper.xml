@@ -88,32 +88,13 @@
 		    USERPWD = #{userpwd}
 		    ,BIRTHDAY = #{birthday}
 		    ,GENDER = #{gender}
-		WHERE 
-		    USERID= #{userid}
-  	
-  	</update>
-  <!-- 회원정보 수정 2 -->
-  	<update id="updateMember2" parameterType="Member">
-  	
-  	UPDATE MEMBER 
-		SET 
-		    EMAIL = #{email}
+		    ,EMAIL = #{email}
 		    ,TELEPHONE = #{telephone}
-		   
+		    ,TYPE = #{type}
 		WHERE 
 		    USERID= #{userid}
-		    
-  	</update>
   	
-  <!-- 회원정보 수정 3 -->
-  	<update id="updateMember3" parameterType="Member">
-  	
-  	UPDATE MEMBER 
-		SET 
-		    TYPE = #{type}
-		WHERE 
-		    USERID= #{userid}
-		    
   	</update>
+  
   	
   </mapper>

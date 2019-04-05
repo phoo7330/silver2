@@ -15,7 +15,5 @@ public interface MemberMapper {
 	
 	public int updateMember(Member member);
 	
-	public int updateMember2(Member member);
 	
-	public int updateMember3(Member member);
 }
