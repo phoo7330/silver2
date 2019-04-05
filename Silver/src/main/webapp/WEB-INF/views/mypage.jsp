@@ -163,13 +163,6 @@
 									  </select>
 							    </div>
 							</div>		
-						
-						<!-- 수정버튼 : 1-1 id: 1-1btn -->
-						<div class="form-group row pt-4 pb-3">
-							<div class="col-sm-11">
-							   <button type="submit" id="1-1btn" class="btn btn-outline-secondary btn-sm float-right">수정</button>
-							</div>
-						</div>
 					</form>	
 					</div>	
 				</div>
@@ -201,13 +194,6 @@
 							    	<small id="phoneHelp" class="form-text text-muted">"-" 없이 연락처를 입력하세요.</small>
 							    </div>
 							</div>
-						
-						<!-- 수정버튼 : 1-2 id: 1-2btn -->
-						<div class="form-group row pt-3 pb-3">
-							<div class="col-sm-11">
-							   <button type="submit" id="1-2btn" class="btn btn-outline-secondary btn-sm float-right">수정</button>
-							</div>
-						</div>
 						</form>
 					</div>	
 				</div>
@@ -250,16 +236,14 @@
 									</div>
 							    </div>
 							</div>
-						
-						<!-- 수정버튼 : 1-3 id: 1-3btn -->
-						<div class="form-group row pt-3 pb-3">
-							<div class="col-sm-11">
-							   <button type="submit" id="1-3btn" class="btn btn-outline-secondary btn-sm float-right">제출</button>
-							</div>
-						</div>
 						</form>
 					</div>	
 				</div>	
+					<!-- 수정 버튼  -->
+					<div class="text-center pt-3 pb-5">
+						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">수정</button>
+					</div>
+					
 				</div>
 				<!-- 2) 어르신정보 -->
 				<div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">
@@ -308,12 +292,6 @@
 								    </div>
 								</div>		
 							</form>
-							<!-- 등록버튼 : 2-1 id: 2-1btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-11">
-								   <button type="button" id="2-1btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
 					<!-- 2-2. 일상생활 수행정도 -->
@@ -388,12 +366,6 @@
 								    </div>
 								</div>						
 							</form>
-							<!-- 등록버튼 : 2-1 id: 2-1btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-12">
-								   <button type="button" id="2-1btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
 					<!-- 2-3. 질환정보 -->
@@ -504,14 +476,12 @@
 								    </div>
 								</div>
 							</form>
-							<!-- 등록버튼 : 2-3 id: 2-3btn -->
-							<div class="form-group row pt-4 pb-3">
-								<div class="col-sm-12">
-								   <button type="button" id="2-3btn" class="btn btn-outline-secondary btn-sm float-right">등록</button>
-								</div>
-							</div>
 						</div>	
 					</div>
+					<!-- 수정 버튼  -->
+					<div class="text-center pt-3 pb-5">
+						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">등록</button>
+					</div>	
 				</div>
 				<!-- 3-3. 쪽지함 -->
 				<div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">
