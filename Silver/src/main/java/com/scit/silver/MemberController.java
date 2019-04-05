@@ -99,6 +99,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(Member member, HttpSession session, Model model) {
+		
 		int result = 0;
 		String loginId = (String) session.getAttribute("loginId");
 		member.setUserid(loginId);
