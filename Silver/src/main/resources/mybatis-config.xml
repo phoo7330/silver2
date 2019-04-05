@@ -10,6 +10,7 @@
 		<typeAlias type="com.scit.silver.vo.DetailsOne" alias="DetailsOne" />
 		<typeAlias type="com.scit.silver.vo.DetailsTwo" alias="DetailsTwo" />
 		<typeAlias type="com.scit.silver.vo.SilverBoard" alias="SilverBoard" />
+		<typeAlias type="com.scit.silver.vo.SilverBoardComent" alias="SilverBoardComent" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />

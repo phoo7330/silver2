@@ -63,4 +63,77 @@ ORDER BY
 	WHERE
 		SEACH_SEQ = #{seach_seq}
 </select>
+<insert id="insertComment" parameterType="SilverBoardComent">
+	INSERT INTO SILVERBOARDCOMENT(
+		SBC_SEQ,
+		USERID,
+		SB_SEQ,
+		SBC_DATE,
+		SBC_WRITE
+	)VALUES(
+		SBC_SEQ.NEXTVAL,
+		#{userid},
+		#{sb_seq},
+		SYSDATE,
+		#{sbc_write}
+	)
+
+</insert>
+<select id="selectComent" parameterType="int" resultType="SilverBoardComent">
+	SELECT 
+		SBC_SEQ,
+		USERID,
+		SB_SEQ,
+		SBC_DATE,
+		SBC_WRITE
+	FROM
+		SILVERBOARDCOMENT
+	WHERE
+		SB_SEQ=#{sb_seq}
+	ORDER BY
+		SBC_DATE DESC
+</select>
+<select id="countRecord2" parameterType="int" resultType="int">
+	
+	SELECT 
+		COUNT(SBC_SEQ) 
+	FROM 
+		SILVERBOARDCOMENT
+	WHERE
+		SB_SEQ=#{sb_seq}
+</select>
+
+<delete id="delsb" parameterType="int">
+DELETE 
+	FROM SILVERBOARD 
+WHERE 
+	SB_SEQ = #{sb_seq}
+</delete>
+
+<update id="updatesb" parameterType="SilverBoard">
+ UPDATE SILVERBOARD
+	SET
+	
+		SBTITLE = #{sbtitle},
+    	SBWRITE = #{sbwrite}
+	WHERE
+		SB_SEQ=#{sb_seq}
+</update>
+
+<update id="delcom" parameterType="int">
+UPDATE SILVERBOARDCOMENT
+	SET
+	
+		SBC_WRITE='삭제된 댓글입니다.'
+	WHERE
+		SBC_SEQ=#{sbc_seq}
+</update>
+
+<update id="updatecom" parameterType="SilverBoardComent">
+ UPDATE SILVERBOARDCOMENT
+	SET
+		SBC_WRITE=#{sbc_write}
+	WHERE
+		SBC_SEQ=#{sbc_seq}
+</update>
   </mapper>

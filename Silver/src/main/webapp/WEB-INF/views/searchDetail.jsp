@@ -38,34 +38,185 @@ $(function(){
 	grade();
 	mark();
 	selectBoard();
-	$("#insertbtn").on("click",function(){	
-		insertBoard();  //게시글 저장버튼
-		//$('#write-board').modal('hide');
-	});	
+	
 	
 	$("#cancelbtn").on("click",function(){
 		$('#insertform')[0].reset(); //게시글 취소버튼
 	});
 	
-	
-});
-
-function updateBoard(){
-	console.log("수정버튼 클릭");
+	$("#btn-comment").on("click",function(){
+		insertComment();
+	});
+	$("#insertbtn").on("click",function(){	
+		insertBoard();  //게시글 저장버튼
+	});	
 	$("#editbtn").click('show.bs.modal', function(){
-		   alert("Hello World!");
+		updateBoard2();
 		});
+});
+function insertComment(){
+	var sb_seq=$('#sb_seq').val();
+	var sbc_write=$('#sbc_write').val();
+	var userid=$('#comment-userid').val();
+	$('#sbc_write').val('');
+	$.ajax({
+        type : 'post',
+        url : 'insertComment',
+        data : {userid:userid,
+        		sb_seq:sb_seq,
+        		sbc_write:sbc_write	
+        },
+        success : printC
+	});  
+}
+function printC(page){
+	var sb_seq=$('#sb_seq').val();
+	var page=page;
+	$.ajax({
+        type : 'get',
+        url : 'selectComment',
+        data : {sb_seq:sb_seq,
+        		page:page
+        },
+        success : listC        	
+	}); 
+}
+function listC(data){
+	var list = '';
+	var paging = '';
+	var page = 1;
+	var countComent=0;
+	var loginId="${sessionScope.loginId}";
+	$.each(data.result, function (index, item){
+		list += '<tr><td><div class="form-group row">';
+		list += '<h6 class="col-md-6" id="table-static">';
+		list += '<small>'+item.userid+' | '+item.sbc_date+'</small></h6>';
+		list += '<div class="col-md-6"><div class="dropdown float-right">';
+		list += '<a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><img src="resources/image/morevertical.svg"></small></a> ';
+		list += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
+		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
+		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
+ 
+		
+	}); 
+	 var start= data.navi.startPageGroup;
+	 var end=data.navi.endPageGroup;
+	
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:printC('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
+	 for(var i=start; start<end+1; start++){
+			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:printC('+start+')">'+start+'</a></b></li>';
+	 }
+	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:printC('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
+	 countComent+=data.navi.totalBoard;
+	 
+	$('#countcoment').html(countComent);
+	$('#cList').html(list);
+
+
+	$('#pag2').html(paging);
+}
+function updatecom(sbc_seq){
+	console.log("댓글수정을 눌렀을떄"+sbc_seq);
+}
+function delcom(sbc_seq){
+	console.log("댓글삭제를 눌렀을떄"+sbc_seq);
+
 }
 
+function updateBoard(){ //수정창이 뜨면서 기존값이 입력됨
+	var sb_seq=$('#sb_seq').val();
+	console.log("수정버튼 클릭");
+	$.ajax({
+        type : 'get',
+        url : 'oneboard',
+        data : {sb_seq:sb_seq},
+        success : upboardprint
+	}); 
+	function upboardprint(data){
+		$('#uptitle').val(data.sbtitle);
+		$('#upwrite').val(data.sbwrite);
+		$('#up_seq').val(data.sb_seq);
+	}
+}
+function updateBoard2(){
+	var title = $("#uptitle").val().length;
+	var write = $("#upwrite").val().length;
+	if(title<1){
+		alert("제목을 입력하세요");
+		return;
+	}
+	if(write<1){
+		alert("내용을 입력하세요");
+		return;
+	}
+	var SilverBoard = $("form[name=updateform]").serialize();
+	console.log(SilverBoard);
+	$.ajax({
+        type : 'post',
+        url : 'updatesb',
+        data : SilverBoard,
+        success : init2()
+        	//$('#write-board').modal("hide");
+        	//$("#write-board").toggle();
+        
+    });
+}
+
+function init2(){
+	alert("수정되었습니다!");
+	$('#edit-board').modal('hide');
+	$('#updateform')[0].reset(); 
+
+	$('#board-title').html('');
+	$('#board-date').html('');
+	$('#board-id').html('');
+	$('#board-contents').html('');
+	
+	$("#tab-board-detail").hide();
+	$("#tab-basic").show();
+ 	$("#tab-time").show();
+ 	$("#tab-facility").show();
+ 	$("#tab-address").show();
+ 	$("#tab-board").show();
+ 	window.location.replace("#tab-board");
+	selectBoard();
+}
 function deleteBoard(){ // 게시글 시퀀스값을 가져와서 삭제한다. 
 	var sb_seq=$('#sb_seq').val();
-	console.log(sb_seq);
-}
 
+	
+	$.ajax({
+        type : 'post',
+        url : 'delsb',
+        data : {sb_seq:sb_seq},
+        success : function(data){
+        	if(data==1){
+        	selectBoard();
+        	alert("삭제되었습니다");
+        	$('#board-title').html('');
+    		$('#board-date').html('');
+    		$('#board-id').html('');
+    		$('#board-contents').html('');
+    		
+    		$("#tab-board-detail").hide();
+    		$("#tab-basic").show();
+    	 	$("#tab-time").show();
+    	 	$("#tab-facility").show();
+    	 	$("#tab-address").show();
+    	 	$("#tab-board").show();
+    	 	window.location.replace("#tab-board");
+        	}
+        	else{
+        		alert("삭제실패");
+        	}
+        }
+	}); 
+}
 function selectBoard(page){
 	var seach_seq='${DetailsOne.seach_seq}';
 	var page=page; 
-	console.log("셀렉트보드"+page);
+	
 	 $.ajax({
         type : 'get',
         url : 'pageboard',
@@ -76,8 +227,6 @@ function selectBoard(page){
 	}); 
 }
 function printB(data){
-	console.log(data.result);
-	console.log(data.navi);
 	var list = '';
 	var paging = '';
 	var page = 1;
@@ -91,19 +240,14 @@ function printB(data){
 	 var start= data.navi.startPageGroup;
 	 var end=data.navi.endPageGroup;
 	
-	 //console.log(start);
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
 	 for(var i=start; start<end+1; start++){
-		
 			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectBoard('+start+')">'+start+'</a></b></li>';
-			//console.log("스타트"+start+"현재페이지"+data.navi.currentPage); 
-			 console.log("반복"+data.navi.currentPage);
-
 	 }
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage+1)+')\'" class="page-item disabled"><span class="page-link">&raquo;</span></li>'
-	 countBoard+=data.navi.totalBoard;
+	 countBoard+='전체 이용후기 '+data.navi.totalBoard;
 	 
-	 $('#cb').append(countBoard);
+	 $('#cb').html(countBoard);
 	 $('#sbList').html(list);
 	 $('#pag').html(paging);
 	 $('.select-table').on('click', function() {
@@ -115,7 +259,6 @@ function printB(data){
 		 	$("#tab-board").hide();
 		 	location.href="#nav-top";
 		var sb_seq=$(this).attr('data-value');
-		console.log(sb_seq);
 		$.ajax({
 	        type : 'get',
 	        url : 'oneboard',
@@ -123,13 +266,15 @@ function printB(data){
 	        success : printOneB
 		}); 
 			function printOneB(data){
-				console.log(data);
-				
-				$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
-				$('#board-title').html(data.sbtitle);
+				//$('#board-table').append('<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
+				$('#board-title').html(data.sbtitle+'<input id="sb_seq" type="hidden" value="'+data.sb_seq+'">');
 				$('#board-date').html(data.sbdate);
 				$('#board-id').html(data.userid);
 				$('#board-contents').html(data.sbwrite);
+				if (data.userid != "${sessionScope.loginId}") {
+					$(".dropdown").hide();
+				}
+				printC();
 			}
 		});
 }
@@ -145,13 +290,12 @@ function insertBoard(){
 		return;
 	}
 	var SilverBoard = $("form[name=insertform]").serialize();
+	console.log(SilverBoard);
 	$.ajax({
         type : 'post',
         url : 'insertsb',
         data : SilverBoard,
-        dataType : 'json',
         success : init()
-
         	//$('#write-board').modal("hide");
         	//$("#write-board").toggle();
         
@@ -163,8 +307,6 @@ function init(){
 	$('#insertform')[0].reset(); 
 	selectBoard();
 }
-
-
 function grade(){
 	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
 	var grade= null;
@@ -192,7 +334,6 @@ function grade(){
 		$('#grade').html(stgrade);
 		return;
 	}
-
 }
 		
 function mark(){
@@ -200,83 +341,73 @@ function mark(){
 	//vo에 담겨있는 위도,경도를 꺼내 지도와 마커를 표시
 	var grd_lo = '${DetailsOne.longitude}';
  		grd_la = '${DetailsOne.lauitude}';
-
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(grd_la, grd_lo),
 	    zoom: 12,
 	});
-
 	var marker = new naver.maps.Marker({
 	    position: new naver.maps.LatLng(grd_la, grd_lo),
 	    map: map
 	}); 
 }	
-
 /* 게시글작성페이지 이동  */
-
-	$(function() {
-		$("#tab-board-detail").hide();
-		
-		$('#nav-under-basic').on('click', function() {
-			console.log("aaa");
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show();  	
-		 	location.replace=("#tab-basic"); 
-		});
-		
-		$('#nav-under-address').on('click', function() {
-			console.log("aaa");
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show(); 
-		 	location.replace=("#tab-address");
-		});
-		
-		$('#nav-under-board').on('click', function() {
-			console.log("aaa");
-			$("#tab-board-detail").hide(); 
-			$("#tab-basic").show();  
-		 	$("#tab-time").show(); 
-		 	$("#tab-facility").show(); 
-		 	$("#tab-address").show(); 
-		 	$("#tab-board").show(); 
-		 	$("#nav-top").show(); 
-		 	location.replace=("#tab-board"); 
-		});
-		
-	}); 
+$(function() {
+	$("#tab-board-detail").hide();
 	
-	$(function() {
-		$('#btn-return').on('click', function() {
-			console.log("aaa");
-			// 목록가기를 누르면 현재 게시글을 비운다. 
-			$('#board-title').html('');
-			$('#board-date').html('');
-			$('#board-id').html('');
-			$('#board-contents').html('');
-			
-			$("#tab-board-detail").hide();
-			$("#tab-basic").show();
-		 	$("#tab-time").show();
-		 	$("#tab-facility").show();
-		 	$("#tab-address").show();
-		 	$("#tab-board").show();
-		 	location.replace=("#tab-board");
-		});
+	$('#nav-under-basic').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show();  	
+	 	window.location.replace("#tab-basic"); 
+	});
+	
+	$('#nav-under-address').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show(); 
+	 	window.location.replace("#tab-address");
+	});
+	
+	$('#nav-under-board').on('click', function() {
+		$("#tab-board-detail").hide(); 
+		$("#tab-basic").show();  
+	 	$("#tab-time").show(); 
+	 	$("#tab-facility").show(); 
+	 	$("#tab-address").show(); 
+	 	$("#tab-board").show(); 
+	 	$("#nav-top").show(); 
+	 	window.location.replace("#tab-board"); 
+	});
+	
+}); 
+$(function() {
+	$('#btn-return').on('click', function() {
+		// 목록가기를 누르면 현재 게시글을 비운다. 
+		
+		$('#board-title').html('');
+		$('#board-date').html('');
+		$('#board-id').html('');
+		$('#board-contents').html('');
+		
+		$("#tab-board-detail").hide();
+		$("#tab-basic").show();
+	 	$("#tab-time").show();
+	 	$("#tab-facility").show();
+	 	$("#tab-address").show();
+	 	$("#tab-board").show();
+	 	window.location.replace("#tab-board");
 		
 	});
-
-
-
+	
+});
 </script>
 <!-- 네비게이션 바 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav-top">
@@ -568,7 +699,7 @@ function mark(){
 		<h4 class="n1 text-secondary"><small>시설게시판</small></h4>
 		</div>
 		
-		<p class="lead"><small id="cb" >전체 이용후기 </small></p>
+		<p class="lead"><small id="cb"> </small></p>
 		<table class="table text-center">
 			<thead class="thead-light">
 				<tr>
@@ -600,12 +731,11 @@ function mark(){
 		      </div>
 		      
 		      <div class="modal-body">
-				<form id="insertform" name="insertform" action="insertsb" method="post" >
+				<form id="insertform" name="insertform">
 					<fieldset disabled>
 					<div class="form-group">
 				      <label for="disabledText">아이디</label>
 				      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
-					  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
 				    </div>
 				    </fieldset>
 					<div class="form-group">
@@ -617,7 +747,8 @@ function mark(){
 						<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
 					</div>
 					<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
-				    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					<input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+					
 				 </form>   
 		      </div>
 		      <!-- 버튼-취소/저장 -->
@@ -630,23 +761,7 @@ function mark(){
 		</div>
 		<!-- 페이징 -->
 		<ul id="pag" class="pagination pagination-circle pg-blue justify-content-center">
-			<%-- 
-			<li style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage-1})'" class="page-item disabled">
-				<span class="page-link">&laquo;</span>
-			</li>
-			<div id=pag></div>
-			<c:forEach var="page" begin="${navi.startPageGroup}" end="${navi.endPageGroup}">
-				<c:if test="${navi.currentPage==page}">
-					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
-				</c:if>
-				<c:if test="${navi.currentPage!=page}">
-					<li class="page-item"><a class="page-link" href="javascript:selectBoard(${page})">${page}</a></li>
-				</c:if>
-			</c:forEach>  
-			<li class="page-item">
-				<span style="cursor:pointer" onclick="location.href='javascript:selectBoard(${navi.currentPage+1})'"  class="page-link">&raquo;</span>
-			</li>  
-			--%>
+			
 		</ul>
 	</div>	
 			<!-- 7-1. 게시글 수정 모달 : 제목, 내용 기존 값 그대로 입력되어있어야함 / 모달의 경우 다른 div에 포함되면 안돼서 7번 게시글 위로 위치 -->
@@ -662,30 +777,31 @@ function mark(){
 					</div>
 			      <!-- 바디 -->
 			      <div class="modal-body">
-					<form id="insertform" name="insertform" action="insertsb" method="post" >
+					<form id="updateform" name="updateform">
 						<fieldset disabled>
 						<div class="form-group">
 					      <label for="disabledText">아이디</label>
 					      <input type="text" id="disabledText" class="form-control" placeholder="${sessionScope.loginId}">
-						  <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+						  
 					    </div>
 					    </fieldset>
 						<div class="form-group">
 							<label>제목</label>
-							<input type="text" id="sbtitle" name="sbtitle" class="form-control">
+							<input type="text" id="uptitle" name="sbtitle" class="form-control">
 						</div>
 						<div class="form-group">
 							<label>내용</label>
-							<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+							<textarea class="form-control" id="upwrite" name="sbwrite" style="height: 15rem;"></textarea>
 						</div>
 						<input type="hidden" id="seach_seq" name="seach_seq" value="${DetailsOne.seach_seq}">
 					    <input type="hidden" id="userid" name="userid" value="${sessionScope.loginId}">
+						<input type="hidden" id="up_seq" name="sb_seq">
 					 </form>   
 			      </div>
 			      <!-- 버튼-취소/저장 -->
 			      <div class="modal-footer">
 			        <button type="button" id="cancelbtn" class="btn btn-secondary btn-sm" data-dismiss="modal">취소</button>
-			        <button type="button" id="insertbtn" class="btn btn-info btn-sm">수정</button>
+			        <button type="button" id="editbtn" class="btn btn-info btn-sm">수정</button>
 			      </div>
 			    </div>
 			  </div>
@@ -713,7 +829,7 @@ function mark(){
 									<small><img src="resources/image/morevertical.svg"></small>
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-										<a class="dropdown-item" data-toggle="modal" data-target="#edit-board" href="javascript:updateBoard()"><small>수정</small></a>
+										<a class="dropdown-item" data-toggle="modal" data-target="#edit-board" onclick="location.href='javascript:updateBoard()'"><small>수정</small></a>
 										<a class="dropdown-item" href="javascript:deleteBoard()"><small>삭제</small></a>
 									</div>
 								</div>
@@ -735,12 +851,12 @@ function mark(){
 					<div class="col-md-4">
 						<h5 class="mb-0">댓글쓰기</h5>
 						<!-- *** value : 기존 userid 들어가는 부분 - static -->
-						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="value:userid(static)">
+						<input type="text" readonly class="form-control-plaintext p-0" id="comment-userid" value="${sessionScope.loginId}">
 					</div>
 					<!-- 댓글입력 -->
 					<div class="form-group row p-1 mb-0">
 						<div class="col-md-10 pr-0">
-							<textarea class="form-control mx-1" id="textarea-comment" rows="2"></textarea>
+							<textarea name="sbc_write" class="form-control mx-1" id="sbc_write" rows="2"></textarea>
 						</div>
 						<div class="col-md-2">
 						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
@@ -753,39 +869,19 @@ function mark(){
 				<td class="nav-comment">
 					<ul class="nav nav-tabs">
 					  <li class="nav-item">
-					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글<span class="badge badge-light">4</span></a>
+					    <a class="nav-link active" id="comment-tab" data-toggle="tab" href="#comment-list">댓글<span id="countcoment" class="badge badge-light"></span></a>
 					  </li>
 					</ul>
 					<!-- 댓글 테이블 -->
 					<div class="tab-content pt-3" id="myTabContent">
 						<div class="tab-pane fade show active" id="comment-list">
-							<table class="col-md-12">
-								<tr>
-									<td>
-										<div class="form-group row">
-										<!-- 댓글 등록 아이디/날짜 -->
-										<h6 class="col-md-6" id="table-static"><small>"userid" | "(sysdate)2019-03-28"</small></h6>		
-										<!-- 댓글 수정/삭제 -->
-										<div class="col-md-6">
-											<button type="submit" class="btn btn-outline-secondary btn-sm float-right" id="btn-comment">삭제</button>
-											<!-- 
-											<div class="dropdown float-right">
-											  <a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											  <small><img src="resources/image/morevertical.svg"></small>
-											  </a>
-											  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											    <a class="dropdown-item" href="#"><small>수정</small></a>
-											    <a class="dropdown-item" href="#"><small>삭제</small></a>
-											  </div>
-											</div>
-											 -->
-										</div>
-										</div>
-										<!-- 콘텐츠:예시 -->
-										<h6 id="table-contents">Example) Bootstrap’s form controls expand on our Rebooted form styles with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</h6>
-									</td>
-								</tr>
+							<table id="cList" class="col-md-12">
+								
+								<!-- 댓글들어가는 공간  -->
+
 							</table>
+						<ul id="pag2" class="pagination pagination-sm justify-content-center"></ul>
+				
 						</div>
 					</div>
 				</td>

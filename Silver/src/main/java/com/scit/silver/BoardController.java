@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.scit.silver.dao.BoardDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.SilverBoard;
+import com.scit.silver.vo.SilverBoardComent;
 import com.test.fileTest.util.PageNavigator2;
 
 @Controller
@@ -35,27 +36,37 @@ public class BoardController {
 		}
 
 		int result = dao.insertsb(sb);
-		int seq= sb.getSb_seq();
+		int seq= sb.getSeach_seq();
 		
 		
-		return "redirect:/searchDetail?seach_seq="+sb;
+		return "redirect:/searchDetail?seach_seq="+seq;
 	}
 
+	
+	@RequestMapping(value = "/updatesb", method = { RequestMethod.POST, RequestMethod.GET })
+	public String updatesb(SilverBoard sb, HttpSession session) {
+		if (session.getAttribute("loginId") == null) {
+			return "redirect:/";
+		}
+
+		System.out.println(sb);
+		int result = dao.updatesb(sb);
+		int seq= sb.getSeach_seq();
+		
+		
+		return "redirect:/searchDetail?seach_seq="+seq;
+	}
 	@RequestMapping(value = "/pageboard", method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody HashMap<String,Object> pageboard(Model model,
+	public @ResponseBody HashMap<String,Object> pageboard(
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "") int seach_seq) {
 
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		int totalBoard=dao.countRecord(seach_seq);
-		System.out.println(totalBoard);
 		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
 
 		ArrayList<SilverBoard> sult = dao.selectall(pn, seach_seq);
 
-		System.out.println(result);
-		model.addAttribute("navi",pn);
-		System.out.println(pn);
 		result.put("navi", pn);
 		result.put("result", sult);
 		return result;
@@ -68,6 +79,47 @@ public class BoardController {
 
 		// System.out.println(result);
 		return result;
+	}
+	@RequestMapping(value = "/insertComment", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int insertComment(SilverBoardComent sbc) {
+
+		int result = dao.insertComment(sbc);
+
+		// System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/selectComment", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody HashMap<String,Object> selectComment(
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "") int sb_seq) {
+		
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		int totalBoard=dao.countRecord2(sb_seq);
+		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
+
+		ArrayList<SilverBoardComent> sult = dao.selectComent(pn, sb_seq);
+
+		result.put("navi", pn);
+		result.put("result", sult);
+		//System.out.println(result);
+		return result;
+	}
+	@RequestMapping(value = "/delsb", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int delsb(int sb_seq, HttpSession session) {
+		SilverBoard sb = dao.selectsbone(sb_seq);
+		String loginId=(String)session.getAttribute("loginId");
+		
+		if(sb.getUserid()==loginId) {
+			int result = dao.delsb(sb_seq);
+
+			System.out.println(result);
+			return result;
+		}else {
+			return 0;
+		}
+		
+		
 	}
 	
 }

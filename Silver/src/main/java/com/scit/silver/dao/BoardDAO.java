@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.SilverBoard;
+import com.scit.silver.vo.SilverBoardComent;
 import com.test.fileTest.util.PageNavigator2;
 
 
@@ -21,7 +22,6 @@ public class BoardDAO {
 		int result = 0;
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
-		
 		try {
 			result = mapper.insertsb(sb);
 		}catch(Exception e){
@@ -65,5 +65,78 @@ public class BoardDAO {
 		return result;
 		
 	}
-
+	
+	public int insertComment(SilverBoardComent sbc) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.insertComment(sbc);
+		
+		return result;
+		
+	}
+	
+	public ArrayList<SilverBoardComent> selectComent(PageNavigator2 pn, int sb_seq){
+		ArrayList<SilverBoardComent> result = null;
+		RowBounds rb=new RowBounds(pn.getStartBoardCurrentPage(),pn.getBoardPerPage());//어디위치부터, 몇개까지
+		   
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.selectComent(rb, sb_seq);
+		
+		return result;
+	}
+	public int countRecord2(int sb_seq) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.countRecord2(sb_seq);
+		
+		return result;
+		
+	}
+	
+	public int delsb(int sb_seq) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.delsb(sb_seq);
+		
+		return result;
+		
+	}
+	
+	public int updatesb(SilverBoard sb) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.updatesb(sb);
+		
+		return result;
+	}
+	
+	
+	public int delcom(int sbc_seq) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.delcom(sbc_seq);
+		
+		return result;
+	}
+	
+	public int updatecom(SilverBoardComent sbc) {
+		int result = 0;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.updatecom(sbc);
+		
+		return result;
+	}
 }

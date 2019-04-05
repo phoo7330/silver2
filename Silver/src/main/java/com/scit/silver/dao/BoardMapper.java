@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.RowBounds;
 
 import com.scit.silver.vo.SilverBoard;
+import com.scit.silver.vo.SilverBoardComent;
 
 public interface BoardMapper {
 
@@ -15,5 +16,19 @@ public interface BoardMapper {
 	public ArrayList<SilverBoard> selectall(RowBounds rb, int seach_seq);
 	
 	public int countRecord(int seach_seq);
+	
+	public int insertComment(SilverBoardComent sbc);
+	
+	public ArrayList<SilverBoardComent> selectComent(RowBounds rb, int sb_seq);
+	
+	public int countRecord2(int sb_seq);
+	
+	public int delsb(int sb_seq);
+	
+	public int updatesb(SilverBoard sb);
+	
+	public int delcom(int sbc_seq);
+	
+	public int updatecom(SilverBoardComent sbc);
 }
  
