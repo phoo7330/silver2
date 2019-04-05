@@ -139,4 +139,14 @@ public class BoardDAO {
 		
 		return result;
 	}
+	
+	public SilverBoardComent selectonec(int sbc_seq) {
+		SilverBoardComent result = null;
+		
+		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		
+		result = mapper.selectonec(sbc_seq);
+		
+		return result;
+	}
 }
