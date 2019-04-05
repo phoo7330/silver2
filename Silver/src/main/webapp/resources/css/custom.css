@@ -18,11 +18,11 @@
 .navbar a img {
 	height: 35px;
 }
-
+/* 
 .navbar-toggler {
 	align-items: center;
 }
-
+ */
 /* CAROUSEL
 -------------------------------------------------- */
 
@@ -66,6 +66,8 @@
 	/* background-color: #4ac5e2; 하늘색 */
 	/* background-color: #fca0db; 분홍색 */
 	/* background-color: #bb8cdb; 보라색 */
+	/* background-color: #c6e4df; 파스텔연초록1 */
+	/* background-color: #22ad94;파스텔연초록2 */ 
 	
 }
 
