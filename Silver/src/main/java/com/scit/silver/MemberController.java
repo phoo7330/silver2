@@ -16,7 +16,6 @@ import com.scit.silver.vo.Member;
 public class MemberController {
 
 	
-	
 	@Autowired
 	MemberDAO dao;
 	
