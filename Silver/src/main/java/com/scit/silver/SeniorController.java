@@ -18,7 +18,7 @@ public class SeniorController {
 
 	@Autowired
 	SeniorDAO dao;
-	
+	//노인정보등록
 	@RequestMapping(value ="/insertSenior", method = RequestMethod.POST)
 	public String insertSenior(SeniorCitizen sc, SeniorCitizenDetails scd,HttpSession session,Model model) {
 		int result = 0;
