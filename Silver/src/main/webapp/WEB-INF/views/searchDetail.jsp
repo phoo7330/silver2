@@ -56,12 +56,12 @@ $(function(){
 });
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
-	var sbc_seq=$('#sbc_seq').val();
+	var sbc_seq=$('#thisseq').val();
 	var sbc_write=$('#sbc_write').val();
 	var userid=$('#comment-userid').val();
 	var btn_comment=$("#btn-comment").html();
 	 $('#sbc_write').val('');
-	
+	console.log("댓글시퀀스"+sbc_seq+"댓글내용"+sbc_write);
 	 if(btn_comment=='등록'){
 		 $.ajax({
 		        type : 'post',
@@ -121,7 +121,7 @@ function listC(data){
 		list += '<a class="btn btn-outline-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small><img src="resources/image/morevertical.svg"></small></a> ';
 		list += '<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
 		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
-		list += '<input type="hidden" id="sbc_seq" value="'+item.sbc_seq+'">'
+		list += '<input type="hidden" class="sbc_seq" value="'+item.sbc_seq+'">'
 		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
 		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
  
@@ -144,7 +144,9 @@ function listC(data){
 	$('#pag2').html(paging);
 }
 function updatecom(sbc_seq){
+	
 	var sbc_seq=sbc_seq;
+
 	$.ajax({
         type : 'get',
         url : 'selonecom',
@@ -162,7 +164,9 @@ function updatecom(sbc_seq){
 	});
 }
 function updatecom2(data){
-	$('#sbc_write').html(data.sbc_write);
+	var sbc_write = data.sbc_write
+	$('#sbc_write').val(sbc_write);
+	$('#hiddenseq').html("<input type='hidden' id='thisseq' value='"+data.sbc_seq+"'>");
 	console.log(data.sbc_write);
 	$('#sbc_1').html("댓글수정하기");
 	$('#btn-comment').html("수정");
@@ -925,6 +929,7 @@ $(function() {
 						</div>
 						<div class="col-md-2">
 						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
+						<tr id=hiddenseq></tr>
 						</div>
 					</div>
 				</td>
