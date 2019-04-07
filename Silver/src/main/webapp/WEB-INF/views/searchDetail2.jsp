@@ -53,7 +53,7 @@ $(function(){
 });
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
-	var sbc_seq=$('#sbc_seq').val();
+	var sbc_seq=$('#thisseq').val();
 	var sbc_write=$('#sbc_write').val();
 	var userid=$('#comment-userid').val();
 	var btn_comment=$("#btn-comment").html();
@@ -159,7 +159,8 @@ function updatecom(sbc_seq){
 	});
 }
 function updatecom2(data){
-	$('#sbc_write').html(data.sbc_write);
+	$('#sbc_write').val(data.sbc_write);
+	$('#hiddenseq').html("<input type='hidden' id='thisseq' value='"+data.sbc_seq+"'>");
 	console.log(data.sbc_write);
 	$('#sbc_1').html("댓글수정하기");
 	$('#btn-comment').html("수정");
@@ -859,6 +860,7 @@ $(function() {
 						</div>
 						<div class="col-md-2">
 						<button type="submit" class="btn btn-secondary" id="btn-comment">등록</button>
+						<tr id=hiddenseq></tr>
 						</div>
 					</div>
 				</td>
