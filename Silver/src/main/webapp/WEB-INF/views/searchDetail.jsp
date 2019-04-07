@@ -59,7 +59,7 @@ function insertComment(){
 	var sbc_seq=$('#thisseq').val();
 	var sbc_write=$('#sbc_write').val();
 	var userid=$('#comment-userid').val();
-	var btn_comment=$("#btn-comment").html();
+	var btn_comment=$("#btn-comment").html(); 
 	 $('#sbc_write').val('');
 	console.log("댓글시퀀스"+sbc_seq+"댓글내용"+sbc_write);
 	 if(btn_comment=='등록'){
