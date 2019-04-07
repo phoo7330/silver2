@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/* Slidebar
+-------------------------------------------------- */
+.sidebar {
+  position: fixed;
+  padding: 60px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.card {
+ position: relative;
+ top: 1;
+ height: calc(100vh - 50px);
+ overflow-x: hidden;
+ overflow-y: auto;
+}
+
+.sidebar-sticky{
+  position: absolute;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+/* 사이드바 글자 색  */
+.sidebar .nav-link {
+  font-weight: 300;
+  color: #333;
+}
+
+
+
+
