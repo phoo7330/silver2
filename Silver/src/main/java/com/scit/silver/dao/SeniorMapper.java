@@ -5,7 +5,9 @@ import com.scit.silver.vo.SeniorCitizenDetails;
 
 public interface SeniorMapper {
 	
-	public int insertSenior(SeniorCitizen seniorcitizen);
+	public int insertSenior(SeniorCitizen sc);
 	
-	public int insertSeniorDetails(SeniorCitizenDetails seniorcitizendetails);
+	public int insertSeniorDetails(SeniorCitizenDetails scd);
+	
+	public int SelectSeq(String loginId);
 }

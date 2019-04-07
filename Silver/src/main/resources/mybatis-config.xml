@@ -11,12 +11,14 @@
 		<typeAlias type="com.scit.silver.vo.DetailsTwo" alias="DetailsTwo" />
 		<typeAlias type="com.scit.silver.vo.SilverBoard" alias="SilverBoard" />
 		<typeAlias type="com.scit.silver.vo.SilverBoardComent" alias="SilverBoardComent" />
+		<typeAlias type="com.scit.silver.vo.SeniorCitizen" alias="SeniorCitizen" />
+		<typeAlias type="com.scit.silver.vo.SeniorCitizenDetails" alias="SeniorCitizenDetails" />
+	
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
 		<mapper resource="mapper/SearchMapper.xml" />
 		<mapper resource="mapper/BoardMapper.xml" />
-		
-		
+		<mapper resource="mapper/SeniorMapper.xml" />
 	</mappers>
 </configuration>

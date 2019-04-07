@@ -13,17 +13,39 @@ public class SeniorDAO {
 	@Autowired
 	SqlSession session;
 	
-	public int insertSenior(SeniorCitizen seniorcitizen) {
+	public int insertSenior(SeniorCitizen sc) {
 		int result = 0;
 		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
-		
+		try {
+			result = mapper.insertSenior(sc);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return 0;
+		}
 		return result;
 	}
 	
-	public int insertSeniorDetails(SeniorCitizenDetails seniorcitizendetails) {
+	public int insertSeniorDetails(SeniorCitizenDetails scd) {
 		int result = 0;
 		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.insertSeniorDetails(scd);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return 0;
+		}
 		return result;
 	}
 	
+	public int SelectSeq(String loginId) {
+		int result = 0;
+		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.SelectSeq(loginId);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return 0;
+		}
+		return result;
+		}
 }

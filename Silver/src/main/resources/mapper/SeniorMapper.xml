@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<!-- 시설좌표 불러오기  SQL -->
+<!-- 노인기본정보 등록 -->
 <mapper namespace="com.scit.silver.dao.SeniorMapper">
 	<insert id="insertSenior" parameterType="SeniorCitizen">
 		INSERT INTO SENIORCITIZEN
@@ -21,7 +21,7 @@
 		,#{sc_bloodtype}
 		)
 	</insert>
-	
+	<!-- 노인상세정보등록 -->
 	<insert id="insertSeniorDetails" parameterType="SeniorCitizenDetails">
 	INSERT INTO SENIORCITIZENDETAILS
 		(SC_SEQ
@@ -30,9 +30,11 @@
 		,SCD_CARE,SCD_WASHING 
 		,SCD_CLOTHING
 		,SCD_BATH
-		,SCD_TOILET )
+		,SCD_TOILET 
+		,SCD_DISEASE
+		)
 		VALUES 
-		(SC_SEQ.CURRVAL
+		(#{sc_seq}
 		,SCD_SEQ.NEXTVAL
 		,#{scd_meal}
 		,#{scd_care}
@@ -40,7 +42,19 @@
 		,#{scd_clothing}
 		,#{scd_bath}
 		,#{scd_toilet}
+		,#{scd_disease}
 		)
 	
 	</insert>
+		<!-- 시퀀스 조회 -->
+		<select id="SelectSeq" parameterType="String" resultType="int">
+			SELECT 
+				SC_SEQ
+			FROM 
+				SENIORCITIZEN
+			WHERE 
+				USERID = #{userid}
+			
+		</select>
+	
 </mapper>

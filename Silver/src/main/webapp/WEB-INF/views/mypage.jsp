@@ -249,7 +249,9 @@
 				</div>
 				
 				<!-- 2) 어르신정보 -->
+				
 				<div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">
+					<form action="insertSenior" method="POST">
 					<!-- 2-1. 기본정보 -->
 					<div class="card border mb-3" id="card-edit-account">
 						<div class="container">
@@ -260,32 +262,32 @@
 							    <small id="selecteHelp" class="form-text text-muted">요양시설 돌봄이 필요한 어르신 정보를 입력하세요.</small>
 							</div>
 							<!-- 생년월일 등록 -->
-							<form>
+							
 								<div class="form-group row pt-5">
 								<div class="col-sm-1"></div>
 									<label for="inputBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
 								    <div class="col-sm-8">
-										<input type="date" class="form-control form-control-sm" id="inputBirth">
+										<input type="date" class="form-control form-control-sm" id="inputBirth" name="sc_birthday">
 								    </div>
 								</div>
-							</form>
+							
 							<!-- 이름 등록 -->
-							<form>
+							
 								<div class="form-group row pt-5">
 								<div class="col-sm-1"></div>
 									<label for="inputName" class="col-sm-2 col-form-label col-form-label-sm"><small>이름</small></label>
 	     							<div class="col-sm-8">
-	     								<input type="email" class="form-control form-control-sm" id="inputName" placeholder="성함을 입력하세요.">
+	     								<input type="text" class="form-control form-control-sm" id="inputName" placeholder="성함을 입력하세요." name="sc_name">
 								    </div>
 								</div>
-							</form>
+							
 							<!-- 혈액형 등록 -->
-							<form>
+							
 								<div class="form-group row pt-5">
 								<div class="col-sm-1"></div>
 									<label for="bloodType" class="col-sm-2 col-form-label col-form-label-sm"><small>혈액형</small></label>
 								    <div class="col-sm-8">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bloodType">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bloodType" name="sc_bloodtype">
 										    <option selected>선택</option>
 										    <option value="A">A</option>
 										    <option value="B">B</option>
@@ -294,7 +296,7 @@
 										  </select>
 								    </div>
 								</div>		
-							</form>
+							
 						</div>	
 					</div>
 					<!-- 2-2. 일상생활 수행정도 -->
@@ -307,68 +309,68 @@
 							    <small id="selecteHelp" class="form-text text-muted">스스로 가능, 도움 필요, 스스로 불가능 중 수행정도를 선택하세요.</small>
 							</div>
 							<!-- 수행정도 선택폼 : 현재 vo 없음 -->
-							<form>
+							
 								<div class="form-group row pt-5">
 									<label for="meal" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>식사</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="meal">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="meal" name="scd_meal">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								    <label for="walking" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>보행</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="walking">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="walking" name="scd_care">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								</div>
 								<div class="form-group row pt-3">
 									<label for="washing" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>세면</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washing">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washing" name="scd_washing">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								    <label for="clothing" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>의복</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="clothing">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="clothing" name="scd_clothing">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								</div>
 								<div class="form-group row pt-3">
 									<label for="bath" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>목욕</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bath">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bath" name="scd_bath">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								    <label for="washroom" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>화장실</small></label>
 								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washroom">
+										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washroom" name="scd_toilet">
 										    <option selected>선택</option>
-										    <option value="possible">스스로 가능</option>
-										    <option value="help">도움 필요</option>
-										    <option value="imppssible">스스로 불가능</option>
+										    <option value="스스로 가능">스스로 가능</option>
+										    <option value="도움 필요">도움 필요</option>
+										    <option value="스스로 불가능">스스로 불가능</option>
 										  </select>
 								    </div>
 								</div>						
-							</form>
+							
 						</div>	
 					</div>
 					<!-- 2-3. 질환정보 -->
@@ -381,111 +383,113 @@
 							    <small id="selecteHelp" class="form-text text-muted">가지고 계신 질환을 선택해 주세요.</small>
 							</div>
 							<!-- 질환정보 등록 -->
-							<form>
+							
 								<div class="form-group row pt-5 text-center">
 								    <div class="col-sm-12">
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="jaundice">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="황달">
 										  <label class="form-check-label" for="inlineCheckbox1">황달</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="hypertension">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="고혈압">
 										  <label class="form-check-label" for="inlineCheckbox2">고혈압</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="hypotension">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="저혈압">
 										  <label class="form-check-label" for="inlineCheckbox3">저혈압</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="arthritis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="관절염">
 										  <label class="form-check-label" for="inlineCheckbox4">관절염</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="muscle-dystrophy">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="근육장애">
 										  <label class="form-check-label" for="inlineCheckbox5">근육장애</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="Dorsopathies">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="등병증">
 										  <label class="form-check-label" for="inlineCheckbox6">등병증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="dysbasia">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="보행장애">
 										  <label class="form-check-label" for="inlineCheckbox7">보행장애</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="incontinence">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="요실금">
 										  <label class="form-check-label" for="inlineCheckbox8">요실금</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="depression">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="우울증">
 										  <label class="form-check-label" for="inlineCheckbox9">우울증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral1">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌졸증">
 										  <label class="form-check-label" for="inlineCheckbox10">뇌졸증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral2">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌출혈">
 										  <label class="form-check-label" for="inlineCheckbox11">뇌출혈</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="cerebral3">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌경색증">
 										  <label class="form-check-label" for="inlineCheckbox12">뇌경색증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="fracture">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="골절">
 										  <label class="form-check-label" for="inlineCheckbox13">골절</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="diabetes">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="당뇨">
 										  <label class="form-check-label" for="inlineCheckbox14">당뇨</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="gastritis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="위장염">
 										  <label class="form-check-label" for="inlineCheckbox15">위장염</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="facial-pain">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="안면통증">
 										  <label class="form-check-label" for="inlineCheckbox16">안면통증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="frozen-shoulder">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="오십견">
 										  <label class="form-check-label" for="inlineCheckbox17">오십견</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="decubitus">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="욕창">
 										  <label class="form-check-label" for="inlineCheckbox18">욕창</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="spondylopathy">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="척추병">
 										  <label class="form-check-label" for="inlineCheckbox19">척추병</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="alzheimer">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="치매">
 										  <label class="form-check-label" for="inlineCheckbox20">치매</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="parkinson">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="파킨슨병">
 										  <label class="form-check-label" for="inlineCheckbox21">파킨슨병</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="sepsis">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="패혈증">
 										  <label class="form-check-label" for="inlineCheckbox22">패혈증</label>
 										</div>
 										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" value="pneumonia">
+										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="폐렴">
 										  <label class="form-check-label" for="inlineCheckbox23">폐렴</label>
 										</div>
 								    </div>
 								</div>
-							</form>
+							
 						</div>	
 					</div>
 					<!-- 수정 버튼  -->
 					<div class="text-center pt-3 pb-5">
 						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">등록</button>
 					</div>	
+				</form>
 				</div>
+				
 				<!-- 3-3. 쪽지함 -->
 				<div class="tab-pane fade" id="tab-message-box" role="tabpanel" aria-labelledby="message-box">
 					<div class="card border mb-3" id="card-edit-account">
