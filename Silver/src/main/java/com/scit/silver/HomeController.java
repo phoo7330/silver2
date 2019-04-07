@@ -26,11 +26,16 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	
 	@RequestMapping(value = "/searchDetail2", method = RequestMethod.GET)
 	public String searchDetail2(Locale locale, Model model) {
 
 		return "searchDetail2";
+	}
+
+	@RequestMapping(value = "/careersIndex", method = RequestMethod.GET)
+	public String careersIndex(Locale locale, Model model) {
+
+		return "careers/careersIndex";
 	}
 
 }
