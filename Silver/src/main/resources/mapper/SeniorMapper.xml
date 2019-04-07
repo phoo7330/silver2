@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 시설좌표 불러오기  SQL -->
+<mapper namespace="com.scit.silver.dao.SeniorMapper">
+	<insert id="insertSenior" parameterType="SeniorCitizen">
+		INSERT INTO SENIORCITIZEN
+		(SC_SEQ
+		,USERID
+		,SC_BIRTHDAY
+		,SC_NAME
+		,SC_BLOODTYPE) 
+		VALUES 
+		(SC_SEQ.NEXTVAL
+		,#{userid}
+		,#{sc_birthday}
+		,#{sc_name}
+		,#{sc_bloodtype}
+		)
+	</insert>
+	
+	<insert id="insertSeniorDetails" parameterType="SeniorCitizenDetails">
+	INSERT INTO SENIORCITIZENDETAILS
+		(SC_SEQ
+		,SCD_SEQ
+		,SCD_MEAL
+		,SCD_CARE,SCD_WASHING 
+		,SCD_CLOTHING
+		,SCD_BATH
+		,SCD_TOILET )
+		VALUES 
+		(SC_SEQ.CURRVAL
+		,SCD_SEQ.NEXTVAL
+		,#{scd_meal}
+		,#{scd_care}
+		,#{scd_washing}
+		,#{scd_clothing}
+		,#{scd_bath}
+		,#{scd_toilet}
+		)
+	
+	</insert>
+</mapper>

@@ -22,11 +22,14 @@ public class SeniorCitizenDetails {
 	private String scd_practice;
 	private String scd_propensity;
 	private String scd_language;
+	private String scd_washing;
+	private String scd_clothing;
 	
 	public SeniorCitizenDetails(int scd_seq, int sc_seq, String scd_addressa, String scd_addressb, String scd_addressc,
 			int scd_tall, int scd_kg, int scd_silvernum, String scd_grade, String scd_disease, String scd_meal,
 			String scd_care, String scd_bath, String scd_toilet, String scd_favorite, String scd_least,
-			String scd_allergy, String scd_diabetes, String scd_practice, String scd_propensity, String scd_language) {
+			String scd_allergy, String scd_diabetes, String scd_practice, String scd_propensity, String scd_language,
+			String scd_washing, String scd_clothing) {
 		super();
 		this.scd_seq = scd_seq;
 		this.sc_seq = sc_seq;
@@ -49,6 +52,8 @@ public class SeniorCitizenDetails {
 		this.scd_practice = scd_practice;
 		this.scd_propensity = scd_propensity;
 		this.scd_language = scd_language;
+		this.scd_washing = scd_washing;
+		this.scd_clothing = scd_clothing;
 	}
 
 	public SeniorCitizenDetails() {
@@ -223,6 +228,22 @@ public class SeniorCitizenDetails {
 		this.scd_language = scd_language;
 	}
 
+	public String getScd_washing() {
+		return scd_washing;
+	}
+
+	public void setScd_washing(String scd_washing) {
+		this.scd_washing = scd_washing;
+	}
+
+	public String getScd_clothing() {
+		return scd_clothing;
+	}
+
+	public void setScd_clothing(String scd_clothing) {
+		this.scd_clothing = scd_clothing;
+	}
+
 	@Override
 	public String toString() {
 		return "SeniorCitizenDetails [scd_seq=" + scd_seq + ", sc_seq=" + sc_seq + ", scd_addressa=" + scd_addressa
@@ -231,7 +252,10 @@ public class SeniorCitizenDetails {
 				+ ", scd_disease=" + scd_disease + ", scd_meal=" + scd_meal + ", scd_care=" + scd_care + ", scd_bath="
 				+ scd_bath + ", scd_toilet=" + scd_toilet + ", scd_favorite=" + scd_favorite + ", scd_least="
 				+ scd_least + ", scd_allergy=" + scd_allergy + ", scd_diabetes=" + scd_diabetes + ", scd_practice="
-				+ scd_practice + ", scd_propensity=" + scd_propensity + ", scd_language=" + scd_language + "]";
+				+ scd_practice + ", scd_propensity=" + scd_propensity + ", scd_language=" + scd_language
+				+ ", scd_washing=" + scd_washing + ", scd_clothing=" + scd_clothing + "]";
 	}
+	
+	
 	
 }
