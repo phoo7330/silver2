@@ -32,7 +32,7 @@
 			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="worker"><strong>종사자</strong></a>
+			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
 			  		</li>
 			  		<li class="nav-item">
 			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
