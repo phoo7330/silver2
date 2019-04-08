@@ -240,7 +240,7 @@
 		
 					<div class="card-body p-0">
 						<div id="table" class="table-editable">
-							<table class="table table-bordered">
+							<table class="table border-bottom">
 						        <tr>
 						          <td scope="row" class="p-2">
 						            <p class="mb-0">"기관명"</p>
@@ -248,8 +248,7 @@
 						            <p class="mb-0">"모집직종"</p>
 						            <p class="mb-0">"근무형태" </p>
 						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-secondary btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">지원하기</button></span>
+						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
 						          </td>
 						        </tr>
 						        <tr>
@@ -259,8 +258,7 @@
 						            <p class="mb-0">"모집직종"</p>
 						            <p class="mb-0">"근무형태" </p>
 						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-secondary btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">지원하기</button></span>
+						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
 						          </td>
 						        </tr>
 						        <tr>
@@ -270,19 +268,7 @@
 						            <p class="mb-0">"모집직종"</p>
 						            <p class="mb-0">"근무형태" </p>
 						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-secondary btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">지원하기</button></span>
-						          </td>
-						        </tr>
-						        <tr>
-						          <td scope="row" class="p-2">
-						            <p class="mb-0">"기관명"</p>
-						            <p class="mb-0">"시/군/구"</p>
-						            <p class="mb-0">"모집직종"</p>
-						            <p class="mb-0">"근무형태" </p>
-						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-secondary btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">지원하기</button></span>
+						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
 						          </td>
 						        </tr>
 							</table>
