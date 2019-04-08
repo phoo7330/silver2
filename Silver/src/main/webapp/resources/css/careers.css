@@ -12,9 +12,10 @@
  position: relative;
  top: 1;
  height: calc(100vh - 50px);
- overflow-x: hidden;
- overflow-y: auto;
+
 }
+
+
 
 .sidebar-sticky{
   position: absolute;
