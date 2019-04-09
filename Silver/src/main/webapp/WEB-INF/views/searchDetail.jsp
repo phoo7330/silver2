@@ -164,6 +164,7 @@ function updatecom(sbc_seq){
 	});
 }
 function updatecom2(data){
+	$(document).scrollTop(1000); 
 	var sbc_write = data.sbc_write
 	$('#sbc_write').val(sbc_write);
 	$('#hiddenseq').html("<input type='hidden' id='thisseq' value='"+data.sbc_seq+"'>");
