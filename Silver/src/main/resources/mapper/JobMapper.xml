@@ -54,6 +54,7 @@ WHERE
 		 SILVERSEARCH a, JOBOFFER b
 	WHERE
 	a.SEACH_SEQ = b.SEACH_SEQ
+	AND
 	LONGITUDE IN 
 	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
 
@@ -91,8 +92,9 @@ WHERE
 	FROM 
 		SILVERSEARCH a, JOBOFFER b
 	WHERE
-		a.SEACH_SEQ = b.SEACH_SEQ
-	LONGITUDE IN 
+	a.SEACH_SEQ = b.SEACH_SEQ
+	AND
+	a.LONGITUDE IN 
 	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
 
 
@@ -100,7 +102,7 @@ WHERE
 		
     </foreach>
 		AND
-		LAUITUDE IN 
+		a.LAUITUDE IN 
 	<foreach collection="list" item="item" index="index"  open="(" separator="," close=")">
         #{item.lauitude}
 		
