@@ -67,12 +67,13 @@ public class JobController {
 			// JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다.
 			JSONArray mapArray = (JSONArray) jsonParse.parse(maptestJSON);
 			ArrayList<Job> maptest = mapArray;
+			System.out.println(maptest);
 			int totalRecord = dao.countRecord2(maptest);
-			// System.out.println(totalRecord);
+			 
 			PageNavigator pn = new PageNavigator(boardPerPage, pagePerGroup, page, totalRecord);
 
 			result = dao.selectmap2(pn, maptest);
-			// System.out.println(result);
+			 System.out.println(result);
 			return result;
 		} catch (ParseException e) {
 			e.printStackTrace();
