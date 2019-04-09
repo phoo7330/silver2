@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.scit.silver.dao.JobMapper">
+<select id="selectAllJob" resultType="Job">
+SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+    a.SEACH_SEQ = b.SEACH_SEQ
+</select>
+<select id="selectmap2" parameterType="Job" resultType="Job">
+	SELECT 
+		a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER
+	FROM
+		 SILVERSEARCH a, JOBOFFER b
+	WHERE
+	a.SEACH_SEQ = b.SEACH_SEQ
+	LONGITUDE IN 
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+
+
+        #{item.longitude}
+		
+    </foreach>
+		AND
+		LAUITUDE IN 
+	<foreach collection="list" item="item" index="index"  open="(" separator="," close=")">
+        #{item.lauitude}
+		
+    </foreach>
+	ORDER BY
+        GRADE
+		
+	
+	</select> 
+ 
+ 
+ <select id="countRecord" resultType="int">
+	
+	SELECT 
+		COUNT(a.SEACH_SEQ) 
+	FROM 
+		SILVERSEARCH a, JOBOFFER b
+	WHERE
+		a.SEACH_SEQ = b.SEACH_SEQ
+</select>
+
+<select id="countRecord2" parameterType="Job" resultType="int">
+	
+	SELECT 
+		COUNT(a.SEACH_SEQ) 
+	FROM 
+		SILVERSEARCH a, JOBOFFER b
+	WHERE
+		a.SEACH_SEQ = b.SEACH_SEQ
+	LONGITUDE IN 
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+
+
+        #{item.longitude}
+		
+    </foreach>
+		AND
+		LAUITUDE IN 
+	<foreach collection="list" item="item" index="index"  open="(" separator="," close=")">
+        #{item.lauitude}
+		
+    </foreach>
+</select>
+  </mapper>
