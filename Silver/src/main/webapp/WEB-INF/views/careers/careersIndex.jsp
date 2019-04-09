@@ -638,7 +638,7 @@ function write(accidentDeath){
        					 <p class="lead"></p>
        					 -->
 					<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구인정보</strong></label>
-						<table class="table table-bordered table-sm" id="facilityForm">
+						<table class="table table-bordered" id="facilityForm">
 							<tbody>
 							    <tr>
 							      <th class="bg-light w-30">기관명</th>
@@ -679,8 +679,8 @@ function write(accidentDeath){
 						</table>
 							<!--  -->
 						<div class="btn-group float-right pt-3">
-							 <button type="button" class="btn btn-outline-secondary mx-1" id="fdetailbtn">기관정보 상세보기</button>
-							<button type="button" class="btn btn-outline-secondary mx-1" id="gobackbtn">목록보기</button>	  
+							<button type="button" class="btn btn-outline-danger mx-1" id="fdetailbtn">기관정보 상세보기</button>
+							<button type="button" class="btn btn-outline-danger mx-1" id="gobackbtn">목록보기</button>	  
 						</div>
 					</div>
 				</div>
