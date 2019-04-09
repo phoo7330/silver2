@@ -40,6 +40,44 @@ var totalmaptest = [];
 $(function() {	
 		init();
 		pagelist(page);
+		
+		$('#alllist').scroll(function(){
+	        let $alllist = $(this);
+	        let scrollTop = $('#alllist').scrollTop();
+	        let windowHeight = $('#alllist').height();
+	        let documentHeight = $(document).height();
+	        var scrollBottom = $("#alllist").height()- $("#alllist").scrollTop();
+	        var scHeight = $('#alllist').prop('scrollHeight');
+	        
+	        //console.log(" | scrollTop:" + scrollTop+"바텀"+ scrollBottom);
+	      var scrollHeight = $('#alllist').height();
+	      var scrollPosition = (scrollHeight + scrollTop);
+	      //console.log(scrollHeight+"po"+scrollPosition);
+	      console.log(scHeight+"dd"+scrollPosition);
+	      if (scHeight-3<scrollPosition) {
+	          //console.log("플래그"); 
+	          page += 1;
+	             ffff = 1;
+	             //console.log("페이지"+page);
+	             //console.log("업마크"+upmark);
+	             //console.log(flag);
+	             if(upmark==1){ 
+	                //console.log("실행되니?");
+	                pagelist2();
+	             }else{
+	                pagelist(page);
+	             }
+	             
+	             
+	      }
+	        
+	        // scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
+	       /* if( scrollTop + 400 > windowHeight ){
+	                page += 1;
+	                f = 1;
+	                pagelist(flag);
+	        } */
+	   });
 });
 function pagelist(page){
 	   $.ajax({
@@ -51,7 +89,16 @@ function pagelist(page){
 	      success:wlist
 	   });
 	}
-	
+function pagelist2(){
+	   $.ajax({
+	      url:"jselectmap2",
+	      type:"POST",
+	      traditional: true,
+	      data: {maptestJSON : JSON.stringify(totalmaptest),
+	            page: page},
+	      success:wlist
+	   });
+	}	
 function wlist(accidentDeath){
 	   if(accidentDeath.length==0){
 	      return;
