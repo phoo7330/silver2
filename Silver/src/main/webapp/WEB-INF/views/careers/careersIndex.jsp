@@ -30,6 +30,13 @@
     <script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
 
 <script>
+
+/* 디폴트 기관 디테일 정보 숨김 function wlist(accidentDeath) 안에 버튼 클릭 이벤트 */
+$(function() {
+	$("#information").hide();
+	
+});	
+
 let isEnd = false; 
 //기본 플레그
 var flag = 1;
@@ -99,6 +106,7 @@ function pagelist2(){
 	      success:wlist
 	   });
 	}	
+	
 function wlist(accidentDeath){
 	   if(accidentDeath.length==0){
 	      return;
@@ -115,7 +123,7 @@ function wlist(accidentDeath){
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
-	        list += '<span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
 			list += '</td></tr>';
 	    });
 	      $('#mlist').html(list);
@@ -129,12 +137,25 @@ function wlist(accidentDeath){
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
-	        list += '<span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
 			list += '</td></tr>';
 	    });
-	      
+  
 	      $('#mlist').append(list);
 	   }
+	   
+	   /* 버튼 누를 때  */
+	   $('.informbtn').on('click', function() {
+			$("#map").hide(); 
+			$("#information").show();  
+			/* console.log("!"); */
+		});	
+	   
+	   $('#gobackbtn').on('click', function() {
+	   		$("#information").hide(); 
+	   		$("#map").show();  
+	   	});
+ 	
 	 
 	}	
 function init(){
@@ -184,6 +205,7 @@ function count(data){
 	          $('#count').html(count); 
 	   return cc;   
 	}
+	
 function output(resp){
 	var accidentDeath = {
 	        "searchResult": {
@@ -496,8 +518,8 @@ function write(accidentDeath){
 	
 	<!-- 메인 네비게이션 -->
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top" id="main-nav">
-	 		<a class="navbar-brand mr-5 pb-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
 	 		<!-- 오른쪽 상단 토글러 버튼 -->
 			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	      	<span class="navbar-toggler-icon"></span>
@@ -553,7 +575,7 @@ function write(accidentDeath){
 <div class="container-fluid">
 	<div class="row">
 	<nav class="col-md-3 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky" >
+      <div class="sidebar-sticky pt-4" >
       	<div class="container">
       		<!-- 지역 선택: 스크립트 31번 줄부터 -->
 	      	<div class="form-group">
@@ -588,64 +610,95 @@ function write(accidentDeath){
 					<label class="form-check-label" for="gender3">여자</label>
 				</div>
 			</div>
-			 <div class="input-group-append">
-				<button class="btn btn-block btn-lg btn-light btn-sm" id="jobbtn" type="submit"><img src="resources/image/search.svg" ></button>
+			<!-- 검색버튼 -->
+			<div class="form-group my-5 text-center">
+				<button type="button" class="btn btn-danger" id="selectbtn">검색</button>
 			</div>
 		</div>
       </div>
     </nav>
+    
     <!-- 지도&리스트 -->
-	
-	<div class="col-md-9 ml-sm-auto mt-5">
+	<div class="col-md-9 ml-sm-auto mt-5 pt-4 border-0">
 		<div class="row">
-			<!-- 지도 -->
-			<div class="card col-md-6" id="map">
-				<div class="mapcard">
-			   			
-			   	</div>
+			
+			<div class="card col-md-6 p-0 border-0">
+				<!-- 지도 --> 
+				 
+				<div class="card border-0" id="map">
+				</div>
+				
+				<!-- 기관정보 -->
+				<div class="card border-top-2" id="information">
+					<div class="container">
+						<!-- 
+						 <h2 class="featurette-heading">경희늘푸른노인전문병원
+						 	<span class="text-muted">Checkmate.</span>
+						 </h2>
+       					 <p class="lead"></p>
+       					 -->
+					<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구인정보</strong></label>
+						<table class="table table-bordered table-sm" id="facilityForm">
+							<tbody>
+							    <tr>
+							      <th class="bg-light w-30">기관명</th>
+							      <th>"seach_seq"</th>
+							      <th class="bg-light w-30">급여종류</th>
+							      <th>"Type"</th>
+							    </tr>
+							    <tr>
+							      <td class="bg-light">주소</td>
+							      <td colspan="3">"areaa","areab","areac"</td>
+							    </tr>
+							    <tr>
+							      <td class="bg-light">모집직종</td>
+							      <td>"jo_type"</td>
+							      <td class="bg-light">근무형태</td>
+							      <td>"job_detailtype"</td>
+							    </tr>
+							    <tr>
+							      <td class="bg-light">모집인원</td>
+							      <td>전체 : "인원" "jo_gender"</td>
+							      <td class="bg-light">근무지</td>
+							      <td>"areaa","areab"</td>
+							    </tr>
+							     <tr>
+							      <td class="bg-light">기타</td>
+							      <td colspan="3">"jo_content"</td>
+							    </tr>
+							    <tr>
+							    	<td colspan="4" class="text-center"><strong>채용관련정보</strong></td>
+							    </tr>
+							    <tr>
+							      <td class="bg-light">채용담당자</td>
+							      <td>"직종"</td>
+							      <td class="bg-light">전화번호</td>
+							      <td>"전화번호"</td>
+							    </tr>
+							 </tbody>
+						</table>
+							<!--  -->
+						<div class="btn-group float-right pt-3">
+							 <button type="button" class="btn btn-outline-secondary mx-1" id="fdetailbtn">기관정보 상세보기</button>
+							<button type="button" class="btn btn-outline-secondary mx-1" id="gobackbtn">목록보기</button>	  
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			
 			<!-- 리스트 -->
-			<div class="card col-md-6 p-0">
+			<div class="card col-md-6 p-0 border-0" id="listcard">
 				<div class="listcard">
 				   	<!-- Editable table -->
-					<h5 id="count" class="card-header text-center pt-3">총 00 개의 구인정보를 찾았습니다.</h5>
+					<h5 id="count" class="card-header text-center pt-3"></h5>
 					<p class="p-2 mb-0"><small>등록한 게시물에 대해서는 게시자가 관리합니다. </small></p>
 		
-					<div class="card-body p-0" id="alllist" style="width:100%; height:600px; overflow:auto">
+					<div class="card-body p-0" id="alllist">
+					<!--  style="width:100%; height:100%; overflow:auto" -->
+					
 						<div id="table" class="table-editable">
-							<table class="table border-bottom" id="mlist">
-						        <tr>
-						          <td scope="row" class="p-2">
-						            <p class="mb-0">"기관명"</p>
-						            <p class="mb-0">"시/군/구"</p>
-						            <p class="mb-0">"모집직종"</p>
-						            <p class="mb-0">"근무형태" </p>
-						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						          </td>
-						        </tr>
-						        <tr>
-						          <td scope="row" class="p-2">
-						            <p class="mb-0">"기관명"</p>
-						            <p class="mb-0">"시/군/구"</p>
-						            <p class="mb-0">"모집직종"</p>
-						            <p class="mb-0">"근무형태" </p>
-						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						          </td>
-						        </tr>
-						        <tr>
-						          <td scope="row" class="p-2">
-						            <p class="mb-0">"기관명"</p>
-						            <p class="mb-0">"시/군/구"</p>
-						            <p class="mb-0">"모집직종"</p>
-						            <p class="mb-0">"근무형태" </p>
-						            <p class="mb-0">"등록일"</p>
-						            <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>
-						          </td>
-						        </tr>
-							</table>
+							<table class="table border-bottom" id="mlist"></table>
 						</div>
 					</div>
 				</div>
