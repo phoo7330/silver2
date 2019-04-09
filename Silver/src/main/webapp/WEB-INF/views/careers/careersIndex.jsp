@@ -48,16 +48,16 @@ $(function() {
 		init();
 		pagelist(page);
 		
-		$('#alllist').scroll(function(){
-	        let $alllist = $(this);
-	        let scrollTop = $('#alllist').scrollTop();
-	        let windowHeight = $('#alllist').height();
+		$('#listcard').scroll(function(){
+	        let $listcard = $(this);
+	        let scrollTop = $('#listcard').scrollTop();
+	        let windowHeight = $('#listcard').height();
 	        let documentHeight = $(document).height();
-	        var scrollBottom = $("#alllist").height()- $("#alllist").scrollTop();
-	        var scHeight = $('#alllist').prop('scrollHeight');
+	        var scrollBottom = $("#listcard").height()- $("#listcard").scrollTop();
+	        var scHeight = $('#listcard').prop('scrollHeight');
 	        
 	        //console.log(" | scrollTop:" + scrollTop+"바텀"+ scrollBottom);
-	      var scrollHeight = $('#alllist').height();
+	      var scrollHeight = $('#listcard').height();
 	      var scrollPosition = (scrollHeight + scrollTop);
 	      //console.log(scrollHeight+"po"+scrollPosition);
 	      console.log(scHeight+"dd"+scrollPosition);
@@ -304,7 +304,7 @@ function write(accidentDeath){
        function updateMarkers(map, markers) {
          page = 1;
          upmark = 1;
-         $("#alllist").scrollTop(0); 
+         $("#listcard").scrollTop(0); 
            var mapBounds = map.getBounds();
            var marker, position;
            var maptest = [];
