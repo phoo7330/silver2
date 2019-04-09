@@ -29,14 +29,18 @@ public class DetailsOne {
 	private String receipttime;
 	private String facilityinformation;
 	private String treatment;
+	private String hp_orgname;
+	private String hp_name;
+	
 	public DetailsOne() {
 		super();
 	}
+
 	public DetailsOne(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, int hp_details_seq, int information_seq,
 			String establishment, String hp_service, String protection, String location, String religion,
 			String hospital_tel, String hp_address, String holiday, String lunchtime, String receipttime,
-			String facilityinformation, String treatment) {
+			String facilityinformation, String treatment, String hp_orgname, String hp_name) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -62,151 +66,218 @@ public class DetailsOne {
 		this.receipttime = receipttime;
 		this.facilityinformation = facilityinformation;
 		this.treatment = treatment;
+		this.hp_orgname = hp_orgname;
+		this.hp_name = hp_name;
 	}
+
 	public int getSeach_seq() {
 		return seach_seq;
 	}
+
 	public void setSeach_seq(int seach_seq) {
 		this.seach_seq = seach_seq;
 	}
+
 	public int getType() {
 		return type;
 	}
+
 	public void setType(int type) {
 		this.type = type;
 	}
+
 	public String getAreaa() {
 		return areaa;
 	}
+
 	public void setAreaa(String areaa) {
 		this.areaa = areaa;
 	}
+
 	public String getAreab() {
 		return areab;
 	}
+
 	public void setAreab(String areab) {
 		this.areab = areab;
 	}
+
 	public String getAreac() {
 		return areac;
 	}
+
 	public void setAreac(String areac) {
 		this.areac = areac;
 	}
+
 	public String getSilvername() {
 		return silvername;
 	}
+
 	public void setSilvername(String silvername) {
 		this.silvername = silvername;
 	}
+
 	public String getService() {
 		return service;
 	}
+
 	public void setService(String service) {
 		this.service = service;
 	}
+
 	public String getGrade() {
 		return grade;
 	}
+
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
 	public String getLauitude() {
 		return lauitude;
 	}
+
 	public void setLauitude(String lauitude) {
 		this.lauitude = lauitude;
 	}
+
 	public String getLongitude() {
 		return longitude;
 	}
+
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
 	public int getHp_details_seq() {
 		return hp_details_seq;
 	}
+
 	public void setHp_details_seq(int hp_details_seq) {
 		this.hp_details_seq = hp_details_seq;
 	}
+
 	public int getInformation_seq() {
 		return information_seq;
 	}
+
 	public void setInformation_seq(int information_seq) {
 		this.information_seq = information_seq;
 	}
+
 	public String getEstablishment() {
 		return establishment;
 	}
+
 	public void setEstablishment(String establishment) {
 		this.establishment = establishment;
 	}
+
 	public String getHp_service() {
 		return hp_service;
 	}
+
 	public void setHp_service(String hp_service) {
 		this.hp_service = hp_service;
 	}
+
 	public String getProtection() {
 		return protection;
 	}
+
 	public void setProtection(String protection) {
 		this.protection = protection;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public String getReligion() {
 		return religion;
 	}
+
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
+
 	public String getHospital_tel() {
 		return hospital_tel;
 	}
+
 	public void setHospital_tel(String hospital_tel) {
 		this.hospital_tel = hospital_tel;
 	}
+
 	public String getHp_address() {
 		return hp_address;
 	}
+
 	public void setHp_address(String hp_address) {
 		this.hp_address = hp_address;
 	}
+
 	public String getHoliday() {
 		return holiday;
 	}
+
 	public void setHoliday(String holiday) {
 		this.holiday = holiday;
 	}
+
 	public String getLunchtime() {
 		return lunchtime;
 	}
+
 	public void setLunchtime(String lunchtime) {
 		this.lunchtime = lunchtime;
 	}
+
 	public String getReceipttime() {
 		return receipttime;
 	}
+
 	public void setReceipttime(String receipttime) {
 		this.receipttime = receipttime;
 	}
+
 	public String getFacilityinformation() {
 		return facilityinformation;
 	}
+
 	public void setFacilityinformation(String facilityinformation) {
 		this.facilityinformation = facilityinformation;
 	}
+
 	public String getTreatment() {
 		return treatment;
 	}
+
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
 	}
+
+	public String getHp_orgname() {
+		return hp_orgname;
+	}
+
+	public void setHp_orgname(String hp_orgname) {
+		this.hp_orgname = hp_orgname;
+	}
+
+	public String getHp_name() {
+		return hp_name;
+	}
+
+	public void setHp_name(String hp_name) {
+		this.hp_name = hp_name;
+	}
+
 	@Override
 	public String toString() {
 		return "DetailsOne [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab
@@ -216,7 +287,8 @@ public class DetailsOne {
 				+ hp_service + ", protection=" + protection + ", location=" + location + ", religion=" + religion
 				+ ", hospital_tel=" + hospital_tel + ", hp_address=" + hp_address + ", holiday=" + holiday
 				+ ", lunchtime=" + lunchtime + ", receipttime=" + receipttime + ", facilityinformation="
-				+ facilityinformation + ", treatment=" + treatment + "]";
-	}
+				+ facilityinformation + ", treatment=" + treatment + ", hp_orgname=" + hp_orgname + ", hp_name="
+				+ hp_name + "]";
+	}	
 	
 }

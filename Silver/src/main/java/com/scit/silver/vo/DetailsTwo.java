@@ -22,12 +22,17 @@ public class DetailsTwo {
 	private String address;
 	private String tel;
 	private String parkinglot;
+	private String d_orgname;
+	private String d_name;
+	
 	public DetailsTwo() {
 		super();
 	}
+
 	public DetailsTwo(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, int detail_seq, long detail_number,
-			String establishment, String approval, String address, String tel, String parkinglot) {
+			String establishment, String approval, String address, String tel, String parkinglot, String d_orgname,
+			String d_name) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -46,116 +51,170 @@ public class DetailsTwo {
 		this.address = address;
 		this.tel = tel;
 		this.parkinglot = parkinglot;
+		this.d_orgname = d_orgname;
+		this.d_name = d_name;
 	}
+
 	public int getSeach_seq() {
 		return seach_seq;
 	}
+
 	public void setSeach_seq(int seach_seq) {
 		this.seach_seq = seach_seq;
 	}
+
 	public int getType() {
 		return type;
 	}
+
 	public void setType(int type) {
 		this.type = type;
 	}
+
 	public String getAreaa() {
 		return areaa;
 	}
+
 	public void setAreaa(String areaa) {
 		this.areaa = areaa;
 	}
+
 	public String getAreab() {
 		return areab;
 	}
+
 	public void setAreab(String areab) {
 		this.areab = areab;
 	}
+
 	public String getAreac() {
 		return areac;
 	}
+
 	public void setAreac(String areac) {
 		this.areac = areac;
 	}
+
 	public String getSilvername() {
 		return silvername;
 	}
+
 	public void setSilvername(String silvername) {
 		this.silvername = silvername;
 	}
+
 	public String getService() {
 		return service;
 	}
+
 	public void setService(String service) {
 		this.service = service;
 	}
+
 	public String getGrade() {
 		return grade;
 	}
+
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
 	public String getLauitude() {
 		return lauitude;
 	}
+
 	public void setLauitude(String lauitude) {
 		this.lauitude = lauitude;
 	}
+
 	public String getLongitude() {
 		return longitude;
 	}
+
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
 	public int getDetail_seq() {
 		return detail_seq;
 	}
+
 	public void setDetail_seq(int detail_seq) {
 		this.detail_seq = detail_seq;
 	}
+
 	public long getDetail_number() {
 		return detail_number;
 	}
+
 	public void setDetail_number(long detail_number) {
 		this.detail_number = detail_number;
 	}
+
 	public String getEstablishment() {
 		return establishment;
 	}
+
 	public void setEstablishment(String establishment) {
 		this.establishment = establishment;
 	}
+
 	public String getApproval() {
 		return approval;
 	}
+
 	public void setApproval(String approval) {
 		this.approval = approval;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getTel() {
 		return tel;
 	}
+
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
 	public String getParkinglot() {
 		return parkinglot;
 	}
+
 	public void setParkinglot(String parkinglot) {
 		this.parkinglot = parkinglot;
 	}
+
+	public String getD_orgname() {
+		return d_orgname;
+	}
+
+	public void setD_orgname(String d_orgname) {
+		this.d_orgname = d_orgname;
+	}
+
+	public String getD_name() {
+		return d_name;
+	}
+
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
+	}
+
 	@Override
 	public String toString() {
 		return "DetailsTwo [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab
 				+ ", areac=" + areac + ", silvername=" + silvername + ", service=" + service + ", grade=" + grade
 				+ ", lauitude=" + lauitude + ", longitude=" + longitude + ", detail_seq=" + detail_seq
 				+ ", detail_number=" + detail_number + ", establishment=" + establishment + ", approval=" + approval
-				+ ", address=" + address + ", tel=" + tel + ", parkinglot=" + parkinglot + "]";
+				+ ", address=" + address + ", tel=" + tel + ", parkinglot=" + parkinglot + ", d_orgname=" + d_orgname
+				+ ", d_name=" + d_name + "]";
 	}
-	
-}
+
+}	
