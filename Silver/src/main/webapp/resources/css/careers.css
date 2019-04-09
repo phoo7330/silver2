@@ -50,7 +50,7 @@
 .card {
  position: relative;
  top: 10;
- height: calc(100vh - 73px);
+ height: calc(100vh - 80px);
  overflow-x: hidden;
  overflow-y: auto;
 }

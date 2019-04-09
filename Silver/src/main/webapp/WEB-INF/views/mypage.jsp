@@ -39,46 +39,53 @@
 	  });
 	</script>
 	
-	<!-- 네비게이션 바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
- 		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-	    <span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse justify-content-between" id="navbar">
-		  <!-- 왼쪽 자동 정렬 -->
-		  	<div class="navbar-nav"> 
-		  		<a class="nav-item nav-link active" href="institution">
-		  			요양기관 <span class="sr-only">(current)</span> </a>
-		  		<a class="nav-item nav-link" href="worker">
-		  			종사자 </a>
-		  		<a class="nav-item nav-link" href="inquiry">
-		  			자주하는질문 </a>	
-		  		<a class="nav-item nav-link" href="searchDetail">
-		  			검색상세페이지 </a>	
-			</div>
-		  <!-- 오른쪽 자동 정렬 -->
-		  	<c:if test="${sessionScope.loginId==null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<a class="nav-item nav-link" href="login">
-		  			로그인 </a>
-		  		<a class="nav-item nav-link" href="signup">
-		  			회원가입 </a>
-		  	</div>
-		  	</c:if>
-		  	<!-- 계정정보/어르신정보/쪽지함/로그아웃 -->
-		  	<c:if test="${sessionScope.loginId!=null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<a class="dropdown-item" href="logout">로그아웃 </a>
-		  	</div>
-			</c:if>
-		</div>  
-	</nav>	
+	<!-- 메인 네비게이션 -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<!-- 오른쪽 상단 토글러 버튼 -->
+			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      	<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 네비게이션 상단 메뉴 -->
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<ul class="navbar-nav">
+					<li class="nav-item active" style="color: black;">
+			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  		</li>
+			  	</ul>
+				<!-- 로그인 안한 경우 -->
+			  	<c:if test="${sessionScope.loginId==null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
+			  		</li>
+			  	</ul>
+			  	</c:if>
+			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
+			  	<c:if test="${sessionScope.loginId!=null}">
+				  	<ul class="navbar-nav mt-2 mt-md-0">
+				  		<li class="nav-item">
+				  			<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
+				  		</li>
+				  	</ul>
+			  	</c:if>
+			</div>  
+		</nav>	
+	</header>
 	
 	<div class="container">
 		<!-- 1. 기본정보 탭  -->
-		<div class="pt-5 pb-3 border-bottom">
+		<div class="pt-5 pb-3 mt-5 border-bottom">
 			<div class="tab-content">
 		      <h5 class="text-secondary" id="inform-tabContent">계정정보</h5>  
 		    </div>
