@@ -19,8 +19,8 @@
 <body>
 	<!-- 메인 네비게이션 -->
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top" id="main-nav">
-	 		<a class="navbar-brand mr-5 pb-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
 	 		<!-- 오른쪽 상단 토글러 버튼 -->
 			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	      	<span class="navbar-toggler-icon"></span>
@@ -70,7 +70,7 @@
 		</nav>	
 	</header>
 	<!-- 메인 캐러셀 -->
-	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between pt-5 mt-1" data-ride="carousel">
+	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between pt-5 mt-3" data-ride="carousel">
 	    <div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
 				<!--Mask color-->
@@ -102,11 +102,11 @@
 	</div>
 
 	<!-- 검색 네비게이션 -->
-	<nav class="navbar" id="main-nav">
+	<nav class="navbar border-top-0 p-3 m-0" id="search-nav">
 		<div class="col-1"></div>
-			<div class="col">
+			<div class="col form-group mb-0">
 				<form action="search">
-					<div class="input-group md-form form-sm form-2 pl-0">
+					<div class="input-group md-form form-sm form-2">
 					  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
 				
 					  <div class="input-group-append">
@@ -123,56 +123,64 @@
 		<div class="col-1"></div>
 	</nav>
 
-	<!-- 기관 종류 설명 -->
+<main role="main">
+	
+
+</main>
+
+
+
+<!-- 
+	기관 종류 설명
 	<div class="container">
 		<div class="card-deck col-md-12 row mt-5">
-			<!-- 카드01 -->
+			카드01
 	  		<div class="col-md-4 p-0 ">
 				<div class="card">
-					<!--Card image-->
+					Card image
 					<div class="view overlay">
 						<img src="resources/image/card01.jpg" class="card-img-top" alt="photo">
 						<div class="mask rgba-white-slight"></div>
 					</div>
-					<!--Card content-->
+					Card content
 					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#f8ae4c;">
-					<!--Title-->
+					Title
 			        <h4 class="card-title white-text">Title of the news</h4>
-			        <!--Text-->
+			        Text
 			        <p class="card-text white-text">For</p>
 			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
 					</div>
 				</div>
 			</div>
-	 		<!-- 카드02 -->
+	 		카드02
 	 		<div class="col-md-4 p-0">
 				<div class="card border-white ">
-					<!--Card image-->
+					Card image
 					<div class="view">
 						<img src="resources/image/card02.jpg" class="card-img-top" alt="photo">
 					</div>
-					<!--Card content-->
+					Card content
 					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#d6dc3b;">
-					<!--Title-->
+					Title
 			        <h4 class="card-title white-text">Title of the news</h4>
-			        <!--Text-->
+			        Text
 			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
 			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
 					</div>
 				</div>
 			</div>
-	 		<!-- 카드03 -->
+	 		카드03
 	 		<div class="col-md-4 p-0">
 				<div class="card border-white ">
-					<!--Card image-->
+					Card image
 					<div class="view">
 						<img src="resources/image/card03.jpg" class="card-img-top" alt="photo">
 					</div>
-					<!--Card content-->
+					Card content
 					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#4ac5e2;">
-					<!--Title-->
+					Title
 			        <h4 class="card-title white-text">Title of the news</h4>
-			        <!--Text-->
+			        Text
 			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
 			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
 					</div>
@@ -180,7 +188,7 @@
 			</div>
 		</div>
 	</div>	
-	
+-->
 	
 	<!-- 정리해야함 -->
 	

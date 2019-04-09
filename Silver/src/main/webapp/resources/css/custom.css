@@ -10,8 +10,7 @@
 /* Navigation
 -------------------------------------------------- */
 
-.navbar {
-	height: 54px;
+#main-nav {
 	background-color: #5f5f5f;
 } 
 
@@ -48,14 +47,19 @@
 
 /* Search
 -------------------------------------------------- */
+#search-nav {
+	border-bottom: 4px solid #902228;
+	background-color: #5f5f5f;
+}
+
 .input-group.md-form.form-sm.form-2 input.amber-border  {
-    border: 1px solid #5f5f5f;
+    /* border: 1px solid #5f5f5f; */
 }
 
 #searchbtn {
 	height: 38px;
 	width: 50px;
-	border: 1px solid #5f5f5f;
+	/* border: 1px solid #5f5f5f; */
 }
 
 /* card color 
