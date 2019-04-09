@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>SilverSurfer</title>
-	
+	 
 	<!-- 인코딩 -->
 	<meta charset="UTF-8">
 	<meta  name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,8 +26,332 @@
 	
 	<!-- Bootstrap javaScript 추가 -->
 	<script src="resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ynuycabqm2"></script>
+    <script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
 
-	<script>
+<script>
+let isEnd = false; 
+//기본 플레그
+var flag = 1;
+var page = 1;
+var ffff = 0;
+var upmark = 0;
+var totalmaptest = [];
+$(function() {	
+		init();
+		pagelist(page);
+});
+function pagelist(page){
+	   $.ajax({
+	      url:"jpagemap",
+	      type:"get",
+	      data:{
+	         "page":page
+	      },
+	      success:wlist
+	   });
+	}
+	
+function wlist(accidentDeath){
+	   if(accidentDeath.length==0){
+	      return;
+	   }
+	   
+	   if (ffff == 0) {
+	      var list = '';
+	      
+	   $.each(accidentDeath, function (index, item){
+		   list += '<tr>';
+	        list += '<td scope="row" class="p-2">';
+	        list += '<p class="mb-0">기관명 : '+item.silvername+'</p>';
+	        list += '<p class="mb-0">주소 : '+item.areaa+item.areab+item.areac+'</p>';
+	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
+	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
+	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
+	        list += '<span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+			list += '</td></tr>';
+	    });
+	      $('#mlist').html(list);
+	   } else {
+	      var list = '';
+	   $.each(accidentDeath, function (index, item){
+		   list += '<tr>';
+	        list += '<td scope="row" class="p-2">';
+	        list += '<p class="mb-0">기관명 : '+item.silvername+'</p>';
+	        list += '<p class="mb-0">주소 : '+item.areaa+item.areab+item.areac+'</p>';
+	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
+	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
+	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
+	        list += '<span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+			list += '</td></tr>';
+	    });
+	      
+	      $('#mlist').append(list);
+	   }
+	 
+	}	
+function init(){
+	$.ajax({
+	url:"jselectmap",
+	type:"get",
+	success:output
+		   });
+}
+
+function init2(maptest) {
+	   ffff=0;
+	   jQuery.ajaxSettings.traditional = true;
+	   var recount=0;
+	   recount = count(maptest);
+	   console.log(recount);
+	   if(recount==0){
+	      var listn='';
+	      listn += '<table class="table table-horver">';
+	      listn += '<tbody>';
+	      listn += '<tr>';
+	      listn += '<td scope="row"><p class="text-primary font-weight-bold my-0">검색결과가 없습니다</p></td>';
+	      listn += '</tr>';
+	      listn += '</tbody>';
+	      listn += '</table>'; 
+	      $('#mlist').html(listn);
+	      return;
+	   }
+	   // console.log("maptest : " + JSON.stringify(maptest));
+	   //console.log(maptest);  
+	   
+	   $.ajax({
+	      url:"jselectmap2",
+	      data: {maptestJSON : JSON.stringify(maptest)},
+	      type:"post",
+	      success:wlist
+	      
+	   });
+	}
+	
+function count(data){
+	   var cc = data.length;
+	   var count = '';
+	          count+='총'
+	          count+=cc;
+	          count+='개의 구인정보를 찾았습니다.';
+	          $('#count').html(count); 
+	   return cc;   
+	}
+function output(resp){
+	var accidentDeath = {
+	        "searchResult": {
+	             "accidentDeath": 
+	                makers(resp)
+	        },
+	        "resultCode": "Success"
+	   }
+	write(accidentDeath); // 지도에 마커그림
+	  
+	count(makers(resp));
+}
+//DB에 있는 좌표를 받아옴
+function makers(data){
+var makers_temp = [];
+for(var i = 0;i < data.length ;i++){
+   makers_temp.push({
+         "seach_seq":data[i].seach_seq,
+         "type":data[i].type,
+         "areaa":data[i].areaa,
+         "areab":data[i].areab,
+         "areac":data[i].areac,
+         "silvername":data[i].silvername,
+         "service":data[i].service,
+         "grade":data[i].grade,
+         "grd_lo":data[i].longitude,
+         "grd_la":data[i].lauitude,
+         "jo_seq":data[i].jo_seq,
+         "userid":data[i].userid,
+         "jo_type":data[i].jo_type,
+         "jo_detailtype":data[i].jo_detailtype,
+         "jo_job":data[i].jo_job,
+         "jo_content":data[i].jo_content,
+         "jo_date":data[i].jo_date,
+         "jo_gender":data[i].jo_gender
+   });
+}
+return makers_temp;
+} 
+
+//받은 좌표로 마커를 찍음
+function write(accidentDeath){
+    var map = new naver.maps.Map("map", {
+           zoom: 3,
+           center: new naver.maps.LatLng(36.2253017, 127.6460516),
+           zoomControl: true,
+           zoomControlOptions: {
+               position: naver.maps.Position.TOP_LEFT,
+               style: naver.maps.ZoomControlStyle.SMALL
+           }
+       });
+       var bounds = map.getBounds(),
+       southWest = bounds.getSW(),
+       northEast = bounds.getNE(),
+       lngSpan = northEast.lng() - southWest.lng(),
+       latSpan = northEast.lat() - southWest.lat();
+    
+       var markers = [],
+           data = accidentDeath.searchResult.accidentDeath;
+       var infoWindows = [];
+       
+      
+       
+      //data에 있는 마커를 var markers에 저장한다.
+      
+      //data.length만큼 반복해서 마커를 찍는다.
+       for (var i = 0, ii = data.length; i < ii; i++) {
+           var spot = data[i],
+               latlng = new naver.maps.LatLng(spot.grd_la, spot.grd_lo),
+               marker = new naver.maps.Marker({
+                   position: latlng,
+                   draggable: false
+                   //마커의 드래그 가능여부.
+               });
+         
+           
+           var infoWindow = new naver.maps.InfoWindow({
+               content: '<div style="width:150px;text-align:center;padding:10px;">시설이름:<br> <b>"'+ spot.silvername +'"</b></div>'
+           });
+           
+           
+           infoWindows.push(infoWindow);
+           markers.push(marker);
+           
+       }
+       /* console.log(accidentDeath);  
+       output2(accidentDeath); */
+       
+       naver.maps.Event.addListener(map, 'zoom_changed', function() {
+           updateMarkers(map, markers);
+           
+       });
+       naver.maps.Event.addListener(map, 'dragend', function() {
+           updateMarkers(map, markers);
+       });
+       function updateMarkers(map, markers) {
+         page = 1;
+         upmark = 1;
+         $("#alllist").scrollTop(0); 
+           var mapBounds = map.getBounds();
+           var marker, position;
+           var maptest = [];
+           
+           for (var i = 0; i < markers.length; i++) {
+               marker = markers[i]
+               position = marker.getPosition();
+              
+               
+               
+               if (mapBounds.hasLatLng(position)) {
+                   showMarker(map, marker);
+                  
+               maptest.push({
+                     "longitude":position._lng,
+                     "lauitude":position._lat
+                              });
+               
+               totalmaptest = maptest;
+         
+               } else {
+                   hideMarker(map, marker);
+                   
+               }
+               
+              // console.log(position);
+           }
+           //console.log(maptest);
+          // 현재 지도상의 마커만 배열에 들어감. 여기서 리스트 출력하자
+           init2(maptest);
+             
+         
+       }
+       function showMarker(map, marker) {
+           if (marker.getMap()) return;
+           marker.setMap(map);
+           
+           
+       }
+       function hideMarker(map, marker) {
+           if (!marker.getMap()) return;
+           marker.setMap(null);
+           
+           
+       }
+      
+      
+      
+       var htmlMarker1 = {
+               content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-1.png);background-size:contain;"></div>',
+               size: N.Size(40, 40),
+               anchor: N.Point(20, 20)
+           },
+           htmlMarker2 = {
+               content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-2.png);background-size:contain;"></div>',
+               size: N.Size(40, 40),
+               anchor: N.Point(20, 20)
+           },
+           htmlMarker3 = {
+               content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-3.png);background-size:contain;"></div>',
+               size: N.Size(40, 40),
+               anchor: N.Point(20, 20)
+           },
+           htmlMarker4 = {
+               content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-4.png);background-size:contain;"></div>',
+               size: N.Size(40, 40),
+               anchor: N.Point(20, 20)
+           },
+           htmlMarker5 = {
+               content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-5.png);background-size:contain;"></div>',
+               size: N.Size(40, 40),
+               anchor: N.Point(20, 20)
+           };
+       var markerClustering = new MarkerClustering({
+           minClusterSize: 2,
+           maxZoom: 8,
+           map: map,
+           markers: markers,
+           disableClickZoom: false,
+           gridSize: 120,
+           icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
+           indexGenerator: [2, 10, 50, 100, 200],
+           stylingFunction: function(clusterMarker, count) {
+               $(clusterMarker.getElement()).find('div:first-child').text(count);
+           }
+       });
+       //클릭한 마커만 오른쪽 리스트에 표시한다
+       function getClickHandler(seq) {
+           return function(e) {
+               var marker = markers[seq],
+                   infoWindow = infoWindows[seq];
+               var maptest = [];
+               var position = marker.getPosition();
+               
+               if (infoWindow.getMap()) {
+                   infoWindow.close();
+               } else {
+                   infoWindow.open(map, marker);
+                    maptest.push({
+                     "longitude":position._lng,
+                     "lauitude":position._lat
+                              });
+                   
+                   init2(maptest); 
+                  
+               }
+           }
+       }
+       //마커별로 이벤트를 입력한다.
+       for (var i=0, ii=markers.length; i<ii; i++) {
+           naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+       }
+       
+}
+	
+	
 	/* 지역 선택 */
 	$('document').ready(function() {
 		var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
@@ -217,6 +541,9 @@
 					<label class="form-check-label" for="gender3">여자</label>
 				</div>
 			</div>
+			 <div class="input-group-append">
+				<button class="btn btn-block btn-lg btn-light btn-sm" id="jobbtn" type="submit"><img src="resources/image/search.svg" ></button>
+			</div>
 		</div>
       </div>
     </nav>
@@ -225,7 +552,7 @@
 	<div class="col-md-9 ml-sm-auto mt-5">
 		<div class="row">
 			<!-- 지도 -->
-			<div class="card col-md-6">
+			<div class="card col-md-6" id="map">
 				<div class="mapcard">
 			   			
 			   	</div>
@@ -235,12 +562,12 @@
 			<div class="card col-md-6 p-0">
 				<div class="listcard">
 				   	<!-- Editable table -->
-					<h5 class="card-header text-center pt-3">총 00 개의 구인정보를 찾았습니다.</h5>
+					<h5 id="count" class="card-header text-center pt-3">총 00 개의 구인정보를 찾았습니다.</h5>
 					<p class="p-2 mb-0"><small>등록한 게시물에 대해서는 게시자가 관리합니다. </small></p>
 		
-					<div class="card-body p-0">
+					<div class="card-body p-0" id="alllist" style="width:100%; height:600px; overflow:auto">
 						<div id="table" class="table-editable">
-							<table class="table border-bottom">
+							<table class="table border-bottom" id="mlist">
 						        <tr>
 						          <td scope="row" class="p-2">
 						            <p class="mb-0">"기관명"</p>
