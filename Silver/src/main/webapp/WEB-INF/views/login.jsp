@@ -18,7 +18,7 @@
 	<!-- Custom CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/custom.css">
     <link rel="stylesheet" href="resources/css/signin.css"> 
-	
+	 <script src="resources/js/jquery.min.js"></script>
 	<style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -35,7 +35,13 @@
         }
       }
     </style>
-    
+    <script>
+$(function() {
+	if('${message}'!='')
+	alert('${message}');
+});
+
+</script>
 </head>
 
 
@@ -103,6 +109,7 @@
 		<label for="inputPassword" class="sr-only">비밀번호</label>
 		<input type="password" id="inputPassword" name="userpwd" value="${member.userpwd}" class="form-control" placeholder="비밀번호를 입력하세요." required>
 		<div class="checkbox mb-3">
+			
 			<label>
 				<input type="checkbox" value="remember-me"> 아이디를 저장하시겠습니까
 			</label>
