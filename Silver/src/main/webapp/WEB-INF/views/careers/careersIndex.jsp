@@ -301,7 +301,7 @@ function write(accidentDeath){
                      "lauitude":position._lat
                               });
                
-               totalmaptest = maptest;
+               totalmaptest = maptest; 
          
                } else {
                    hideMarker(map, marker);
