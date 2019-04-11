@@ -40,6 +40,7 @@ public class JobController {
 		PageNavigator pn = new PageNavigator(boardPerPage, pagePerGroup, page, totalRecord);
 		
 		ArrayList<Job> result = dao.selectAllJob(pn);
+		//System.out.println("jpagemap : "+result.size());
 
 		return result;
 	}
@@ -49,7 +50,7 @@ public class JobController {
 
 		ArrayList<Job> result = dao.selectAllJob();
 
-		// System.out.println(result);
+		//System.out.println("jselectmap : "+result.size());
 		return result;
 	}
 	
@@ -67,13 +68,12 @@ public class JobController {
 			// JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다.
 			JSONArray mapArray = (JSONArray) jsonParse.parse(maptestJSON);
 			ArrayList<Job> maptest = mapArray;
-			System.out.println(maptest);
+			
 			int totalRecord = dao.countRecord2(maptest);
 			 
 			PageNavigator pn = new PageNavigator(boardPerPage, pagePerGroup, page, totalRecord);
 
 			result = dao.selectmap2(pn, maptest);
-			 System.out.println(result);
 			return result;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -82,5 +82,25 @@ public class JobController {
 		return result;
 	}
 	
-	
+	@RequestMapping(value = "/selectjob2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<Job> selectjob2(Job job) {
+		//System.out.println(job);
+		String seach = null;
+		seach = job.getSilvername();
+		System.out.println("서치: "+seach);
+		
+		if(seach.isEmpty()) {
+			System.out.println("서치가 널일경우");
+			ArrayList<Job> result = dao.selectAllJob();
+			return result;
+		}else {
+			System.out.println("서치가 널이 아닐경우");
+			ArrayList<Job> result = dao.seachjob1(seach);
+			return result;
+		}
+		/*System.out.println(totalRecord);
+		System.out.println(result.size());*/
+		
+		
+	}
 }

@@ -32,10 +32,7 @@
 <script>
 
 /* 디폴트 기관 디테일 정보 숨김 function wlist(accidentDeath) 안에 버튼 클릭 이벤트 */
-$(function() {
-	$("#information").hide();
-	
-});	
+
 
 let isEnd = false; 
 //기본 플레그
@@ -44,6 +41,8 @@ var page = 1;
 var ffff = 0;
 var upmark = 0;
 var totalmaptest = [];
+var selno = 0;
+var onelist = [];
 $(function() {	
 		init();
 		pagelist(page);
@@ -60,7 +59,7 @@ $(function() {
 	      var scrollHeight = $('#listcard').height();
 	      var scrollPosition = (scrollHeight + scrollTop);
 	      //console.log(scrollHeight+"po"+scrollPosition);
-	      console.log(scHeight+"dd"+scrollPosition);
+	      //console.log(scHeight+"dd"+scrollPosition);
 	      if (scHeight-3<scrollPosition) {
 	          //console.log("플래그"); 
 	          page += 1;
@@ -86,6 +85,25 @@ $(function() {
 	        } */
 	   });
 });
+
+$(function() {
+	$("#information").hide();
+	
+	//검색어(주소, 시설이름)을 검색한다.
+	$("#searchbtn").on('click', function() {
+		 var job = $("form[name=searchjob]").serialize();
+		console.log(job); 
+		$.ajax({
+			url:"selectjob2",
+			type:"get",
+			data:job,
+			success:output
+				   });
+		 
+	});
+	
+	
+});	
 function pagelist(page){
 	   $.ajax({
 	      url:"jpagemap",
@@ -106,6 +124,10 @@ function pagelist2(){
 	      success:wlist
 	   });
 	}	
+/* function info(){
+
+console.log($(this).attr('data-value'));
+}	 */
 	
 function wlist(accidentDeath){
 	   if(accidentDeath.length==0){
@@ -114,12 +136,13 @@ function wlist(accidentDeath){
 	   
 	   if (ffff == 0) {
 	      var list = '';
-	      
+	     
 	   $.each(accidentDeath, function (index, item){
-		   list += '<tr>';
-	        list += '<td scope="row" class="p-2">';
+		 	onelist.push(accidentDeath[index]);
+		    list += '<tr style="cursor:pointer"  class="onetr" data-value="'+index+'">';
+		    list += '<td scope="row" class="p-2">';
 	        list += '<p class="mb-0">기관명 : '+item.silvername+'</p>';
-	        list += '<p class="mb-0">주소 : '+item.areaa+item.areab+item.areac+'</p>';
+	        list += '<p class="mb-0">주소 : '+item.areaa+" "+item.areab+" "+item.areac+'</p>';
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
@@ -130,10 +153,11 @@ function wlist(accidentDeath){
 	   } else {
 	      var list = '';
 	   $.each(accidentDeath, function (index, item){
-		   list += '<tr>';
+		    onelist.push(accidentDeath[index]);
+		    list += '<tr style="cursor:pointer"  class="onetr" data-value="'+(4+index)+'">';
 	        list += '<td scope="row" class="p-2">';
 	        list += '<p class="mb-0">기관명 : '+item.silvername+'</p>';
-	        list += '<p class="mb-0">주소 : '+item.areaa+item.areab+item.areac+'</p>';
+	        list += '<p class="mb-0">주소 : '+item.areaa+" "+item.areab+" "+item.areac+'</p>';
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
@@ -144,16 +168,41 @@ function wlist(accidentDeath){
 	      $('#mlist').append(list);
 	   }
 	   
-	   /* 버튼 누를 때  */
-	   $('.informbtn').on('click', function() {
+	   /* tr 누를 때  */
+	   $('.onetr').on('click', function() {
 			$("#map").hide(); 
 			$("#information").show();  
-			/* console.log("!"); */
+			var oneindex = $(this).attr("data-value");
+				console.log(onelist[oneindex]);
+				
+				var siltype = null;
+			       if(onelist[oneindex].type==1){
+			          siltype = "요양병원";          
+			       } else if(onelist[oneindex].type==2){
+			          siltype = "요양원";          
+			       } else if(onelist[oneindex].type==3){
+			          siltype = "방문시설";          
+			       } else if(onelist[oneindex].type==4){
+			          siltype = "치매전담";          
+			       }
+				$("#jname").html(onelist[oneindex].silvername);
+				$("#jtype").html(siltype);
+				$("#jare").html(onelist[oneindex].areaa+" "+onelist[oneindex].areab+" "+onelist[oneindex].areac);
+				$("#jjtype").html(onelist[oneindex].jo_job);
+				$("#jdet").html(onelist[oneindex].jo_detailtype);
+				$("#jgen").html(onelist[oneindex].jo_gender);
+				$("#jcon").html(onelist[oneindex].jo_content);
+				
+				var bt = '';
+				// 상세보기 버튼을 누르면 새창으로 열림
+				bt += '<button target="_blank"  type="button" onclick="window.open(\'about:blank\').location.href=\'searchDetail?seach_seq='+onelist[oneindex].seach_seq+'\'" class="btn btn-outline-danger mx-1" id="fdetailbtn">기관정보 상세보기</button>';
+				$("#detailbt").html(bt);
 		});	
 	   
 	   $('#gobackbtn').on('click', function() {
 	   		$("#information").hide(); 
 	   		$("#map").show();  
+	   		
 	   	});
  	
 	 
@@ -165,6 +214,8 @@ function init(){
 	success:output
 		   });
 }
+
+
 
 function init2(maptest) {
 	   ffff=0;
@@ -291,8 +342,9 @@ function write(accidentDeath){
            markers.push(marker);
            
        }
-       /* console.log(accidentDeath);  
-       output2(accidentDeath); */
+       updateMarkers(map, markers);
+        //console.log(accidentDeath);  
+
        
        naver.maps.Event.addListener(map, 'zoom_changed', function() {
            updateMarkers(map, markers);
@@ -332,7 +384,7 @@ function write(accidentDeath){
                
               // console.log(position);
            }
-           //console.log(maptest);
+           console.log(maptest);
           // 현재 지도상의 마커만 배열에 들어감. 여기서 리스트 출력하자
            init2(maptest);
              
@@ -528,12 +580,12 @@ function write(accidentDeath){
 			
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<div class="col">
-				<form action="search">
+				<form id="searchjob" name="searchjob">
 						<div class="input-group md-form form-sm form-2 pl-0">
-						  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
+						  <input class="form-control my-0 py-1 amber-border" type="text" name="silvername" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
 					
 						  <div class="input-group-append">
-						  	<button class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" type="submit"><img src="resources/image/search.svg" ></button>
+						  	<button type="button" class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" ><img src="resources/image/search.svg" ></button>
 						  </div>
 						
 						</div>
@@ -642,45 +694,45 @@ function write(accidentDeath){
 							<tbody>
 							    <tr>
 							      <th class="bg-light w-30">기관명</th>
-							      <th>"seach_seq"</th>
+							      <th id="jname">"seach_seq"</th>
 							      <th class="bg-light w-30">급여종류</th>
-							      <th>"Type"</th>
+							      <th id="jtype">"Type"</th>
 							    </tr>
 							    <tr>
 							      <td class="bg-light">주소</td>
-							      <td colspan="3">"areaa","areab","areac"</td>
+							      <td id="jare">"areaa","areab","areac"</td>
+								  <td class="bg-light">모집직종</td>
+							      <td id="jjtype">"jo_type"</td>
 							    </tr>
 							    <tr>
-							      <td class="bg-light">모집직종</td>
-							      <td>"jo_type"</td>
 							      <td class="bg-light">근무형태</td>
-							      <td>"job_detailtype"</td>
-							    </tr>
-							    <tr>
+							      <td id="jdet">"job_detailtype"</td>
 							      <td class="bg-light">모집인원</td>
-							      <td>전체 : "인원" "jo_gender"</td>
-							      <td class="bg-light">근무지</td>
-							      <td>"areaa","areab"</td>
+							      <td id="jgen">전체 : "인원" "jo_gender"</td>
 							    </tr>
 							     <tr>
-							      <td class="bg-light">기타</td>
-							      <td colspan="3">"jo_content"</td>
+							      <td class="bg-light">상세내용</td>
+							      <td colspan="3" id="jcon">"jo_content"</td>
 							    </tr>
-							    <tr>
+							   <!--  <tr>
 							    	<td colspan="4" class="text-center"><strong>채용관련정보</strong></td>
-							    </tr>
-							    <tr>
+							    </tr> -->
+							   <!--  <tr>
 							      <td class="bg-light">채용담당자</td>
 							      <td>"직종"</td>
 							      <td class="bg-light">전화번호</td>
 							      <td>"전화번호"</td>
-							    </tr>
+							    </tr> -->
 							 </tbody>
 						</table>
 							<!--  -->
 						<div class="btn-group float-right pt-3">
-							<button type="button" class="btn btn-outline-danger mx-1" id="fdetailbtn">기관정보 상세보기</button>
+							<div id="detailbt">
+								<!-- 상세정보 가기버튼 -->
+							</div>
+							<div>
 							<button type="button" class="btn btn-outline-danger mx-1" id="gobackbtn">목록보기</button>	  
+							</div>
 						</div>
 					</div>
 				</div>

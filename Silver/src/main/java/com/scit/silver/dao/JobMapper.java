@@ -16,5 +16,8 @@ public interface JobMapper {
 	public int countRecord();
 	
 	public int countRecord2(ArrayList<Job> Job);
+	
+	public ArrayList<Job> seachjob1(String seach);
+	
 }
  
