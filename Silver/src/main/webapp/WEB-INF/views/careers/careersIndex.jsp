@@ -86,24 +86,46 @@ $(function() {
 	   });
 });
 
+
+
 $(function() {
 	$("#information").hide();
 	
+	//검색버튼클릭안하고 엔터쳐도 검색이 되게 한다.
+	$("#silvername").keydown(function(key) {
+        //키의 코드가 13번일 경우 (13번은 엔터키)
+        if (key.keyCode == 13) {
+        	$("#information").hide();
+			$("#map").show(); 
+			 var job = $("form[name=searchjob]").serialize();
+			console.log(job); 
+			$.ajax({
+				url:"selectjob2", 
+				type:"get",
+				data:job,
+				success:output
+				});
+        }
+    });
+
 	//검색어(주소, 시설이름)을 검색한다.
 	$("#searchbtn").on('click', function() {
-		 var job = $("form[name=searchjob]").serialize();
-		console.log(job); 
-		$.ajax({
-			url:"selectjob2", 
-			type:"get",
-			data:job,
-			success:output
-				   });
-		 
+			$("#information").hide();
+			$("#map").show(); 
+			 var job = $("form[name=searchjob]").serialize();
+			console.log(job); 
+			$.ajax({
+				url:"selectjob2", 
+				type:"get",
+				data:job,
+				success:output
+				});
+		
 	});
 	
 	
 });	
+
 function pagelist(page){
 	   $.ajax({
 	      url:"jpagemap",
@@ -130,14 +152,16 @@ console.log($(this).attr('data-value'));
 }	 */
 	
 function wlist(accidentDeath){
+		
 	   if(accidentDeath.length==0){
 	      return;
 	   }
 	   
 	   if (ffff == 0) {
 	      var list = '';
-	     
+	      onelist=[];
 	   $.each(accidentDeath, function (index, item){
+		   
 		 	onelist.push(accidentDeath[index]);
 		    list += '<tr style="cursor:pointer"  class="onetr" data-value="'+index+'">';
 		    list += '<td scope="row" class="p-2">';
@@ -173,8 +197,6 @@ function wlist(accidentDeath){
 			$("#map").hide(); 
 			$("#information").show();  
 			var oneindex = $(this).attr("data-value");
-				console.log(onelist[oneindex]);
-				
 				var siltype = null;
 			       if(onelist[oneindex].type==1){
 			          siltype = "요양병원";          
@@ -580,9 +602,9 @@ function write(accidentDeath){
 			
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<div class="col">
-				<form id="searchjob" name="searchjob">
+				<form id="searchjob" name="searchjob"  onsubmit="return false">
 						<div class="input-group md-form form-sm form-2 pl-0">
-						  <input class="form-control my-0 py-1 amber-border" type="text" name="silvername" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
+						  <input class="form-control my-0 py-1 amber-border" type="text" id="silvername" name="silvername" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
 					
 						  <div class="input-group-append">
 						  	<button type="button" class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" ><img src="resources/image/search.svg" ></button>

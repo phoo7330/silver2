@@ -138,10 +138,16 @@ WHERE
 	AND
     a.SILVERNAME LIKE '%'||#{silvername}||'%'
     OR
+    a.SEACH_SEQ = b.SEACH_SEQ
+	AND
     a.AREAA LIKE '%'||#{areaa}||'%'
     OR
+    a.SEACH_SEQ = b.SEACH_SEQ
+	AND
     a.AREAB LIKE '%'||#{areab}||'%'
     OR
+    a.SEACH_SEQ = b.SEACH_SEQ
+	AND
     a.AREAC LIKE '%'||#{areac}||'%'
 
 ORDER BY
