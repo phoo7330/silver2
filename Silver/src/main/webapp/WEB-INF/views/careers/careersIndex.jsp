@@ -91,7 +91,7 @@ $(function() {
 $(function() {
 	$("#information").hide();
 	
-	//검색버튼클릭안하고 엔터쳐도 검색이 되게 한다.
+	//검색버튼클릭안하고 엔터쳐도 검색이 되게 한다. 
 	$("#silvername").keydown(function(key) {
         //키의 코드가 13번일 경우 (13번은 엔터키)
         if (key.keyCode == 13) {
