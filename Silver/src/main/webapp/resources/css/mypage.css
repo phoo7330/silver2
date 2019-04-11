@@ -9,7 +9,35 @@
 	border-bottom: 4px solid #902228;
 } 
 
-
 #card-edit-account {
 	height: 100%;
+}
+
+#basicTab {
+	padding-top: 120px;
+	padding-bottom: 20px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.fontStress {
+	color: red;
+}
+
+#agreeRadio {
+	height: 40px;
+}
+
+/* Table
+-------------------------------------------------- */
+
+.w-30 {
+	width: 20%;
+}
+
+
+table.table-bordered > tbody > tr > th {
+    border-top:3px solid #d93749;
 }
