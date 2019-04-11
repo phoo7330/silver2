@@ -94,7 +94,7 @@ $(function() {
 		 var job = $("form[name=searchjob]").serialize();
 		console.log(job); 
 		$.ajax({
-			url:"selectjob2",
+			url:"selectjob2", 
 			type:"get",
 			data:job,
 			success:output
