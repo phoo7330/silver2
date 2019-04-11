@@ -102,10 +102,11 @@ body {
 }
 
 /* 다른페이지 */
+/* 
 .card {
 	height: 250px;
 }
-
+ */
 .form-row {
 	align-items: baseline;
 }

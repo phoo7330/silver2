@@ -37,6 +37,153 @@
 			$("#inform-tabContent").html(item);
 		 });
 	  });
+	  
+/* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
+
+	  $(function() {
+	  	$("#attachedFile").hide();
+	  	$("#forFile").hide();
+	  	
+	  	$('#worker').on('click', function() {
+	  		$("#attachedFile").show();  
+	  		$("#forFile").show()
+	  	});	
+	  });	
+ 
+/* 수정: 스크립트 추가: 개인정보 수집동의 클릭 이벤트 */ 
+
+	  $(document).ready(function(){
+	    	$("#card-resume").hide();
+	    	
+	        $("#agreebtn").click(function(){    
+	            if($("#check1").is(":checked") == false){
+	                alert("개인정보보호법 제 15조에 의한 수집· 이용 동의 에 동의하세요.");
+	                return;
+	            }else{
+	            	$("#card-agree").hide();
+	                $("#card-resume").show();
+	            }
+	        });    
+	        
+	        $("#disagreebtn").click(function(){    
+	        	location.href="index";
+	        });
+	        
+	        /* 저장 값 들어가면 저장 값이 나오도록 if 문 추가해야함. */
+	        $("#resume-box").click(function(){    
+            	$("#card-resume").hide();
+                $("#card-agree").show();
+            });
+	        
+	    });
+  			
+
+		/* 지역 선택 */
+		$('document').ready(function() {
+			var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+			var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+			var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
+			var area3 = ["대덕구","동구","서구","유성구","중구"];
+			var area4 = ["광산구","남구","동구",     "북구","서구"];
+			var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
+			var area6 = ["남구","동구","북구","중구","울주군"];
+			var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
+			var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
+			var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
+			var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
+			var area11 = ["계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
+			var area12 = ["군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
+			var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
+			var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
+			var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
+			var area16 = ["서귀포시","제주시","남제주군","북제주군"];
+		
+		 // 시/도 선택 박스 초기화	
+			$("select[name^=sido]").each(function() {
+				$selsido = $(this);
+				$.each(eval(area0), function() {
+					$selsido.append("<option value='"+this+"'>"+this+"</option>");
+				});
+				$selsido.next().append("<option value=''>구/군 선택</option>");
+			});
+
+		// 시/도 선택시 구/군 설정
+			$("select[name^=sido]").change(function() {
+				var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+				var $gugun = $(this).next(); // 선택영역 군구 객체
+					$("option",$gugun).remove(); // 구군 초기화
+		
+				if(area == "area0")
+					$gugun.append("<option value=''>구/군 선택</option>");
+				else {
+					$.each(eval(area), function() {
+					$gugun.append("<option value='"+this+"'>"+this+"</option>");
+					});
+				}
+			});
+		
+		});
+		
+		
+		/* 직종 선택 */
+		$('document').ready(function() {
+			var career = ["선택","시설장","사무국장","사회복지사","의사","촉탁의사","간호사","간호조무사","치과위생사","물리치료사","작업치료사","요양보호사 1급","요양보호사 2급","요양보호사 기존유예자","영양사","사무원","조리원","위생원","관리인","보조원 운전사","프로그램관리자","치매전문교육이수자","청구담당자","기타"];
+			
+			$("select[name^=job]").each(function() {
+				$seljob = $(this);
+				$.each(eval(career), function() {
+					$seljob.append("<option value='"+this+"'>"+this+"</option>");
+				});
+			});
+		});
+		
+		
+		/* 자격 선택 */
+		$('document').ready(function() {
+			var qualification = ["선택","사회복지사1급","사회복지사2급","사회복지사3급","의사","간호사","간호조무사","치과위생사","물리치료사","작업치료사","요양보호사 1급","요양보호사 2급","요양보호사 기존유예자","영양사","기타"];
+			
+			$("select[name^=qualify]").each(function() {
+				$selqualify = $(this);
+				$.each(eval(qualification), function() {
+					$selqualify.append("<option value='"+this+"'>"+this+"</option>");
+				});
+			});
+		});
+		
+		
+		/* 근무형태 선택  */
+		$('document').ready(function() {
+			var category0 = ["선택","정규직","계약직","시간제"];
+			var category1 = ["일일3교대","일일2교대","전임주간","전임야간","주간","야간","기타"];
+			var category2 = ["일일3교대","일일2교대","전임주간","전임야간","주간","야간","기타"];
+			var category3 = ["주간","야간","기타"];
+			
+			 // 근무형태 박스 초기화 
+			$("select[name^=work]").each(function() {
+				$selwork = $(this);
+				$.each(eval(category0), function() {
+					$selwork.append("<option value='"+this+"'>"+this+"</option>");
+				});
+				$selwork.next().append("<option value=''>상세근무형태 선택</option>");
+			});
+
+		// 근무형태 선택시 상세근무형태 선택 
+			$("select[name^=work]").change(function() {
+				var category = "category"+$("option",$(this)).index($("option:selected",$(this))); // 근무형태의 상세근무형태 Array
+				var $detail = $(this).next(); // 상태근무형태 객체
+					$("option",$detail).remove(); // 상태근무형태 초기화
+		
+				if(category == "category0")
+					$detail.append("<option value=''>상세근무형태 선택</option>");
+				else {
+					$.each(eval(category), function() {
+					$detail.append("<option value='"+this+"'>"+this+"</option>");
+					});
+				}
+			});
+		});
+
+
 	</script>
 	
 	<!-- 메인 네비게이션 -->
@@ -85,9 +232,9 @@
 	
 	<div class="container">
 		<!-- 1. 기본정보 탭  -->
-		<div class="pt-5 pb-3 mt-5 border-bottom">
+<!-- 수정 -->	<div class="border-bottom" id="basicTab">
 			<div class="tab-content">
-		      <h5 class="text-secondary" id="inform-tabContent">계정정보</h5>  
+<!-- 수정 -->		<h4 class="text-secondary" id="inform-tabContent">계정정보</h4>  
 		    </div>
 		</div>
 	</div>
@@ -98,17 +245,23 @@
 			<div class="col-4">
 			<ul class="nav flex-column nav-pillsy" id="myTab" role="tablist" aria-orientation="vertical">
 			  <li class="nav-item border-bottom">
-			    <a class="nav-link text-muted active" id="edit-account" data-toggle="pill" href="#tab-edit-account" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="resources/image/lock.svg">  계정정보</a>
+			    <a class="nav-link text-muted active" id="edit-account" data-toggle="pill" href="#tab-edit-account" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="resources/image/lock.svg">  
+			    계정정보</a>
 			  </li>
 			  <li class="nav-item border-bottom">
-			    <a class="nav-link text-muted" id="input-elder" data-toggle="pill" href="#tab-input-elder" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="resources/image/userplus.svg">  어르신정보</a>
+			    <a class="nav-link text-muted" id="input-elder" data-toggle="pill" href="#tab-input-elder" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="resources/image/userplus.svg">  
+			    어르신정보</a>
 			  </li>
 			  <li class="nav-item border-bottom">
-			    <a class="nav-link text-muted" id="message-box" data-toggle="pill" href="#tab-message-box" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="resources/image/messagecircle.svg">  쪽지함</a>
+			    <a class="nav-link text-muted" id="message-box" data-toggle="pill" href="#tab-message-box" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="resources/image/messagecircle.svg">  
+			    쪽지함</a>
 			  </li>
-			  <li class="nav-item border-bottom">
-			    <a class="nav-link text-muted" id="resume-box" data-toggle="pill" href="#tab-resume-box" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="resources/image/filetext.svg">  이력서</a>
-			  </li>
+<!-- 수정 -->		<c:if test="${member.type==2}">
+				  <li class="nav-item border-bottom">
+				    <a class="nav-link text-muted" id="resume-box" data-toggle="pill" href="#tab-resume-box" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="resources/image/filetext.svg">  
+				    이력서</a>
+				  </li>
+				</c:if>
 			</ul>
 		  </div>
 		  <!-- 3. 내용 -->
@@ -160,7 +313,7 @@
 						
 						<!-- 성별 : 기존 정보가 디폴트로 들어가 있어야 함 -->
 						
-							<div class="form-group row pt-4">
+<!-- 패딩 수정 -->			<div class="form-group row pt-4 pb-4">
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>성별</small></label>
 							    <div class="col-sm-8">
@@ -194,7 +347,7 @@
 						
 						<!-- 전화번호 : 가입 시 없는 정보이기 때문에 빈 값 -->
 						
-							<div class="form-group row pt-4 pb-0">
+<!-- 패딩 수정 -->			<div class="form-group row pt-4 pb-4">
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>전화번호</small></label>
      							<div class="col-sm-8">
@@ -215,7 +368,7 @@
 						</div>
 						<!-- 가입자 구분 : 기존 정보가 디폴트로 들어가 있어야 함 -->
 						
-							<div class="form-group row pt-5">
+				<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editType" class="col-sm-2 col-form-label col-form-label-sm"><small>가입자 구분</small></label>
      							<div class="col-sm-4">
@@ -233,12 +386,12 @@
 							</div>
 						
 						<!-- 첨부파일 : 첨부파일 없을 시 '종사자'로 수정 불가 -->
-					
-							<div class="form-group row pt-4">
+
+							<div class="form-group row pt-4 pt-4">
 							<div class="col-sm-1"></div>
-								<label for="uploadLicense" class="col-sm-2 col-form-label col-form-label-sm"><small>자격증</small></label>
+								<label for="uploadLicense" class="col-sm-2 col-form-label col-form-label-sm" id="forFile"><small>자격증</small></label>
      							<div class="col-sm-8">
-     								<div class="custom-file">
+     								<div class="custom-file" id="attachedFile">
 									  <input type="file" class="file-input" id="licenseFile" lang="ko">
 									  <small id="licenseHelp" class="form-text text-muted">자격증 파일을 선택하세요.</small>
 									</div>
@@ -290,7 +443,7 @@
 							
 							<!-- 혈액형 등록 -->
 							
-								<div class="form-group row pt-5">
+<!-- 패딩 수정 -->			<div class="form-group row pt-5 pb-4">
 								<div class="col-sm-1"></div>
 									<label for="bloodType" class="col-sm-2 col-form-label col-form-label-sm"><small>혈액형</small></label>
 								    <div class="col-sm-8">
@@ -368,7 +521,7 @@
 										  </select>
 								    </div>
 								    <label for="washroom" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>화장실</small></label>
-								    <div class="col-sm-4">
+<!-- 패딩 수정 -->						<div class="col-sm-4 pb-4">
 										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washroom" name="scd_toilet">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
@@ -391,7 +544,7 @@
 							</div>
 							<!-- 질환정보 등록 -->
 							
-								<div class="form-group row pt-5 text-center">
+<!-- 패딩 수정 -->					<div class="form-group row pt-4 pb-4 text-center">
 								    <div class="col-sm-12">
 										<div class="form-check form-check-inline p-3">
 										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="황달">
@@ -643,11 +796,174 @@
 				</div>
 				<!-- 3-4. 이력서 / 종사자 계정 구분 만든 후 -->
 				<div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">
-					
+<!-- 수정: 이력서 양식 추가 -->
+					<div class="card border mb-3" id="card-agree">
+						<div class="container">
+							<div class="pt-5 pb-1 border-bottom">
+								<div class="tab-content">
+							      <h5 class="text-secondary" id="inform-tabContent">개인정보 수집동의</h5>  
+							    </div>
+							    <small id="selecteHelp" class="form-text text-muted">개인정보보호법 제 15조에 의한 수집・이용 동의</small>
+							</div>
+							<div class="group pt-4">
+							    
+								<ul class="lst lst_hypn">
+								   <li><span class="lst_head">-</span>실버서퍼는 고객님의 개인정보를 아래와 같이 처리함을 알려드립니다.</li>
+								</ul>
+								<ul class="lst lst_hypn ml_35">
+									<li><span class="lst_head">1.</span>개인정보의 수집· 이용 목적</li>
+									<li><span class="lst_head lst_hypn">○</span><span class="fontStress">실버서퍼 홈페이지는 다음의 목적을 위해 개인정보를 수집 및 이용합니다.</span></li>
+									<li><span class="lst_head lst_hypn">○</span><span class="fontStress">수집된 개인정보는 정해진 목적 이외의 용도로는 이용되지 않으며 수집목적이 변경 될 경우</span></li>
+									<li><span class="lst_head lst_hypn">&nbsp;</span> <span class="fontStress">사전에 알리고 동의를 받을 예정입니다.</span></li>
+									<li><span class="lst_head lst_hypn">-</span> <span class="fontStress">홈페이지 구직서비스 제고를 위해 수집</span></li>
+								</ul>
+								<ul class="lst lst_hypn ml_35">
+									<li><span class="lst_head">2.</span>수집하려는 개인정보의 항목</li>
+									<li><span class="lst_head lst_hypn">○</span><span class="fontStress">필수항목 : 성명, 성별, 생년월일, 휴대전화번호, 자격사항, 전화번호, E-mail, 주소, 희망직종, 희망지역, 근무형태 </span></li>
+									<li><span class="lst_head lst_hypn">○</span><span class="fontStress">선택항목 : 상세근무형태, 게시기간, 기타사항</span></li>
+								</ul>
+								<ul class="lst lst_hypn ml_35">
+								    <li><span class="lst_head">3.</span>개인정보의 파기(관련 법령에 따라 일정기간 저장)</li>
+								    <li><span class="lst_head lst_hypn">○</span>실버서퍼 홈페이지는 원칙적으로 <span class="fontStress">개인정보 보존기간이 경과하거나, 처리목적이 달성된 경우에는 지체없이 해당 개인정보를 파기</span>합니다.</li>
+							        <li><span class="lst_head lst_hypn">&nbsp;</span> <span class="fontStress">다만, 다른법령에 따라 보존하여야 하는 경우에는 그러하지 않을 수 있습니다.</span></li>
+								    <li><span class="lst_head lst_hypn">○</span><span class="fontStress">이용자가 입력한 정보는 회원탈퇴 등 목적 달성 후 관련 법령에 따라</span></li>
+							        <li><span class="lst_head lst_hypn">&nbsp;</span> <span class="fontStress">일정기간 저장 후 파기 됩니다.</span></li>
+								    <li><span class="lst_head lst_hypn">-</span> <span class="fontStress">수집근거 : 정보주체의 동의</span></li>
+								    <li><span class="lst_head lst_hypn">-</span> <span class="fontStress">보존기간 : "이력서"  등록부터  3년보유 후 삭제</span></li>
+								</ul>
+							    <ul class="lst lst_hypn ml_35">
+							        <li><span class="lst_head">4.</span>동의를 거부 할 권리가 있다는 사실과 동의 거부에 따른 불이익 내용</li>
+							        <li><span class="lst_head lst_hypn">○</span>이용자는 실버서퍼 홈페이지에서 수집하는 개인정보에 대해 동의를 거부 할 권리가 있으며,</li>
+							        <li><span class="lst_head lst_hypn">&nbsp;</span> <font color="red">동의 거부시에는 이력서 작성 서비스가 제한 됩니다.</font></li>
+							    </ul>
+							    <div class="card text-center" id="agreeRadio">
+							    <div class="click_box">   
+							        <div class="btn_wrap ta_c">
+							            <label class="m-0 p-2"><input type="checkbox" id="check1"/><strong> 개인정보보호법 제 15조에 의한 수집·이용에 동의합니다.</strong></label><!-- &nbsp;&nbsp;&nbsp; -->
+
+							        </div>
+							    </div>
+							    </div>
+							</div>
+							
+							<div class="group text-center">
+							    <div class="btn-group p-4">
+									<button type="button" class="btn btn-outline-secondary mx-1" id="agreebtn">동의함</button>
+									<button type="button" class="btn btn-outline-secondary mx-1" id="disagreebtn">동의안함</button>	  
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 이력서 양식 -->
+					<div class="card border mb-3" id="card-resume">
+						<div class="container">
+							<div class="pt-5 pb-1 border-bottom">
+								<div class="tab-content">
+							      <h5 class="text-secondary" id="inform-tabContent">이력서 양식 </h5>  
+							    </div>
+							</div>
+							<!-- 개인정보 -->
+							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>개인정보</strong></label>
+							<p class="text-muted"><small>* 표시는 필수입력 사항입니다.</small></p>
+							<table class="table table-bordered" id="facilityForm">
+								<tbody>
+								    <tr>
+										<th class="bg-light w-30">* 성명</th>
+										<th>"member.username"</th>
+										<th class="bg-light w-30">성별</th>
+										<th>"member.gender"</th>
+								    </tr>
+	                				<tr>
+										<td class="bg-light">* 생년월일</td>
+										<td>"member.birthday"</td>
+										<td class="bg-light">* 전화번호</td>
+										<td>"member.telephone"</td>
+								    </tr>
+							    	<tr>
+										<td class="bg-light">주소</td>
+										<td colspan="3">
+					                      <form class="form-inline my-3 row">									
+						                      <div class="form-group col-md-12">
+						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
+						                        <select class="form-control form-control-sm col mr-1" name="gugun1" id="gugun1"></select>
+						                      </div>
+						                  </form>	
+										
+						                      <div class="form-group my-3">
+						                      	<input type="text" class="form-control form-control-sm" placeholder="나머지 주소를 입력하세요." id="dong1">
+						                      </div>      
+										</td>
+									</tr>
+									<tr>
+										<td class="bg-light">자격사항</td>
+										<td colspan="3">
+					                      <div class="form-group my-3">
+					                        <select class="form-control form-control-sm" name="qualify1" id="qualify1"></select>
+					                      </div>
+										</td>
+									</tr>
+							 	</tbody>
+							</table>
+							<!-- 구직정보 -->
+							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구직정보</strong></label>
+							<table class="table table-bordered" id="facilityForm">
+								<tbody>
+									<tr>
+										<th class="bg-light w-30">* 희망직종</th>
+										<th colspan="3">
+											<div class="form-group my-3">
+						                      <select class="form-control form-control-sm" name="job1" id="job1"></select>
+											</div>
+										</th>
+									</tr>
+									<tr>
+										<td class="bg-light">* 희망지역</td>
+										<td colspan="3">
+											<form class="form-inline my-3 row">									
+						                      <div class="form-group col-md-12">
+						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
+						                        <select class="form-control form-control-sm col" name="gugun1" id="gugun1"></select>
+						                      </div>
+											</form>
+										</td>
+									</tr>
+									<tr>
+										<td class="bg-light">* 근무형태</td>
+										<td colspan="3">
+											<form class="form-inline my-3 row">									
+						                      <div class="form-group col-md-12">
+												<select class="form-control form-control-sm col mr-1" name="work1" id="work1"></select>
+												<select class="form-control form-control-sm col" name="detail" id="detail"></select>
+						                      </div>
+											</form>
+										</td>
+									</tr>
+									<tr>
+										<td class="bg-light">기타사항</td>
+										<td colspan="3" class="etc p-0 mb-0">
+											<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							
+						<!-- .container -->	
+						</div>
+					<!-- 이력서 양식 -->	
+					</div>
+				<!-- 3-4. 이력서 -->
 				</div>
-		    </div>
-		  </div>
+				<!-- 저장 버튼 -->
+							<div class="text-center pt-3 pb-5">
+								<button type="submit" id="savebtn" class="btn btn-outline-secondary">저장</button>
+							</div>
+				<!-- .tab-content -->
+				</div>
+			<!-- .col-8 -->
+			</div>
+		<!-- .row pt-5 -->
 		</div>
+	<!-- .container -->
 	</div>
 	
 	
