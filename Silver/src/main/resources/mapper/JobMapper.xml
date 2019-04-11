@@ -29,6 +29,8 @@ FROM
     SILVERSEARCH a, JOBOFFER b
 WHERE
     a.SEACH_SEQ = b.SEACH_SEQ
+ORDER BY
+        b.JO_DATE
 </select>
 <select id="selectmap2" parameterType="Job" resultType="Job">
 	SELECT 
@@ -69,7 +71,7 @@ WHERE
 		
     </foreach>
 	ORDER BY
-        GRADE
+        b.JO_DATE
 		
 	
 	</select> 
@@ -108,4 +110,44 @@ WHERE
 		
     </foreach>
 </select>
+
+<select id="seachjob1" parameterType="String" resultType="Job">
+SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+	a.SEACH_SEQ = b.SEACH_SEQ
+	AND
+    a.SILVERNAME LIKE '%'||#{silvername}||'%'
+    OR
+    a.AREAA LIKE '%'||#{areaa}||'%'
+    OR
+    a.AREAB LIKE '%'||#{areab}||'%'
+    OR
+    a.AREAC LIKE '%'||#{areac}||'%'
+
+ORDER BY
+        b.JO_DATE
+
+
+</select>
+
   </mapper>
