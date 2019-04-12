@@ -22,8 +22,6 @@ public class DetailsTwo {
 	private String address;
 	private String tel;
 	private String parkinglot;
-	private String d_orgname;
-	private String d_name;
 	
 	public DetailsTwo() {
 		super();
@@ -31,8 +29,7 @@ public class DetailsTwo {
 
 	public DetailsTwo(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, int detail_seq, long detail_number,
-			String establishment, String approval, String address, String tel, String parkinglot, String d_orgname,
-			String d_name) {
+			String establishment, String approval, String address, String tel, String parkinglot) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -51,8 +48,6 @@ public class DetailsTwo {
 		this.address = address;
 		this.tel = tel;
 		this.parkinglot = parkinglot;
-		this.d_orgname = d_orgname;
-		this.d_name = d_name;
 	}
 
 	public int getSeach_seq() {
@@ -191,30 +186,15 @@ public class DetailsTwo {
 		this.parkinglot = parkinglot;
 	}
 
-	public String getD_orgname() {
-		return d_orgname;
-	}
-
-	public void setD_orgname(String d_orgname) {
-		this.d_orgname = d_orgname;
-	}
-
-	public String getD_name() {
-		return d_name;
-	}
-
-	public void setD_name(String d_name) {
-		this.d_name = d_name;
-	}
-
 	@Override
 	public String toString() {
 		return "DetailsTwo [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab
 				+ ", areac=" + areac + ", silvername=" + silvername + ", service=" + service + ", grade=" + grade
 				+ ", lauitude=" + lauitude + ", longitude=" + longitude + ", detail_seq=" + detail_seq
 				+ ", detail_number=" + detail_number + ", establishment=" + establishment + ", approval=" + approval
-				+ ", address=" + address + ", tel=" + tel + ", parkinglot=" + parkinglot + ", d_orgname=" + d_orgname
-				+ ", d_name=" + d_name + "]";
+				+ ", address=" + address + ", tel=" + tel + ", parkinglot=" + parkinglot + "]";
 	}
-
+	
+	
+	
 }	
