@@ -29,9 +29,7 @@ public class DetailsOne {
 	private String receipttime;
 	private String facilityinformation;
 	private String treatment;
-	private String hp_orgname;
-	private String hp_name;
-	
+
 	public DetailsOne() {
 		super();
 	}
@@ -40,7 +38,7 @@ public class DetailsOne {
 			String service, String grade, String lauitude, String longitude, int hp_details_seq, int information_seq,
 			String establishment, String hp_service, String protection, String location, String religion,
 			String hospital_tel, String hp_address, String holiday, String lunchtime, String receipttime,
-			String facilityinformation, String treatment, String hp_orgname, String hp_name) {
+			String facilityinformation, String treatment) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -66,8 +64,6 @@ public class DetailsOne {
 		this.receipttime = receipttime;
 		this.facilityinformation = facilityinformation;
 		this.treatment = treatment;
-		this.hp_orgname = hp_orgname;
-		this.hp_name = hp_name;
 	}
 
 	public int getSeach_seq() {
@@ -262,22 +258,6 @@ public class DetailsOne {
 		this.treatment = treatment;
 	}
 
-	public String getHp_orgname() {
-		return hp_orgname;
-	}
-
-	public void setHp_orgname(String hp_orgname) {
-		this.hp_orgname = hp_orgname;
-	}
-
-	public String getHp_name() {
-		return hp_name;
-	}
-
-	public void setHp_name(String hp_name) {
-		this.hp_name = hp_name;
-	}
-
 	@Override
 	public String toString() {
 		return "DetailsOne [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab
@@ -287,8 +267,10 @@ public class DetailsOne {
 				+ hp_service + ", protection=" + protection + ", location=" + location + ", religion=" + religion
 				+ ", hospital_tel=" + hospital_tel + ", hp_address=" + hp_address + ", holiday=" + holiday
 				+ ", lunchtime=" + lunchtime + ", receipttime=" + receipttime + ", facilityinformation="
-				+ facilityinformation + ", treatment=" + treatment + ", hp_orgname=" + hp_orgname + ", hp_name="
-				+ hp_name + "]";
-	}	
+				+ facilityinformation + ", treatment=" + treatment + "]";
+	}
+
+	
+	
 	
 }
