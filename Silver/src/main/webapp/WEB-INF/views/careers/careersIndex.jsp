@@ -84,7 +84,17 @@ $(function() {
 	                pagelist(flag);
 	        } */
 	   });
+		
+		$("#selectbtn").on('click', function() {
+			/* var myForm = document.getElementById('selectform');
+			formData = new FormData(selectform); */
+			var aa = $("#sido1 option:selected").val();
+			console.log(aa); 
+		});
+		
 });
+
+
 
 
 
@@ -647,6 +657,7 @@ function write(accidentDeath){
 	
 <!-- 좌측 슬라이드 바 -->	
 <div class="container-fluid">
+	
 	<div class="row">
 	<nav class="col-md-3 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky pt-4" >
