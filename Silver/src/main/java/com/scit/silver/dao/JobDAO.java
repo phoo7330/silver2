@@ -80,5 +80,14 @@ public class JobDAO {
 		
 		return result;
 	}
+	
+	public ArrayList<Job> seachjob2(Job job){
+		ArrayList<Job> result = null;
+		JobMapper mapper = session.getMapper(JobMapper.class);
+
+		result = mapper.seachjob2(job);
+		
+		return result;
+	}
 
 }
