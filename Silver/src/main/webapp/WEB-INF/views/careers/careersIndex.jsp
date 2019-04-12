@@ -68,7 +68,7 @@ $(function() {
 	             //console.log("업마크"+upmark);
 	             //console.log(flag);
 	             if(upmark==1){ 
-	                //console.log("실행되니?");
+	                //console.log("실행되니?"); 
 	                pagelist2();
 	             }else{
 	                pagelist(page);
