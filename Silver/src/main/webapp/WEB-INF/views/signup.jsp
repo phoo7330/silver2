@@ -39,52 +39,141 @@
 </head>
 <body>
 
-<!-- 네비게이션 바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
- 		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-	    <span class="navbar-toggler-icon"></span>
-		</button>
+	<!-- jQuery javaScript 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
+	
+	<!-- Popper javaScript 추가 -->
+	<script src="resources/js/popper.min.js"></script>
+	
+	<!-- Bootstrap javaScript 추가 -->
+	<script src="resources/js/bootstrap.min.js"></script>
+	
+	<!-- 일반로그인 스크립트 -->
+	<script>
+ 	 $(function(){
+		 $("#custom-signup").hide();
+		 $(".institution").hide(); 
+		 /* 일반가입자 가입 버튼 */
+		 $('#custombtn').on('click',function(){
+			 console.log("aaa");
+			 $(".select-signup").hide();
+			 $(".institution").hide();
+			 $("#custom-signup").show(); 
+		 });
+		  /* 기관관리자 가입 버튼 */
+		 $("#facilitybtn").on('click',function(){
+			 console.log("aaa");
+			 $(".select-signup").hide();
+			 $("#custom-signup").hide();
+			 $(".institution").show(); 
+		 });
 
-		<div class="collapse navbar-collapse justify-content-between" id="navbar">
-		  <!-- 왼쪽 자동 정렬 -->
-		  	<div class="navbar-nav"> 
-		  		<a class="nav-item nav-link active" href="institution">
-		  			요양기관 <span class="sr-only">(current)</span> </a>
-		  		<a class="nav-item nav-link" href="worker">
-		  			종사자 </a>
-		  		<a class="nav-item nav-link" href="inquiry">
-		  			자주하는질문 </a>	
-			</div>
-		  <!-- 오른쪽 자동 정렬 -->
-		  	<c:if test="${sessionScope.loginId==null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<a class="nav-item nav-link" href="login">
-		  			로그인 </a>
-		  		<a class="nav-item nav-link" href="signup">
-		  			회원가입 </a>
-		  	</div>
-		  	</c:if>
-		  	
-		  	<c:if test="${sessionScope.loginId!=null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<p class="lead">${sessionScope.loginId}님 환영합니다.</p>
-		  		<a class="nav-item nav-link" href="logout">
-		  			로그아웃 </a>
-		  	</div>
-			</c:if>
-		</div>  
-	</nav>	
+	 });  
+ 	 
+ 	 
+		/* 지역 선택 */
+		$('document').ready(function() {
+			var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+			var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+			var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
+			var area3 = ["대덕구","동구","서구","유성구","중구"];
+			var area4 = ["광산구","남구","동구",     "북구","서구"];
+			var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
+			var area6 = ["남구","동구","북구","중구","울주군"];
+			var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
+			var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
+			var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
+			var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
+			var area11 = ["계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
+			var area12 = ["군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
+			var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
+			var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
+			var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
+			var area16 = ["서귀포시","제주시","남제주군","북제주군"];
+		
+		 // 시/도 선택 박스 초기화	
+			$("select[name^=sido]").each(function() {
+				$selsido = $(this);
+				$.each(eval(area0), function() {
+					$selsido.append("<option value='"+this+"'>"+this+"</option>");
+				});
+				$selsido.next().append("<option value=''>구/군 선택</option>");
+			});
+
+		// 시/도 선택시 구/군 설정
+			$("select[name^=sido]").change(function() {
+				var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+				var $gugun = $(this).next(); // 선택영역 군구 객체
+					$("option",$gugun).remove(); // 구군 초기화
+		
+				if(area == "area0")
+					$gugun.append("<option value=''>구/군 선택</option>");
+				else {
+					$.each(eval(area), function() {
+					$gugun.append("<option value='"+this+"'>"+this+"</option>");
+					});
+				}
+			});
+		
+		});
+		
+		 	 
+ 	 
+	</script>
+
+
+	<!-- 메인 네비게이션 -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<!-- 오른쪽 상단 토글러 버튼 -->
+			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      	<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 네비게이션 상단 메뉴 -->
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<ul class="navbar-nav">
+					<li class="nav-item active" style="color: black;">
+			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  		</li>
+			  	</ul>
+				<!-- 로그인 안한 경우 -->
+			  	<c:if test="${sessionScope.loginId==null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
+			  		</li>
+			  	</ul>
+			  	</c:if>
+			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
+			  	<c:if test="${sessionScope.loginId!=null}">
+				  	<ul class="navbar-nav mt-2 mt-md-0">
+				  		<li class="nav-item">
+				  			<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
+				  		</li>
+				  	</ul>
+			  	</c:if>
+			</div>  
+		</nav>	
+	</header>	
 
 <hr class="my-1">
-
 	<!-- 회원가입 선택 -->
-	<div class="container" id="select-signup">
+	<div class="container select-signup">
 		<div class="py-5 text-center">
 			<img class="mb-4" src="resources/image/user.svg" alt="" width="72" height="72"> 
 			<div class="signup-header px-5 py-0">
 				<h4 class="my-1">회원가입</h4>
-				<p class="lead">실버서퍼 가입시 일반사용자,종사자,기관관리자가 구분됩니다. 기관 관리자 담당자는 기관관리자 버튼을 눌러주세요.</p>
+				<p class="lead">실버서퍼 가입시 일반사용자,종사자,기관관리자가 구분됩니다. <br>기관 관리자 담당자는 기관관리자 버튼을 눌러주세요.</p>
 			</div>
 		</div>
 		
@@ -130,22 +219,21 @@
 	<!-- 일반가입자 회원가입 -->
 	<form class="form-signup" id="custom-signup" action="insertMember" method="post">
 		
-		<div class="container">
+		<div class="container c-signup">
 		<!-- 상단 -->
 		<div class="py-5 text-center">
 			<img class="mb-4" src="resources/image/userplus.svg" alt="" width="72" height="72"> 
-			<div class="signup-header px-5 py-0">
+			<div class="signup-header">
 				<h4 class="my-1">회원가입</h4>
 				<p class="lead">일반가입자 회원가입 페이지 입니다.</p>
 			</div>
 		</div>
-		
-		<div class="p-3 col-12">
-		
+		<!-- 하단 -->
+		<div class="p-1 col-12">
 			
 			<!-- 가입자구분 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 				<label for="inputType" class="col-sm-2 col-form-label">가입자 구분</label>
 				<div class="col-sm-4">
@@ -158,57 +246,57 @@
 						<label class="form-check-label" for="worker">종사자</label>
 					</div>
 				</div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>
 			<!-- 아이디 -->
 	  		<div class="form-group row">
-	  		<div class="col-sm-3">
+	  		<div class="col">
 			</div>
 			    <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-4">
 			      <input type="text" name="userid" class="form-control" id="inputId" value="${member.userid}" placeholder="아이디">
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 	  		</div>
 	  		<!-- 패스워드 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			    <label for="inputPwd" class="col-sm-2 col-form-label">패스워드</label>
 			    <div class="col-sm-4">
 			      <input type="password" name="userpwd" class="form-control" id="inputPwd" value="${member.userpwd}" placeholder="패스워드">
 				  <small id="passwordHelpInline" class="text-muted"> 영문 소문자+숫자 조합입니다.</small>
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>	
 			<!-- 이름 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			    <label for="inputName" class="col-sm-2 col-form-label">이름</label>
 			    <div class="col-sm-4">
 			      <input type="text" name="username" class="form-control" id="inputName" value="${member.username}" placeholder="이름">
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>	
 			<!-- 생년월일 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			    <label for="inputBirth" class="col-sm-2 col-form-label">생년월일</label>
 			    <div class="col-sm-4">
 			      <input type="date" name="birthday" class="form-control" id="inputBirth" value="${member.birthday}">
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>	
 			<!-- 성별 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 				<label for="inputType" class="col-sm-2 col-form-label">성별</label>
 				<div class="col-sm-4">
@@ -218,29 +306,29 @@
 					    <option name="gender" value="여성">여성</option>
 					  </select>
 				</div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>
 			<!-- 이메일 -->
   			<div class="form-group row">
-  			<div class="col-sm-3">
+  			<div class="col">
 			</div>
 			    <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
 			    <div class="col-sm-4">
 			      <input type="email" name="email" class="form-control" id="inputEmail" value="${member.email}" placeholder="이메일">
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>	
 			<!-- 주소 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			    <label for="inputAddress" class="col-sm-2 col-form-label">주소</label>
 			    <div class="col-sm-4">
 			      <input type="text" name="address" class="form-control" id="inputAddress" value="${member.address}" placeholder="주소">
 			    </div>
-			<div class="col-sm-3">
+			<div class="col">
 			</div>
 			</div>
 			
@@ -249,41 +337,146 @@
 			
 			<!-- 제출버튼 -->
 			<div class="form-group row">
-			<div class="col-sm-3">
-			</div>
-				<div class="col-sm-6">
-				<button type="submit" id="signupbtn" class="btn btn-info btn-lg btn-block">회원가입</button>
+				<div class="col">
 				</div>
-			<div class="col-sm-3">
-			</div>
+					<div class="col-sm-6">
+						<button type="submit" id="signupbtn" class="btn btn-info btn-lg btn-block">회원가입</button>
+					</div>
+				<div class="col">
+				</div>
 			</div>
 			
-		
+		<!-- p-1 col-12 -->
 		</div> 
-	</div>
+		<!-- container c-signup -->
+		</div>
+	<!-- #custom-signup -->	
 	</form>
 
-	<!-- jQuery javaScript 추가 -->
-	<script src="resources/js/jquery.min.js"></script>
-	
-	<!-- Popper javaScript 추가 -->
-	<script src="resources/js/popper.min.js"></script>
-	
-	<!-- Bootstrap javaScript 추가 -->
-	<script src="resources/js/bootstrap.min.js"></script>
-	
-	<!-- 일반로그인 스크립트 -->
-	<script>
- 	 $(function(){
-		 $("#custom-signup").hide();
-		 
-		 $('#custombtn').on('click',function(){
-			 console.log("aaa");
-			 $("#select-signup").hide();
-			 $("#custom-signup").show(); 
-		 });
-	 });  
-	</script>
+
+	<!-- 기관관리자 회원가입 -->
+	<form class="form-signup institution" action="insertMember" method="post">
+		
+		<div class="container c-signup">
+		<!-- 상단 -->
+		<div class="py-5 text-center">
+			<img class="mb-4" src="resources/image/userplus.svg" alt="" width="72" height="72"> 
+			<div class="signup-header">
+				<h4 class="my-1">기관등록</h4>
+				<p class="lead">기관관리자 회원가입 페이지 입니다.</p>
+			</div>
+		</div>
+		<!-- 하단 -->
+		<div class="p-1 col-12">
+			
+			<!-- 아이디 -->
+	  		<div class="form-group row">
+	  		<div class="col">
+			</div>
+			    <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
+			    <div class="col-sm-4">
+			      <input type="text" name="userid" class="form-control" id="inputId" value="" placeholder="아이디">
+			    </div>
+			<div class="col">
+			</div>
+	  		</div>
+	  		<!-- 패스워드 -->
+			<div class="form-group row">
+			<div class="col">
+			</div>
+			    <label for="inputPwd" class="col-sm-2 col-form-label">패스워드</label>
+			    <div class="col-sm-4">
+			      <input type="password" name="userpwd" class="form-control" id="inputPwd" value="" placeholder="패스워드">
+				  <small id="passwordHelpInline" class="text-muted"> 영문 소문자+숫자 조합입니다.</small>
+			    </div>
+			<div class="col">
+			</div>
+			</div>	
+			<!-- 기관명 -->
+			<div class="form-group row">
+			<div class="col">
+			</div>
+			    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
+			    <div class="col-sm-4">
+			      <input type="text" name="username" class="form-control" id="inputName" value="" placeholder="기관명">
+			    </div>
+			<div class="col">
+			</div>
+			</div>	
+			<!-- 기관분류 -->
+			<div class="form-group row">
+			<div class="col">
+			</div>
+			    <label for="InstitutionType" class="col-sm-2 col-form-label">기관분류</label>
+				<div class="col-sm-4">
+					<select class="custom-select">
+			            <option selected>기관분류 선택</option>
+			            <option value="1">요양병원</option>
+			            <option value="2">요양원</option>
+			            <option value="3">방문시설</option>
+			            <option value="3">치매전담</option>
+		            </select>
+				</div>
+			<div class="col">
+			</div>
+			</div>	
+			<!-- 주소 -->
+			<div class="form-group row mb-0">
+				<div class="col">
+				</div>
+					<label for="inputAddress" class="col-sm-2 col-form-label">주소</label>
+		         	<div class="form-group col-sm-4">
+		          		<select class="form-control col mb-2" name="sido1" id="sido1"></select>
+		        		<select class="form-control col mb-2" name="gugun1" id="gugun1"></select>                      
+		        		<input type="text" class="form-control" placeholder="나머지 주소를 입력하세요." id="dong1">
+		        	</div>
+	        	<div class="col">
+				</div>   
+			</div>
+			<!-- 이메일 -->
+  			<div class="form-group row">
+  			<div class="col">
+			</div>
+			    <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
+			    <div class="col-sm-4">
+			      <input type="email" name="email" class="form-control" id="inputEmail" value="" placeholder="이메일">
+			    </div>
+			<div class="col">
+			</div>
+			</div>	
+			<!-- 전화 -->
+  			<div class="form-group row">
+  			<div class="col">
+			</div>
+			    <label for="inputPhone" class="col-sm-2 col-form-label">전화</label>
+			    <div class="col-sm-4">
+			      <input type="email" name="email" class="form-control" id="inputEmail" value="" placeholder="전화번호">
+			  	  <small id="passwordHelpInline" class="text-muted"> "-" 없이 전화번호를 입력하세요.</small>
+			    </div>
+			<div class="col">
+			</div>
+			</div>	
+
+			<!-- 경고값 초기화(3.26일 김동우 수정) -->
+			<input type="hidden" name="warning" value=0>
+			
+			<!-- 제출버튼 -->
+			<div class="form-group row">
+				<div class="col">
+				</div>
+					<div class="col-sm-6">
+						<button type="submit" id="institutionbtn" class="btn btn-info btn-lg btn-block">기관 등록하기</button>
+					</div>
+				<div class="col">
+				</div>
+			</div>
+			
+		<!-- p-1 col-12 -->
+		</div> 
+		<!-- container c-signup -->
+		</div>
+	<!-- #custom-signup -->	
+	</form>
 
 </body>
 </html>
