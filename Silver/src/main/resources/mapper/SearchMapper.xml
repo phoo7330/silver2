@@ -104,14 +104,15 @@
 			,A.GRADE
 			,A.LAUITUDE
 			,A.LONGITUDE
+			,A.ORGNAME
+			,A.NAME
             ,B.DETAIL_NUMBER
             ,TO_CHAR(B.ESTABLISHMENT, 'YYYY-MM-DD') ESTABLISHMENT
             ,TO_CHAR(B.APPROVAL, 'YYYY-MM-DD') APPROVAL
             ,B.address
             ,B.tel
             ,B.parkinglot
-            ,B.d_orgname
-            ,B.d_name
+
          FROM 
              SILVERSEARCH A 	
             ,DETAILS B
@@ -135,6 +136,8 @@
          ,A.GRADE
          ,A.LAUITUDE
          ,A.LONGITUDE
+         ,A.ORGNAME
+         ,A.NAME
             ,C.Establishment
             ,C.HP_SERVICE
             ,C.PROTECTION
@@ -147,8 +150,7 @@
             ,C.ReceiptTime
             ,C.Facilityinformation
             ,C.treatment
-            ,C.hp_orgname
-            ,C.hp_name
+
          from 
              SILVERSEARCH A    
             ,Hospital_details C
