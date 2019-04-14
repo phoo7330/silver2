@@ -79,7 +79,7 @@ $(function() {
 	   
 	   });
 		//왼쪽 선택박스 선택에 따라 검색한다.
-		$("#selectbtn").on('click', function() { 
+		$("#selectbtn").on('click', function() {  
 			
 			var job = [];
 			
