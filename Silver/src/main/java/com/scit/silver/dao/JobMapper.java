@@ -19,5 +19,7 @@ public interface JobMapper {
 	
 	public ArrayList<Job> seachjob1(String seach);
 	
+	public ArrayList<Job> seachjob2(Job Job);
+	
 }
  

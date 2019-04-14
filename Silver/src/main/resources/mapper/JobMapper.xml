@@ -156,4 +156,58 @@ ORDER BY
 
 </select>
 
+<select id="seachjob2" parameterType="Job" resultType="Job">
+SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+	a.SEACH_SEQ = b.SEACH_SEQ
+<if test="jo_gender != null">
+	AND
+    b.JO_GENDER = #{jo_gender}
+</if>
+<if test="areaa != null">
+	AND
+    a.AREAA = #{areaa}
+</if>
+<if test="areab != null">
+	AND
+    a.AREAB = #{areab}
+</if>
+<if test="jo_job != null">
+	AND
+    b.JO_JOB = #{jo_job}
+</if>
+<if test="jo_detailtype != null"> 
+	AND
+    b.JO_DETAILTYPE = #{jo_detailtype}
+</if>
+<if test="jo_type != null"> 
+    AND
+    b.JO_TYPE = #{jo_type}
+</if>
+ORDER BY
+        b.JO_DATE
+
+
+</select>
+
   </mapper>

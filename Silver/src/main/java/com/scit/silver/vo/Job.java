@@ -162,6 +162,4 @@ public class Job {
 				+ ", jo_date=" + jo_date + ", jo_gender=" + jo_gender + "]";
 	}
 	
-	
-	
 }
