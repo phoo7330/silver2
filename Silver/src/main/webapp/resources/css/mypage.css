@@ -41,3 +41,9 @@ ul {
 table.table-bordered > tbody > tr > th {
     border-top:3px solid #d93749;
 }
+
+/* Modal
+-------------------------------------------------- */
+#messageForm {
+	margin-top: 100px;
+}

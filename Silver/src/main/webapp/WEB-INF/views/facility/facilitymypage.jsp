@@ -16,8 +16,7 @@
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
 	<!-- Custom CSS 추가 -->
-	<link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>">
-	<link rel="stylesheet" href="resources/css/mypage.css">
+	<link rel="stylesheet" href="<c:url value="/resources/css/facility.css"/>">
 	
 	<!-- jQuery javaScript 추가 -->
 	<script src="resources/js/jquery.min.js"></script>
@@ -30,166 +29,20 @@
 	
 </head>
 <body>
-	<script>
-	  $(function() {
-		  $('#myTab li a').on('click',function() {
-			var item = $(this).html();
-			$("#inform-tabContent").html(item);
-		 });
-	  });
-	  
-/* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
 
-	  $(function() {
-	  	$("#attachedFile").hide();
-	  	$("#forFile").hide();
-	  	
-	  	$('#worker').on('click', function() {
-	  		$("#attachedFile").show();  
-	  		$("#forFile").show()
-	  	});	
-	  });	
- 
-/* 수정: 스크립트 추가: 개인정보 수집동의 클릭 이벤트 */ 
+<script>
+$(function() {
+	  $('#myTab li a').on('click',function() {
+		var item = $(this).html();
+		$("#inform-tabContent").html(item);
+	 });
+});	
+</script>
 
-	  $(document).ready(function(){
-	    	$("#card-resume").hide();
-	    	
-	        $("#agreebtn").click(function(){    
-	            if($("#check1").is(":checked") == false){
-	                alert("개인정보보호법 제 15조에 의한 수집· 이용 동의 에 동의하세요.");
-	                return;
-	            }else{
-	            	$("#card-agree").hide();
-	                $("#card-resume").show();
-	            }
-	        });    
-	        
-	        $("#disagreebtn").click(function(){    
-	        	location.href="index";
-	        });
-	        
-	        /* 저장 값 들어가면 저장 값이 나오도록 if 문 추가해야함. */
-	        $("#resume-box").click(function(){    
-            	$("#card-resume").hide();
-                $("#card-agree").show();
-            });
-	        
-	    });
-  			
-
-		/* 지역 선택 */
-		$('document').ready(function() {
-			var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
-			var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
-			var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
-			var area3 = ["대덕구","동구","서구","유성구","중구"];
-			var area4 = ["광산구","남구","동구",     "북구","서구"];
-			var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
-			var area6 = ["남구","동구","북구","중구","울주군"];
-			var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
-			var area8 = ["고양시","과천시","광명시","광주시","구리시","군포시","김포시","남양주시","동두천시","부천시","성남시","수원시","시흥시","안산시","안성시","안양시","양주시","오산시","용인시","의왕시","의정부시","이천시","파주시","평택시","포천시","하남시","화성시","가평군","양평군","여주군","연천군"];
-			var area9 = ["강릉시","동해시","삼척시","속초시","원주시","춘천시","태백시","고성군","양구군","양양군","영월군","인제군","정선군","철원군","평창군","홍천군","화천군","횡성군"];
-			var area10 = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
-			var area11 = ["계룡시","공주시","논산시","보령시","서산시","아산시","천안시","금산군","당진군","부여군","서천군","연기군","예산군","청양군","태안군","홍성군"];
-			var area12 = ["군산시","김제시","남원시","익산시","전주시","정읍시","고창군","무주군","부안군","순창군","완주군","임실군","장수군","진안군"];
-			var area13 = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
-			var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
-			var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
-			var area16 = ["서귀포시","제주시","남제주군","북제주군"];
-		
-		 // 시/도 선택 박스 초기화	
-			$("select[name^=sido]").each(function() {
-				$selsido = $(this);
-				$.each(eval(area0), function() {
-					$selsido.append("<option value='"+this+"'>"+this+"</option>");
-				});
-				$selsido.next().append("<option value=''>구/군 선택</option>");
-			});
-
-		// 시/도 선택시 구/군 설정
-			$("select[name^=sido]").change(function() {
-				var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
-				var $gugun = $(this).next(); // 선택영역 군구 객체
-					$("option",$gugun).remove(); // 구군 초기화
-		
-				if(area == "area0")
-					$gugun.append("<option value=''>구/군 선택</option>");
-				else {
-					$.each(eval(area), function() {
-					$gugun.append("<option value='"+this+"'>"+this+"</option>");
-					});
-				}
-			});
-		
-		});
-		
-		
-		/* 직종 선택 */
-		$('document').ready(function() {
-			var career = ["선택","시설장","사무국장","사회복지사","의사","촉탁의사","간호사","간호조무사","치과위생사","물리치료사","작업치료사","요양보호사 1급","요양보호사 2급","요양보호사 기존유예자","영양사","사무원","조리원","위생원","관리인","보조원 운전사","프로그램관리자","치매전문교육이수자","청구담당자","기타"];
-			
-			$("select[name^=job]").each(function() {
-				$seljob = $(this);
-				$.each(eval(career), function() {
-					$seljob.append("<option value='"+this+"'>"+this+"</option>");
-				});
-			});
-		});
-		
-		
-		/* 자격 선택 */
-		$('document').ready(function() {
-			var qualification = ["선택","사회복지사1급","사회복지사2급","사회복지사3급","의사","간호사","간호조무사","치과위생사","물리치료사","작업치료사","요양보호사 1급","요양보호사 2급","요양보호사 기존유예자","영양사","기타"];
-			
-			$("select[name^=qualify]").each(function() {
-				$selqualify = $(this);
-				$.each(eval(qualification), function() {
-					$selqualify.append("<option value='"+this+"'>"+this+"</option>");
-				});
-			});
-		});
-		
-		
-		/* 근무형태 선택  */
-		$('document').ready(function() {
-			var category0 = ["선택","정규직","계약직","시간제"];
-			var category1 = ["일일3교대","일일2교대","전임주간","전임야간","주간","야간","기타"];
-			var category2 = ["일일3교대","일일2교대","전임주간","전임야간","주간","야간","기타"];
-			var category3 = ["주간","야간","기타"];
-			
-			 // 근무형태 박스 초기화 
-			$("select[name^=work]").each(function() {
-				$selwork = $(this);
-				$.each(eval(category0), function() {
-					$selwork.append("<option value='"+this+"'>"+this+"</option>");
-				});
-				$selwork.next().append("<option value=''>상세근무형태 선택</option>");
-			});
-
-		// 근무형태 선택시 상세근무형태 선택 
-			$("select[name^=work]").change(function() {
-				var category = "category"+$("option",$(this)).index($("option:selected",$(this))); // 근무형태의 상세근무형태 Array
-				var $detail = $(this).next(); // 상태근무형태 객체
-					$("option",$detail).remove(); // 상태근무형태 초기화
-		
-				if(category == "category0")
-					$detail.append("<option value=''>상세근무형태 선택</option>");
-				else {
-					$.each(eval(category), function() {
-					$detail.append("<option value='"+this+"'>"+this+"</option>");
-					});
-				}
-			});
-		});
-
-
-	</script>
-	
 	<!-- 메인 네비게이션 -->
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
-	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<a class="navbar-brand mr-5 p-0" href="facilitymypage"><img src="resources/image/silversurferLogo.png"></a>
 	 		<!-- 오른쪽 상단 토글러 버튼 -->
 			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	      	<span class="navbar-toggler-icon"></span>
@@ -198,45 +51,83 @@
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<ul class="navbar-nav">
 					<li class="nav-item active" style="color: black;">
-			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  			<a class="nav-link text-light mr-3" href="#"><strong>기관정보</strong><span class="sr-only">(current)</span></a>
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
+			  			<a class="nav-link text-light mr-3" href="#"><strong>구인정보</strong></a>
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  			<a class="nav-link text-light mr-3" href="#"><strong>인재정보</strong></a>	
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="#"><strong>메세지함</strong></a>	
 			  		</li>
 			  	</ul>
-				<!-- 로그인 안한 경우 -->
-			  	<c:if test="${sessionScope.loginId==null}">
-			  	<ul class="navbar-nav mt-2 mt-md-0">
-			  		<li class="nav-item">
-			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
-			  		</li>
-			  		<li class="nav-item">
-			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
-			  		</li>
-			  	</ul>
-			  	</c:if>
-			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
-			  	<c:if test="${sessionScope.loginId!=null}">
-				  	<ul class="navbar-nav mt-2 mt-md-0">
-				  		<li class="nav-item">
-				  			<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
-				  		</li>
-				  	</ul>
-			  	</c:if>
+				<!-- 로그아웃 -->
+				<ul class="navbar-nav mt-2 mt-md-0">
+				  <li class="nav-item">
+				  	<a class="nav-link text-light" href="index"><small>로그아웃</small></a>
+				  </li>
+				</ul>
+			  
 			</div>  
 		</nav>	
 	</header>
+<!-- 상단 점보트론 -->
+	<div class="jumbotron text-center hoverable p-0 border-under">
 	
+	  <!-- Grid row -->
+	  <div class="row container col-md-12 p-0 m-0">
 	
+	    <!-- col -->
+	    <div class="col">
+	    </div>
+	    <div class="col-md-4 offset-md-1 m-5">
+	      <!-- 이미지 미리보기 -->
+	      <div class="view overlay">
+	        <div class="view view-cascade overlay border">
+	        </div>
+	        <!-- 파일업로드 -->
+			<form>
+	          <div class="form-group mt-2">
+	            <label for="uploadPicture"><strong>기관 사진 업로드</strong></label>
+	            <input type="file" class="form-control-file" id="uploadPicture">
+	          </div>
+			</form>
+	      </div>
+	    </div>
+	    
+		<!-- col -->
+	    <div class="col">
+	    </div>
+	    
+	    <div class="col-md-4 text-md-left m-5">
+	      <!-- Excerpt -->
+	      <a href="#!" class="green-text">
+	        <h6 class="h6 pb-1"><i class="fas fa-desktop pr-1"></i> 요양병원</h6>
+	        <h4 class="h4 mb-4">"grade" - 최우수 </h4>
+	      </a>			
+	      <h4 class="h4 mb-4">"silvername"</h4>
+	      <p class="font-weight-normal">"areaa, areab, areac"</p>
+	      <p class="font-weight-normal">"service"</p>
+	      <a class="btn btn-success">정보 수정 요청</a>
+	    </div>
+	    <!-- col -->
+		<div class="col">
+	    </div>
+	    
+	  </div>
+	  <!-- Grid row -->	
+	</div>
+
+
+<!-- 하단 컨텐츠 -->
 	
-	<div class="container">
+	<div class="container pt-3">
 		<!-- 1. 기본정보 탭  -->
-<!-- 수정 -->	<div class="border-bottom" id="basicTab">
+		<div class="border-bottom" id="basicTab">
 			<div class="tab-content">
-<!-- 수정 -->		<h4 class="text-secondary" id="inform-tabContent">계정정보</h4>  
+				<h4 class="text-secondary" id="inform-tabContent">기본정보</h4>  
 		    </div>
 		</div>
 	</div>
@@ -247,30 +138,29 @@
 			<div class="col-4">
 			<ul class="nav flex-column nav-pillsy" id="myTab" role="tablist" aria-orientation="vertical">
 			  <li class="nav-item border-bottom">
-			    <a class="nav-link text-muted active" id="edit-account" data-toggle="pill" href="#tab-edit-account" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="resources/image/lock.svg">  
-			    계정정보</a>
+			    <a class="nav-link text-muted active" id="edit-information" data-toggle="pill" href="#tab-edit-information" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="resources/image/lock.svg">  
+			    기본정보</a>
 			  </li>
 			  <li class="nav-item border-bottom">
 			    <a class="nav-link text-muted" id="input-elder" data-toggle="pill" href="#tab-input-elder" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="resources/image/userplus.svg">  
-			    어르신정보</a>
+			    진료시간</a>
 			  </li>
 			  <li class="nav-item border-bottom">
 			    <a class="nav-link text-muted" id="message-box" data-toggle="pill" href="#tab-message-box" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="resources/image/messagecircle.svg">  
-			    쪽지함</a>
+			    시설정보</a>
 			  </li>
-<!-- 수정 -->		<c:if test="${member.type==2}">
-				  <li class="nav-item border-bottom">
-				    <a class="nav-link text-muted" id="resume-box" data-toggle="pill" href="#tab-resume-box" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="resources/image/filetext.svg">  
-				    이력서</a>
-				  </li>
-				</c:if>
+			  <li class="nav-item border-bottom">
+			    <a class="nav-link text-muted" id="resume-box" data-toggle="pill" href="#tab-resume-box" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="resources/image/filetext.svg">  
+			    게시판</a>
+			  </li>
+				
 			</ul>
 		  </div>
 		  <!-- 3. 내용 -->
 		  <div class="col-8">
 		    <div class="tab-content" id="nav-tabContent">
 		    	
-				<div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">
+				<div class="tab-pane fade show active" id="tab-edit-information" role="tabpanel" aria-labelledby="edit-account">
 				<!-- 1) 개인정보 -->
 				<form action="updateMember" method="post">
 				<div class="card border mb-3" id="card-edit-account">
@@ -676,8 +566,7 @@
 									<div class="form-group row pt-3 pb-0">
 										<div class="col-sm-12">
 								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
-											<button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#messageForm">
-											답장</button>
+								   			<button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm">답장</button>
 										</div>
 									</div>
 									<!-- 쪽지 리스트 테이블 -->
@@ -797,36 +686,6 @@
 						</div>
 					</div>
 				</div>
-				
-				<!-- 받은쪽지함 모달창 -->
-				<div class="modal fade" id="messageForm" tabindex="-1" role="dialog" aria-hidden="true">
-				  <div class="modal-dialog modal-lg" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header text-center">
-				        <button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
-				        <button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm">답장</button>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body mx-3">
-						<form>
-							<div class="form-group row">
-					            <label for="sender" class="col-sm-2 col-form-label col-form-label-sm"><small>보낸사람</small></label>
-					            <div class="col-sm-10">
-					            <input type="text" class="form-control form-control-sm" id="sender" readonly>
-					            </div>
-							</div>
-						</form>
-						<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
-				      </div>
-				      <div class="modal-footer d-flex justify-content-center">
-				        <button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				
 				<!-- 3-4. 이력서 / 종사자 계정 구분 만든 후 -->
 				<div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">
 <!-- 수정: 이력서 양식 추가 -->
@@ -998,11 +857,6 @@
 		</div>
 	<!-- .container -->
 	</div>
-	
-	
-
-
-
 
 </body>
 </html>
