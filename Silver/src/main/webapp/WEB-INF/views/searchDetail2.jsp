@@ -33,6 +33,7 @@
 <script>
 $(function(){
 	grade();
+	what();
 	mark();
 	selectBoard();
 	
@@ -370,6 +371,26 @@ function init(){
 	$('#insertform')[0].reset(); 
 	selectBoard();
 }
+function what(){
+	//vo에 담겨있는 시설타입을 꺼내 각타입에 맞는 문자로 변환해서 출력
+	var type=0;
+	var sttype='';
+	type='${DetailsTwo.type}';
+	if(type==2){
+		sttype+='요양원';
+		$('#siltype').append(sttype);
+		return;
+	}else if(type==3){
+		sttype+='방문시설';
+		$('#siltype').append(sttype);
+		return;
+	}else if(type==4){
+		sttype+='치매전담';
+		$('#siltype').append(sttype);
+		return;
+	}
+}
+
 function grade(){
 	//vo에 담겨있는 등급을 꺼내 각타입에 맞는 문자로 변환해서 출력
 	var grade= null;
