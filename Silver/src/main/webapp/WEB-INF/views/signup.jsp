@@ -462,7 +462,7 @@
 		
 		<!-- Modal -->
 	<div class="modal fade" id="search-popup" tabindex="-3" role="dialog" aria-hidden="true" data-backdrop="false">
-		  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+		  <div class="modal-dialog modal-lg modal-full-height modal-right modal-notify modal-info" role="document">
 		    <div class="modal-content">
 		      <!--Header-->
 		      <div class="modal-header">
@@ -489,9 +489,29 @@
 					      <input type="text" name="searchFacility" class="form-control" placeholder="지역 혹은 기관명을 입력하세요.">
 					    </div>
 					    <div class="col-sm-3">
-							<button type="submit" id="modal-searchbtn" class="btn btn-info btn-md btn-block">검색</button>
+							<button type="button" id="modal-searchbtn" class="btn btn-info btn-md btn-block">검색</button>
 						</div>
 					</div>	
+					<!-- 검색 리스트 -->
+					<table class="table table-bordered">
+				        <thead>
+				          <tr>
+				            <th class="th-name">기관명</th>
+				            <th>주소</th>
+				          </tr>
+				        </thead>
+				        <tbody>
+				          <tr>
+				            <td>"기관명"</td>
+				            <td>"주소"</td>
+				          </tr>
+				          <tr>
+				            <td>"기관명"</td>
+				            <td>"주소"</td>
+				          </tr>
+				        </tbody>
+					</table>
+				
 		      <!--Footer-->
 		      <div class="modal-footer justify-content-center">
 		        <a type="button" class="btn btn-outline-info" data-dismiss="modal">닫기</a>
