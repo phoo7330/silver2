@@ -1,5 +1,7 @@
 package com.scit.silver;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.MemberDAO;
+import com.scit.silver.dao.SearchDAO;
+import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Member;
+import com.scit.silver.vo.SilverSearch;
 
 
 @Controller
@@ -18,6 +25,8 @@ public class MemberController {
 	
 	@Autowired
 	MemberDAO dao;
+	@Autowired
+	SearchDAO sdao;
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
 	public String login() {
@@ -48,14 +57,41 @@ public class MemberController {
 
 		if (result == 0) {
 			model.addAttribute("message", "ID중복으로 가입실패");
-			model.addAttribute("member", member);
 			System.out.println("[회원가입실패!]");
 			return "signup";
+		}else {
+			return "index";
 		}
 
-		return "index";
+		
 	}
-	
+	@RequestMapping(value ="/insertSilver", method = RequestMethod.POST)
+	public String insertSilver(Member member, Model model) {
+		
+		System.out.println(member);
+		String name = member.getUsername();
+		System.out.println(name);
+		String name2 = null;
+		name2 = dao.seachname(name);
+		System.out.println("name2"+name2);
+		if(name2!=null) {
+			model.addAttribute("message", "이미 가입된 시설입니다. 관리자에게 문의하세요");
+			System.out.println("[이미가입된시설!]");
+			return "signup";
+		}else {
+			int result = dao.insertSilver(member);
+			if(result==0) {
+				model.addAttribute("message", "ID중복으로 가입실패");
+				System.out.println("[중복된 아이디!]");
+				return "signup";
+			}else {
+				return "index";
+			}
+			
+		}
+		
+		
+	}
 	@RequestMapping(value = "/selectMember", method = RequestMethod.POST)
 	public String selectMember(Member member, HttpSession session, Model model) {
 
@@ -130,5 +166,31 @@ public class MemberController {
 		model.addAttribute("member", result);
 		
 		return "mypage";
+	}
+	
+	@RequestMapping(value = "/whatsilver", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<SilverSearch> whatsilver(String silvername) {
+		System.out.println(silvername);
+		
+		ArrayList<SilverSearch> result = dao.whatsilver(silvername);
+
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	@RequestMapping(value = "/printsilverone", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody DetailsOne printsilverone(int seach_seq) {
+	
+		DetailsOne result = sdao.selectmap4(seach_seq);
+		
+		return result;
+	}
+	@RequestMapping(value = "/printsilvertwo", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody DetailsTwo printsilvertwo(int seach_seq) {
+		
+		DetailsTwo result = sdao.selectmap3(seach_seq);
+		
+		return result;
 	}
 }

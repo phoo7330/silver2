@@ -51,15 +51,22 @@
 	<!-- 일반로그인 스크립트 -->
 	<script>
  	 $(function(){
+ 		if('${message}'!=''){
+ 			alert('${message}');
+ 		};
 		 $("#custom-signup").hide();
 		 $(".institution").hide(); 
 		 /* 일반가입자 가입 버튼 */
+		 
+		 
 		 $('#custombtn').on('click',function(){
 			 console.log("aaa");
 			 $(".select-signup").hide();
 			 $(".institution").hide();
 			 $("#custom-signup").show(); 
 		 });
+		 
+		
 		  /* 기관관리자 가입 버튼 */
 		 $("#facilitybtn").on('click',function(){
 			 console.log("aaa");
@@ -67,7 +74,35 @@
 			 $("#custom-signup").hide();
 			 $(".institution").show(); 
 		 });
-
+		
+		
+		  //시설정보를 받아오기 위해 시설이름을 검색한다.
+		 $("#modal-searchbtn").on('click',function(){
+			var name = $("#sname").val();
+			console.log(name);
+			// whatsilver
+			$.ajax({
+				url:"whatsilver", 
+				type:"get",
+				data:{"silvername":name},
+				success:infosilver
+				});
+		 });
+		 //검색창에서 엔터키를 눌렀을때도 위와 똑같이 작동함.
+		 $("#sname").keydown(function(key) {
+			 if (key.keyCode == 13) {
+			 var name = $("#sname").val();
+				console.log(name);
+				// whatsilver
+				$.ajax({
+					url:"whatsilver", 
+					type:"get",
+					data:{"silvername":name},
+					success:infosilver
+					});
+			 }
+		 });
+		  
 	 });  
  	 
  	 
@@ -116,8 +151,70 @@
 			});
 		
 		});
+				
 		
-		 	 
+function infosilver(data){
+	console.log(data);
+	var list ='';
+	
+	
+	list += '<thead><tr><th class="th-name">기관명</th><th>주소</th></tr></thead><tbody>';
+	$.each(data, function (index, item){
+		list+='<tr style="cursor:pointer" onclick="location.href=\'javascript:printsilver('+item.seach_seq+','+item.type+')\'" data-dismiss="modal">';
+		list+='<td>'+item.silvername+'</td><td>'+item.areaa+' '+item.areab+' '+item.areac+'</td></tr>';
+		
+	});
+	list += '</tbody>';
+
+	$('#selectsilver').html(list);
+}	
+function printsilver(seach_seq,type){
+	console.log(seach_seq);
+	console.log(type);
+	if(type==1){
+		$.ajax({
+			url:"printsilverone", 
+			type:"get",
+			data:{"seach_seq":seach_seq},
+			success:printsilver2
+			});
+	}else{
+		$.ajax({
+			url:"printsilvertwo", 
+			type:"get",
+			data:{"seach_seq":seach_seq},
+			success:printsilver2
+			});
+	}
+	
+}	 	
+function printsilver2(data){
+	console.log(data);
+    var siltype = null;
+    if(data.type==1){
+       siltype = "요양병원";          
+    } else if(data.type==2){
+       siltype = "요양원";          
+    } else if(data.type==3){
+       siltype = "방문시설";          
+    } else if(data.type==4){
+       siltype = "치매전담";          
+    }
+	$('#silvertype').val(siltype);
+	$('#username').val(data.silvername);
+	
+	if(data.hospital_tel!=null){
+		$('#telephone').val(data.hospital_tel);
+		$('#address').val(data.hp_address);
+	}else if(data.tel!=null){
+		$('#telephone').val(data.tel);
+		$('#address').val(data.address);
+	}
+	
+	
+	
+	
+}
  	 
 	</script>
 
@@ -255,7 +352,7 @@
 			</div>
 			    <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-4">
-			      <input type="text" name="userid" class="form-control" id="inputId" value="${member.userid}" placeholder="아이디">
+			      <input type="text" name="userid" class="form-control" id="inputId" placeholder="아이디">
 			    </div>
 			<div class="col">
 			</div>
@@ -266,7 +363,7 @@
 			</div>
 			    <label for="inputPwd" class="col-sm-2 col-form-label">패스워드</label>
 			    <div class="col-sm-4">
-			      <input type="password" name="userpwd" class="form-control" id="inputPwd" value="${member.userpwd}" placeholder="패스워드">
+			      <input type="password" name="userpwd" class="form-control" id="inputPwd" placeholder="패스워드">
 				  <small id="passwordHelpInline" class="text-muted"> 영문 소문자+숫자 조합입니다.</small>
 			    </div>
 			<div class="col">
@@ -355,7 +452,7 @@
 
 
 	<!-- 기관관리자 회원가입 -->
-	<form class="form-signup institution" id="institution-signup" action="insertMember" method="post">
+	<form class="form-signup institution" id="institution-signup" action="insertSilver" method="post" >
 		
 		<div class="container c-signup">
 		<!-- 상단 -->
@@ -370,6 +467,7 @@
 		<div class="p-1 col-12">
 			
 			<!-- 아이디 -->
+			<input type="hidden" name="type" value="3">
 	  		<div class="form-group row">
 	  		<div class="col">
 			</div>
@@ -398,7 +496,7 @@
 			</div>
 			    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
 			    <div class="col-sm-3 pr-0">
-			      <input type="text" class="form-control" placeholder="기관명" readonly>
+			      <input type="text" name="username" id="username" class="form-control" placeholder="기관명" readonly>
 			    </div>
 			    <!-- 기관검색 모달창 버튼 : 모달창은 맨 아래 -->
 			    <div class="col-sm-1">
@@ -413,7 +511,7 @@
 			</div>
 			    <label for="InstitutionType" class="col-sm-2 col-form-label">기관분류</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" placeholder="기관분류" id="facilityType" readonly>
+					<input type="text" class="form-control" id="silvertype" placeholder="기관분류" id="facilityType" readonly>
 				</div>
 			<div class="col">
 			</div>
@@ -424,9 +522,7 @@
 				</div>
 					<label for="inputAddress" class="col-sm-2 col-form-label">주소</label>
 		         	<div class="form-group col-sm-4">
-		         		<input type="text" class="form-control mb-1" placeholder="시/도" id="sido1" readonly>
-		         		<input type="text" class="form-control mb-1" placeholder="구/군" id="gugun1" readonly>                    
-		        		<input type="text" class="form-control" placeholder="나머지 주소" id="dong1" readonly>
+		         		<input type="text" class="form-control mb-1" placeholder="주소" id="address"  name="address" readonly>
 		        	</div>
 	        	<div class="col">
 				</div>   
@@ -437,7 +533,7 @@
 			</div>
 			    <label for="inputPhone" class="col-sm-2 col-form-label">전화</label>
 			    <div class="col-sm-4">
-			      <input type="number" name="phone" class="form-control" id="inputPhone" value="" placeholder="전화번호" readonly>
+			      <input type="text" name="telephone" class="form-control" id="telephone" value="" placeholder="전화번호" readonly>
 			    </div>
 			<div class="col">
 			</div>
@@ -448,7 +544,7 @@
 				<div class="col">
 				</div>
 					<div class="col-sm-6 mb-5">
-						<button type="submit" id="facilitybtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
+						<button type="submit" id="insertbtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
 					</div>
 				<div class="col">
 				</div>
@@ -484,32 +580,19 @@
 		        <hr>
 		        <!-- search -->
 		        <div class="form-group row">
+		        <form onsubmit="return false">
 					    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
 					    <div class="col-sm-7 pr-0">
-					      <input type="text" name="searchFacility" class="form-control" placeholder="지역 혹은 기관명을 입력하세요.">
+					      <input type="text" id="sname" name="searchFacility" class="form-control" placeholder="지역 혹은 기관명을 입력하세요.">
 					    </div>
 					    <div class="col-sm-3">
 							<button type="button" id="modal-searchbtn" class="btn btn-info btn-md btn-block">검색</button>
 						</div>
+				</form>
 					</div>	
 					<!-- 검색 리스트 -->
-					<table class="table table-bordered">
-				        <thead>
-				          <tr>
-				            <th class="th-name">기관명</th>
-				            <th>주소</th>
-				          </tr>
-				        </thead>
-				        <tbody>
-				          <tr>
-				            <td>"기관명"</td>
-				            <td>"주소"</td>
-				          </tr>
-				          <tr>
-				            <td>"기관명"</td>
-				            <td>"주소"</td>
-				          </tr>
-				        </tbody>
+					<table id="selectsilver" class="table table-bordered">
+				        
 					</table>
 				
 		      <!--Footer-->

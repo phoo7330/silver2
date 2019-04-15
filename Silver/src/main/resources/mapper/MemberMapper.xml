@@ -39,6 +39,46 @@
 )
   	
   </insert>
+  <!-- 기관회원가입 -->
+  <insert id="insertSilver" parameterType="Member">
+  INSERT INTO
+  	MEMBER
+  	(
+  	USERID
+  	,TYPE
+  	,USERPWD
+  	,USERNAME
+  	,ADDRESS
+  	,REGISTRATION
+  	,WARNING
+  	,TELEPHONE
+  	)
+  	
+  	VALUES
+  	(
+	 #{userid}
+  	,#{type}
+  	,#{userpwd}
+  	,#{username}
+  	,#{address}
+  	,SYSDATE
+  	,0
+  	,#{telephone}				
+  	
+)
+  	
+  </insert>
+  <select id="seachname" parameterType="String" resultType="String">
+  SELECT
+    USERNAME
+FROM
+    MEMBER
+WHERE
+    USERNAME=#{username}
+  
+  </select>
+  
+  
   <!--로그인 -->
   <select id="selectMember" parameterType="Member" resultType="Member">
  	SELECT
@@ -95,6 +135,25 @@
 		    USERID= #{userid}
   	
   	</update>
-  
+<select id="whatsilver" parameterType="String" resultType="SilverSearch">
+	SELECT
+		SEACH_SEQ,
+		TYPE,
+		AREAA,
+		AREAB,
+		AREAC,
+		SILVERNAME,
+		SERVICE,
+		GRADE,
+		LAUITUDE,
+		LONGITUDE
+	FROM
+		SILVERSEARCH
+	WHERE
+		SILVERNAME LIKE '%'||#{silvername}||'%'
+	ORDER BY
+        GRADE
+</select> 
+
   	
   </mapper>
