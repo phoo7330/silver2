@@ -385,7 +385,7 @@ function what(){
 		$('#siltype').append(sttype);
 		return;
 	}else if(type==4){
-		sttype+='치매전담';
+		sttype+='치매전담'; 
 		$('#siltype').append(sttype);
 		return;
 	}
