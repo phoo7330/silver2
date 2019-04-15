@@ -355,7 +355,7 @@
 
 
 	<!-- 기관관리자 회원가입 -->
-	<form class="form-signup institution" action="insertMember" method="post">
+	<form class="form-signup institution" id="institution-signup" action="insertMember" method="post">
 		
 		<div class="container c-signup">
 		<!-- 상단 -->
@@ -397,9 +397,13 @@
 			<div class="col">
 			</div>
 			    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
-			    <div class="col-sm-4">
-			      <input type="text" name="username" class="form-control" id="inputName" value="" placeholder="기관명">
+			    <div class="col-sm-3 pr-0">
+			      <input type="text" class="form-control" placeholder="기관명" readonly>
 			    </div>
+			    <!-- 기관검색 모달창 버튼 : 모달창은 맨 아래 -->
+			    <div class="col-sm-1">
+					<button type="button" class="btn btn-info btn-md btn-block" id="f-searchbtn" data-toggle="modal" data-target="#search-popup">검색</button>
+				</div>
 			<div class="col">
 			</div>
 			</div>	
@@ -409,13 +413,7 @@
 			</div>
 			    <label for="InstitutionType" class="col-sm-2 col-form-label">기관분류</label>
 				<div class="col-sm-4">
-					<select class="custom-select">
-			            <option selected>기관분류 선택</option>
-			            <option value="1">요양병원</option>
-			            <option value="2">요양원</option>
-			            <option value="3">방문시설</option>
-			            <option value="3">치매전담</option>
-		            </select>
+					<input type="text" class="form-control" placeholder="기관분류" id="facilityType" readonly>
 				</div>
 			<div class="col">
 			</div>
@@ -426,46 +424,31 @@
 				</div>
 					<label for="inputAddress" class="col-sm-2 col-form-label">주소</label>
 		         	<div class="form-group col-sm-4">
-		          		<select class="form-control col mb-2" name="sido1" id="sido1"></select>
-		        		<select class="form-control col mb-2" name="gugun1" id="gugun1"></select>                      
-		        		<input type="text" class="form-control" placeholder="나머지 주소를 입력하세요." id="dong1">
+		         		<input type="text" class="form-control mb-1" placeholder="시/도" id="sido1" readonly>
+		         		<input type="text" class="form-control mb-1" placeholder="구/군" id="gugun1" readonly>                    
+		        		<input type="text" class="form-control" placeholder="나머지 주소" id="dong1" readonly>
 		        	</div>
 	        	<div class="col">
 				</div>   
 			</div>
-			<!-- 이메일 -->
-  			<div class="form-group row">
-  			<div class="col">
-			</div>
-			    <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
-			    <div class="col-sm-4">
-			      <input type="email" name="email" class="form-control" id="inputEmail" value="" placeholder="이메일">
-			    </div>
-			<div class="col">
-			</div>
-			</div>	
 			<!-- 전화 -->
   			<div class="form-group row">
   			<div class="col">
 			</div>
 			    <label for="inputPhone" class="col-sm-2 col-form-label">전화</label>
 			    <div class="col-sm-4">
-			      <input type="email" name="email" class="form-control" id="inputEmail" value="" placeholder="전화번호">
-			  	  <small id="passwordHelpInline" class="text-muted"> "-" 없이 전화번호를 입력하세요.</small>
+			      <input type="number" name="phone" class="form-control" id="inputPhone" value="" placeholder="전화번호" readonly>
 			    </div>
 			<div class="col">
 			</div>
 			</div>	
 
-			<!-- 경고값 초기화(3.26일 김동우 수정) -->
-			<input type="hidden" name="warning" value=0>
-			
 			<!-- 제출버튼 -->
 			<div class="form-group row">
 				<div class="col">
 				</div>
-					<div class="col-sm-6">
-						<button type="submit" id="institutionbtn" class="btn btn-info btn-lg btn-block">기관 등록하기</button>
+					<div class="col-sm-6 mb-5">
+						<button type="submit" id="facilitybtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
 					</div>
 				<div class="col">
 				</div>
@@ -475,7 +458,51 @@
 		</div> 
 		<!-- container c-signup -->
 		</div>
-	<!-- #custom-signup -->	
+		
+		
+		<!-- Modal -->
+	<div class="modal fade" id="search-popup" tabindex="-3" role="dialog" aria-hidden="true" data-backdrop="false">
+		  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+		    <div class="modal-content">
+		      <!--Header-->
+		      <div class="modal-header">
+		        <p class="heading lead">기관명 검색하기</p>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true" class="white-text">×</span>
+		        </button>
+		      </div>
+		      <!--Body-->
+		      <div class="modal-body">
+		        <div class="text-center">
+		          <p>
+		            <strong>기관명을 검색하세요.</strong>
+		          </p>
+		          <p>
+		            찾으시려는<strong> 기관명</strong>을 정확하게 입력해주세요.
+		          </p>
+		        </div>
+		        <hr>
+		        <!-- search -->
+		        <div class="form-group row">
+					    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
+					    <div class="col-sm-7 pr-0">
+					      <input type="text" name="searchFacility" class="form-control" placeholder="지역 혹은 기관명을 입력하세요.">
+					    </div>
+					    <div class="col-sm-3">
+							<button type="submit" id="modal-searchbtn" class="btn btn-info btn-md btn-block">검색</button>
+						</div>
+					</div>	
+		      <!--Footer-->
+		      <div class="modal-footer justify-content-center">
+		        <a type="button" class="btn btn-outline-info" data-dismiss="modal">닫기</a>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+		
+
+	<!-- #institution-signup -->	
 	</form>
 
 </body>

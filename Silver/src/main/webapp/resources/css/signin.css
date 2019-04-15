@@ -65,3 +65,13 @@
 		.c-signup {
 		  padding-top: 100px;
 		}
+		
+		/* 모달 */
+		.modal {
+		 padding-top : 50px;
+		}
+		
+		.modal-header {
+		 height: 60px;
+		}
+	
