@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ynuycabqm2"></script>
     <script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
 
-<script>
+<script> 
 /* 디폴트 기관 디테일 정보 숨김 function wlist(accidentDeath) 안에 버튼 클릭 이벤트 */
 let isEnd = false; 
 //기본 플레그
