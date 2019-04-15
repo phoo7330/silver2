@@ -18,6 +18,16 @@ public class SearchDAO {
 
    @Autowired
    SqlSession session;
+   
+   public ArrayList<SilverSearch> searchsilver(SilverSearch SilverSearch){
+	   ArrayList<SilverSearch> result = null;
+	      
+	   SearchMapper mapper = session.getMapper(SearchMapper.class);
+	      
+	   result = mapper.searchsilver(SilverSearch);
+	 
+	   return result;
+   }
 
    public ArrayList<SilverSearch> selectmap(int type){
       ArrayList<SilverSearch> result = null;

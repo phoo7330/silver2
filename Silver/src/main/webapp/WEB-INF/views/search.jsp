@@ -76,9 +76,9 @@
                <button type="button" class="btn btn-outline-info btn-sm mx-1 categoryBtn" btnFlag="4">치매전담</button>
                
             <!-- 검색 -->
-            <form class="form-inline mt-2 mt-md-0">
-               <input class="form-control mr-sm-2 form-control-sm mx-2" type="text" placeholder="시설명 검색" aria-label="search">
-               <button class="btn btn-info my-2 my-sm-0 btn-sm" type="submit">검색</button>
+            <form id="searchsilver" name="searchsilver" class="form-inline mt-2 mt-md-0" onsubmit="return false">
+               <input id="silvername" name="silvername" class="form-control mr-sm-2 form-control-sm mx-2" type="text" placeholder="시설명 검색" aria-label="search">
+               <button id="searchbtn" class="btn btn-info my-2 my-sm-0 btn-sm" type="submit">검색</button>
             </form>
             </div>
             </div>
@@ -151,6 +151,7 @@ $(function() {
    init(flag);
    pagelist(flag,page);
    
+   // 시설 종류를 선택하면 리스트랑 지도가 초기화된다.
    $(".categoryBtn").on("click",function(){
       page = 1;
       ffff = 0;
@@ -160,7 +161,30 @@ $(function() {
       init(flag);
       pagelist(flag);
    });
+   //시설이름을 넣어서 검색한다.
+	$("#searchbtn").on('click', function() {
+
+		// var ss = $("form[name=searchsilver]").serialize();
+		 var silvername = $("#silvername").val();
+		/*  var SilverSearch = [];
+		 SilverSearch.push({
+			 "silvername":silvername,
+			 "type":flag
+		 }); */
+		
+		 $.ajax({
+			url:"searchsilver", 
+			type:"get",
+			data:{silvername:silvername,
+				  type:flag},
+			success:output
+			
+			}); 
+	
+});
+
    
+   //시설리스트 무한스크롤링(페이징)
    $('#alllist').scroll(function(){
         let $alllist = $(this);
         let scrollTop = $('#alllist').scrollTop();
@@ -169,34 +193,18 @@ $(function() {
         var scrollBottom = $("#alllist").height()- $("#alllist").scrollTop();
         var scHeight = $('#alllist').prop('scrollHeight');
         
-        //console.log(" | scrollTop:" + scrollTop+"바텀"+ scrollBottom);
       var scrollHeight = $('#alllist').height();
       var scrollPosition = (scrollHeight + scrollTop);
-      //console.log(scrollHeight+"po"+scrollPosition);
       console.log(scHeight+"dd"+scrollPosition);
       if (scHeight-3<scrollPosition) {
-          //console.log("플래그"); 
           page += 1;
              ffff = 1;
-             //console.log("페이지"+page);
-             //console.log("업마크"+upmark);
-             //console.log(flag);
              if(upmark==1){ 
-                //console.log("실행되니?");
                 pagelist2();
              }else{
                 pagelist(flag,page);
              }
-             
-             
-      }
-        
-        // scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
-       /* if( scrollTop + 400 > windowHeight ){
-                page += 1;
-                f = 1;
-                pagelist(flag);
-        } */
+    	  }
    });
 });
 function count(data){
@@ -256,8 +264,6 @@ function init2(maptest) {
       $('#mlist').html(listn);
       return;
    }
-   // console.log("maptest : " + JSON.stringify(maptest));
-   //console.log(maptest);  
    
    $.ajax({
       url:"selectmap2",
@@ -267,10 +273,6 @@ function init2(maptest) {
       
    });
 }
-/* function output2(resp){
-   //console.log("list : " + makers(resp));
-   //wlist(makers(resp));
-} */ 
 function output(resp){
    
    // 2014년 사망사고 위치
@@ -281,9 +283,8 @@ function output(resp){
         },
         "resultCode": "Success"
    }
-   //wlist(makers(resp));
    write(accidentDeath); // 지도에 마커그림
-   //wlist(makers(resp));
+
    count(makers(resp));
 }
 //DB에 있는 좌표를 받아옴
@@ -388,8 +389,6 @@ function write(accidentDeath){
            data = accidentDeath.searchResult.accidentDeath;
        var infoWindows = [];
        
-      
-       
       //data에 있는 마커를 var markers에 저장한다.
       
       //data.length만큼 반복해서 마커를 찍는다.
@@ -407,14 +406,11 @@ function write(accidentDeath){
                content: '<div style="width:150px;text-align:center;padding:10px;">시설이름:<br> <b>"'+ spot.silvername +'"</b></div>'
            });
            
-           
            infoWindows.push(infoWindow);
            markers.push(marker);
-           
        }
-       /* console.log(accidentDeath);  
-       output2(accidentDeath); */
-       
+       updateMarkers(map, markers);
+
        naver.maps.Event.addListener(map, 'zoom_changed', function() {
            updateMarkers(map, markers);
            
@@ -434,8 +430,6 @@ function write(accidentDeath){
                marker = markers[i]
                position = marker.getPosition();
               
-               
-               
                if (mapBounds.hasLatLng(position)) {
                    showMarker(map, marker);
                   
@@ -451,13 +445,10 @@ function write(accidentDeath){
                    
                }
                
-              // console.log(position);
            }
-           //console.log(maptest);
           // 현재 지도상의 마커만 배열에 들어감. 여기서 리스트 출력하자
            init2(maptest);
              
-         
        }
        function showMarker(map, marker) {
            if (marker.getMap()) return;
@@ -468,11 +459,7 @@ function write(accidentDeath){
        function hideMarker(map, marker) {
            if (!marker.getMap()) return;
            marker.setMap(null);
-           
-           
        }
-      
-      
       
        var htmlMarker1 = {
                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/images/cluster-marker-1.png);background-size:contain;"></div>',

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="resources/css/custom.css">
 
 </head>
+
 <body>
 	<!-- 메인 네비게이션 -->
 	<header>
@@ -29,7 +30,7 @@
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<ul class="navbar-nav">
 					<li class="nav-item active" style="color: black;">
-			  			<a class="nav-link text-light mr-3" href="institution"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  			<a class="nav-link text-light mr-3" href="search"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
 			  		</li>
 			  		<li class="nav-item">
 			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>

@@ -30,6 +30,24 @@ public class SearchController {
 	private static final int boardPerPage = 4;
 	private static final int pagePerGroup = 3;
 
+	@RequestMapping(value = "/search", method = { RequestMethod.POST, RequestMethod.GET })
+	public String search () {
+		return "search";
+	}
+	
+	@RequestMapping(value = "/searchsilver", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<SilverSearch> searchsilver(String silvername, int type) {
+		
+		SilverSearch ss = new SilverSearch();
+		ss.setSilvername(silvername);
+		ss.setType(type);
+		ArrayList<SilverSearch> result = dao.searchsilver(ss);
+
+		return result;
+		
+	}
+	
+	
 	@RequestMapping(value = "/pagemap", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody ArrayList<SilverSearch> pagemap(Model model, @RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "") int type) {

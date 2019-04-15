@@ -30,10 +30,7 @@
     <script type="text/javascript" src="resources/src/MarkerClustering.js"></script>
 
 <script>
-
 /* 디폴트 기관 디테일 정보 숨김 function wlist(accidentDeath) 안에 버튼 클릭 이벤트 */
-
-
 let isEnd = false; 
 //기본 플레그
 var flag = 1;
@@ -54,29 +51,17 @@ $(function() {
 	        let documentHeight = $(document).height();
 	        var scrollBottom = $("#listcard").height()- $("#listcard").scrollTop();
 	        var scHeight = $('#listcard').prop('scrollHeight');
-	        
-	        //console.log(" | scrollTop:" + scrollTop+"바텀"+ scrollBottom);
-	      var scrollHeight = $('#listcard').height();
+	        var scrollHeight = $('#listcard').height();
 	      var scrollPosition = (scrollHeight + scrollTop);
-	      //console.log(scrollHeight+"po"+scrollPosition);
-	      //console.log(scHeight+"dd"+scrollPosition);
 	      if (scHeight-3<scrollPosition) {
-	          //console.log("플래그"); 
 	          page += 1;
 	             ffff = 1;
-	             //console.log("페이지"+page);
-	             //console.log("업마크"+upmark);
-	             //console.log(flag);
 	             if(upmark==1){ 
-	                //console.log("실행되니?"); 
 	                pagelist2();
 	             }else{
 	                pagelist(page);
 	             }
-	             
-	             
 	      }
-	   
 	   });
 		//왼쪽 선택박스 선택에 따라 검색한다.
 		$("#selectbtn").on('click', function() {  
@@ -122,11 +107,6 @@ $(function() {
 		});
 		
 });
-
-
-
-
-
 $(function() {
 	$("#information").hide();
 	
@@ -146,7 +126,6 @@ $(function() {
 				});
         }
     });
-
 	//검색어(주소, 시설이름)을 검색한다.
 	$("#searchbtn").on('click', function() {
 			$("#information").hide();
@@ -159,10 +138,7 @@ $(function() {
 				data:job,
 				success:output
 				});
-		
 	});
-	
-	
 });	
 
 function pagelist(page){
@@ -185,11 +161,7 @@ function pagelist2(){
 	      success:wlist
 	   });
 	}	
-/* function info(){
 
-console.log($(this).attr('data-value'));
-}	 */
-	
 function wlist(accidentDeath){
 		
 	   if(accidentDeath.length==0){
@@ -265,8 +237,6 @@ function wlist(accidentDeath){
 	   		$("#map").show();  
 	   		
 	   	});
- 	
-	 
 	}	
 function init(){
 	$.ajax({
@@ -275,9 +245,6 @@ function init(){
 	success:output
 		   });
 }
-
-
-
 function init2(maptest) {
 	   ffff=0;
 	   jQuery.ajaxSettings.traditional = true;
@@ -296,9 +263,6 @@ function init2(maptest) {
 	      $('#mlist').html(listn);
 	      return;
 	   }
-	   // console.log("maptest : " + JSON.stringify(maptest));
-	   //console.log(maptest);  
-	   
 	   $.ajax({
 	      url:"jselectmap2",
 	      data: {maptestJSON : JSON.stringify(maptest)},
@@ -378,9 +342,6 @@ function write(accidentDeath){
        var markers = [],
            data = accidentDeath.searchResult.accidentDeath;
        var infoWindows = [];
-       
-      
-       
       //data에 있는 마커를 var markers에 저장한다.
       
       //data.length만큼 반복해서 마커를 찍는다.
@@ -392,20 +353,14 @@ function write(accidentDeath){
                    draggable: false
                    //마커의 드래그 가능여부.
                });
-         
-           
            var infoWindow = new naver.maps.InfoWindow({
                content: '<div style="width:150px;text-align:center;padding:10px;">시설이름:<br> <b>"'+ spot.silvername +'"</b></div>'
            });
-           
-           
            infoWindows.push(infoWindow);
            markers.push(marker);
            
        }
        updateMarkers(map, markers);
-        //console.log(accidentDeath);  
-
        
        naver.maps.Event.addListener(map, 'zoom_changed', function() {
            updateMarkers(map, markers);
@@ -442,10 +397,7 @@ function write(accidentDeath){
                    hideMarker(map, marker);
                    
                }
-               
-              // console.log(position);
            }
-           console.log(maptest);
           // 현재 지도상의 마커만 배열에 들어감. 여기서 리스트 출력하자
            init2(maptest);
              
@@ -593,7 +545,6 @@ function write(accidentDeath){
 		});
 	});
 	
-	
 	/* 근무형태 선택  */
 	$('document').ready(function() {
 		var category0 = ["전체","정규직","계약직","시간제"];
@@ -625,7 +576,6 @@ function write(accidentDeath){
 			}
 		});
 	});
-	
 	
 	</script>
 	

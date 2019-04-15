@@ -10,6 +10,8 @@ import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.SilverSearch;
 
 public interface SearchMapper {
+	
+	public ArrayList<SilverSearch> searchsilver(SilverSearch SilverSearch);
 
 	public ArrayList<SilverSearch> selectmap(int type);
 	

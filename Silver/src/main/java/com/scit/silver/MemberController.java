@@ -29,10 +29,7 @@ public class MemberController {
 		return "signup";
 	}
 
-	@RequestMapping(value = "/search", method = { RequestMethod.POST, RequestMethod.GET })
-	public String search () {
-		return "search";
-	}
+	
 	
 	
 	@RequestMapping(value = "/logout", method = { RequestMethod.POST, RequestMethod.GET })
