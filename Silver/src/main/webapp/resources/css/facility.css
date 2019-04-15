@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-#main-nav {
+#main-nav,
+#search-nav {
 	background-color: #3471ba;
 } 
 
@@ -11,7 +12,7 @@
 .jumbotron {
 	margin-top: 70px;
 	background-color: white;
-	border-bottom: 4px solid #5f5f5f;
+	/* border-bottom: 4px solid #5f5f5f; */
 }
 
 .view-cascade {
@@ -21,3 +22,25 @@
 #messageForm {
 	margin-top: 70px;
 }
+
+#inform-tabContent {
+	color: #F8F9FA;
+}
+/* 하단 수정 메뉴 
+-------------------------------------------------- */
+.cardMenu {
+  height : 410px;
+}
+
+#column1 {
+  background-color: #f3f3f3;
+}
+
+#column2 {
+  background-color: #cedbe6;
+}
+
+#column3 {
+  background-color: #f3f3f3;
+}
+
