@@ -37,6 +37,30 @@
 			$("#inform-tabContent").html(item);
 		 });
 	  });
+	 
+	  /* 쪽지함 show & hide 스크립트 */
+	  $(document).ready(function(){
+		  $("#senderForm").hide();
+	  
+		  $("#replybtn").click(function(){    
+			 $("#receiveTable").hide();
+			 $("#receivePage").hide();
+			 $("#senderForm").show();
+	      });
+		  
+		  $("#sendbtn").click(function(){    
+			$("#senderForm").hide();
+			$("#receiveTable").show();
+			$("#receivePage").show();
+		  });
+		  
+		  $("#cancelbtn").click(function(){    
+			$("#senderForm").hide();
+			$("#receiveTable").show();
+			$("#receivePage").show();
+		  });
+
+	  });
 	  
 /* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
 
@@ -681,7 +705,7 @@
 										</div>
 									</div>
 									<!-- 쪽지 리스트 테이블 -->
-									<table class="table table-sm">
+									<table class="table table-sm" id="receiveTable">
 									  <thead>
 									    <tr class="table-bordered text-center">
 									      <th scope="col"><small>선택</small></th>
@@ -704,7 +728,7 @@
 									  </tbody>
 									</table>
 									<!-- 페이지네이션 -->
-									<nav aria-label="Page navigation">
+									<nav id="receivePage" aria-label="Page navigation">
 									  <ul class="pagination pagination-sm justify-content-center">
 									    <li class="page-item">
 									      <a class="page-link" aria-label="Previous">
@@ -721,6 +745,18 @@
 									    </li>
 									  </ul>
 									</nav>
+									<!-- 쪽지 눌렀을 때 -->
+									<div class="form mb-3" id="senderForm">
+										<div class="form-group row">
+										   <label for="sender" class="col-sm-2 col-form-label col-form-label-sm"><small>보낸사람</small></label>
+										   <div class="col-sm-10">
+										   	<input type="text" class="form-control form-control-sm" id="sender" readonly>
+										   </div>
+										</div>
+											<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+											<button type="button" id="sendbtn" class="btn btn-outline-secondary btn-sm mt-3">보내기</button>
+											<button type="button" id="cancelbtn" class="btn btn-outline-secondary btn-sm mt-3">취소</button>
+								    </div>  	
 								</div>
 								<!-- 보낸쪽지함 -->
 								<div class="tab-pane fade" id="pills-send" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -797,36 +833,7 @@
 						</div>
 					</div>
 				</div>
-				
-				<!-- 받은쪽지함 모달창 -->
-				<div class="modal fade" id="messageForm" tabindex="-1" role="dialog" aria-hidden="true">
-				  <div class="modal-dialog modal-lg" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header text-center">
-				        <button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
-				        <button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm">답장</button>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body mx-3">
-						<form>
-							<div class="form-group row">
-					            <label for="sender" class="col-sm-2 col-form-label col-form-label-sm"><small>보낸사람</small></label>
-					            <div class="col-sm-10">
-					            <input type="text" class="form-control form-control-sm" id="sender" readonly>
-					            </div>
-							</div>
-						</form>
-						<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
-				      </div>
-				      <div class="modal-footer d-flex justify-content-center">
-				        <button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
-				
+
 				<!-- 3-4. 이력서 / 종사자 계정 구분 만든 후 -->
 				<div class="tab-pane fade" id="tab-resume-box" role="tabpanel" aria-labelledby="resume-box">
 <!-- 수정: 이력서 양식 추가 -->
@@ -986,10 +993,7 @@
 					</div>
 				<!-- 3-4. 이력서 -->
 				</div>
-				<!-- 저장 버튼 -->
-							<div class="text-center pt-3 pb-5">
-								<button type="submit" id="savebtn" class="btn btn-outline-secondary">저장</button>
-							</div>
+		
 				<!-- .tab-content -->
 				</div>
 			<!-- .col-8 -->
