@@ -313,7 +313,7 @@ function printsilver2(data){
 	</div>	
 </div>
 
-	<!-- 일반가입자 회원가입 -->
+	<!-- 일반가입자 회원가입 --> 
 	<form class="form-signup" id="custom-signup" action="insertMember" method="post">
 		
 		<div class="container c-signup">
