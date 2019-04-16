@@ -43,4 +43,11 @@ public class HomeController {
 
 		return "facility/facilitymypage";
 	}
+	
+	@RequestMapping(value = "/recruitpage", method = RequestMethod.GET)
+	public String recruitpage(Locale locale, Model model) {
+
+		return "facility/recruitpage";
+	}
+	
 }

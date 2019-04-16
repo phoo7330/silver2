@@ -51,10 +51,10 @@ $(function() {
 			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
 				<ul class="navbar-nav">
 					<li class="nav-item active" style="color: black;">
-			  			<a class="nav-link text-light mr-3" href="#"><strong>기관정보</strong><span class="sr-only">(current)</span></a>
+			  			<a class="nav-link text-light mr-3" href="facilitymypage"><strong>기관정보</strong><span class="sr-only">(current)</span></a>
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="#"><strong>구인정보</strong></a>
+			  			<a class="nav-link text-light mr-3" href="recruitpage"><strong>구인정보</strong></a>
 			  		</li>
 			  		<li class="nav-item">
 			  			<a class="nav-link text-light mr-3" href="#"><strong>인재정보</strong></a>	
