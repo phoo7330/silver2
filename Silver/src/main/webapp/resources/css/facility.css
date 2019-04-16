@@ -64,3 +64,23 @@ span {
 .modal-header {
 	background-color: #3471ba;
 }
+
+/* recruitpage.jsp 
+-------------------------------------------------- */
+
+table.table-bordered > tbody > tr > th {
+    border-top:3px solid #3471ba;
+}
+
+.w-20 {
+	width: 20%;
+}
+
+.w-30 {
+	width: 30%;
+}
+
+#r-savebtn,
+#r-cancelbtn { 
+	width: 100px;
+}
