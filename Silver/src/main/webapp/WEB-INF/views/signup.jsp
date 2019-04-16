@@ -175,6 +175,11 @@
 		
 		  //시설정보를 받아오기 위해 시설이름을 검색한다.
 		 $("#modal-searchbtn").on('click',function(){
+			var snleng = $("#sname").val().length;
+			if(snleng<1){
+				alert("시설명을 입력하세요");
+				return;
+			}
 			var name = $("#sname").val();
 			console.log(name);
 			// whatsilver
@@ -261,16 +266,19 @@ function succ(data){
 }	
 		
 function infosilver(data){
-	console.log(data);
 	var list ='';
-	
-	
 	list += '<thead><tr><th class="th-name">기관명</th><th>주소</th></tr></thead><tbody>';
-	$.each(data, function (index, item){
-		list+='<tr style="cursor:pointer" onclick="location.href=\'javascript:printsilver('+item.seach_seq+','+item.type+')\'" data-dismiss="modal">';
-		list+='<td>'+item.silvername+'</td><td>'+item.areaa+' '+item.areab+' '+item.areac+'</td></tr>';
-		
-	});
+	if(data.length==0){
+		list+= '<td></td><td>검색된 시설이 없습니다.</td>';
+	}else{
+		$.each(data, function (index, item){
+			list+='<tr style="cursor:pointer" onclick="location.href=\'javascript:printsilver('+item.seach_seq+','+item.type+')\'" data-dismiss="modal">';
+			list+='<td>'+item.silvername+'</td><td>'+item.areaa+' '+item.areab+' '+item.areac+'</td></tr>';
+			
+		});
+	}
+	
+	
 	list += '</tbody>';
 
 	$('#selectsilver').html(list);

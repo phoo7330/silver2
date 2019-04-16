@@ -60,6 +60,7 @@ public class MemberController {
 			System.out.println("[회원가입실패!]");
 			return "signup";
 		}else {
+			model.addAttribute("message", "회원가입이 완료되었습니다!");
 			return "index";
 		}
 
@@ -85,6 +86,7 @@ public class MemberController {
 				System.out.println("[중복된 아이디!]");
 				return "signup";
 			}else {
+				model.addAttribute("message", "회원가입이 완료되었습니다!");
 				return "index";
 			}
 			
