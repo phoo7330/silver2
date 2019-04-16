@@ -16,6 +16,8 @@ public interface MemberMapper {
 	
 	public String seachname(String username);
 	
+	public String seachid(String userid);
+	
 	public Member selectMember(Member member);
 
 	public Member selectMember2(String userid);

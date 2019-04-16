@@ -193,4 +193,21 @@ public class MemberController {
 		
 		return result;
 	}
+	@RequestMapping(value = "/idtest", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public int idtest(String userid) {
+		String id = null;
+				id = dao.seachid(userid);
+		System.out.println(id);
+		int result = 0;
+		if(id!=null) { //아이디가 들어있으면 사용할수 없다.
+			result = 0;
+			return result;
+		}else if(id==null) {
+			result=1;
+			return result;
+		}
+		return result;
+		
+	}
 }

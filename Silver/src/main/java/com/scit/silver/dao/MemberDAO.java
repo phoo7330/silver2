@@ -49,6 +49,12 @@ public class MemberDAO {
 		result = mapper.seachname(username);
 		return result;
 	}
+	public String seachid(String userid) {
+		String result = null;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		result = mapper.seachid(userid);
+		return result;
+	}
 	
 	public Member selectMember(Member member) {
 		Member result = null;

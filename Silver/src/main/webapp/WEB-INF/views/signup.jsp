@@ -74,6 +74,103 @@
 			 $("#custom-signup").hide();
 			 $(".institution").show(); 
 		 });
+		 $("#signupbtn").on("click",function(){
+			var idlang = $("#inputId1").val().length;
+			var pslang = $("#inputPwd1").val().length; 
+			var unlang = $("#inputName").val().length; 
+			var bilang = $("#inputBirth").val().length;
+			var gelang = $("#inputGender").val().length;
+			var emlang = $("#inputEmail").val().length;
+			var adlang = $("#inputAddress").val().length;
+			if(idlang<4||idlang>10){
+				alert("4~10자리 id 입력");
+				return;
+			}
+			if(pslang<6||pslang>10){
+				alert("6~10자리 pw 입력");
+				return;
+			}
+			if(unlang<1){
+				alert("이름을 입력해주세요");
+				return;
+			}
+			if(bilang<1){
+				alert("생년월일을 입력해주세요");
+				return;
+			}
+			if(gelang>3){
+				alert("성별을 입력해주세요");
+				return;
+			}
+			if(emlang<1){
+				alert("이메일을 입력해주세요");
+				return;
+			}
+			if(adlang<1){
+				alert("주소를 입력해주세요");
+				return;
+			}
+			$("#custom-signup").submit(); 
+		 });
+		 
+		  //기관관리자 유효성검사
+		 $("#insertbtn").on("click",function(){
+			var idlang = $("#inputId2").val().length;
+			var pslang = $("#inputPwd2").val().length; 
+			var unlang = $("#username").val().length; 
+			
+			if(idlang<4||idlang>10){
+				alert("4~10자리 id 입력");
+				return;
+			}
+			if(pslang<6||pslang>10){
+				alert("6~10자리 pw 입력");
+				return;
+			}
+			if(unlang<1){
+				alert("기관검색을 해주세요");
+				return;
+			}
+			$("#institution-signup").submit(); 
+		 });
+		 //일반사용자 아이디 실시간 검사
+		 $('#inputId1').keyup(function(){
+			 var userid = $("#inputId1").val();
+			 console.log(userid);
+			 if (userid.length <= 4) { //최소 글자수 이상
+					 $(".span_id2").html("");
+	 				 $(".span_id1").html("4자리 이상 입력하세요");
+	 
+	                    }else{
+	                    	$.ajax({
+	            				url:"idtest", 
+	            				type:"get",
+	            				data:{"userid":userid},
+	            				success:succ
+	            				});
+	                    	
+	                    }
+	 
+	                });
+		 //기관관리자 아이디 실시간 검사
+		 $('#inputId2').keyup(function(){
+			 var userid = $("#inputId2").val();
+			 console.log(userid);
+			 if (userid.length <= 4) { //최소 글자수 이상
+					 $(".span_id2").html("");
+	 				 $(".span_id1").html("4자리 이상 입력하세요");
+	 
+	                    }else{
+	                    	$.ajax({
+	            				url:"idtest", 
+	            				type:"get",
+	            				data:{"userid":userid},
+	            				success:succ
+	            				});
+	                    	
+	                    }
+	 
+	                });
 		
 		
 		  //시설정보를 받아오기 위해 시설이름을 검색한다.
@@ -151,7 +248,17 @@
 			});
 		
 		});
-				
+function succ(data){
+	console.log(data);
+	if(data==0){
+		$(".span_id2").html("");
+		$(".span_id1").html("중복된 아이디가 있습니다.");
+	}else if(data==1){
+		$(".span_id1").html("");
+		$(".span_id2").html("사용할 수 있는 아이디 입니다.");
+	}
+	
+}	
 		
 function infosilver(data){
 	console.log(data);
@@ -215,7 +322,7 @@ function printsilver2(data){
 	
 	
 }
- 	 
+
 	</script>
 
 
@@ -352,7 +459,7 @@ function printsilver2(data){
 			</div>
 			    <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-4">
-			      <input type="text" name="userid" class="form-control" id="inputId" placeholder="아이디">
+			      <input type="text" name="userid" class="form-control" id="inputId1" placeholder="아이디"><span style="color:red" class="span_id1"></span><span style="color:blue" class="span_id2"></span>
 			    </div>
 			<div class="col">
 			</div>
@@ -363,7 +470,7 @@ function printsilver2(data){
 			</div>
 			    <label for="inputPwd" class="col-sm-2 col-form-label">패스워드</label>
 			    <div class="col-sm-4">
-			      <input type="password" name="userpwd" class="form-control" id="inputPwd" placeholder="패스워드">
+			      <input type="password" name="userpwd" class="form-control" id="inputPwd1" placeholder="패스워드">
 				  <small id="passwordHelpInline" class="text-muted"> 영문 소문자+숫자 조합입니다.</small>
 			    </div>
 			<div class="col">
@@ -398,7 +505,7 @@ function printsilver2(data){
 				<label for="inputType" class="col-sm-2 col-form-label">성별</label>
 				<div class="col-sm-4">
 					 <select class="custom-select my-1 mr-sm-2" name="gender" id="inputGender">
-					    <option selected>선택</option>
+					    <option selected>성별선택</option>
 					    <option name="gender" value="남성">남성</option>
 					    <option name="gender" value="여성">여성</option>
 					  </select>
@@ -437,7 +544,7 @@ function printsilver2(data){
 				<div class="col">
 				</div>
 					<div class="col-sm-6">
-						<button type="submit" id="signupbtn" class="btn btn-info btn-lg btn-block">회원가입</button>
+						<button type="button" id="signupbtn" class="btn btn-info btn-lg btn-block">회원가입</button>
 					</div>
 				<div class="col">
 				</div>
@@ -452,7 +559,7 @@ function printsilver2(data){
 
 
 	<!-- 기관관리자 회원가입 -->
-	<form class="form-signup institution" id="institution-signup" action="insertSilver" method="post" >
+	<form class="form-signup institution"  id="institution-signup" action="insertSilver" method="post" >
 		
 		<div class="container c-signup">
 		<!-- 상단 -->
@@ -473,7 +580,7 @@ function printsilver2(data){
 			</div>
 			    <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
 			    <div class="col-sm-4">
-			      <input type="text" name="userid" class="form-control" id="inputId" value="" placeholder="아이디">
+			      <input type="text" name="userid" class="form-control" id="inputId2" placeholder="아이디"><span style="color:red" class="span_id1"></span><span style="color:blue" class="span_id2"></span>
 			    </div>
 			<div class="col">
 			</div>
@@ -484,7 +591,7 @@ function printsilver2(data){
 			</div>
 			    <label for="inputPwd" class="col-sm-2 col-form-label">패스워드</label>
 			    <div class="col-sm-4">
-			      <input type="password" name="userpwd" class="form-control" id="inputPwd" value="" placeholder="패스워드">
+			      <input type="password" name="userpwd" class="form-control" id="inputPwd2" value="" placeholder="패스워드">
 				  <small id="passwordHelpInline" class="text-muted"> 영문 소문자+숫자 조합입니다.</small>
 			    </div>
 			<div class="col">
@@ -544,7 +651,7 @@ function printsilver2(data){
 				<div class="col">
 				</div>
 					<div class="col-sm-6 mb-5">
-						<button type="submit" id="insertbtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
+						<button type="button" id="insertbtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
 					</div>
 				<div class="col">
 				</div>
