@@ -16,7 +16,7 @@
 }
 
 .view-cascade {
-  height: 160px;
+  height: 170px;
 }
 
 #messageForm {
@@ -26,10 +26,16 @@
 #inform-tabContent {
 	color: #F8F9FA;
 }
+
+.btn-outline-primary {
+	background: #3471ba;
+	color: white;
+}
+
 /* 하단 수정 메뉴 
 -------------------------------------------------- */
 .cardMenu {
-  height : 410px;
+  height : 400px;
 }
 
 #column1 {
@@ -44,3 +50,17 @@
   background-color: #f3f3f3;
 }
 
+/* footer 
+-------------------------------------------------- */
+.page-footer {
+  background-color: #9fa4a7;
+}
+span {
+  color: #3471ba;
+}
+
+/* modal 
+-------------------------------------------------- */
+.modal-header {
+	background-color: #3471ba;
+}
