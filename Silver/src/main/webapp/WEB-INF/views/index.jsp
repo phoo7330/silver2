@@ -14,9 +14,17 @@
 	
 	<!-- Custom CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/custom.css">
+	<!-- 제이쿼리 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
 
 </head>
-
+<script type="text/javascript">
+$(function(){
+		if('${message}'!=''){
+			alert('${message}');
+		};
+});
+</script>
 <body>
 	<!-- 메인 네비게이션 -->
 	<header>
