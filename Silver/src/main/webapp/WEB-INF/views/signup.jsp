@@ -67,7 +67,7 @@
 		 });
 		 
 		
-		  /* 기관관리자 가입 버튼 */
+		  /* 기관관리자 가입 버튼 */ 
 		 $("#facilitybtn").on('click',function(){
 			 console.log("aaa");
 			 $(".select-signup").hide();
