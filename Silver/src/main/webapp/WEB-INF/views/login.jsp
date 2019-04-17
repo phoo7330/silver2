@@ -100,11 +100,11 @@ $(function() {
 		<h1 class="h3 mb-3 font-weight-normal">로그인</h1>
 		<!-- 로그인선택 -->
 		<div class="custom-control custom-radio custom-control-inline my-2">
-		  <input class="custom-control-input" type="radio" id="customRadio1"  name="custom-radio1" value="option1" checked>
+		  <input class="custom-control-input" type="radio" id="customRadio1"  name="type" value="1" checked>
 		  <label class="custom-control-label" for="customRadio1">일반사용자</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
-		  <input class="custom-control-input" type="radio" id="customRadio2" name="custom-radio1" value="option2">
+		  <input class="custom-control-input" type="radio" id="customRadio2" name="type" value="3">
 		  <label class="custom-control-label" for="customRadio2">기관관리자</label>
 		</div>
 

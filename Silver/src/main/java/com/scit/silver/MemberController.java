@@ -96,43 +96,65 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/selectMember", method = RequestMethod.POST)
 	public String selectMember(Member member, HttpSession session, Model model) {
-
-		Member result = dao.selectMember(member);
-
-		if (result == null) {
-			model.addAttribute("message", "id와 pw를 확인해주세요.");
-			model.addAttribute("member", member);
-			System.out.println("[로그인실패]!");
-			return "login";
-		}
-
-		if(result.getType()==1) {
-			session.setAttribute("loginId", result.getUserid());
-			session.setAttribute("nomalId", result.getUserid());
-			session.setAttribute("usertype", "1");
-			System.out.println("[일반회원]: "+result.getUserid());
-		} else if(result.getType()==2){
-			session.setAttribute("loginId", result.getUserid());
-			session.setAttribute("workerId", result.getUserid());
-			session.setAttribute("usertype", "2");
-			System.out.println("[구직자]: "+result.getUserid());
-		} else if(result.getType()==3) {
-			session.setAttribute("managerId", result.getUserid());
-			session.setAttribute("usertype", "3");
-			System.out.println("[시설관리자]: "+result.getUserid());
-			int seach_seq = dao.selseq(result.getUsername());
-			DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
-			System.out.println(DetailsOne);
-			model.addAttribute("DetailsOne", DetailsOne);
+		System.out.println(member);
+		int type = member.getType();
+		
+		if(type==1) {
+			Member result = dao.selectMember(member);
 			
-			return "facility/facilitymypage";
-		} else if(result.getType()==10) {
-			session.setAttribute("adminId", result.getUserid());
-			session.setAttribute("usertype", "10");
-			System.out.println("[사이트관리자]: "+result.getUserid());
-		} 
-		System.out.println("[세션에 입력된 아이디]: "+result.getUserid());
-		System.out.println("[세션에서 입력된 회원타입]: "+session.getAttribute("usertype"));
+			if (result == null) {
+				model.addAttribute("message", "id와 pw를 확인해주세요.");
+				model.addAttribute("member", member);
+				System.out.println("[로그인실패]!");
+				return "login";
+			}
+			if(result.getType()==1) {
+				session.setAttribute("loginId", result.getUserid());
+				session.setAttribute("nomalId", result.getUserid());
+				session.setAttribute("usertype", "1");
+				System.out.println("[일반회원]: "+result.getUserid());
+				return "redirect:/index";
+			} else if(result.getType()==2){
+				session.setAttribute("loginId", result.getUserid());
+				session.setAttribute("workerId", result.getUserid());
+				session.setAttribute("usertype", "2");
+				System.out.println("[구직자]: "+result.getUserid());
+				return "redirect:/index";
+			} else {
+				model.addAttribute("message", "id와 pw를 확인해주세요.");
+				return "index";
+			}
+			
+		}
+		else if(type==3){
+			Member result = dao.selectMember(member);
+			
+			if (result == null) {
+				model.addAttribute("message", "id와 pw를 확인해주세요.");
+				model.addAttribute("member", member);
+				System.out.println("[로그인실패]!");
+				return "login";
+			}
+			if(result.getType()==3) {
+				session.setAttribute("managerId", result.getUserid());
+				session.setAttribute("usertype", "3");
+				System.out.println("[시설관리자]: "+result.getUserid());
+				int seach_seq = dao.selseq(result.getUsername());
+				DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
+				System.out.println(DetailsOne);
+				model.addAttribute("DetailsOne", DetailsOne);
+				
+				return "facility/facilitymypage";
+			} else if(result.getType()==10) {
+				session.setAttribute("adminId", result.getUserid());
+				session.setAttribute("usertype", "10");
+				System.out.println("[사이트관리자]: "+result.getUserid());
+			} else {
+				model.addAttribute("message", "id와 pw를 확인해주세요.");
+				return "index";
+			}
+			
+		}
 		return "index";
 	}
 	
