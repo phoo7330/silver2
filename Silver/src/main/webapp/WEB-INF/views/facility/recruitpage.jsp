@@ -123,6 +123,36 @@ $('document').ready(function() {
 });
 
 
+/* 
+ * 구인정보 show & hide 스크립트 
+ * 입력 폼에서 '저장'버튼 누르면 입력 폼 하이드/ 수정 폼 쇼 
+ * 입력 폼에서 '취소'버튼 누르면 입력 폼 값 비우기 
+ * 확인 폼에서 '수정'버튼 혹은 '삭제' 버튼 누르면 확인 폼 하이드 / 수정 폼 쇼 
+ */
+$(document).ready(function(){
+	  $("#confirm-recruit").hide();
+
+	  $("#r-savebtn").click(function(){    
+		 $("#register-recruit").hide();
+		 $("#confirm-recruit").show();
+	});
+	  
+	  $("#r-cancelbtn").click(function(){    
+		$("#register-recruit").empty();
+	});
+	  
+	  $("#r-editbtn").click(function(){    
+		$("#confirm-recruit").hide();
+		$("#register-recruit").show();
+	});
+	  
+	  $("#r-delbtn").click(function(){    
+		$("#confirm-recruit").hide();
+		$("#register-recruit").show();
+	});
+
+});
+
 </script>
 
 	<!-- 메인 네비게이션 -->
@@ -178,7 +208,7 @@ $('document').ready(function() {
 	</div>
 
 	<!-- main -->
-	<div class="container">
+	<div class="container" id="register-recruit">
 	<!-- 기관정보 -->
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 입력</strong></label>
 		<table class="table table-bordered" id="facilityForm">
@@ -186,17 +216,17 @@ $('document').ready(function() {
 				<!-- 기관명 : 자동입력  -->
 				<tr>
 					<th class="bg-light">기관명</th>
-					<th colspan="3" id="jname">"seach_seq"</th>
+					<th colspan="3">"seach_seq"</th>
 				</tr>
 				<!-- 급여종류 : 자동입력 -->
        			<tr>
 					<td class="bg-light">급여종류</td>
-					<td colspan="3" id="jtype">"Type"</td>
+					<td colspan="3">"Type"</td>
 				</tr>
 				<!-- 주소 : 입력 가능 -->
 				<tr>
 					<td class="bg-light">주소</td>
-					<td id="jare" colspan="3" class="pb-0">
+					<td colspan="3" class="pb-0">
 			          <div class="form-group form-inline">
 			            <select class="col-md-3 form-control form-control-sm mr-1" name="sido1" id="sido1"></select>
 			            <select class="col-md-3 form-control form-control-sm mr-1" name="gugun1" id="gugun1"></select>
@@ -207,13 +237,13 @@ $('document').ready(function() {
 				<!-- 직종,인원 : 입력가능 -->
 				<tr>
 					<td class="bg-light w-20">모집직종</td>
-					<td id="jjtype" class="w-30 pb-0">
+					<td class="w-30 pb-0">
 						<div class="form-group form-inline">
 							<select class="col form-control form-control-sm" name="job1" id="job1"></select>
 						</div>
 					</td>
 					<td class="bg-light w-20">모집인원</td>
-					<td id="jgen" class="w-30 pb-0">
+					<td class="w-30 pb-0">
 						<div class="form-group form-inline">
 							<input type="number" class="col form-control form-control-sm" id="peopleNum">
 			          	</div>
@@ -222,7 +252,7 @@ $('document').ready(function() {
 				<!-- 근무형태 : 입력가능 -->
 				<tr>
 					<td class="bg-light">근무형태</td>
-					<td id="jdet" colspan="3" class="pb-0">
+					<td colspan="3" class="pb-0">
 						<div class="form-group form-inline">
 							<select class="col-md-3 form-control form-control-sm mr-1" name="work1" id="work1"></select>
 							<select class="col-md-3 form-control form-control-sm" name="detail" id="detail"></select>
@@ -232,7 +262,7 @@ $('document').ready(function() {
 				<!-- 상세내용 : 입력가능 -->
 				<tr>
 					<td class="bg-light">상세내용</td>
-					<td colspan="3" id="jcon" class="etc p-0 mb-0">
+					<td colspan="3" class="etc p-0 mb-0">
 						<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="10"></textarea>
 					</td>
 				</tr>
@@ -243,6 +273,54 @@ $('document').ready(function() {
 			 등록</button>
 			<button type="button" class="btn btn-secondary mx-2" id="r-cancelbtn">
 			 취소</button>
+		</div>
+	</div>
+	
+	<!-- main -->
+	<div class="container" id="confirm-recruit">
+	<!-- 기관정보 -->
+	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 확인</strong></label>
+		<table class="table table-bordered" id="facilityForm">
+			<tbody>
+				<!-- 기관명 : 자동입력  -->
+				<tr>
+					<th class="bg-light">기관명</th>
+					<th colspan="3">"seach_seq"</th>
+				</tr>
+				<!-- 급여종류 : 자동입력 -->
+       			<tr>
+					<td class="bg-light">급여종류</td>
+					<td colspan="3">"Type"</td>
+				</tr>
+				<!-- 주소 : 입력 가능 -->
+				<tr>
+					<td class="bg-light">주소</td>
+					<td colspan="3" class="pb-0"></td>
+				</tr>
+				<!-- 직종,인원 : 입력가능 -->
+				<tr>
+					<td class="bg-light w-20">모집직종</td>
+					<td class="w-30 pb-0"></td>
+					<td class="bg-light w-20">모집인원</td>
+					<td class="w-30 pb-0"></td>
+				</tr>
+				<!-- 근무형태 : 입력가능 -->
+				<tr>
+					<td class="bg-light">근무형태</td>
+					<td colspan="3" class="pb-0"></td>
+				</tr>
+				<!-- 상세내용 : 입력가능 -->
+				<tr>
+					<td class="bg-light">상세내용</td>
+					<td colspan="3" class="etc1 p-0 mb-0"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="form-group text-center mt-3 mb-5">
+			<button type="button" class="btn btn-outline-primary text-light mx-2" id="r-editbtn">
+			 수정</button>
+			<button type="button" class="btn btn-secondary mx-2" id="r-delbtn">
+			 삭제</button>
 		</div>
 	</div>
 	

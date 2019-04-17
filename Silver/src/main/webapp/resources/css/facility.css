@@ -81,6 +81,15 @@ table.table-bordered > tbody > tr > th {
 }
 
 #r-savebtn,
-#r-cancelbtn { 
+#r-cancelbtn,
+#r-editbtn,
+#r-delbtn { 
 	width: 100px;
 }
+
+.etc1 {
+	height: 243px;
+}
+
+/* talentpage.jsp 
+-------------------------------------------------- */
