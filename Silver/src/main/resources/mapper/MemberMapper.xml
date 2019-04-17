@@ -86,7 +86,15 @@ WHERE
     USERID=#{userid}
   
   </select>
-  
+<select id="selseq" parameterType="String" resultType="int">
+SELECT
+    SEACH_SEQ
+FROM
+    SILVERSEARCH
+WHERE
+    SILVERNAME=#{silvername}
+</select>
+ 
   <!--로그인 -->
   <select id="selectMember" parameterType="Member" resultType="Member">
  	SELECT

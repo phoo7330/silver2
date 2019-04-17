@@ -23,5 +23,6 @@
 		<mapper resource="mapper/BoardMapper.xml" />
 		<mapper resource="mapper/SeniorMapper.xml" />
 		<mapper resource="mapper/JobMapper.xml" />
+		<mapper resource="mapper/FacilityMapper.xml" />
 	</mappers>
 </configuration>
