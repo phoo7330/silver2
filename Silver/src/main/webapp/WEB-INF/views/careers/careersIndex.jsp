@@ -223,7 +223,7 @@ function wlist(accidentDeath){
 				$("#jare").html(onelist[oneindex].areaa+" "+onelist[oneindex].areab+" "+onelist[oneindex].areac);
 				$("#jjtype").html(onelist[oneindex].jo_job);
 				$("#jdet").html(onelist[oneindex].jo_detailtype);
-				$("#jgen").html(onelist[oneindex].jo_gender);
+				$("#jgen").html(onelist[oneindex].jo_gender+" "+onelist[oneindex].jo_int+"명");
 				$("#jcon").html(onelist[oneindex].jo_content);
 				
 				var bt = '';
@@ -722,6 +722,7 @@ function write(accidentDeath){
 							      <td class="bg-light">모집인원</td>
 							      <td id="jgen">전체 : "인원" "jo_gender"</td>
 							    </tr>
+							    
 							     <tr>
 							      <td class="bg-light">상세내용</td>
 							      <td colspan="3" id="jcon">"jo_content"</td>

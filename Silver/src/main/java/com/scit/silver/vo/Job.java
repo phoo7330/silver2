@@ -19,12 +19,13 @@ public class Job {
 	private String jo_content;
 	private String jo_date;
 	private String jo_gender;
+	private int jo_int;
 	public Job() {
 		super();
 	}
 	public Job(int seach_seq, int type, String areaa, String areab, String areac, String silvername, String service,
 			String grade, String lauitude, String longitude, int jo_seq, String userid, String jo_type,
-			String jo_detailtype, String jo_job, String jo_content, String jo_date, String jo_gender) {
+			String jo_detailtype, String jo_job, String jo_content, String jo_date, String jo_gender, int jo_int) {
 		super();
 		this.seach_seq = seach_seq;
 		this.type = type;
@@ -44,6 +45,7 @@ public class Job {
 		this.jo_content = jo_content;
 		this.jo_date = jo_date;
 		this.jo_gender = jo_gender;
+		this.jo_int = jo_int;
 	}
 	public int getSeach_seq() {
 		return seach_seq;
@@ -153,13 +155,20 @@ public class Job {
 	public void setJo_gender(String jo_gender) {
 		this.jo_gender = jo_gender;
 	}
+	public int getJo_int() {
+		return jo_int;
+	}
+	public void setJo_int(int jo_int) {
+		this.jo_int = jo_int;
+	}
 	@Override
 	public String toString() {
 		return "Job [seach_seq=" + seach_seq + ", type=" + type + ", areaa=" + areaa + ", areab=" + areab + ", areac="
 				+ areac + ", silvername=" + silvername + ", service=" + service + ", grade=" + grade + ", lauitude="
 				+ lauitude + ", longitude=" + longitude + ", jo_seq=" + jo_seq + ", userid=" + userid + ", jo_type="
 				+ jo_type + ", jo_detailtype=" + jo_detailtype + ", jo_job=" + jo_job + ", jo_content=" + jo_content
-				+ ", jo_date=" + jo_date + ", jo_gender=" + jo_gender + "]";
+				+ ", jo_date=" + jo_date + ", jo_gender=" + jo_gender + ", jo_int=" + jo_int + "]";
 	}
+	
 	
 }
