@@ -9,5 +9,14 @@ public interface SeniorMapper {
 	
 	public int insertSeniorDetails(SeniorCitizenDetails scd);
 	
-	public int SelectSeq(String loginId);
+	public Integer SelectSeq(String loginId);
+	
+	public SeniorCitizen SelectSenior(String loginId);
+	
+	public SeniorCitizenDetails SelectSeniorDetails(int seq);
+	
+	public int updateSenior(SeniorCitizen updateSc);
+	
+	public int updateSeniorDetail(SeniorCitizenDetails updateScd);
+	
 }

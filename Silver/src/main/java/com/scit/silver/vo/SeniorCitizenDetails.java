@@ -11,10 +11,10 @@ public class SeniorCitizenDetails {
 	private int scd_silvernum;
 	private String scd_grade;
 	private String scd_disease;
-	private String scd_meal;
-	private String scd_care;
-	private String scd_bath;
-	private String scd_toilet;
+	private String scd_meal; //식사
+	private String scd_care; //보행
+	private String scd_bath; //목욕
+	private String scd_toilet; //화장실
 	private String scd_favorite;
 	private String scd_least;
 	private String scd_allergy;
@@ -22,14 +22,15 @@ public class SeniorCitizenDetails {
 	private String scd_practice;
 	private String scd_propensity;
 	private String scd_language;
-	private String scd_washing;
-	private String scd_clothing;
+	private String scd_washing; //세면
+	private String scd_clothing; //의복
+	private String scd_others; //기타
 	
 	public SeniorCitizenDetails(int scd_seq, int sc_seq, String scd_addressa, String scd_addressb, String scd_addressc,
 			int scd_tall, int scd_kg, int scd_silvernum, String scd_grade, String scd_disease, String scd_meal,
 			String scd_care, String scd_bath, String scd_toilet, String scd_favorite, String scd_least,
 			String scd_allergy, String scd_diabetes, String scd_practice, String scd_propensity, String scd_language,
-			String scd_washing, String scd_clothing) {
+			String scd_washing, String scd_clothing, String scd_others) {
 		super();
 		this.scd_seq = scd_seq;
 		this.sc_seq = sc_seq;
@@ -54,6 +55,7 @@ public class SeniorCitizenDetails {
 		this.scd_language = scd_language;
 		this.scd_washing = scd_washing;
 		this.scd_clothing = scd_clothing;
+		this.scd_others = scd_others;
 	}
 
 	public SeniorCitizenDetails() {
@@ -244,6 +246,14 @@ public class SeniorCitizenDetails {
 		this.scd_clothing = scd_clothing;
 	}
 
+	public String getScd_others() {
+		return scd_others;
+	}
+
+	public void setScd_others(String scd_others) {
+		this.scd_others = scd_others;
+	}
+
 	@Override
 	public String toString() {
 		return "SeniorCitizenDetails [scd_seq=" + scd_seq + ", sc_seq=" + sc_seq + ", scd_addressa=" + scd_addressa
@@ -253,9 +263,8 @@ public class SeniorCitizenDetails {
 				+ scd_bath + ", scd_toilet=" + scd_toilet + ", scd_favorite=" + scd_favorite + ", scd_least="
 				+ scd_least + ", scd_allergy=" + scd_allergy + ", scd_diabetes=" + scd_diabetes + ", scd_practice="
 				+ scd_practice + ", scd_propensity=" + scd_propensity + ", scd_language=" + scd_language
-				+ ", scd_washing=" + scd_washing + ", scd_clothing=" + scd_clothing + "]";
+				+ ", scd_washing=" + scd_washing + ", scd_clothing=" + scd_clothing + ", scd_others=" + scd_others
+				+ "]";
 	}
-	
-	
-	
+
 }

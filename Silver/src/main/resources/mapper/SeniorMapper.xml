@@ -47,7 +47,7 @@
 	
 	</insert>
 		<!-- 시퀀스 조회 -->
-		<select id="SelectSeq" parameterType="String" resultType="int">
+		<select id="SelectSeq" parameterType="String" resultType="Integer">
 			SELECT 
 				SC_SEQ
 			FROM 
@@ -56,5 +56,71 @@
 				USERID = #{userid}
 			
 		</select>
+	
+
+		<!-- 현재 어르신기본정보 조회 -->
+	<select id="SelectSenior" parameterType="String" resultType="SeniorCitizen">
+	SELECT 
+	    SC_SEQ
+	    ,USERID
+	    ,SC_BIRTHDAY
+	    ,SC_NAME
+	    ,SC_BLOODTYPE
+	    
+	FROM 
+    	SENIORCITIZEN 
+	
+	WHERE 
+	    USERID = #{userid}
+	</select>
+	
+	<select id="SelectSeniorDetails" parameterType="Integer" resultType="SeniorCitizenDetails">
+	SELECT
+		SCD_SEQ
+	    ,SCD_MEAL
+	    ,SCD_CARE
+	    ,SCD_WASHING
+	    ,SCD_CLOTHING
+	    ,SCD_BATH
+	    ,SCD_TOILET
+	    ,SCD_DISEASE
+	    ,SCD_OTHERS
+	FROM
+		SENIORCITIZENDETAILS
+	WHERE
+		SC_SEQ = #{sc_seq}
+	</select>
+	
+	<!-- 어르신정보 수정 1-->
+  	<update id="updateSenior" parameterType="SeniorCitizen" >
+  	
+  	UPDATE SENIORCITIZEN 
+		SET 
+		    SC_BIRTHDAY = #{sc_birthday,jdbcType=VARCHAR}
+		    ,SC_NAME = #{sc_name,jdbcType=VARCHAR}
+		   	,SC_BLOODTYPE = #{sc_bloodtype,jdbcType=VARCHAR}
+		WHERE 
+		    USERID= #{userid}
+  	
+  	</update>
+  	
+  	<!-- 어르신정보 수정 2-->
+  	<update id="updateSeniorDetail" parameterType="SeniorCitizenDetails">
+  	
+  	UPDATE SENIORCITIZENDETAILS 
+		SET 
+		    SCD_DISEASE = #{scd_disease,jdbcType=VARCHAR}
+		    ,SCD_MEAL = #{scd_meal,jdbcType=VARCHAR}
+		   	,SCD_CARE = #{scd_meal,jdbcType=VARCHAR}
+		    ,SCD_BATH = #{scd_bath,jdbcType=VARCHAR}
+		    ,SCD_TOILET = #{scd_toilet,jdbcType=VARCHAR}
+		    ,SCD_WASHING = #{scd_washing,jdbcType=VARCHAR}
+		    ,SCD_CLOTHING = #{scd_clothing,jdbcType=VARCHAR}
+		    ,SCD_OTHERS = #{scd_others,jdbcType=VARCHAR}
+		WHERE 
+		    SC_SEQ= #{sc_seq}
+  	
+  	</update>
+	
 	
 </mapper>

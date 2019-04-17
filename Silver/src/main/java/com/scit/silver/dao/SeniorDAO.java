@@ -37,15 +37,64 @@ public class SeniorDAO {
 		return result;
 	}
 	
-	public int SelectSeq(String loginId) {
-		int result = 0;
+	public Integer SelectSeq(String loginId) {
+		Integer result = null;
 		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
 		try {
 			result = mapper.SelectSeq(loginId);
 		}catch(Exception e) {
 			 e.printStackTrace();
-			 return 0;
+			 return null;
 		}
 		return result;
 		}
+	
+	public SeniorCitizen SelectSenior(String loginId) {
+		SeniorCitizen result = null;
+		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.SelectSenior(loginId);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return null;
+		}
+		return result;
+	}
+	
+	public SeniorCitizenDetails SelectSeniorDetails(Integer seq) {
+		SeniorCitizenDetails result = null;
+		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.SelectSeniorDetails(seq);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return null;
+		}
+		return result;
+	}
+	
+	public int updateSenior(SeniorCitizen updateSc) {
+		int result = 0;
+		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.updateSenior(updateSc);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return 0;
+		}
+		return result;
+	}
+	
+	public int updateSeniorDetail(SeniorCitizenDetails updateScd) {
+		int result = 0;
+		SeniorMapper mapper = session.getMapper(SeniorMapper.class);
+		try {
+			result = mapper.updateSeniorDetail(updateScd);
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 return 0;
+		}
+		return result;
+	}
+	
 }

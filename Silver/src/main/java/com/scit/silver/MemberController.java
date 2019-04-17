@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.MemberDAO;
 import com.scit.silver.dao.SearchDAO;
+import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Member;
+import com.scit.silver.vo.SeniorCitizen;
+import com.scit.silver.vo.SeniorCitizenDetails;
 import com.scit.silver.vo.SilverSearch;
 
 
@@ -27,6 +30,8 @@ public class MemberController {
 	MemberDAO dao;
 	@Autowired
 	SearchDAO sdao;
+	@Autowired
+	SeniorDAO sndao;
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
 	public String login() {
@@ -173,7 +178,7 @@ public class MemberController {
 		model.addAttribute("message", "회원정보수정성공");
 		System.out.println("[업데이트된 정보1]: "+result);
 		
-		return "mypage";
+		return "redirect:/mypage";
 	}
 	
 	
@@ -182,15 +187,36 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Member member, HttpSession session, Model model) {
+	public String mypage(Member member ,HttpSession session, Model model) {
 		if (session.getAttribute("loginId") == null) {
 			return "redirect:/";
 		}
 		Member result = null;
+		SeniorCitizen scResult = null;
+		SeniorCitizenDetails scdResult = null;
+		Integer seq = null;
 		String loginId = (String) session.getAttribute("loginId");
-
+		
 		result = dao.selectMember2(loginId);
-		System.out.println("마이페이지"+result);
+		
+		if(result == null) {
+			System.out.println("mypage실패!");
+			return "redirect:/";
+		}
+		seq = sndao.SelectSeq(loginId);
+		
+		if(seq!=null){
+		scResult = sndao.SelectSenior(loginId);
+		
+		scdResult = sndao.SelectSeniorDetails(seq);
+		System.out.println("[시퀀스번호]:" +seq);
+		model.addAttribute("seq", seq);
+		System.out.println("[어르신정보]: "+scResult);
+		model.addAttribute("sc", scResult);
+		System.out.println("[어르신상세정보]: "+scdResult);
+		model.addAttribute("scd", scdResult);
+		}
+		System.out.println("[마이페이지]: "+result);
 		model.addAttribute("member", result);
 		
 		return "mypage";
