@@ -293,8 +293,58 @@ $('document').ready(function() {
 	</div>
 <!-- Section -->
 </section>
+
+
+	<!-- 검색 리스트 -->
+	<div class="card-group">
+	  <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 열심히 최선을 다해 일하겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail">자세히보기</button>
+			</div>
+	    </div>
+	  </div>
+	   <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 적극적인 마인드로 다가가겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail">자세히보기</button>
+			</div>
+	    </div>
+	  </div>
+	</div>
 </div>	
 
 
+<!-- Footer -->
+	<footer class="page-footer font-small" id="table-footer">
+  		<div class="footer-copyright py-4 px-3">
+    		서울특별시 강남구 영동대로 513 4F <br/>
+			Copyright (c) 2019 <span>Silver Surfer, Foundation for Smart Cloud IT Master</span> All Rights Reserved.
+		</div>
+	</footer>
+
 </body>
 </html>
+	

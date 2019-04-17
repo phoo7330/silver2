@@ -166,6 +166,9 @@ $(document).ready(function(){
 	<div class="container" id="table-recruit">
 	<!-- 기관정보 -->
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>등록 구인정보</strong></label>
+	<div class="float-right">
+		<button type="button" class="btn btn-outline-primary m-4" id="r-registerbtn">등록</button>
+	</div>
 		<table class="table table-bordered text-center mb-5 pb-5">
 		  <thead>
 		    <tr class="bg-light" id="#tr-top">
