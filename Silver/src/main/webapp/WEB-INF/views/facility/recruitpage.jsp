@@ -168,7 +168,7 @@ $('document').ready(function() {
 	<div class="view overlay rounded-top">
 	    <div class="card bg-dark text-white border-0">
 		  <img src="resources/image/recruit1.jpg" class="card-img">
-		  <div class="card-img-overlay text-center mt-5  pt-4">
+		  <div class="card-img-overlay text-center mt-5  pt-5">
 		    <h1 class="card-title text-dark">기관관리자 구인정보</h1>
 		     <h1 class="card-title text-dark">ー</h1>
 		  </div>
@@ -216,7 +216,7 @@ $('document').ready(function() {
 					<td class="bg-light w-20">모집인원</td>
 					<td id="jgen" class="w-30 pb-0">
 						<div class="form-group form-inline">
-							<input type="number" class="col form-control form-control-sm mx-1" id="peopleNum">
+							<input type="number" class="col form-control form-control-sm" id="peopleNum">
 			          	</div>
 					</td>
 				</tr>
