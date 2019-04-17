@@ -117,12 +117,16 @@ public class MemberController {
 			session.setAttribute("usertype", "2");
 			System.out.println("[구직자]: "+result.getUserid());
 		} else if(result.getType()==3) {
-			session.setAttribute("loginId", result.getUserid());
 			session.setAttribute("managerId", result.getUserid());
 			session.setAttribute("usertype", "3");
 			System.out.println("[시설관리자]: "+result.getUserid());
+			int seach_seq = dao.selseq(result.getUsername());
+			DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
+			System.out.println(DetailsOne);
+			model.addAttribute("DetailsOne", DetailsOne);
+			
+			return "facility/facilitymypage";
 		} else if(result.getType()==10) {
-			session.setAttribute("loginId", result.getUserid());
 			session.setAttribute("adminId", result.getUserid());
 			session.setAttribute("usertype", "10");
 			System.out.println("[사이트관리자]: "+result.getUserid());

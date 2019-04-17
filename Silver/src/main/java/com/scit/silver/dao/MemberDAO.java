@@ -56,6 +56,13 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public int selseq(String silvername) {
+		int result = 0;
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		result = mapper.selseq(silvername);
+		return result;
+	}
+	
 	public Member selectMember(Member member) {
 		Member result = null;
 		MemberMapper mapper = session.getMapper(MemberMapper.class);
