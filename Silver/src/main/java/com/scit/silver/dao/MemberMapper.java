@@ -19,12 +19,14 @@ public interface MemberMapper {
 	public String seachid(String userid);
 	
 	public Member selectMember(Member member);
+	
+	public int selseq(String silvername);
 
 	public Member selectMember2(String userid);
 	
 	public int updateMember(Member member);
 	
-	public ArrayList<SilverSearch> whatsilver(String Silvername);
+	public ArrayList<SilverSearch> whatsilver(String silvername);
 	
 	
 }

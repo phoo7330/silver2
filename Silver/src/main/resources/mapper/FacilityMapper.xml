@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.scit.silver.dao.FacilityMapper">
+  
+  <update id="upDetails1" parameterType="DetailsOne">
+   UPDATE HOSPITAL_DETAILS
+	SET
+        ESTABLISHMENT = #{establishment},
+        HP_SERVICE = #{hp_service},
+		PROTECTION = #{protection},
+        LOCATION = #{location},
+        RELIGION = #{religion},
+        HOSPITAL_TEL = #{hospital_tel}
+	WHERE
+		SEACH_SEQ = #{seach_seq}
+  
+  </update>
+    <update id="upDetails2" parameterType="DetailsOne">
+   UPDATE HOSPITAL_DETAILS
+	SET
+        HOLIDAY = #{holiday},
+        LUNCHTIME = #{lunchtime},
+		RECEIPTTIME = #{receipttime},
+		FACILITYINFORMATION = #{facilityinformation}
+	WHERE
+		SEACH_SEQ = #{seach_seq}
+  
+  </update>
+  <update id="upDetails3" parameterType="DetailsOne">
+   UPDATE HOSPITAL_DETAILS
+	SET
+        TREATMENT = #{treatment}
+	WHERE
+		SEACH_SEQ = #{seach_seq}
+  
+  </update>
+</mapper>
