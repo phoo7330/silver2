@@ -5,7 +5,6 @@
 <html>
 <head>
 
-
 	<title>실버서퍼에 오신 것을 환영합니다.</title>
 	
 	<!-- 인코딩 -->
@@ -144,10 +143,10 @@ $('document').ready(function() {
 			  			<a class="nav-link text-light mr-3" href="recruitpage"><strong>구인정보</strong></a>
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="#"><strong>인재정보</strong></a>	
+			  			<a class="nav-link text-light mr-3" href="talentpage"><strong>인재정보</strong></a>	
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="#"><strong>메세지함</strong></a>	
+			  			<a class="nav-link text-light mr-3" href="questionpage"><strong>메세지함</strong></a>	
 			  		</li>
 			  	</ul>
 				<!-- 로그아웃 -->
