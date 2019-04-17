@@ -25,6 +25,7 @@ import com.scit.silver.vo.SilverSearch;
 @Controller
 public class MemberController {
 
+	
 	@Autowired
 	MemberDAO dao;
 	@Autowired
