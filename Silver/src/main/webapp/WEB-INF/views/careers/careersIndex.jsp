@@ -227,7 +227,7 @@ function wlist(accidentDeath){
 				$("#jcon").html(onelist[oneindex].jo_content);
 				
 				var bt = '';
-				// 상세보기 버튼을 누르면 새창으로 열림
+				// 상세보기 버튼을 누르면 새창으로 열림 
 				bt += '<button target="_blank"  type="button" onclick="window.open(\'about:blank\').location.href=\'searchDetail?seach_seq='+onelist[oneindex].seach_seq+'\'" class="btn btn-outline-danger mx-1" id="fdetailbtn">기관정보 상세보기</button>';
 				$("#detailbt").html(bt);
 		});	
