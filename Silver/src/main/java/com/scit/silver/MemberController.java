@@ -96,7 +96,7 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/selectMember", method = RequestMethod.POST)
 	public String selectMember(Member member, HttpSession session, Model model) {
-		System.out.println(member);
+		System.out.println(member); 
 		int type = member.getType();
 		
 		if(type==1) {
