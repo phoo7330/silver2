@@ -38,4 +38,14 @@
 		SEACH_SEQ = #{seach_seq}
   
   </update>
+  
+  <select id="mname" parameterType="String" resultType="String">
+  SELECT
+    USERNAME
+FROM
+    MEMBER
+WHERE
+    USERID=#{userid}
+  
+  </select>
 </mapper>

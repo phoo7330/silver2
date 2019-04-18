@@ -38,16 +38,8 @@ public class HomeController {
 		return "careers/careersIndex";
 	}
 
-	@RequestMapping(value = "/facilitymypage", method = RequestMethod.GET)
-	public String facilitymypage(Locale locale, Model model) {
-
-		return "facility/facilitymypage";
-	}
 	
-	@RequestMapping(value = "/recruitpage", method = RequestMethod.GET)
-	public String recruitpage(Locale locale, Model model) {
-
-		return "facility/recruitpage";
-	}
+	
+	
 	
 }

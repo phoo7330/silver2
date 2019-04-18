@@ -45,4 +45,12 @@ public class FacilityDAO {
 		}
 		return result;
 	}
+	public String mname(String userid) {
+		String result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.mname(userid);
+
+		return result;
+	}
+
 }

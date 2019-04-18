@@ -105,7 +105,11 @@ $(document).ready(function(){
 		$("#confirm-recruit").hide();
 		$("#register-recruit").show();
 	});
-
+	  //등록버튼을 누를경우, 리스트를 숨기고 등록창을 띄운다.
+	  $("#r-registerbtn").click(function(){ 
+		  $("#table-recruit").hide();
+		  $("#register-recruit").show();
+	  });
 });
 
 </script>
@@ -137,7 +141,7 @@ $(document).ready(function(){
 				<!-- 로그아웃 -->
 				<ul class="navbar-nav mt-2 mt-md-0">
 				  <li class="nav-item">
-				  	<a class="nav-link text-light" href="index"><small>로그아웃</small></a>
+				  	<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
 				  </li>
 				</ul>
 			  
