@@ -428,6 +428,23 @@ $('document').ready(function() {
 	  </div>
 	</div>
 </div>
+<!-- 페이지네이션 -->
+
+	<nav>
+	  <ul class="pagination justify-content-center mb-0 mt-4">
+	    <li class="page-item disabled">
+	      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
+	    </li>
+	    <li class="page-item"><a class="page-link" href="#">1</a></li>
+	    <li class="page-item active" aria-current="page">
+	      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+	    </li>
+	    <li class="page-item"><a class="page-link" href="#">3</a></li>
+	    <li class="page-item">
+	      <a class="page-link" href="#">다음</a>
+	    </li>
+	  </ul>
+	</nav>
 
 
 	<!-- Modal -->
