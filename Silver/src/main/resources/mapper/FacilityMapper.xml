@@ -75,7 +75,19 @@ VALUES(
     #{jo_int}
 )
   </insert>
+ <update id="updatejob" parameterType="job">
+   UPDATE JOBOFFER
+	SET
+	    JO_TYPE = #{jo_type},
+	    JO_DETAILTYPE = #{jo_detailtype},
+	    JO_JOB = #{jo_job},
+	    JO_CONTENT = #{jo_content},
+	    JO_GENDER = #{jo_gender},
+	    JO_INT = #{jo_int}
+	WHERE
+		JO_SEQ = #{jo_seq}
   
+  </update> 
   <select id="selectjob" parameterType="String" resultType="Job">
   SELECT 
   a.SEACH_SEQ,
@@ -104,7 +116,7 @@ WHERE
     AND
     b.USERID = #{userid}
 ORDER BY
-    b.JO_DATE DESC
+    b.JO_DATE
   
   </select>
   <select id="selectonejob" parameterType="int" resultType="Job">
@@ -134,8 +146,6 @@ WHERE
     a.SEACH_SEQ = b.SEACH_SEQ
     AND
     b.JO_SEQ = #{jo_seq}
-ORDER BY
-    b.JO_DATE DESC
   
   </select>
 </mapper>

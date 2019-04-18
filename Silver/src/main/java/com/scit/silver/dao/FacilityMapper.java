@@ -17,6 +17,8 @@ public interface FacilityMapper {
 	
 	public int insertjob(Job job);
 	
+	public int updatejob(Job job);
+	
 	public ArrayList<Job> selectjob(String userid);
 	
 	public Job selectonejob(int job_seq);
