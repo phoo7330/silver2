@@ -87,7 +87,8 @@ $(document).ready(function(){
 	init();
 	  $("#register-recruit").hide();
 	  $("#confirm-recruit").hide();
-
+	  $("#register-recruit2").hide();
+	  
 	  $("#r-registerbtn").click(function(){    
 		$("#table-recruit").hide();
 		$("#register-recruit").show();
@@ -99,20 +100,36 @@ $(document).ready(function(){
 		
 		 insertjob();
 	});
-	  
+	  $("#r-savebtn2").click(function(){    //구인글 수정버튼
+		 $("#register-recruit2").hide();
+		 $("#confirm-recruit").hide(); //상세보기,수정가능한 폼
+			
+			 updatejob();
+		});
+	  //등록창의 취소버튼
 	  $("#r-cancelbtn").click(function(){  
 		$("#register-recruit").hide(); 
 		$("#table-recruit").show();
+		
 	});
-	  
+	  //수정창의 취소버튼
+	  $("#r-cancelbtn2").click(function(){  
+			$("#register-recruit2").hide(); 
+			$("#table-recruit").show();
+			
+		});
+
+	  //수정버튼을 클릭하면 수정창에 기본값넣어서 띄움
 	  $("#r-editbtn").click(function(){    
 		$("#confirm-recruit").hide();
-		$("#register-recruit").show();
+		$("#register-recruit2").show();
+		
 	});
-	  
+	  //구인글 삭제를 눌렀을떄
 	  $("#r-delbtn").click(function(){    
 		$("#confirm-recruit").hide();
 		$("#table-recruit").show();
+		deljob();
 	});
 
 	  $("#r-viewList").click(function(){    
@@ -131,10 +148,15 @@ $(document).ready(function(){
 	  if(stype==1){
 		  type='요양병원';
 		  $("#type").html(type);
+		  $("#type2").html(type);
 	  }
 	  //첫화면에 자신이 등록한 구직글을을 띄울 메서드
 	  
 });
+//구인글 삭제
+function deljob(){
+	
+}
 
 function init(){
 // 세션아이디로 구직글을 가져온다.
@@ -150,17 +172,25 @@ var userid = "${sessionScope.managerId}";
 function output(data){
 	console.log(data);
 	var list = '';
-	$.each(data, function (index, item){
-		console.log("!!!");
-		list += '<tr class="oneselect" style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.jo_seq+')\'" >';
-		list += '<td scope="row">'+(index+1)+'</td>';
-		list += '<td>'+item.jo_job+'</td>';
-		list += '<td>'+item.jo_type+'</td>';
-		list += '<td>'+item.jo_int+'</td>';
-		list += '<td>'+item.jo_gender+'</td>';
+	if(data.size!=0){
+	
+		$.each(data, function (index, item){
+			console.log("구인글있음");
+			list += '<tr class="oneselect" style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.jo_seq+')\'" >';
+			list += '<td scope="row">'+(index+1)+'</td>';
+			list += '<td>'+item.jo_job+'</td>';
+			list += '<td>'+item.jo_type+'</td>';
+			list += '<td>'+item.jo_int+'</td>';
+			list += '<td>'+item.jo_gender+'</td>';
+			list += '</tr>'
 	});
 	
 	$("#sellist").html(list);
+	}else{
+		console.log("구인글없음");
+		list +='<td></td><td></td><td>등록된 구인글이 없습니다.</td><td></td><td></td>';
+		$("#sellist").html(list);
+	}
 }
 // 구인글 한개 클릭시 jo_seq를 보내서 한개의 구인글을 가져온다.
 function onesel(jo_seq){
@@ -192,12 +222,50 @@ function oneoutput(data){
 	$("#onejjob").html(data.jo_job);
 	$("#onejint").html(data.jo_int);
 	$("#onejtype").html(data.jo_type);
+	$("#onejdtype").html(data.jo_detailtype);
 	$("#onejcon").html(data.jo_content);
 	$("#onedate").html(data.jo_date); 
-	
-	
+	//수정폼에도 미리 넣어둔다
+	$("#job2").val(data.jo_job);
+	$("#gen2").val(data.jo_gender);
+	$("#peopleNum2").val(data.jo_int);
+	$("#exampleFormControlTextarea52").val(data.jo_content);
+	$("#upseq").val(data.jo_seq);
 }
+//구직글 수정
+function updatejob(){
+	var job = [];
+	var jo_job = $("#job2 option:selected").val();
+	var jo_int = $("#peopleNum2").val();
+	var jo_type = $("#work2").val();
+	var jo_detailtype = $("#detail2").val();
+	var jo_gender = $("#gen2").val();
+	var jo_content = $("#exampleFormControlTextarea52").val();
+	var userid = "${sessionScope.managerId}";
+	var seach_seq = "${DetailsOne.seach_seq}";
+	var jo_seq = $("#upseq").val();
+	job.push({
+		"jo_job":jo_job,
+		"jo_int":jo_int,
+		"jo_type":jo_type,
+		"jo_detailtype":jo_detailtype,
+		"jo_gender":jo_gender,
+		"jo_content":jo_content,
+		"userid":userid,
+		"seach_seq":seach_seq,
+		"jo_seq":jo_seq
+	});
+	console.log("업데이트 보내기 전 : ");
+	console.log(job);
 
+	$.ajax({
+		url:"updatejob", 
+		type:"POST",
+		traditional: true,
+		data:{jobJSON : JSON.stringify(job)},
+		success:insuccess
+		});
+}
 // 구직글 등록
 function insertjob(){
 	var job = [];
@@ -302,7 +370,7 @@ function insuccess(data){
 		<table class="table table-bordered text-center mb-5 pb-5">
 		  <thead>
 		    <tr class="bg-light" id="#tr-top">
-		      <th class="w-10"></th>
+		      <th class="w-10">글 번호</th>
 		      <th class="w-20">모집직종</th>
 		      <th class="w-30">근무형태</th>
 		      <th class="w-20">모집인원</th>
@@ -330,9 +398,10 @@ function insuccess(data){
 		    
 		</div>
 
-	<!-- main -->
+	<!-- main 등록폼  -->
 	<div class="container" id="register-recruit">
 	<!-- 기관정보 -->
+	<form>
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 입력</strong></label>
 		<table class="table table-bordered" id="facilityForm1">
 			<tbody>
@@ -402,11 +471,90 @@ function insuccess(data){
 		<div class="form-group text-center mt-3 mb-5">
 			<button type="button" class="btn btn-outline-primary text-light mx-2" id="r-savebtn">
 			 등록</button>
-			<button type="button" class="btn btn-secondary mx-2" id="r-cancelbtn">
-			 취소</button>
+			<input type="reset" class="btn btn-secondary mx-2" id="r-cancelbtn" value="취소">
 		</div>
+		</form> 
 	</div>
-	
+	<!-- main 수정폼 -->
+	<div class="container" id="register-recruit2">
+	<!-- 기관정보 -->
+	<form>
+	<input type="hidden" id="upseq">
+	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 수정</strong></label>
+		<table class="table table-bordered" id="facilityForm2">
+			<tbody>
+				<!-- 기관명 : 자동입력  -->
+				
+				<tr>
+					
+					<th class="bg-light">기관명</th>
+					<th colspan="3">${DetailsOne.silvername}</th>
+				</tr>
+				<!-- 급여종류 : 자동입력 -->
+       			<tr>
+					<td class="bg-light">급여종류</td>
+					<td colspan="3" id=type2></td>
+				</tr>
+				<!-- 주소 : 입력 가능 -->
+				<tr>
+					<td class="bg-light">주소</td>
+					<td colspan="3" class="pb-0">
+			          <div class="form-group form-inline">
+			           ${DetailsOne.hp_address}
+			          </div>
+          			</td>
+				</tr>
+				<!-- 직종,인원 : 입력가능 -->
+				<tr>
+					<td class="bg-light w-20">모집직종</td>
+					<td class="w-30 pb-0">
+						<div class="form-group form-inline">
+							<select class="col form-control form-control-sm" name="job1" id="job2"></select>
+						</div>
+					</td>
+					<td class="bg-light w-20">모집인원</td>
+					<td class="w-30 pb-0">
+						<div class="form-group form-inline">
+							<input type="number" class="col form-control form-control-sm" id="peopleNum2">
+			          	</div>
+					</td>
+				</tr>
+				<!-- 근무형태 : 입력가능 -->
+				<tr>
+					<td class="bg-light w-20">근무형태</td>
+					<td class="w-30 pb-0">
+						<div class="form-group form-inline">
+							<select class="col form-control form-control-sm mr-1" name="work1" id="work2"></select>
+							<select class="col form-control form-control-sm" name="detail" id="detail2"></select>
+						</div>
+					</td>
+					<td class="bg-light w-20">성별</td>
+					<td class="w-30 pb-0">
+						<div class="form-group form-inline">
+							<select class=" col custom-select" id="gen2">
+							  <option value="전체" selected>전체</option>
+							  <option value="남">남성</option>
+							  <option value="여">여성</option>
+							</select>
+			          	</div>
+					</td>
+				</tr>
+				<!-- 상세내용 : 입력가능 -->
+				<tr>
+					<td class="bg-light">상세내용</td>
+					<td colspan="3" class="etc p-0 mb-0">
+						<textarea class="form-control p-0" id="exampleFormControlTextarea52" rows="10"></textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="form-group text-center mt-3 mb-5">
+			<button type="button" class="btn btn-outline-primary text-light mx-2" id="r-savebtn2">
+			 수정</button>
+			<input type="reset" class="btn btn-secondary mx-2" id="r-cancelbtn2" value="취소">
+		</div>
+		</form>
+	</div>
 	<!-- main -->
 	<div class="container" id="confirm-recruit">
 	<!-- 기관정보 -->
@@ -443,8 +591,10 @@ function insuccess(data){
 				</tr>
 				<!-- 근무형태 : 입력가능 -->
 				<tr>
-					<td class="bg-light">근무형태</td>
-					<td colspan="3" class="pb-0" id="onejtype"></td>
+					<td class="bg-light w-20">근무형태</td>
+					<td class="w-30 pb-0" id="onejtype"></td>
+					<td class="bg-light w-20">상세근무형태</td>
+					<td class="w-30 pb-0" id="onejdtype"></td>
 				</tr>
 				<!-- 상세내용 : 입력가능 -->
 				<tr>

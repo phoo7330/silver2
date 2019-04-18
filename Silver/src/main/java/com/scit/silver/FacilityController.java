@@ -104,7 +104,6 @@ public class FacilityController {
 	@RequestMapping(value = "/recruitpage", method = RequestMethod.GET)
 	public String recruitpage(HttpSession session, Model model) {
 		String mid = (String)session.getAttribute("managerId");
-		System.out.println("mid"+mid);
 		if(mid==null) {
 			model.addAttribute("message", "잘못된 접근입니다.");
 			return "index";
@@ -119,7 +118,6 @@ public class FacilityController {
 			return "facility/recruitpage";
 		}else {
 			DetailsTwo DetailsTwo = sdao.selectmap3(seach_seq);
-			System.out.println(DetailsTwo);
 			model.addAttribute("DetailsTwo", DetailsTwo);
 			return "facility/recruitpage";
 		}
@@ -129,7 +127,6 @@ public class FacilityController {
 	@RequestMapping(value = "/facilitymypage", method = RequestMethod.GET)
 	public String facilitymypage(HttpSession session, Model model) {
 		String mid = (String)session.getAttribute("managerId");
-		System.out.println("mid"+mid);
 		if(mid==null) {
 			model.addAttribute("message", "잘못된 접근입니다.");
 			return "index";
@@ -137,21 +134,21 @@ public class FacilityController {
 		String name = dao.mname(mid);
 		int seach_seq = mdao.selseq(name);
 		DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
-		System.out.println(DetailsOne);
 		model.addAttribute("DetailsOne", DetailsOne);
 		
 		return "facility/facilitymypage";
 	}
 	@RequestMapping(value = "/insertjob", method = { RequestMethod.POST, RequestMethod.GET })
-	public String insertjob(String jobJSON) {
-		
+	@ResponseBody 
+	public int insertjob(String jobJSON) {
+		int result = 0;
 		try {
 			JSONParser jsonParse = new JSONParser();
 			JSONObject json = null;
 			// JSONParse에 json데이터를 넣어 파싱한 다음 JSONObject로 변환한다.
 			// JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다.
 			JSONArray mapArray = (JSONArray) jsonParse.parse(jobJSON);
-			System.out.println(mapArray.get(0));
+
 		
 					  json = new JSONObject();
 					  json = (JSONObject) mapArray.get(0);
@@ -175,16 +172,60 @@ public class FacilityController {
 			job.setJo_type(jo_type);
 			job.setUserid(userid);
 			job.setSeach_seq(seach_seq);
-			
-			System.out.println(job);
-			int result = 0;
+
 			result = dao.insertjob(job);
-			System.out.println(result);
-			return null;
+
+			return result;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return result;
+	}
+	
+	@RequestMapping(value = "/updatejob", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody 
+	public int updatejob(String jobJSON) {
+		int result = 0;
+		try {
+			JSONParser jsonParse = new JSONParser();
+			JSONObject json = null;
+			// JSONParse에 json데이터를 넣어 파싱한 다음 JSONObject로 변환한다.
+			// JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다.
+			JSONArray mapArray = (JSONArray) jsonParse.parse(jobJSON);
+		
+					  json = new JSONObject();
+					  json = (JSONObject) mapArray.get(0);
+					  String jo_job = (String) json.get("jo_job");
+					  String jo_intt = (String)json.get("jo_int");
+					  String jo_gender = (String) json.get("jo_gender");
+					  String jo_content = (String) json.get("jo_content");
+					  String jo_detailtype = (String) json.get("jo_detailtype");
+					  String jo_type = (String) json.get("jo_type");
+					  String userid = (String) json.get("userid");
+					  String seq = (String) json.get("seach_seq");
+					  String jseq = (String) json.get("jo_seq");
+					  int jo_int = Integer.parseInt(jo_intt);
+					  int seach_seq = Integer.parseInt(seq);
+					  int jo_seq = Integer.parseInt(jseq);
+					  
+			Job job = new Job();
+			job.setJo_job(jo_job);
+			job.setJo_int(jo_int);
+			job.setJo_gender(jo_gender);
+			job.setJo_content(jo_content);
+			job.setJo_detailtype(jo_detailtype);
+			job.setJo_type(jo_type);
+			job.setUserid(userid);
+			job.setSeach_seq(seach_seq);
+			job.setJo_seq(jo_seq);
+		
+			result = dao.updatejob(job);
+
+			return result;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	@RequestMapping(value = "/selectjob", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody ArrayList<Job> selectjob(String userid) {
@@ -199,7 +240,6 @@ public class FacilityController {
 		Job result = null;
 		
 		result = dao.selectonejob(jo_seq);
-		System.out.println(result);
 	
 		return result;
 	}

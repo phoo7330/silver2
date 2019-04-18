@@ -76,6 +76,13 @@ public class FacilityDAO {
 		return result;
 	}
 	
+	public int updatejob(Job job) {
+		int result = 0;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.updatejob(job);
+
+		return result;
+	}
 	public ArrayList<Job> selectjob(String userid){
 		ArrayList<Job> result = null;
 		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
