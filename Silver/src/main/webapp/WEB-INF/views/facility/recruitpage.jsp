@@ -94,7 +94,7 @@ $(document).ready(function(){
 	  
 	  $("#r-savebtn").click(function(){    
 		 $("#register-recruit").hide();
-		 $("#confirm-recruit").show();
+		 $("#confirm-recruit").show(); 
 		 insertjob();
 	});
 	  
