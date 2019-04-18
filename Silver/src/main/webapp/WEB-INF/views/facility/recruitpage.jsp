@@ -168,7 +168,7 @@ var userid = "${sessionScope.managerId}";
 		success:output
 		});
 }
-//구직글 리스트 출력할 매서드
+//구직글 리스트 출력할 매서드 
 function output(data){
 	console.log(data);
 	var list = '';
