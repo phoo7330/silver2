@@ -242,7 +242,7 @@ public class FacilityController {
 		result = dao.selectonejob(jo_seq);
 	
 		return result;
-	}
+	} 
 	
 	@RequestMapping(value = "/upSilverSearch_1", method = { RequestMethod.POST, RequestMethod.GET })
 	public String upSilverSearch_1(SilverSearch silversearch, Model model, MultipartFile file,HttpSession session) {
