@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,204 @@
 			var item = $(this).html();
 			$("#inform-tabContent").html(item);
 		 });
-	  });
+		//어르신등록
+			$('#submitbtn2').on('click',function(){
+					$('#inputBirth').attr("readonly",false);
+					$('#inputName').attr("readonly",false);
+					$('#inputblood').html('<select class="custom-select custom-select-sm my-1 mr-sm-2"id="bloodType" name="sc_bloodtype" ><option <c:if test="${sc.sc_bloodtype == null }">selected</c:if>>선택</option><option value="A" <c:if test="${sc.sc_bloodtype == \'A\'}">selected</c:if>>A</option><option value="B" <c:if test="${sc.sc_bloodtype == \'B\'}">selected</c:if>>B</option><option value="O" <c:if test="${sc.sc_bloodtype == \'O\'}">selected</c:if>>O</option><option value="AB" <c:if test="${sc.sc_bloodtype == \'AB\'}">selected</c:if>>AB</option> </select>');
+					$('#inputMeal').html('<select class="custom-select custom-select-sm my-1 mr-sm-2" id="meal" name="scd_meal" ><option <c:if test="${scd.scd_meal == null }">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_meal == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요" <c:if test="${scd.scd_meal == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_meal == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select>');
+					$('#inputWalking').html('<select class="custom-select custom-select-sm my-1 mr-sm-2" id="walking" name="scd_care"> <option <c:if test="${scd.scd_care == null}">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_care == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요"<c:if test="${scd.scd_care == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_care == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select>');
+					$('#inputWashing').html(' <select class="custom-select custom-select-sm my-1 mr-sm-2"id="washing" name="scd_washing"><option <c:if test="${scd.scd_washing == null}">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_washing == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요" <c:if test="${scd.scd_washing == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_washing == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select');
+					$('#inputClothing').html(' <select class="custom-select custom-select-sm my-1 mr-sm-2" id="clothing" name="scd_clothing"><option <c:if test="${scd.scd_clothing == null}">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_clothing == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요" <c:if test="${scd.scd_clothing == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_clothing == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select>');
+					$('#inputBath').html('<select class="custom-select custom-select-sm my-1 mr-sm-2"id="bath" name="scd_bath"><option <c:if test="${scd.scd_bath == null}">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_bath == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요" <c:if test="${scd.scd_bath == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_bath == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select>');
+					$('#inputWashroom').html('<select class="custom-select custom-select-sm my-1 mr-sm-2"id="washroom" name="scd_toilet"><option <c:if test="${scd.scd_toilet == null}">selected</c:if>>선택</option><option value="스스로 가능" <c:if test="${scd.scd_toilet == \'스스로 가능\'}">selected</c:if>>스스로 가능</option><option value="도움 필요" <c:if test="${scd.scd_toilet == \'도움 필요\'}">selected</c:if>>도움 필요</option><option value="스스로 불가능" <c:if test="${scd.scd_toilet == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option></select>');
+					$('#disease_information').attr("disabled", false);
+					$('#disease_information2').attr("disabled", false);
+					$('#disease_information3').attr("disabled", false);
+					$('#disease_information4').attr("disabled", false);
+					$('#disease_information5').attr("disabled", false);
+					$('#disease_information6').attr("disabled", false);
+					$('#disease_information7').attr("disabled", false);
+					$('#disease_information8').attr("disabled", false);
+					$('#disease_information9').attr("disabled", false);
+					$('#disease_information10').attr("disabled", false);
+					$('#disease_information11').attr("disabled", false);
+					$('#disease_information12').attr("disabled", false);
+					$('#disease_information13').attr("disabled", false);	
+					$('#disease_information14').attr("disabled", false);
+					$('#disease_information15').attr("disabled", false);
+					$('#disease_information16').attr("disabled", false);
+					$('#disease_information17').attr("disabled", false);
+					$('#disease_information18').attr("disabled", false);
+					$('#disease_information19').attr("disabled", false);
+					$('#disease_information20').attr("disabled", false);
+					$('#disease_information21').attr("disabled", false);
+					$('#disease_information22').attr("disabled", false);
+					$('#disease_information23').attr("disabled", false);
+					$('#scd_others').attr("readonly",false);
+					//어르신수정버튼 숨기기
+					$('#submitbtn2').attr("type","hidden");
+					//어르신취소버튼붙이기
+					$('#insertbtn2').append('<input type="button" id="canslebtn2" class="btn btn-outline-secondary" value="취소" onClick="window.location.href=window.location.href" >');
+					
+					if('${sc}'!=''){
+					//어르신수정버튼붙이기
+					$('#insertbtn2').append('<input type="button" id="sbmbtntest2" class="btn btn-outline-secondary" value="수정" >');
+					}else{
+					//어르신최초등록버튼붙이기	
+					$('#insertbtn2').append('<input type="button" id="sbmbtntest3" class="btn btn-outline-secondary" value="등록" >');
+					}
+					//어르신최초등록버튼 실행시
+					$('#sbmbtntest3').on('click',function(){
+						var birthday = $('#inputBirth').val();
+						var name = $('#inputName').val();
+						var blood = $('#bloodType').val();
+						var meal = $('#meal').val();
+						var walk = $('#walking').val();
+						var washing = $('#washing').val();
+						var cloth = $('#clothing').val();
+						var shower = $('#bath').val();
+					 	var toilet = $('#washroom').val();
+					 	
+					 	if(birthday == ''){
+					 		alert('어르신 생년월일을 입력해주세요!');
+					 		return;
+					 	}else if(name ==''){
+					 		alert('어르신 성함을 입력해주세요!');
+					 		return;
+					 	}else if(blood == '선택'){
+					 		alert('어르신 혈액형을 입력해주세요!');
+					 		return;
+					 	}else if(meal== '선택'){
+					 		alert('어르신 식사수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(walk== '선택'){
+					 		alert('어르신 보행수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(washing== '선택'){
+					 		alert('어르신  세면수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(cloth== '선택'){
+					 		alert('어르신 의복수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(shower== '선택'){
+					 		alert('어르신 목욕수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(toilet== '선택'){
+					 		alert('어르신 화장실수행정도를 입력해주세요!');
+					 		return;
+					 	}
+					 	
+						$('#insertSenior').submit();
+						
+					});
+					
+					//어르신수정버튼 실행시
+					$('#sbmbtntest2').on('click',function(){
+						//console.log("!");
+						var birthday = $('#inputBirth').val();
+						var name = $('#inputName').val();
+						var blood = $('#bloodType').val();
+						var meal = $('#meal').val();
+						var walk = $('#walking').val();
+						var washing = $('#washing').val();
+						var cloth = $('#clothing').val();
+						var shower = $('#bath').val();
+					 	var toilet = $('#washroom').val();
+						
+						if(birthday == ''){
+					 		alert('어르신 생년월일을 입력해주세요!');
+					 		return;
+					 	}else if(name ==''){
+					 		alert('어르신 성함을 입력해주세요!');
+					 		return;
+					 	}else if(blood == '선택'){
+					 		alert('어르신 혈액형을 입력해주세요!');
+					 		return;
+					 	}else if(meal== '선택'){
+					 		alert('어르신 식사수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(walk== '선택'){
+					 		alert('어르신 보행수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(washing== '선택'){
+					 		alert('어르신  세면수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(cloth== '선택'){
+					 		alert('어르신 의복수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(shower== '선택'){
+					 		alert('어르신 목욕수행정도를 입력해주세요!');
+					 		return;
+					 	}else if(toilet== '선택'){
+					 		alert('어르신 화장실수행정도를 입력해주세요!');
+					 		return;
+					 	}
+					 	
+						$('#updateSenior').submit();
+						
+					});
+					//취소버튼 실행시
+					$('#canslebtn2').on('click',function(){
+						location.reload();
+					});
+			});
+			
+			
+			//개인정보 수정,등록, 삭제
+			$('#submitbtn').on('click', function() {
+				
+			
+				$('#editPassword').attr("disabled", false);
+				$('#editPasswordT').attr("disabled", false);
+				$('#editEmail').attr("disabled" , false);
+				$('#selectPhone').html('<input type="text" class="form-control form-control-sm"id="editPhone" name="telephone" value="${member.telephone}">');
+				$('#selectfile').html('<div class="custom-file"><input type="file" class="file-input" id="licenseFile" lang="ko"> <small id="licenseHelp" class="form-text text-muted">자격증 파일을 선택하세요.</small></div>');
+				$('#selectType1').html('<div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type" id="custom" value=1 checked> <label class="form-check-label form-check-sm" for="custom"><small>일반가입자</small></label></div>');
+				$('#selectType2').html('<div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type" id="worker" value=2> <label class="form-check-label form-check-sm" for="worker"><small>종사자</small></label> </div>'); 
+				$('#updatebtn').append('<input type="button" id="canslebtn" class="btn btn-outline-secondary"value="취소" onClick="window.location.href=window.location.href" >');
+				$('#updatebtn').append('<input type="button" id="sbmbtntest" class="btn btn-outline-secondary"value="등록" >');
+				$('#submitbtn').attr("type","hidden");
+				$('#attachedFile').html('<input type="file" class="file-input" id="licenseFile" lang="ko"><small id="licenseHelp" class="form-text text-muted">자격증 파일을 선택하세요.</small>');
+				/* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
+				$('#worker').on('click', function() {
+			  		$("#attachedFile").show();  
+			  		$("#forFile").show();
+			  	});	
+				/* 수정: 스크립트 추가: 일반가입자 클릭했을 때 첨부파일 remove */	
+				$('#custom').on('click',function(){
+					  $("#attachedFile *").remove();  
+				  	  $("#forFile *").remove();
+				  }); 
+				//취소버튼실행시
+				$("#canslebtn").on("click",function(){
+					location.reload();
+				});
+				//수정버튼실행시
+				$("#sbmbtntest").on("click", function() {
+					var pwd = $('#editPassword').val();
+					var pwd2 = $('#editPasswordT').val();
+					var email = $('#editEmail').val();
+					var phone = $('#editPhone').val();
+					if(pwd == ''){
+						alert('비밀번호를 입력해주세요!');
+						return;
+					}else if(pwd !=pwd2){
+						alert('비밀번호와 확인비밀번호가 일치하지 않습니다!');
+						return;
+					}else if(email == '' ){
+						alert('이메일을 입력해주세요!');
+						return;
+					}else if(phone == ''){
+						alert('전화번호를 입력해주세요!');
+						return;
+					}
+					
+					$('#updateMember').submit();
+				});
+			});
+		  //function end
+		  });
 	 
 	  /* 쪽지함 show & hide 스크립트 */
 	  $(document).ready(function(){
@@ -61,7 +259,7 @@
 		  });
 
 	  });
-	  
+	  	  
 /* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
 
 	  $(function() {
@@ -70,7 +268,7 @@
 	  	
 	  	$('#worker').on('click', function() {
 	  		$("#attachedFile").show();  
-	  		$("#forFile").show()
+	  		$("#forFile").show();
 	  	});	
 	  });	
  
@@ -296,7 +494,7 @@
 		    	
 				<div class="tab-pane fade show active" id="tab-edit-account" role="tabpanel" aria-labelledby="edit-account">
 				<!-- 1) 개인정보 -->
-				<form action="updateMember" method="post">
+				<form action="updateMember" method="post" id="updateMember">
 				<div class="card border mb-3" id="card-edit-account">
 					<div class="container">
 						<div class="pt-5 pb-1 border-bottom">
@@ -320,10 +518,10 @@
 							<div class="col-sm-1"></div>
 								<label for="editPassword" class="col-sm-2 col-form-label col-form-label-sm"><small>비밀번호</small></label>
 							    <div class="col-sm-4 pr-1">
-									<input type="password" class="form-control form-control-sm" name="userpwd" id="editPassword" placeholder="비밀번호">
+									<input type="password" class="form-control form-control-sm" name="userpwd" id="editPassword" placeholder="비밀번호" disabled="disabled">
 							    </div>
 							    <div class="col-sm-4 pl-1">
-									<input type="password" class="form-control form-control-sm" id="editPassword" placeholder="비밀번호 확인">
+									<input type="password" class="form-control form-control-sm" id="editPasswordT" placeholder="비밀번호 확인" disabled="disabled">
 							    </div>
 							</div>
 							
@@ -332,9 +530,12 @@
 							<div class="form-group row pt-4">
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
-							    <div class="col-sm-8">
-									<input type="date" class="form-control form-control-sm" id="editBirth" name="birthday" >
-							    </div>
+							    <div class="col-sm-8" id="selectDate">
+											
+											<input type="text" class="form-control form-control-sm"
+												id="editBirth" name="birthday"
+												value="${member.birthday}" readonly="readonly">
+								</div>
 							</div>
 						
 						<!-- 성별 : 기존 정보가 디폴트로 들어가 있어야 함 -->
@@ -343,11 +544,8 @@
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>성별</small></label>
 							    <div class="col-sm-8">
-									 <select class="custom-select custom-select-sm my-1 mr-sm-2" name="gender" id="inputGender">
-									    <option selected>선택</option>
-									    <option id="gender" value="남성">남성</option>
-									    <option id="gender" value="여성">여성</option>
-									  </select>
+									<input type="text" class="form-control form-control-sm"
+												id="inputGender" name="gender" value="${member.gender}"	readonly="readonly">
 							    </div>
 							</div>		
 					
@@ -367,8 +565,10 @@
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>이메일</small></label>
      							<div class="col-sm-8">
-     								<input type="email" class="form-control form-control-sm" id="editEmail" name="email" placeholder="이메일을 입력하세요.">
-							    </div>
+											<input type="email" class="form-control form-control-sm"
+												id="editEmail" name="email" value="${member.email}"
+												disabled>
+								</div>
 							</div>
 						
 						<!-- 전화번호 : 가입 시 없는 정보이기 때문에 빈 값 -->
@@ -376,10 +576,10 @@
 <!-- 패딩 수정 -->			<div class="form-group row pt-4 pb-4">
 							<div class="col-sm-1"></div>
 								<label for="editEmail" class="col-sm-2 col-form-label col-form-label-sm"><small>전화번호</small></label>
-     							<div class="col-sm-8">
-     								<input type="number" class="form-control form-control-sm" id="editEmail" name="telephone" placeholder="전화번호를 입력하세요.">
-							    	<small id="phoneHelp" class="form-text text-muted">"-" 없이 연락처를 입력하세요.</small>
-							    </div>
+     							<div class="col-sm-8" id="selectPhone">
+											<input type="text" class="form-control form-control-sm"
+												id="editPhone" name="telephone" value="${member.telephone}" disabled>
+								</div>
 							</div>
 						
 					</div>	
@@ -397,7 +597,7 @@
 				<div class="form-group row pt-5">
 							<div class="col-sm-1"></div>
 								<label for="editType" class="col-sm-2 col-form-label col-form-label-sm"><small>가입자 구분</small></label>
-     							<div class="col-sm-4">
+     							<!-- <div class="col-sm-4">
      								<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="type" id="custom" value=1 checked>
 										<label class="form-check-label form-check-sm" for="custom"><small>일반가입자</small></label>
@@ -408,7 +608,23 @@
 										<input class="form-check-input" type="radio" name="type" id="worker" value=2>
 										<label class="form-check-label form-check-sm" for="worker"><small>종사자</small></label>
 									</div>
-							    </div>
+							    </div> -->
+							    <div class="col-sm-4" id="selectType1">
+										<div class="form-check form-check-inline" >
+										<input class="form-check-input" type="radio" name="type" 
+										id="custom" disabled
+										<c:if test="${member.type==1}">checked</c:if>> <label
+										class="form-check-label form-check-sm" for="custom"><small>일반가입자</small></label>
+									</div>
+									</div>
+									<div class="col-sm-4" id="selectType2">
+									<div class="form-check form-check-inline" >
+										<input class="form-check-input" type="radio" name="type"
+										id="worker" disabled
+										<c:if test="${member.type==2}">checked </c:if>> <label
+										class="form-check-label form-check-sm" for="worker"><small>종사자</small></label>
+									</div>
+								</div>
 							</div>
 						
 						<!-- 첨부파일 : 첨부파일 없을 시 '종사자'로 수정 불가 -->
@@ -418,8 +634,10 @@
 								<label for="uploadLicense" class="col-sm-2 col-form-label col-form-label-sm" id="forFile"><small>자격증</small></label>
      							<div class="col-sm-8">
      								<div class="custom-file" id="attachedFile">
-									  <input type="file" class="file-input" id="licenseFile" lang="ko">
-									  <small id="licenseHelp" class="form-text text-muted">자격증 파일을 선택하세요.</small>
+									  <!-- <input type="file" class="file-input" id="licenseFile" lang="ko">
+									  <small id="licenseHelp" class="form-text text-muted">자격증 파일을 선택하세요.</small> -->
+										<input type="text" class="form-control form-control-sm" id="licenseFile"
+													lang="ko" placeholder="자격증 파일명.txt"  readonly="readonly">
 									</div>
 							    </div>
 							</div>
@@ -428,8 +646,9 @@
 				
 				</div>	
 					<!-- 수정 버튼  -->
-					<div class="text-center pt-3 pb-5">
-						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">수정</button>
+					<div class="text-center pt-3 pb-5" id="updatebtn">
+						<input type="button" id="submitbtn"
+						class="btn btn-outline-secondary" value="수정">
 					</div>
 					</form>
 				</div>
@@ -437,8 +656,10 @@
 				<!-- 2) 어르신정보 -->
 				
 				<div class="tab-pane fade" id="tab-input-elder" role="tabpanel" aria-labelledby="input-elder">
-					<form action="insertSenior" method="POST">
+					<c:if test="${sc == null}">
+					<form action="insertSenior" method="POST" id="insertSenior">
 					<!-- 2-1. 기본정보 -->
+					
 					<div class="card border mb-3" id="card-edit-account">
 						<div class="container">
 							<div class="pt-5 pb-1 border-bottom">
@@ -453,7 +674,7 @@
 								<div class="col-sm-1"></div>
 									<label for="inputBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
 								    <div class="col-sm-8">
-										<input type="date" class="form-control form-control-sm" id="inputBirth" name="sc_birthday">
+										<input type="date" class="form-control form-control-sm" id="inputBirth" name="sc_birthday" value="${sc.sc_birthday}" readonly="readonly">
 								    </div>
 								</div>
 							
@@ -463,7 +684,7 @@
 								<div class="col-sm-1"></div>
 									<label for="inputName" class="col-sm-2 col-form-label col-form-label-sm"><small>이름</small></label>
 	     							<div class="col-sm-8">
-	     								<input type="text" class="form-control form-control-sm" id="inputName" placeholder="성함을 입력하세요." name="sc_name">
+	     								<input type="text" class="form-control form-control-sm" id="inputName" value ="${sc.sc_name}" name="sc_name" readonly="readonly">
 								    </div>
 								</div>
 							
@@ -472,14 +693,16 @@
 <!-- 패딩 수정 -->			<div class="form-group row pt-5 pb-4">
 								<div class="col-sm-1"></div>
 									<label for="bloodType" class="col-sm-2 col-form-label col-form-label-sm"><small>혈액형</small></label>
-								    <div class="col-sm-8">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bloodType" name="sc_bloodtype">
+								    <div class="col-sm-8" id="inputblood">
+										 <!-- <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bloodType" name="sc_bloodtype">
 										    <option selected>선택</option>
 										    <option value="A">A</option>
 										    <option value="B">B</option>
 										    <option value="O">O</option>
 										    <option value="AB">AB</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+											id="bloodType" name="sc_bloodtype" value="${sc.sc_bloodtype}"readonly="readonly">
 								    </div>
 								</div>		
 							
@@ -498,62 +721,74 @@
 							
 								<div class="form-group row pt-5">
 									<label for="meal" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>식사</small></label>
-								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="meal" name="scd_meal">
+								    <div class="col-sm-4" id="inputMeal">
+										 <!-- <select class="custom-select custom-select-sm my-1 mr-sm-2" id="meal" name="scd_meal">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="meal" name="scd_meal" value="${scd.scd_meal}"readonly="readonly">
 								    </div>
 								    <label for="walking" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>보행</small></label>
-								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="walking" name="scd_care">
+								    <div class="col-sm-4" id="inputWalking">
+										 <!-- <select class="custom-select custom-select-sm my-1 mr-sm-2" id="walking" name="scd_care">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="walking" name="scd_care" value="${scd.scd_care}"readonly="readonly">
 								    </div>
 								</div>
 								<div class="form-group row pt-3">
 									<label for="washing" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>세면</small></label>
-								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washing" name="scd_washing">
+								    <div class="col-sm-4" id="inputWashing">
+										<!--  <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washing" name="scd_washing">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="walking" name="scd_care" value="${scd.scd_care}"readonly="readonly">
 								    </div>
 								    <label for="clothing" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>의복</small></label>
-								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="clothing" name="scd_clothing">
+								    <div class="col-sm-4" id="inputClothing">
+										 <!-- <select class="custom-select custom-select-sm my-1 mr-sm-2" id="clothing" name="scd_clothing">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="clothing" name="scd_clothing" value="${scd.scd_clothing}"readonly="readonly">
 								    </div>
 								</div>
 								<div class="form-group row pt-3">
 									<label for="bath" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>목욕</small></label>
-								    <div class="col-sm-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bath" name="scd_bath">
+								    <div class="col-sm-4" id="inputBath">
+										<!--  <select class="custom-select custom-select-sm my-1 mr-sm-2" id="bath" name="scd_bath">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="bath" name="scd_bath" value="${scd.scd_bath}"readonly="readonly">
 								    </div>
 								    <label for="washroom" class="col-sm-2 col-form-label col-form-label-sm text-center"><small>화장실</small></label>
-<!-- 패딩 수정 -->						<div class="col-sm-4 pb-4">
-										 <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washroom" name="scd_toilet">
+<!-- 패딩 수정 -->						<div class="col-sm-4 pb-4" id="inputWashroom">
+										 <!-- <select class="custom-select custom-select-sm my-1 mr-sm-2" id="washroom" name="scd_toilet">
 										    <option selected>선택</option>
 										    <option value="스스로 가능">스스로 가능</option>
 										    <option value="도움 필요">도움 필요</option>
 										    <option value="스스로 불가능">스스로 불가능</option>
-										  </select>
+										  </select> -->
+										  <input type="text" class="form-control form-control-sm"
+												id="washroom" name="scd_toilet" value="${scd.scd_toilet}"readonly="readonly">
 								    </div>
 								</div>						
 							
@@ -571,109 +806,460 @@
 							<!-- 질환정보 등록 -->
 							
 <!-- 패딩 수정 -->					<div class="form-group row pt-4 pb-4 text-center">
-								    <div class="col-sm-12">
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="황달">
-										  <label class="form-check-label" for="inlineCheckbox1">황달</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="고혈압">
-										  <label class="form-check-label" for="inlineCheckbox2">고혈압</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="저혈압">
-										  <label class="form-check-label" for="inlineCheckbox3">저혈압</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="관절염">
-										  <label class="form-check-label" for="inlineCheckbox4">관절염</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="근육장애">
-										  <label class="form-check-label" for="inlineCheckbox5">근육장애</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="등병증">
-										  <label class="form-check-label" for="inlineCheckbox6">등병증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="보행장애">
-										  <label class="form-check-label" for="inlineCheckbox7">보행장애</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="요실금">
-										  <label class="form-check-label" for="inlineCheckbox8">요실금</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="우울증">
-										  <label class="form-check-label" for="inlineCheckbox9">우울증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌졸증">
-										  <label class="form-check-label" for="inlineCheckbox10">뇌졸증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌출혈">
-										  <label class="form-check-label" for="inlineCheckbox11">뇌출혈</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="뇌경색증">
-										  <label class="form-check-label" for="inlineCheckbox12">뇌경색증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="골절">
-										  <label class="form-check-label" for="inlineCheckbox13">골절</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="당뇨">
-										  <label class="form-check-label" for="inlineCheckbox14">당뇨</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="위장염">
-										  <label class="form-check-label" for="inlineCheckbox15">위장염</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="안면통증">
-										  <label class="form-check-label" for="inlineCheckbox16">안면통증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="오십견">
-										  <label class="form-check-label" for="inlineCheckbox17">오십견</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="욕창">
-										  <label class="form-check-label" for="inlineCheckbox18">욕창</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="척추병">
-										  <label class="form-check-label" for="inlineCheckbox19">척추병</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="치매">
-										  <label class="form-check-label" for="inlineCheckbox20">치매</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="파킨슨병">
-										  <label class="form-check-label" for="inlineCheckbox21">파킨슨병</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="패혈증">
-										  <label class="form-check-label" for="inlineCheckbox22">패혈증</label>
-										</div>
-										<div class="form-check form-check-inline p-3">
-										  <input class="form-check-input" type="checkbox" id="disease_information" name="scd_disease" value="폐렴">
-										  <label class="form-check-label" for="inlineCheckbox23">폐렴</label>
-										</div>
+								    <div class="col-sm-12" id="disease">
+											<div class="form-check form-check-inline p-3" id="disease1">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information" name="scd_disease" value="황달"  <c:if test="${fn:contains(scd.scd_disease,'황달')}">checked</c:if> disabled="disabled" >
+												<label class="form-check-label" for="inlineCheckbox1">황달</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease2">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information2" name="scd_disease" value="고혈압" <c:if test="${fn:contains(scd.scd_disease,'고혈압')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox2">고혈압</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease3">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information3" name="scd_disease" value="저혈압" <c:if test="${fn:contains(scd.scd_disease,'저혈압')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox3">저혈압</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease4">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information4" name="scd_disease" value="관절염" <c:if test="${fn:contains(scd.scd_disease,'관절염')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox4">관절염</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease5">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information5" name="scd_disease" value="근육장애" <c:if test="${fn:contains(theString, '근육장애')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox5">근육장애</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease6">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information6" name="scd_disease" value="등병증" <c:if test="${fn:contains(scd.scd_disease,'등병증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox6">등병증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease7">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information7" name="scd_disease" value="보행장애" <c:if test="${fn:contains(scd.scd_disease,'보행장애')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox7">보행장애</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease8">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information8" name="scd_disease" value="요실금" <c:if test="${fn:contains(scd.scd_disease,'요실금')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox8">요실금</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease9">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information9" name="scd_disease" value="우울증" <c:if test="${fn:contains(scd.scd_disease,'우울증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox9">우울증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease10">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information10" name="scd_disease" value="뇌졸증" <c:if test="${fn:contains(scd.scd_disease,'뇌졸증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox10">뇌졸증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease11">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information11" name="scd_disease" value="뇌출혈" <c:if test="${fn:contains(scd.scd_disease,'뇌출혈')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox11">뇌출혈</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease12">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information12" name="scd_disease" value="뇌경색증" <c:if test="${fn:contains(scd.scd_disease,'뇌경색증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox12">뇌경색증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease13">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information13" name="scd_disease" value="골절" <c:if test="${fn:contains(scd.scd_disease,'골절')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox13">골절</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease14">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information14" name="scd_disease" value="당뇨" <c:if test="${fn:contains(scd.scd_disease,'당뇨')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox14">당뇨</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease15">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information15" name="scd_disease" value="위장염" <c:if test="${fn:contains(scd.scd_disease,'위장염')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox15">위장염</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease16">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information16" name="scd_disease" value="안면통증" <c:if test="${fn:contains(scd.scd_disease,'안면통증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox16">안면통증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease17">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information17" name="scd_disease" value="오십견" <c:if test="${fn:contains(scd.scd_disease,'오십견')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox17">오십견</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease18">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information18" name="scd_disease" value="욕창" <c:if test="${fn:contains(scd.scd_disease,'욕창')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox18">욕창</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease19">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information19" name="scd_disease" value="척추병" <c:if test="${fn:contains(scd.scd_disease,'척추병')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox19">척추병</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease20">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information20" name="scd_disease" value="치매" <c:if test="${fn:contains(scd.scd_disease,'치매')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox20">치매</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease21">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information21" name="scd_disease" value="파킨슨병" <c:if test="${fn:contains(scd.scd_disease,'파킨슨병')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox21">파킨슨병</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease22">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information22" name="scd_disease" value="패혈증" <c:if test="${fn:contains(scd.scd_disease,'패혈증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox22">패혈증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease23">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information23" name="scd_disease" value="폐렴" <c:if test="${fn:contains(scd.scd_disease,'폐렴')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox23">폐렴</label>
+											</div>
+											
+											<div class="form-check form-check-inline p-3">
+											<label for="meal"
+											class="col-sm-4"><small>기타</small></label>
+											<input type="text" class="form-control form-control-sm"
+												id="scd_others" 
+												value ="${scd.scd_others}"  
+												name="scd_others" readonly="readonly">
+											</div>
+								    
 								    </div>
 								</div>
-							
 						</div>	
 					</div>
 					<!-- 수정 버튼  -->
-					<div class="text-center pt-3 pb-5">
-						<button type="submit" id="submitbtn" class="btn btn-outline-secondary">등록</button>
+					<div class="text-center pt-3 pb-5" id="insertbtn2">
+						<input type="button" id="submitbtn2" class="btn btn-outline-secondary" value="수정">
 					</div>	
 				</form>
+				</c:if>
+					<c:if test="${sc != null}">
+						<form action="updateSenior" method="POST" id="updateSenior" name="abc">
+						<!-- 2-1. 기본정보 -->
+							<div class="card border mb-3" id="card-edit-account">
+								<div class="container">
+									<div class="pt-5 pb-1 border-bottom">
+										<div class="tab-content">
+											<h5 class="text-secondary" id="inform-tabContent">기본정보</h5>
+										</div>
+										<small id="selecteHelp" class="form-text text-muted">요양시설
+											돌봄이 필요한 어르신 정보를 입력하세요.</small>
+									</div>
+									<!-- 생년월일 등록 -->
+
+									<div class="form-group row pt-5">
+										<div class="col-sm-1"></div>
+										<label for="inputBirth"
+											class="col-sm-2 col-form-label col-form-label-sm"><small>생년월일</small></label>
+										<div class="col-sm-8">
+											<input type="date" class="form-control form-control-sm"
+												id="inputBirth" name="sc_birthday" value="${sc.sc_birthday}" readonly="readonly" >
+										</div>
+									</div>
+
+									<!-- 이름 등록 -->
+
+									<div class="form-group row pt-5">
+										<div class="col-sm-1"></div>
+										<label for="inputName"
+											class="col-sm-2 col-form-label col-form-label-sm"><small>이름</small></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control form-control-sm"
+												id="inputName" 
+												value= "${sc.sc_name}"  
+												name="sc_name" readonly="readonly">
+										</div>
+									</div>
+
+									<!-- 혈액형 등록 -->
+
+									<div class="form-group row pt-5">
+										<div class="col-sm-1"></div>
+										<label for="bloodType"
+											class="col-sm-2 col-form-label col-form-label-sm"><small>혈액형</small></label>
+										<div class="col-sm-8" id="inputblood">
+											<%--  <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="bloodType" name="sc_bloodtype" >
+												<option <c:if test="${sc.sc_bloodtype == null }">selected</c:if>>선택</option>
+												<option value="A" <c:if test="${sc.sc_bloodtype == 'A'}">selected</c:if>>A</option>
+												<option value="B" <c:if test="${sc.sc_bloodtype == 'B'}">selected</c:if>>B</option>
+												<option value="O" <c:if test="${sc.sc_bloodtype == 'O'}">selected</c:if>>O</option>
+												<option value="AB" <c:if test="${sc.sc_bloodtype == 'AB'}">selected</c:if>>AB</option> 
+											</select> --%> 
+												<input type="text" class="form-control form-control-sm"
+												id="bloodType" name="sc_bloodtype" value="${sc.sc_bloodtype}"readonly="readonly">
+											
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- 2-2. 일상생활 수행정도 -->
+							<div class="card border mb-3" id="card-edit-account">
+								<div class="container">
+									<div class="pt-5 pb-1 border-bottom">
+										<div class="tab-content">
+											<h5 class="text-secondary" id="inform-tabContent">일상생활
+												수행정도</h5>
+										</div>
+										<small id="selecteHelp" class="form-text text-muted">스스로
+											가능, 도움 필요, 스스로 불가능 중 수행정도를 선택하세요.</small>
+									</div>
+									<!-- 수행정도 선택폼 : 현재 vo 없음 -->
+
+									<div class="form-group row pt-5">
+										<label for="meal"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>식사</small></label>
+										<div class="col-sm-4" id="inputMeal">
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="meal" name="scd_meal" >
+												<option <c:if test="${scd.scd_meal == null }">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_meal == '스스로 가능'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요" <c:if test="${scd.scd_meal == '도움 필요'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_meal == '스스로 불가능'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="meal" name="scd_meal" value="${scd.scd_meal}"readonly="readonly">
+										</div>
+										<label for="walking"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>보행</small></label>
+										<div class="col-sm-4" id="inputWalking">
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="walking" name="scd_care">
+												<option <c:if test="${scd.scd_care == null}">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_care == '스스로 가능'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요"<c:if test="${scd.scd_care == '도움 필요'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_care == '스스로 불가능'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="walking" name="scd_care" value="${scd.scd_care}"readonly="readonly">
+										</div>
+									</div>
+									<div class="form-group row pt-3">
+										<label for="washing"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>세면</small></label>
+										<div class="col-sm-4" id="inputWashing"> 
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="washing" name="scd_washing">
+												<option <c:if test="${scd.scd_washing == null}">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_washing == \'스스로 가능\'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요" <c:if test="${scd.scd_washing == \'도움 필요\'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_washing == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="washing" name="scd_washing" value="${scd.scd_washing}"readonly="readonly">
+											
+										</div>
+										<label for="clothing"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>의복</small></label>
+										<div class="col-sm-4" id="inputClothing">
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="clothing" name="scd_clothing">
+												<option <c:if test="${scd.scd_clothing == null}">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_clothing == \'스스로 가능\'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요" <c:if test="${scd.scd_clothing == \'도움 필요\'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_clothing == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="clothing" name="scd_clothing" value="${scd.scd_clothing}"readonly="readonly">
+										</div>
+									</div>
+									<div class="form-group row pt-3">
+										<label for="bath"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>목욕</small></label>
+										<div class="col-sm-4" id="inputBath">
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="bath" name="scd_bath">
+												<option <c:if test="${scd.scd_bath == null}">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_bath == \'스스로 가능\'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요" <c:if test="${scd.scd_bath == \'도움 필요\'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_bath == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="bath" name="scd_bath" value="${scd.scd_bath}"readonly="readonly">
+										</div>
+										<label for="washroom"
+											class="col-sm-2 col-form-label col-form-label-sm text-center"><small>화장실</small></label>
+										<div class="col-sm-4" id="inputWashroom">
+											<%-- <select class="custom-select custom-select-sm my-1 mr-sm-2"
+												id="washroom" name="scd_toilet">
+												<option <c:if test="${scd.scd_toilet == null}">selected</c:if>>선택</option>
+												<option value="스스로 가능" <c:if test="${scd.scd_toilet == \'스스로 가능\'}">selected</c:if>>스스로 가능</option>
+												<option value="도움 필요" <c:if test="${scd.scd_toilet == \'도움 필요\'}">selected</c:if>>도움 필요</option>
+												<option value="스스로 불가능" <c:if test="${scd.scd_toilet == \'스스로 불가능\'}">selected</c:if>>스스로 불가능</option>
+											</select> --%>
+											<input type="text" class="form-control form-control-sm"
+												id="washroom" name="scd_toilet" value="${scd.scd_toilet}"readonly="readonly">
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- 2-3. 질환정보 -->
+							<div class="card border mb-3" id="card-edit-account">
+								<div class="container">
+									<div class="pt-5 pb-1 border-bottom">
+										<div class="tab-content">
+											<h5 class="text-secondary" id="inform-tabContent">질환정보</h5>
+										</div>
+										<small id="selecteHelp" class="form-text text-muted">가지고
+											계신 질환을 선택해 주세요.</small>
+									</div>
+									<!-- 질환정보 등록 -->
+
+									<div class="form-group row pt-4 pb-4 text-center">
+								    	<div class="col-sm-12" id="disease">
+											<div class="form-check form-check-inline p-3" id="disease1">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information" name="scd_disease" value="황달"  <c:if test="${fn:contains(scd.scd_disease,'황달')}">checked</c:if> disabled="disabled" >
+												<label class="form-check-label" for="inlineCheckbox1">황달</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease2">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information2" name="scd_disease" value="고혈압" <c:if test="${fn:contains(scd.scd_disease,'고혈압')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox2">고혈압</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease3">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information3" name="scd_disease" value="저혈압" <c:if test="${fn:contains(scd.scd_disease,'저혈압')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox3">저혈압</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease4">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information4" name="scd_disease" value="관절염" <c:if test="${fn:contains(scd.scd_disease,'관절염')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox4">관절염</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease5">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information5" name="scd_disease" value="근육장애" <c:if test="${fn:contains(theString, '근육장애')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox5">근육장애</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease6">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information6" name="scd_disease" value="등병증" <c:if test="${fn:contains(scd.scd_disease,'등병증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox6">등병증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease7">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information7" name="scd_disease" value="보행장애" <c:if test="${fn:contains(scd.scd_disease,'보행장애')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox7">보행장애</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease8">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information8" name="scd_disease" value="요실금" <c:if test="${fn:contains(scd.scd_disease,'요실금')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox8">요실금</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease9">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information9" name="scd_disease" value="우울증" <c:if test="${fn:contains(scd.scd_disease,'우울증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox9">우울증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease10">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information10" name="scd_disease" value="뇌졸증" <c:if test="${fn:contains(scd.scd_disease,'뇌졸증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox10">뇌졸증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease11">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information11" name="scd_disease" value="뇌출혈" <c:if test="${fn:contains(scd.scd_disease,'뇌출혈')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox11">뇌출혈</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease12">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information12" name="scd_disease" value="뇌경색증" <c:if test="${fn:contains(scd.scd_disease,'뇌경색증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox12">뇌경색증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease13">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information13" name="scd_disease" value="골절" <c:if test="${fn:contains(scd.scd_disease,'골절')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox13">골절</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease14">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information14" name="scd_disease" value="당뇨" <c:if test="${fn:contains(scd.scd_disease,'당뇨')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox14">당뇨</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease15">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information15" name="scd_disease" value="위장염" <c:if test="${fn:contains(scd.scd_disease,'위장염')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox15">위장염</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease16">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information16" name="scd_disease" value="안면통증" <c:if test="${fn:contains(scd.scd_disease,'안면통증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox16">안면통증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease17">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information17" name="scd_disease" value="오십견" <c:if test="${fn:contains(scd.scd_disease,'오십견')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox17">오십견</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease18">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information18" name="scd_disease" value="욕창" <c:if test="${fn:contains(scd.scd_disease,'욕창')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox18">욕창</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease19">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information19" name="scd_disease" value="척추병" <c:if test="${fn:contains(scd.scd_disease,'척추병')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox19">척추병</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease20">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information20" name="scd_disease" value="치매" <c:if test="${fn:contains(scd.scd_disease,'치매')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox20">치매</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease21">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information21" name="scd_disease" value="파킨슨병" <c:if test="${fn:contains(scd.scd_disease,'파킨슨병')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox21">파킨슨병</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease22">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information22" name="scd_disease" value="패혈증" <c:if test="${fn:contains(scd.scd_disease,'패혈증')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox22">패혈증</label>
+											</div>
+											<div class="form-check form-check-inline p-3" id="disease23">
+												<input class="form-check-input" type="checkbox"
+													id="disease_information23" name="scd_disease" value="폐렴" <c:if test="${fn:contains(scd.scd_disease,'폐렴')}">checked</c:if> disabled="disabled">
+												<label class="form-check-label" for="inlineCheckbox23">폐렴</label>
+											</div>
+											
+											<div class="form-check form-check-inline p-3">
+											<label for="meal"
+											class="col-sm-4"><small>기타</small></label>
+											<input type="text" class="form-control form-control-sm"
+												id="scd_others" 
+												value ="${scd.scd_others}"  
+												name="scd_others" readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- 수정 버튼  -->
+							<!-- <div class="text-center pt-3 pb-5" id="insertbtn2">
+								<button type="button" id="submitbtn2"
+									class="btn btn-outline-secondary" value="등록"></button>
+							</div> -->
+							
+							<div class="text-center pt-3 pb-5" id="insertbtn2">
+								<input type="button" id="submitbtn2"
+								class="btn btn-outline-secondary" value="수정">
+							</div>
+						</form>
+					</c:if>
+					
 				</div>
 				
 				<!-- 3-3. 쪽지함 -->
@@ -909,7 +1495,7 @@
 								<tbody>
 								    <tr>
 										<th class="bg-light w-30">* 성명</th>
-										<th>"member.username"</th>
+										<th>${member.username}</th>
 										<th class="bg-light w-30">성별</th>
 										<th>"member.gender"</th>
 								    </tr>
