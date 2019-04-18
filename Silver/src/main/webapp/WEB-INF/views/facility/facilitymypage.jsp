@@ -137,7 +137,7 @@ $(function() {
 	</header>
 	
 <!-- 상단 점보트론 -->
-	<div class="jumbotron text-center hoverable p-0 mb-0">
+	<div class="jumbotron hoverable p-0 mb-0">
 	
 	  <!-- Grid row -->
 	  <div class="row container col-md-12 p-0 m-0">
@@ -149,14 +149,28 @@ $(function() {
 	      <!-- 이미지 미리보기 -->
 	      <div class="view overlay">
 	        <div class="view view-cascade overlay border">
-	        </div>
+	      </div>
+	      <div class="text-center mt-2">
+	      	<h5 class="mb-0"><strong>기관 사진 업로드</strong></h5> <br>
+	      </div>
 	        <!-- 파일업로드 -->
+	        <div class="input-group"> 
+			  <div class="custom-file">
+			    <input type="file" class="custom-file-input" id="uploadPicture">
+			    <label class="custom-file-label float-left" for="uploadPicture">파일을 선택하세요.</label>
+			  </div>
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-secondary" type="button" id="uploadbtn">업로드</button>
+			  </div>
+			</div>
+			<!-- 
 			<form>
 	          <div class="form-group mt-2">
 	            <label for="uploadPicture"><strong>기관 사진 업로드</strong></label>
 	            <input type="file" class="form-control-file" id="uploadPicture">
 	          </div>
 			</form>
+			 -->
 	      </div>
 	    </div>
 	    
@@ -275,27 +289,27 @@ $(function() {
 	        </div>
 			<!--Card Contents-->
 	          <div class="row col-md-12">
-	            <p class="col-md-5">설립정보</p>
+	            <p class="col-md-6">설립정보</p>
 	            <p class="col"><strong>${DetailsOne.establishment}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">봉사활동</p>
+	            <p class="col-md-6">봉사활동</p>
 	            <p class="col"><strong>${DetailsOne.hp_service}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">간병형태</p>
+	            <p class="col-md-6">간병형태</p>
 	            <p class="col"><strong>${DetailsOne.protection}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">입지정보</p>
+	            <p class="col-md-6">입지정보</p>
 	            <p class="col"><strong>${DetailsOne.location}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">종교활동</p>
+	            <p class="col-md-6">종교활동</p>
 	            <p class="col"><strong>${DetailsOne.religion}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">전화번호</p>
+	            <p class="col-md-6">전화번호</p>
 	            <p class="col"><strong>${DetailsOne.hospital_tel}</strong></p>
 	          </div>
 	        <!-- card-body -->
@@ -388,19 +402,19 @@ $(function() {
 	        </div>
 						<!--Card Contents-->
 	          <div class="row col-md-12">
-	            <p class="col-md-5">쉬는날</p>
+	            <p class="col-md-6">쉬는날</p>
 	            <p class="col"><strong>${DetailsOne.holiday}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">점심시간</p>
+	            <p class="col-md-6">점심시간</p>
 	            <p class="col"><strong>${DetailsOne.lunchtime}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">평일 접수시간</p>
+	            <p class="col-md-6">평일 접수시간</p>
 	            <p class="col"><strong>${DetailsOne.receipttime}</strong></p>
 	          </div>
 	          <div class="row col-md-12">
-	            <p class="col-md-5">토요일 접수시간</p>
+	            <p class="col-md-6">토요일 접수시간</p>
 	            <p class="col"><strong>${DetailsOne.facilityinformation}</strong></p>
 	          </div>
 	        <!-- card-body -->
