@@ -193,7 +193,7 @@ function oneoutput(data){
 	$("#onejint").html(data.jo_int);
 	$("#onejtype").html(data.jo_type);
 	$("#onejcon").html(data.jo_content);
-	$("#onedate").html(data.jo_date);
+	$("#onedate").html(data.jo_date); 
 	
 	
 }
