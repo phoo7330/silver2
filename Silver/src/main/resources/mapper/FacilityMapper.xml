@@ -74,6 +74,68 @@ VALUES(
     #{jo_gender},
     #{jo_int}
 )
- 
   </insert>
+  
+  <select id="selectjob" parameterType="String" resultType="Job">
+  SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER,
+  b.JO_INT
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+    a.SEACH_SEQ = b.SEACH_SEQ
+    AND
+    b.USERID = #{userid}
+ORDER BY
+    b.JO_DATE DESC
+  
+  </select>
+  <select id="selectonejob" parameterType="int" resultType="Job">
+  SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER,
+  b.JO_INT
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+    a.SEACH_SEQ = b.SEACH_SEQ
+    AND
+    b.JO_SEQ = #{jo_seq}
+ORDER BY
+    b.JO_DATE DESC
+  
+  </select>
 </mapper>

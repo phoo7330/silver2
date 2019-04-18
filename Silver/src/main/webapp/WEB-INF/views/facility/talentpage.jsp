@@ -293,9 +293,10 @@ $('document').ready(function() {
 	</div>
 <!-- Section -->
 </section>
-
+</div>
 
 	<!-- 검색 리스트 -->
+<div class="container">
 	<div class="card-group">
 	  <div class="card">
 	    <div class="card-body">
@@ -311,7 +312,9 @@ $('document').ready(function() {
 	    <div class="card-footer">
 	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
 			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail">자세히보기</button>
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>	
 			</div>
 	    </div>
 	  </div>
@@ -329,13 +332,153 @@ $('document').ready(function() {
 	    <div class="card-footer">
 	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
 			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail">자세히보기</button>
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>
 			</div>
 	    </div>
 	  </div>
 	</div>
-</div>	
+	
+	<!-- 검색 리스트 -->
+	<div class="card-group">
+	  <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 열심히 최선을 다해 일하겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>	
+			</div>
+	    </div>
+	  </div>
+	   <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 적극적인 마인드로 다가가겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>
+			</div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- 검색 리스트 -->
+	<div class="card-group">
+	  <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 열심히 최선을 다해 일하겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>	
+			</div>
+	    </div>
+	  </div>
+	   <div class="card">
+	    <div class="card-body">
+	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+	      <h3 class="content">
+	        기타사항: 적극적인 마인드로 다가가겠습니다.
+	      </h3>
+	      <p class="card-text mb-0">자격사항</p>
+	      <p class="card-text mb-0">희망직종</p>
+	      <p class="card-text mb-0">희망지역</p>
+	      <p class="card-text mb-0">근무형태</p>
+	    </div>
+	    <div class="card-footer">
+	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
+			<div class="float-right p-0">
+				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+				  자세히보기
+				</button>
+			</div>
+	    </div>
+	  </div>
+	</div>
+</div>
 
+
+	<!-- Modal -->
+	<div class="modal fade" id="talentForm" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title text-light" id="username"><strong>"member.username"</strong>
+	          <p><small>(member.gender / member.birthday)</small></p>
+	          <p class="mb-0">주소 :<small> area, areab</small></p>
+	        </h5>
+	        <!-- close button -->
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span class="text-light" aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <!-- body -->
+	      <div class="modal-body">
+	        <div class="container">
+	           <h5><strong>희망지역</strong>
+	            <p><small>"희망지역"</small></p>
+	            </h5>
+	            <h5><strong>희망직종</strong>
+	            <p><small>"희망직종"</small></p>
+	            </h5>
+	            <h5><strong>근무형태</strong>
+	            <p><small>"근무형태"</small></p>
+	            </h5>
+				<hr class="border-secondary">
+				<h5><strong>자격사항</strong>
+	            <p><small>"자격사항"</small></p>
+	            </h5>
+	            <h5><strong>기타사항</strong>
+	            <p><small>"적극적인 마인드로 다가가겠습니다."</small></p>
+	            </h5> 
+				<hr class="border-secondary">
+	          <div class="text-center">
+	            <h5 class="text-muted">
+	              위의 모든 기재사항은 사실과 다름없음을 확인합니다. 
+	            </h5>
+	          </div>
+	        </div>
+	      </div>
+	      
+	      <div class="modal-footer justify-content-center">
+	        <button type="button" class="btn btn-primary btn-sm">제의</button>
+	        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 <!-- Footer -->
 	<footer class="page-footer font-small" id="table-footer">

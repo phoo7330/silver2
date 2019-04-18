@@ -84,6 +84,7 @@ $('document').ready(function() {
  * 확인 폼에서 '수정'버튼 혹은 '삭제' 버튼 누르면 확인 폼 하이드 / 수정 폼 쇼 
  */
 $(document).ready(function(){
+	init();
 	  $("#register-recruit").hide();
 	  $("#confirm-recruit").hide();
 
@@ -92,9 +93,10 @@ $(document).ready(function(){
 		$("#register-recruit").show();
 	});
 	  
-	  $("#r-savebtn").click(function(){    
+	  $("#r-savebtn").click(function(){    //구인글 등록버튼
 		 $("#register-recruit").hide();
-		 $("#confirm-recruit").show(); 
+		 $("#confirm-recruit").hide(); //상세보기,수정가능한 폼
+		
 		 insertjob();
 	});
 	  
@@ -122,6 +124,7 @@ $(document).ready(function(){
 		  $("#table-recruit").hide();
 		  $("#register-recruit").show();
 	  });
+	 
 	
 	  var stype='${DetailsOne.type}';
 	  var type='';
@@ -129,7 +132,72 @@ $(document).ready(function(){
 		  type='요양병원';
 		  $("#type").html(type);
 	  }
+	  //첫화면에 자신이 등록한 구직글을을 띄울 메서드
+	  
 });
+
+function init(){
+// 세션아이디로 구직글을 가져온다.
+var userid = "${sessionScope.managerId}";
+	$.ajax({
+		url:"selectjob", 
+		type:"get",
+		data:{"userid":userid},
+		success:output
+		});
+}
+//구직글 리스트 출력할 매서드
+function output(data){
+	console.log(data);
+	var list = '';
+	$.each(data, function (index, item){
+		console.log("!!!");
+		list += '<tr class="oneselect" style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.jo_seq+')\'" >';
+		list += '<td scope="row">'+(index+1)+'</td>';
+		list += '<td>'+item.jo_job+'</td>';
+		list += '<td>'+item.jo_type+'</td>';
+		list += '<td>'+item.jo_int+'</td>';
+		list += '<td>'+item.jo_gender+'</td>';
+	});
+	
+	$("#sellist").html(list);
+}
+// 구인글 한개 클릭시 jo_seq를 보내서 한개의 구인글을 가져온다.
+function onesel(jo_seq){
+	console.log(jo_seq);
+	$("#table-recruit").hide();
+	$("#confirm-recruit").show();
+	$.ajax({
+		url:"selectonejob", 
+		type:"get",
+		data:{"jo_seq":jo_seq},
+		success:oneoutput
+		});
+	
+}
+function oneoutput(data){
+	console.log(data);
+	var siltype="";
+	if(data.type==1){
+        siltype = "요양병원";          
+     } else if(data.type==2){
+        siltype = "요양원";          
+     } else if(data.type==3){
+        siltype = "방문시설";          
+     } else if(data.type==4){
+        siltype = "치매전담";          
+     }
+	$("#onename").html(data.silvername);
+	$("#onetype").html(siltype);
+	$("#onejjob").html(data.jo_job);
+	$("#onejint").html(data.jo_int);
+	$("#onejtype").html(data.jo_type);
+	$("#onejcon").html(data.jo_content);
+	$("#onedate").html(data.jo_date); 
+	
+	
+}
+
 // 구직글 등록
 function insertjob(){
 	var job = [];
@@ -158,11 +226,17 @@ function insertjob(){
 		type:"POST",
 		traditional: true,
 		data:{jobJSON : JSON.stringify(job)},
-		success:output
+		success:insuccess
 		});
 }
-function output(data){
-	console.log("성공");
+function insuccess(data){
+	 $("#table-recruit").show(); 
+	 if(data==1){
+		 alert("등록되었습니다.");
+	 }else{
+		 alert("등록에 실패 했습니다.");
+	 }
+	 init();
 }
 </script>
 
@@ -235,7 +309,7 @@ function output(data){
 		      <th class="w-10">성별</th>
 		    </tr>
 		  </thead>
-		  <tbody>
+		  <tbody id="sellist">
 		    <tr>
 		      <td scope="row">1</td>
 		      <td>"모집직종"</td>
@@ -345,34 +419,37 @@ function output(data){
 				<!-- 기관명 : 자동입력  -->
 				<tr>
 					<th class="bg-light">기관명</th>
-					<th colspan="3"></th>
+					<th colspan="3" id="onename"></th>
 				</tr>
 				<!-- 급여종류 : 자동입력 -->
        			<tr>
-					<td class="bg-light">급여종류</td>
-					<td colspan="3">"Type"</td>
+					
+					<td class="bg-light w-20">급여종류</td>
+					<td class="w-30 pb-0" id="onetype"></td>
+					<td class="bg-light w-20">등록일</td>
+					<td class="w-30 pb-0" id="onedate"></td>
 				</tr>
 				<!-- 주소 : 입력 가능 -->
 				<tr>
 					<td class="bg-light">주소</td>
-					<td colspan="3" class="pb-0"></td>
+					<td colspan="3" class="pb-0" id="oneadd">${DetailsOne.hp_address}</td>
 				</tr>
 				<!-- 직종,인원 : 입력가능 -->
 				<tr>
 					<td class="bg-light w-20">모집직종</td>
-					<td class="w-30 pb-0"></td>
+					<td class="w-30 pb-0" id="onejjob"></td>
 					<td class="bg-light w-20">모집인원</td>
-					<td class="w-30 pb-0"></td>
+					<td class="w-30 pb-0" id="onejint"></td>
 				</tr>
 				<!-- 근무형태 : 입력가능 -->
 				<tr>
 					<td class="bg-light">근무형태</td>
-					<td colspan="3" class="pb-0"></td>
+					<td colspan="3" class="pb-0" id="onejtype"></td>
 				</tr>
 				<!-- 상세내용 : 입력가능 -->
 				<tr>
 					<td class="bg-light">상세내용</td>
-					<td colspan="3" class="etc1 p-0 mb-0"></td>
+					<td colspan="3" class="etc1 p-0 mb-0" id="onejcon"></td>
 				</tr>
 			</tbody>
 		</table>

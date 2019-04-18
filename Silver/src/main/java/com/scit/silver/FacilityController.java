@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.FacilityDAO;
 import com.scit.silver.dao.MemberDAO;
@@ -173,4 +175,22 @@ public class FacilityController {
 		}
 		return null;
 	}
+	@RequestMapping(value = "/selectjob", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<Job> selectjob(String userid) {
+		ArrayList<Job> result = null;
+		
+		result = dao.selectjob(userid);
+	
+		return result;
+	}
+	@RequestMapping(value = "/selectonejob", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody Job selectonejob(int jo_seq) {
+		Job result = null;
+		
+		result = dao.selectonejob(jo_seq);
+		System.out.println(result);
+	
+		return result;
+	}
+	
 }
