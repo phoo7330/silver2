@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.Job;
 
 
 @Repository
@@ -53,4 +54,11 @@ public class FacilityDAO {
 		return result;
 	}
 
+	public int insertjob(Job job) {
+		int result = 0;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.insertjob(job);
+
+		return result;
+	}
 }
