@@ -87,13 +87,19 @@ $(document).ready(function(){
 	  $("#register-recruit").hide();
 	  $("#confirm-recruit").hide();
 
+	  $("#r-registerbtn").click(function(){    
+		$("#table-recruit").hide();
+		$("#register-recruit").show();
+	});
+	  
 	  $("#r-savebtn").click(function(){    
 		 $("#register-recruit").hide();
 		 $("#confirm-recruit").show();
 	});
 	  
-	  $("#r-cancelbtn").click(function(){    
-		$("#register-recruit").empty();
+	  $("#r-cancelbtn").click(function(){  
+		$("#register-recruit").hide(); 
+		$("#table-recruit").show();
 	});
 	  
 	  $("#r-editbtn").click(function(){    
@@ -103,8 +109,13 @@ $(document).ready(function(){
 	  
 	  $("#r-delbtn").click(function(){    
 		$("#confirm-recruit").hide();
-		$("#register-recruit").show();
+		$("#table-recruit").show();
 	});
+	  $("#r-viewList").click(function(){    
+		$("#confirm-recruit").hide();
+		$("#table-recruit").show();
+	});  
+	  
 
 });
 
@@ -281,6 +292,9 @@ $(document).ready(function(){
 	<div class="container" id="confirm-recruit">
 	<!-- 기관정보 -->
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 확인</strong></label>
+	<div class="float-right">
+		<button type="button" class="btn btn-outline-secondary m-4" id="r-viewList">목록보기</button>
+	</div>
 		<table class="table table-bordered" id="facilityForm">
 			<tbody>
 				<!-- 기관명 : 자동입력  -->
