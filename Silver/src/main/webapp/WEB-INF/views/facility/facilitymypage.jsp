@@ -175,7 +175,7 @@ $(function() {
 			    <button class="btn btn-outline-secondary" type="button" id="uploadbtn">업로드</button>
 			  </div>
 			</div>
-	      </div>
+	      </div> 
 	      <input type="hidden" name="seach_seq" value="${DetailsOne.seach_seq}">
 	      </form>
 	    </div>

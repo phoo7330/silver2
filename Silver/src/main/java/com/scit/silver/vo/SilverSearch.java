@@ -13,7 +13,7 @@ public class SilverSearch {
 	private String lauitude;
 	private String longitude;
 	private String orgname;
-	private String name;
+	private String name; 
 	public SilverSearch(int seach_seq, int type, String areaa, String areab, String areac, String silvername,
 			String service, String grade, String lauitude, String longitude, String orgname, String name) {
 		super();

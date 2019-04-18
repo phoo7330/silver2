@@ -24,6 +24,6 @@
 		<mapper resource="mapper/SeniorMapper.xml" />
 		<mapper resource="mapper/JobMapper.xml" />
 		<mapper resource="mapper/FacilityMapper.xml" />
-		<mapper resource="mapper/Message.xml" />
+		<mapper resource="mapper/Message.xml" /> 
 	</mappers>
 </configuration>

@@ -6,7 +6,7 @@ public class message {
 	private String ms_title;
 	private String ms_content;
 	private String ms_Sender;
-	private String ms_date;
+	private String ms_date; 
 	public message(String ms_seq, String userid, String ms_title, String ms_content, String ms_Sender, String ms_date) {
 		super();
 		this.ms_seq = ms_seq;

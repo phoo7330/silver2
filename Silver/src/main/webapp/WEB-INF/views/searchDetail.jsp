@@ -90,7 +90,8 @@ function insertComment(){
 		        	alert("수정되었습니다!");
 		        	printC();
 		        }
-			});   
+			});
+		 
 	 }
 	
 }

@@ -21,7 +21,7 @@
 	     #{ms_Sender},
 	    SYSDATE
 	)
- </insert>
+ </insert> 
 
 <select id="selectmessage" parameterType="int" resultType="message">
  	SELECT 

@@ -38,7 +38,7 @@
 		SEACH_SEQ = #{seach_seq}
   
   </update>
-  
+   
   <update id="upSilverSearch" parameterType="SilverSearch">
    UPDATE SILVERSEARCH
 	SET

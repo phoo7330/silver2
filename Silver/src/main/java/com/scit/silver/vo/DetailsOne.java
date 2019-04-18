@@ -15,7 +15,7 @@ public class DetailsOne {
 	private String lauitude;//위도
 	private String longitude;//경도
 	private String orgname;
-	private String name;
+	private String name; 
 	
 	private int hp_details_seq;
 	private int information_seq;

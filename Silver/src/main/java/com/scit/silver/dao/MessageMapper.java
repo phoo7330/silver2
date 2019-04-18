@@ -8,4 +8,5 @@ public interface MessageMapper {
 
 	public message selectmessage(int ms_seq);
 	
+	
 }
