@@ -288,4 +288,15 @@ public class FacilityController {
 			return "facility/facilitymypage";
 		}
 	}
+	@RequestMapping(value = "/deljob", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int deljob(String userid, int jo_seq) {
+		int result = 0;
+		Job job = new Job();
+		job.setUserid(userid);
+		job.setJo_seq(jo_seq);
+		result = dao.deljob(job);
+	
+		return result;
+	} 
+	
 }

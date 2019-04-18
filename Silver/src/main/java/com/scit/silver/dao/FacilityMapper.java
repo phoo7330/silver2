@@ -26,6 +26,8 @@ public interface FacilityMapper {
 
 	public int upSilverSearch(SilverSearch sb);
 	
+	public int deljob(Job job);
+	
 	
 }
  

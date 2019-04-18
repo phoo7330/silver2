@@ -99,5 +99,13 @@ public class FacilityDAO {
 		return result;
 		
 	}
+	
+	public int deljob(Job job) {
+		int result = 0;
+		
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.deljob(job);
+		return result;
+	}
 
 }

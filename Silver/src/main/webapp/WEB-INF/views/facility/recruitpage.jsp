@@ -153,9 +153,20 @@ $(document).ready(function(){
 	  //첫화면에 자신이 등록한 구직글을을 띄울 메서드
 	  
 });
-//구인글 삭제
+//구인글 삭제 글 시퀀스랑 세션아이디를 같이넣어서 삭제한다.
 function deljob(){
-	
+	var jo_seq = $("#upseq").val();
+	var userid = "${sessionScope.managerId}";
+	console.log(jo_seq);
+	console.log(userid);
+	$.ajax({
+		url:"deljob", 
+		type:"post",
+		data:{"userid":userid,
+			"jo_seq":jo_seq
+		},
+		success:insuccess2
+		});
 }
 
 function init(){
@@ -172,8 +183,12 @@ var userid = "${sessionScope.managerId}";
 function output(data){
 	console.log(data);
 	var list = '';
-	if(data.size!=0){
-	
+	if(data.length==0){
+		console.log("구인글없음");
+		list +='<td></td><td></td><td>등록된 구인글이 없습니다.</td><td></td><td></td>';
+		$("#sellist").html(list);
+		
+	}else{
 		$.each(data, function (index, item){
 			console.log("구인글있음");
 			list += '<tr class="oneselect" style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.jo_seq+')\'" >';
@@ -186,11 +201,8 @@ function output(data){
 	});
 	
 	$("#sellist").html(list);
-	}else{
-		console.log("구인글없음");
-		list +='<td></td><td></td><td>등록된 구인글이 없습니다.</td><td></td><td></td>';
-		$("#sellist").html(list);
 	}
+	console.log("끝");
 }
 // 구인글 한개 클릭시 jo_seq를 보내서 한개의 구인글을 가져온다.
 function onesel(jo_seq){
@@ -303,6 +315,15 @@ function insuccess(data){
 		 alert("등록되었습니다.");
 	 }else{
 		 alert("등록에 실패 했습니다.");
+	 }
+	 init();
+}
+function insuccess2(data){
+	 $("#table-recruit").show(); 
+	 if(data==1){
+		 alert("삭제되었습니다.");
+	 }else{
+		 alert("삭제에 실패 했습니다.");
 	 }
 	 init();
 }
