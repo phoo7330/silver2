@@ -38,7 +38,17 @@ public class HomeController {
 		return "careers/careersIndex";
 	}
 
+	@RequestMapping(value = "/talentpage", method = RequestMethod.GET)
+	public String talentpage(Locale locale, Model model) {
+
+		return "facility/talentpage";
+	}
 	
+	@RequestMapping(value = "/questionpage", method = RequestMethod.GET)
+	public String questionpage(Locale locale, Model model) {
+
+		return "facility/questionpage";
+	}
 	
 	
 	
