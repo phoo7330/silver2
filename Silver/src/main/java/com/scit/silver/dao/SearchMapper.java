@@ -28,5 +28,7 @@ public interface SearchMapper {
 	public DetailsOne selectmap4(int type);
 	
 	public int TypeSearch (int seach_seq);
+
+	public void insertSilverSearch(SilverSearch silversearch);
 }
  

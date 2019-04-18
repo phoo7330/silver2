@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.Job;
+import com.scit.silver.vo.SilverSearch;
 
 public interface FacilityMapper {
 
@@ -21,5 +22,8 @@ public interface FacilityMapper {
 	
 	public Job selectonejob(int job_seq);
 
+	public int upSilverSearch(SilverSearch sb);
+	
+	
 }
  

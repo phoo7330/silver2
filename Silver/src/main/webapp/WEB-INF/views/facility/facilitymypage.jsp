@@ -39,8 +39,17 @@ $(function() {
 	  $('#myTab li a').on('click',function() {
 		var item = $(this).html();
 		$("#inform-tabContent").html(item);
+		
+			
 	 });
-	
+	 $('#uploadbtn').on('click', function(){
+ 		  var picture=$('#uploadPicture').val();
+ 		  if(picture.length < 1){
+ 			  alert("사진이 들어갔는지 다시 확인해주세요");
+ 			  return;
+ 		  }
+ 		  $("#picture1").submit();
+ 	  });
 	  //기관정보 업데이트 버튼을 누르면
 	  $('#saveContent1').on('click', function(){
 		  var estlang = $('#establishment').val().length;
@@ -146,6 +155,7 @@ $(function() {
 	    <div class="col">
 	    </div>
 	    <div class="col-md-4 offset-md-1 m-4">
+	    <form action="upSilverSearch_1" method="post" id="picture1" enctype="multipart/form-data">
 	      <!-- 이미지 미리보기 -->
 	      <div class="view overlay">
 	        <div class="view view-cascade overlay border">
@@ -171,7 +181,26 @@ $(function() {
 	          </div>
 			</form>
 			 -->
+	        <div class="view view-cascade overlay border" style="height: 170px;">
+	        	<img src ="img/${DetailsOne.name}"/>
+	     	 </div>
+
+	      <div class="text-center mt-2">
+	      	<h5 class="mb-0"><strong>기관 사진 업로드</strong></h5> <br>
 	      </div>
+	        <!-- 파일업로드 -->
+	        <div class="input-group"> 
+			  <div class="custom-file">
+			    <input type="file" class="custom-file-input" id="uploadPicture" name="file">
+			    <label class="custom-file-label float-left" for="uploadPicture">파일을 선택하세요.</label>
+			  </div>
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-secondary" type="button" id="uploadbtn">업로드</button>
+			  </div>
+			</div>
+	      </div> 
+	      <input type="hidden" name="seach_seq" value="${DetailsOne.seach_seq}">
+	      </form>
 	    </div>
 	    
 		<!-- col -->
@@ -340,7 +369,7 @@ $(function() {
 		
 		      <!--Body-->
 		      <div class="modal-body">
-				<form class="container" id="upfa1" action="upDetails1" method="post">
+				<form class="container" id="upfa1" action="upSilverSearch" method="post">
 					<input type="hidden" name="seach_seq" value="${DetailsOne.seach_seq}">
 		          <div class="form-group row">
 		            <label for="establishment" class="col-sm-4 col-form-label">설립정보</label>
