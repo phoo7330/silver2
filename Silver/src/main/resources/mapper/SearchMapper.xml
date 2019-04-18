@@ -6,6 +6,38 @@
 
 <!-- 시설좌표 불러오기  SQL -->
 <mapper namespace="com.scit.silver.dao.SearchMapper">
+<insert id = "insertSilverSearch" parameterType="SilverSearch">
+		INSERT INTO SILVERSEARCH(
+		SEACH_SEQ,
+		TYPE,
+		AREAA,
+		AREAB,
+		AREAC,
+		SILVERNAME,
+		SERVICE,
+		GRADE,
+		LAUITUDE,
+		LONGITUDE,
+		ORGNAME,
+		NAME
+		)
+		VALUES
+		(
+		SEACH_SEQ.NEXTVAL
+		,#{type}
+		,#{areaa}
+		,#{areab}
+		,#{areac}
+		,#{silvername}
+		,#{service}
+		,#{grade}
+		,#{lauitude}
+		,#{longitude}
+		,#{orgname}
+		,#{name}
+		)
+	</insert>
+
 
 <select id="searchsilver" parameterType="SilverSearch" resultType="SilverSearch">
 	SELECT

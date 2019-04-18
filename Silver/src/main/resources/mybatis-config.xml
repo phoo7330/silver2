@@ -14,8 +14,8 @@
 		<typeAlias type="com.scit.silver.vo.SeniorCitizen" alias="SeniorCitizen" />
 		<typeAlias type="com.scit.silver.vo.SeniorCitizenDetails" alias="SeniorCitizenDetails" />
 		<typeAlias type="com.scit.silver.vo.Job" alias="Job" />
-	
-	
+		<typeAlias type="com.scit.silver.vo.message" alias="message" />
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
@@ -24,5 +24,6 @@
 		<mapper resource="mapper/SeniorMapper.xml" />
 		<mapper resource="mapper/JobMapper.xml" />
 		<mapper resource="mapper/FacilityMapper.xml" />
+		<mapper resource="mapper/Message.xml" />
 	</mappers>
 </configuration>

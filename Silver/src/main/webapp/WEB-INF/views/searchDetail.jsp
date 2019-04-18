@@ -748,8 +748,7 @@ $(function() {
 		<div class="row">
 		<!-- 사진 -->
 		<div class="col-md-6">
-			<div class="card" id="picture">
-				<img src="resources/image/image.svg" class="rounded my-auto" alt="">
+			<div class="card" id="picture"><img src ="img/${DetailsOne.name}"/>
 			</div>
 		</div>
 		<!-- 지도 -->

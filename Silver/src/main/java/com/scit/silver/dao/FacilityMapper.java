@@ -1,6 +1,7 @@
 package com.scit.silver.dao;
 
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.SilverSearch;
 
 public interface FacilityMapper {
 
@@ -10,5 +11,8 @@ public interface FacilityMapper {
 	
 	public int upDetails3(DetailsOne DetailsOne);
 
+	public int upSilverSearch(SilverSearch sb);
+	
+	
 }
  

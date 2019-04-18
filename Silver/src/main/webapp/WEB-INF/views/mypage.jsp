@@ -31,6 +31,12 @@
 </head>
 <body>
 	<script>
+	$(function() {	
+		$("#insertgo").on("click",function(){	
+			insertMessage();  //보내기버튼
+		});	
+	  });
+	
 	  $(function() {
 		  $('#myTab li a').on('click',function() {
 			var item = $(this).html();
@@ -207,7 +213,42 @@
 			});
 		});
 
+		//쪽지 쓰기
+		function insertMessage(){
+			var ms_sender =  $("#writeRecipient").val();//받는사람
+/* 			var userid =$("#userid").val();//보낸아이디 */
+			var ms_content = $("#writeMessage").val();//내용
 
+			if(ms_sender==''){
+				alert("아이디을 입력하세요");
+				return;
+			}
+			if(ms_content==''){
+				alert("내용을 입력하세요");
+				return;
+			}
+
+			$.ajax({
+		        type : 'post',
+		        url : 'insertMessage',
+		        data : {ms: ms_content,
+		        		sender: ms_sender},
+		        success : function(result){
+		        	/* alert("result : " + result); */
+		        	if(result==1){
+		        	init();			        		
+		        	} else {
+		        		alert('실패');
+		        	}
+		        }	        
+		    });
+		}	
+		function init(resp){
+			var ms_sender =  $("#writeRecipient").val();	
+			alert(ms_sender+"님에게 전송했습니다.");
+/* 			$('#writeRecipient')[0].reset();  */
+/* 			selectMessage(); */
+		}
 	</script>
 	
 	<!-- 메인 네비게이션 -->
@@ -813,7 +854,7 @@
 								<!-- 보내기 버튼 -->
 									<div class="form-group row pt-3 pb-0">
 										<div class="col-sm-12">
-								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
+								   			<button type="button" id="insertgo" class="btn btn-outline-secondary btn-sm">보내기</button>
 										</div>
 									</div>
 								<!-- 받는사람 -->

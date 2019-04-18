@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.BoardDAO;
+import com.scit.silver.dao.MessageDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.SilverBoard;
 import com.scit.silver.vo.SilverBoardComent;
+import com.scit.silver.vo.message;
 import com.test.fileTest.util.PageNavigator2;
 
 @Controller
@@ -25,6 +27,10 @@ public class BoardController {
 	@Autowired
 	BoardDAO dao;
 	SearchDAO sdao;
+	
+	@Autowired
+	MessageDAO mdao;
+	
 	private static final int boardPerPage=5;
 	private static final int pagePerGroup=5;
 

@@ -19,6 +19,17 @@ public class SearchDAO {
    @Autowired
    SqlSession session;
    
+   public void insertSilverSearch(SilverSearch silversearch) {
+	   SearchMapper mapper = session.getMapper(SearchMapper.class);
+	  try {
+		  System.out.println(silversearch);
+		  mapper.insertSilverSearch(silversearch);		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	  
+   }
+   
    public ArrayList<SilverSearch> searchsilver(SilverSearch SilverSearch){
 	   ArrayList<SilverSearch> result = null;
 	      

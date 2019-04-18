@@ -5,7 +5,7 @@
   
   
 <mapper namespace="com.scit.silver.dao.FacilityMapper">
-  
+
   <update id="upDetails1" parameterType="DetailsOne">
    UPDATE HOSPITAL_DETAILS
 	SET
@@ -38,4 +38,15 @@
 		SEACH_SEQ = #{seach_seq}
   
   </update>
+  
+  <update id="upSilverSearch" parameterType="SilverSearch">
+   UPDATE SILVERSEARCH
+	SET
+        ORGNAME = #{orgname},
+        NAME = #{name}
+	WHERE
+		SEACH_SEQ = #{seach_seq} 
+  </update>
+  
+  
 </mapper>
