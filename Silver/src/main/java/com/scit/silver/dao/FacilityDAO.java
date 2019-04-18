@@ -1,5 +1,7 @@
 package com.scit.silver.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -61,4 +63,22 @@ public class FacilityDAO {
 
 		return result;
 	}
+	
+	public ArrayList<Job> selectjob(String userid){
+		ArrayList<Job> result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.selectjob(userid);
+		
+		return result;
+	}
+	
+	public Job selectonejob(int jo_seq) {
+		Job result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.selectonejob(jo_seq);
+		
+		return result;
+		
+	}
+
 }
