@@ -38,4 +38,42 @@
 		SEACH_SEQ = #{seach_seq}
   
   </update>
+  
+  <select id="mname" parameterType="String" resultType="String">
+  SELECT
+    USERNAME
+FROM
+    MEMBER
+WHERE
+    USERID=#{userid}
+  
+  </select>
+  
+  <insert id="insertjob" parameterType="job">
+INSERT INTO JOBOFFER(
+    JO_SEQ,
+    USERID,
+    SEACH_SEQ,
+    JO_TYPE,
+    JO_DETAILTYPE,
+    JO_JOB,
+    JO_CONTENT,
+    JO_DATE,
+    JO_GENDER,
+    JO_INT
+)
+VALUES(
+    JO_SEQ.NEXTVAL,
+    #{userid},
+    #{seach_seq},
+    #{jo_type},
+    #{jo_detailtype},
+    #{jo_job},
+    #{jo_content},
+    SYSDATE,
+    #{jo_gender},
+    #{jo_int}
+)
+ 
+  </insert>
 </mapper>

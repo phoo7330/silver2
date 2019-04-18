@@ -164,7 +164,7 @@ $('document').ready(function() {
 				<!-- 로그아웃 -->
 				<ul class="navbar-nav mt-2 mt-md-0">
 				  <li class="nav-item">
-				  	<a class="nav-link text-light" href="index"><small>로그아웃</small></a>
+				  	<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
 				  </li>
 				</ul>
 			  

@@ -95,6 +95,7 @@ $(document).ready(function(){
 	  $("#r-savebtn").click(function(){    
 		 $("#register-recruit").hide();
 		 $("#confirm-recruit").show();
+		 insertjob();
 	});
 	  
 	  $("#r-cancelbtn").click(function(){  
@@ -111,14 +112,58 @@ $(document).ready(function(){
 		$("#confirm-recruit").hide();
 		$("#table-recruit").show();
 	});
+
 	  $("#r-viewList").click(function(){    
 		$("#confirm-recruit").hide();
 		$("#table-recruit").show();
 	});  
-	  
-
+	  //등록버튼을 누를경우, 리스트를 숨기고 등록창을 띄운다.
+	  $("#r-registerbtn").click(function(){ 
+		  $("#table-recruit").hide();
+		  $("#register-recruit").show();
+	  });
+	
+	  var stype='${DetailsOne.type}';
+	  var type='';
+	  if(stype==1){
+		  type='요양병원';
+		  $("#type").html(type);
+	  }
 });
-
+// 구직글 등록
+function insertjob(){
+	var job = [];
+	var jo_job = $("#job1 option:selected").val();
+	var jo_int = $("#peopleNum").val();
+	var jo_type = $("#work1").val();
+	var jo_detailtype = $("#detail").val();
+	var jo_gender = $("#gen").val();
+	var jo_content = $("#exampleFormControlTextarea5").val();
+	var userid = "${sessionScope.managerId}";
+	var seach_seq = "${DetailsOne.seach_seq}";
+	console.log(userid);
+	job.push({
+		"jo_job":jo_job,
+		"jo_int":jo_int,
+		"jo_type":jo_type,
+		"jo_detailtype":jo_detailtype,
+		"jo_gender":jo_gender,
+		"jo_content":jo_content,
+		"userid":userid,
+		"seach_seq":seach_seq
+	});
+	console.log(job);
+	$.ajax({
+		url:"insertjob", 
+		type:"POST",
+		traditional: true,
+		data:{jobJSON : JSON.stringify(job)},
+		success:output
+		});
+}
+function output(data){
+	console.log("성공");
+}
 </script>
 
 	<!-- 메인 네비게이션 -->
@@ -148,7 +193,7 @@ $(document).ready(function(){
 				<!-- 로그아웃 -->
 				<ul class="navbar-nav mt-2 mt-md-0">
 				  <li class="nav-item">
-				  	<a class="nav-link text-light" href="index"><small>로그아웃</small></a>
+				  	<a class="nav-link text-light" href="logout"><small>로그아웃</small></a>
 				  </li>
 				</ul>
 			  
@@ -215,24 +260,24 @@ $(document).ready(function(){
 	<div class="container" id="register-recruit">
 	<!-- 기관정보 -->
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 입력</strong></label>
-		<table class="table table-bordered" id="facilityForm">
+		<table class="table table-bordered" id="facilityForm1">
 			<tbody>
 				<!-- 기관명 : 자동입력  -->
 				<tr>
 					<th class="bg-light">기관명</th>
-					<th colspan="3">"seach_seq"</th>
+					<th colspan="3">${DetailsOne.silvername}</th>
 				</tr>
 				<!-- 급여종류 : 자동입력 -->
        			<tr>
 					<td class="bg-light">급여종류</td>
-					<td colspan="3">"Type"</td>
+					<td colspan="3" id=type></td>
 				</tr>
 				<!-- 주소 : 입력 가능 -->
 				<tr>
 					<td class="bg-light">주소</td>
 					<td colspan="3" class="pb-0">
 			          <div class="form-group form-inline">
-			           <input type="text" class="col form-control form-control-sm" id="dong1">
+			           ${DetailsOne.hp_address}
 			          </div>
           			</td>
 				</tr>
@@ -263,10 +308,10 @@ $(document).ready(function(){
 					<td class="bg-light w-20">성별</td>
 					<td class="w-30 pb-0">
 						<div class="form-group form-inline">
-							<select class=" col custom-select">
-							  <option value="1" selected>전체</option>
-							  <option value="2">남성</option>
-							  <option value="3">여성</option>
+							<select class=" col custom-select" id="gen">
+							  <option value="전체" selected>전체</option>
+							  <option value="남">남성</option>
+							  <option value="여">여성</option>
 							</select>
 			          	</div>
 					</td>
@@ -300,7 +345,7 @@ $(document).ready(function(){
 				<!-- 기관명 : 자동입력  -->
 				<tr>
 					<th class="bg-light">기관명</th>
-					<th colspan="3">"seach_seq"</th>
+					<th colspan="3"></th>
 				</tr>
 				<!-- 급여종류 : 자동입력 -->
        			<tr>

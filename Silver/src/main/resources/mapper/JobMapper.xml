@@ -31,7 +31,7 @@ FROM
 WHERE
     a.SEACH_SEQ = b.SEACH_SEQ
 ORDER BY
-        b.JO_DATE
+        b.JO_DATE DESC
 </select>
 <select id="selectmap2" parameterType="Job" resultType="Job">
 	SELECT 
@@ -73,7 +73,7 @@ ORDER BY
 		
     </foreach>
 	ORDER BY
-        b.JO_DATE
+        b.JO_DATE DESC
 		
 	
 	</select> 
@@ -154,7 +154,7 @@ WHERE
     a.AREAC LIKE '%'||#{areac}||'%'
 
 ORDER BY
-        b.JO_DATE
+        b.JO_DATE DESC
 
 
 </select>
@@ -209,7 +209,7 @@ WHERE
     b.JO_TYPE = #{jo_type}
 </if>
 ORDER BY
-        b.JO_DATE
+        b.JO_DATE  DESC
 
 
 </select>
