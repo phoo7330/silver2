@@ -114,3 +114,29 @@ hr { display: block; height: 1px;
  #table-footer {
  	margin-top: 105px;
  }
+ 
+ 
+/* questionpage.jsp 
+-------------------------------------------------- */
+ #message-card {			
+  height: 400px;
+  border-top: 3px solid #3471ba;
+  overflow-y: auto;
+  overflow-x: hidden;
+ }
+ 
+ .nav-link {
+  background-color: #3471ba;
+ }
+ 
+ #question-tab,
+ #send-tab,
+ #write-tab {
+  height: 70px;
+ }
+ 
+ #receiveTable {
+
+ }
+ 
+ 
