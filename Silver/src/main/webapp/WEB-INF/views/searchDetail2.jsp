@@ -606,6 +606,10 @@ $(function() {
 	            </div>
 	          </div>
 	          <div class="form-group">
+	            <label for="request-title">제목</label>
+	            <textarea class="form-control" id="request-title" rows="1"></textarea>
+	          </div>
+	          <div class="form-group">
 	            <label for="request-content">기타 요청사항</label>
 	            <textarea class="form-control" id="request-content" rows="4"></textarea>
 	          </div>
