@@ -92,7 +92,7 @@ function selectresume(page){
 	page=page; 
 	$.ajax({
         type : 'get',
-        url : 'pageresume',
+        url : 'pageresume', 
         data : {
         		page:page	
         },
