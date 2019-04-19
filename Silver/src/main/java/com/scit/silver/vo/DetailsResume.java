@@ -1,6 +1,10 @@
 package com.scit.silver.vo;
 
-public class Resume {
+public class DetailsResume {
+	private String username;
+	private String gender;
+	private String birthday;
+	
 	private int re_seq;
 	private String userid;
 	private String re_type;
@@ -10,12 +14,15 @@ public class Resume {
 	private String re_date;
 	private String re_areaa;
 	private String re_arebb;
-	public Resume() {
+	public DetailsResume() {
 		super();
 	}
-	public Resume(int re_seq, String userid, String re_type, String re_detailType, String re_job, String re_content,
-			String re_date, String re_areaa, String re_arebb) {
+	public DetailsResume(String username, String gender, String birthday, int re_seq, String userid, String re_type,
+			String re_detailType, String re_job, String re_content, String re_date, String re_areaa, String re_arebb) {
 		super();
+		this.username = username;
+		this.gender = gender;
+		this.birthday = birthday;
 		this.re_seq = re_seq;
 		this.userid = userid;
 		this.re_type = re_type;
@@ -25,6 +32,24 @@ public class Resume {
 		this.re_date = re_date;
 		this.re_areaa = re_areaa;
 		this.re_arebb = re_arebb;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	public int getRe_seq() {
 		return re_seq;
@@ -82,10 +107,11 @@ public class Resume {
 	}
 	@Override
 	public String toString() {
-		return "Resume [re_seq=" + re_seq + ", userid=" + userid + ", re_type=" + re_type + ", re_detailType="
-				+ re_detailType + ", re_job=" + re_job + ", re_content=" + re_content + ", re_date=" + re_date
-				+ ", re_areaa=" + re_areaa + ", re_arebb=" + re_arebb + "]";
+		return "DetailsResume [username=" + username + ", gender=" + gender + ", birthday=" + birthday + ", re_seq="
+				+ re_seq + ", userid=" + userid + ", re_type=" + re_type + ", re_detailType=" + re_detailType
+				+ ", re_job=" + re_job + ", re_content=" + re_content + ", re_date=" + re_date + ", re_areaa="
+				+ re_areaa + ", re_arebb=" + re_arebb + "]";
 	}
-
+	
 	
 }

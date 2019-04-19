@@ -1,6 +1,11 @@
 package com.scit.silver;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,14 +13,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +26,11 @@ import com.scit.silver.dao.FacilityDAO;
 import com.scit.silver.dao.MemberDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsResume;
 import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Job;
 import com.scit.silver.vo.SilverSearch;
+import com.test.fileTest.util.PageNavigator2;
 
 
 @Controller
@@ -44,6 +43,9 @@ public class FacilityController {
 	SearchDAO sdao;
 	@Autowired
 	MemberDAO mdao;
+	
+	private static final int boardPerPage=6;
+	private static final int pagePerGroup=3;
 	
 	private static final String UPLOADPATH="c:/222/";
 	@RequestMapping(value = "/upDetails1", method = { RequestMethod.POST, RequestMethod.GET })
@@ -304,4 +306,18 @@ public class FacilityController {
 
 		return "facility/talentpage";
 	}
+	
+	@RequestMapping(value = "/pageresume", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<DetailsResume> pageresume(
+			@RequestParam(defaultValue = "1") int page) {
+
+		ArrayList<DetailsResume> result = null;
+		int totalBoard=dao.countResume();
+		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
+
+		result = dao.selallres(pn);
+
+		return result;
+	}
+	
 }

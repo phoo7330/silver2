@@ -16,6 +16,7 @@
 		<typeAlias type="com.scit.silver.vo.Job" alias="Job" />
 		<typeAlias type="com.scit.silver.vo.message" alias="message" />
 		<typeAlias type="com.scit.silver.vo.Resume" alias="Resume" />
+		<typeAlias type="com.scit.silver.vo.DetailsResume" alias="DetailsResume" />		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
