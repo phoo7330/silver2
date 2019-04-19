@@ -195,6 +195,7 @@ SELECT
     a.USERNAME,
 	a.GENDER,
 	a.BIRTHDAY,
+	a.ADDRESS,
     b.RE_SEQ,
     b.USERID,
     b.RE_JOB,

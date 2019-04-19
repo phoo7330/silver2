@@ -123,7 +123,7 @@ function printre(data){
  			list += '<p class="card-text mb-0">자격사항 : '+item.re_qualification+'</p>';
  			list += '<p class="card-text mb-0">희망직종 : '+item.re_job+'</p>';
  			list += '<p class="card-text mb-0">희망지역 : '+item.re_areaa+' '+item.re_arebb+'</p>';
- 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+'</p>';
+ 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+' '+item.re_detailType+'</p>';
  			list += '<hr class="border-secondary">';
  			list += '<div class="float-right p-0">';
  			list += '<button class="btn btn-sm btn-outline-secondary" type="button" name="t-detail"data-toggle="modal" data-target="#talentForm" value="'+item.re_seq+'">';
@@ -159,9 +159,17 @@ function printre(data){
  		});
 	 function printone(data){
 		 console.log(data);
-		// $("#username").html(list);
+		 $("#username").html(data.username);
+		 $("#genbir").html(data.gender+" "+data.birthday);
+		 $("#are").html(data.address);
+		 $("#reare").html(data.re_areaa+" "+data.re_arebb);
+		 $("#rejob").html(data.re_job);
+		 $("#retype").html(data.re_type);
+		 $("#requa").html(data.re_qualification);
+		 $("#recon").html(data.re_content);
+		 
 	 }
-	 
+	
 }
 
 /* 직종 선택 */
@@ -403,9 +411,9 @@ $('document').ready(function() {
 	  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-light" id="username"><strong>"member.username"</strong>
-	          <p id="genbir"><small>(member.gender / member.birthday)</small></p>
-	          <p class="mb-0" id="are">주소 :<small> area, areab</small></p>
+	        <h5 class="modal-title text-light" ><strong id="username">"member.username"</strong>
+	          <p><small id="genbir">(member.gender / member.birthday)</small></p>
+	          <p class="mb-0">주소 :<small id="are"> area, areab</small></p>
 	        </h5>
 	        <!-- close button -->
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -416,20 +424,20 @@ $('document').ready(function() {
 	      <div class="modal-body">
 	        <div class="container">
 	           <h5><strong>희망지역</strong>
-	            <p><small>"희망지역"</small></p>
+	            <p id="reare"><small>"희망지역"</small></p>
 	            </h5>
 	            <h5><strong>희망직종</strong>
-	            <p><small>"희망직종"</small></p>
+	            <p id="rejob"><small>"희망직종"</small></p>
 	            </h5>
 	            <h5><strong>근무형태</strong>
-	            <p><small>"근무형태"</small></p>
+	            <p id="retype"><small>"근무형태"</small></p>
 	            </h5>
 				<hr class="border-secondary">
 				<h5><strong>자격사항</strong>
-	            <p><small>"자격사항"</small></p>
+	            <p id="requa"><small>"자격사항"</small></p>
 	            </h5>
 	            <h5><strong>기타사항</strong>
-	            <p><small>"적극적인 마인드로 다가가겠습니다."</small></p>
+	            <p id="recon"><small>"적극적인 마인드로 다가가겠습니다."</small></p>
 	            </h5> 
 				<hr class="border-secondary">
 	          <div class="text-center">
