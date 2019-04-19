@@ -2,7 +2,10 @@ package com.scit.silver.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsResume;
 import com.scit.silver.vo.Job;
 import com.scit.silver.vo.SilverSearch;
 
@@ -28,6 +31,9 @@ public interface FacilityMapper {
 	
 	public int deljob(Job job);
 	
+	public ArrayList<DetailsResume> selallres(RowBounds rb);
+	
+	public int countResume();
 	
 }
  

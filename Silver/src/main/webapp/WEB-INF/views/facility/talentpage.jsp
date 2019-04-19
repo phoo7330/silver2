@@ -5,7 +5,7 @@
 <html>
 <head>
 
-	<title>실버서퍼에 오신 것을 환영합니다.</title>
+	<title>실버서퍼 인재정보</title>
 	
 	<!-- 인코딩 -->
 	<meta charset="UTF-8">
@@ -34,6 +34,9 @@
 
 /* 지역 선택 */
 $('document').ready(function() {
+	selectresume();
+	
+	
 	var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 	var area1 = ["전체","강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
 	var area2 = ["전체","계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
@@ -77,10 +80,36 @@ $('document').ready(function() {
 	});
 
 });
+function selectresume(page){
+	var page=page; 
+	
+	$.ajax({
+        type : 'get',
+        url : 'pageresume',
+        data : {
+        		page:page	
+        },
+        success : printre
+	}); 
+}
 
+function printre(resume){
+	console.log(resume);
+	var list = '';
+	var paging = '';
+	var page = 1;
+	var countBoard = '';
+/* 	 $.each(data.result, function (index, item){
+		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
+		 list+='<td>'+item.userid+'</td>';
+		 list+='<td>'+item.sbtitle+'</td>';
+		 list+='<td>'+item.sbdate+'</td></tr>';
+	 }); */
+	
+}
 
 /* 직종 선택 */
-$('document').ready(function() {
+$('document').ready(function() { 
 	var career = ["전체","시설장","사무국장","사회복지사","의사","촉탁의사","간호사","간호조무사","치과위생사","물리치료사","작업치료사","요양보호사 1급","요양보호사 2급","요양보호사 기존유예자","영양사","사무원","조리원","위생원","관리인","보조원 운전사","프로그램관리자","치매전문교육이수자","청구담당자","기타"];
 	
 	$("select[name^=job]").each(function() {
@@ -297,6 +326,7 @@ $('document').ready(function() {
 
 	<!-- 검색 리스트 -->
 <div class="container">
+
 	<div class="card-group">
 	  <div class="card">
 	    <div class="card-body">
@@ -338,95 +368,8 @@ $('document').ready(function() {
 			</div>
 	    </div>
 	  </div>
-	</div>
+	</div> <!-- 2개씩  -->
 	
-	<!-- 검색 리스트 -->
-	<div class="card-group">
-	  <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 열심히 최선을 다해 일하겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>	
-			</div>
-	    </div>
-	  </div>
-	   <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 적극적인 마인드로 다가가겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>
-			</div>
-	    </div>
-	  </div>
-	</div>
-	
-	<!-- 검색 리스트 -->
-	<div class="card-group">
-	  <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 열심히 최선을 다해 일하겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>	
-			</div>
-	    </div>
-	  </div>
-	   <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 적극적인 마인드로 다가가겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>
-			</div>
-	    </div>
-	  </div>
-	</div>
 </div>
 <!-- 페이지네이션 -->
 

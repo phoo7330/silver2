@@ -166,4 +166,35 @@ WHERE
 	 AND
 	 USERID = #{userid}
 </delete>
+
+<select id="selallres" resultType="DetailsResume">
+SELECT
+    a.USERNAME,
+	a.GENDER,
+	a.BIRTHDAY,
+    b.RE_SEQ,
+    b.USERID,
+    b.RE_JOB,
+    b.RE_TYPE,
+    b.RE_DETAILTYPE,
+    b.RE_CONTENT,
+    b.RE_DATE,
+    b.RE_AREAA,
+    b.RE_AREBB
+FROM
+    MEMBER a, RESUME b
+WHERE
+    a.USERID = b.USERID
+ORDER BY
+	RE_DATE
+</select>
+
+<select id="countResume" resultType="int">
+	
+	SELECT 
+		COUNT(RE_SEQ) 
+	FROM 
+		RESUME
+</select>
+
 </mapper>

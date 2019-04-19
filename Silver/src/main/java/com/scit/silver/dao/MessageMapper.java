@@ -1,12 +1,16 @@
 package com.scit.silver.dao;
 
+import java.util.ArrayList;
+
 import com.scit.silver.vo.message;
 
 public interface MessageMapper {
 
 	public int insertMessage(message ms);
 
-	public message selectmessage(int ms_seq);
+	public message selectmessageAll(int ms_seq);
 	
+	public ArrayList<message> selectMesageSender(String loginId);
 	
+	public ArrayList<message> selectMesageReceiver(String loginId);
 }
