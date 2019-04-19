@@ -1,5 +1,7 @@
 package com.scit.silver;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,28 @@ public class MessageController {
 		model.addAttribute("Message", sender);
 		return result;
 
+	}
+	
+	@RequestMapping(value = "/SelectSendMessageBox", method = { RequestMethod.POST })
+	public @ResponseBody ArrayList<message> selectSendMessageBox(HttpSession session) {
+		ArrayList<message> result = null;
+		String loginId = (String) session.getAttribute("loginId");
+		result = mdao.selectMesageSender(loginId);
+		
+		System.out.println("[보낸 쪽지 목록]: " + result);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/SelectReceiveMessageBox", method = { RequestMethod.POST })
+	public @ResponseBody ArrayList<message> selectReceiveMessageBox(HttpSession session) {
+		ArrayList<message> result = null;
+		String loginId = (String) session.getAttribute("loginId");
+		result = mdao.selectMesageReceiver(loginId);
+		
+		System.out.println("[받은 쪽지 목록]: " + result);
+		
+		return result;
 	}
 	
 }

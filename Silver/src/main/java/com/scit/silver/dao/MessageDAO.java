@@ -1,5 +1,7 @@
 package com.scit.silver.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,15 +21,35 @@ public class MessageDAO {
 		return result;
 	}
 	
-	public message selectMessage(int ms_seq) {
+	public message selectmessageAll(int ms_seq) {
 		
 		message result = null;
 		
 		MessageMapper mapper = session.getMapper(MessageMapper.class);
 		
-		result = mapper.selectmessage(ms_seq);
+		result = mapper.selectmessageAll(ms_seq);
 		
 		return result;
 		
-	}  
+	}
+	
+	public ArrayList<message> selectMesageSender(String loginId) {
+		ArrayList<message> result = null;
+		
+		MessageMapper mapper = session.getMapper(MessageMapper.class);
+		
+		result = mapper.selectMesageSender(loginId);
+		
+		return result;
+	}
+	
+	public ArrayList<message> selectMesageReceiver(String loginId) {
+		ArrayList<message> result = null;
+		
+		MessageMapper mapper = session.getMapper(MessageMapper.class);
+		
+		result = mapper.selectMesageReceiver(loginId);
+		
+		return result;
+	}
 }

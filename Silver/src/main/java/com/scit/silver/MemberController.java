@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.MemberDAO;
+import com.scit.silver.dao.MessageDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
@@ -20,6 +21,7 @@ import com.scit.silver.vo.Member;
 import com.scit.silver.vo.SeniorCitizen;
 import com.scit.silver.vo.SeniorCitizenDetails;
 import com.scit.silver.vo.SilverSearch;
+import com.scit.silver.vo.message;
 
 
 @Controller
@@ -198,7 +200,6 @@ public class MemberController {
 		String loginId = (String) session.getAttribute("loginId");
 		
 		result = dao.selectMember2(loginId);
-		
 		if(result == null) {
 			System.out.println("mypage실패!");
 			return "redirect:/";
@@ -207,7 +208,6 @@ public class MemberController {
 		
 		if(seq!=null){
 		scResult = sndao.SelectSenior(loginId);
-		
 		scdResult = sndao.SelectSeniorDetails(seq);
 		System.out.println("[시퀀스번호]:" +seq);
 		model.addAttribute("seq", seq);

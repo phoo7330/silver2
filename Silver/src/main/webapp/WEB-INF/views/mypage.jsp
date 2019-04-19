@@ -35,7 +35,51 @@
 	$(function() {	
 		$("#insertgo").on("click",function(){	
 			insertMessage();  //보내기버튼
-		});	
+		});
+		
+	    $.ajax({
+	    	  url: "SelectSendMessageBox"
+	    	, method: "POST"
+	    	, success: function(resp) {
+	    		var ctx = '<tbody>';
+	    		$.each(resp, function(index, item) {	
+	    			ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+	    			ctx += '<input class="form-check-input position-static" type="checkbox" id="sendBlankCheckbox' + index + '" value="option1">';
+	    			ctx += '</div></th><td>';
+	    			ctx += item.ms_Sender;
+	    			ctx += '</td>'
+	    			ctx += '<td><label class="form-check-label" for="selectContents">';
+	    			ctx += item.ms_content;
+	    			ctx += '</label></td>';
+	    			ctx += '<td>' + item.ms_date + '</td>';
+	    			ctx += '</tr>';
+	    		});
+	    		ctx += '</tbody>';
+	    		$("#sendTable").append(ctx);
+	    	}
+	    });
+	    
+	    $.ajax({
+	    	  url: "SelectReceiveMessageBox"
+	    	, method: "POST"
+	    	, success: function(resp) {
+	    		var ctx = '<tbody>';
+	    		$.each(resp, function(index, item) {
+	    			ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+	    			ctx += '<input class="form-check-input position-static receiveBlankCheckbox" type="checkbox" id="receiveBlankCheckbox' + index + '" value="option1">';
+	    			ctx += '</div></th><td id="receiveMessageBoxSender' + index + '">';
+	    			ctx += item.userid;
+	    			ctx += '</td>'
+	    			ctx += '<td><label class="form-check-label" for="selectContents">';
+	    			ctx += item.ms_content;
+	    			ctx += '</label></td>';
+	    			ctx += '<td>' + item.ms_date + '</td>';
+	    			ctx += '</tr>';
+	    		});
+	    		ctx += '</tbody>';
+	    		$("#receiveTable").append(ctx);
+	    	}
+	    });
 	  });
 	
 	  $(function() {
@@ -246,13 +290,27 @@
 	  $(document).ready(function(){
 		  $("#senderForm").hide();
 	  
-		  $("#replybtn").click(function(){    
+		  $("#replybtn").click(function(){  
+			 var temp = $(".receiveBlankCheckbox:checked");
+			 if (temp.length != 1) {
+				 alert("제대로 선택해주세요");
+				 return;
+			 }
+			 var tempid = temp.attr("id");
+			 var sender = $("#receiveMessageBoxSender" + tempid.substring(tempid.length -1, tempid.length));
+			 $("#sender").val(sender.html());
 			 $("#receiveTable").hide();
 			 $("#receivePage").hide();
 			 $("#senderForm").show();
 	      });
 		  
-		  $("#sendbtn").click(function(){    
+		  $("#sendbtn").click(function(){
+			  if ($("#sbwrite").html.length < 1) {
+				  alert("메세지를 입력해주세요.");
+				  return
+			  }
+			  insertReply();
+			  
 			$("#senderForm").hide();
 			$("#receiveTable").show();
 			$("#receivePage").show();
@@ -265,6 +323,79 @@
 		  });
 
 	  });
+	  
+	  function insertReply(){
+			var ms_sender =  $("#sender").val();//받는사람
+/* 			var userid =$("#userid").val();//보낸아이디 */
+			var ms_content = $("#sbwrite").val();//내용
+
+			$.ajax({
+		        type : 'post',
+		        url : 'insertMessage',
+		        data : {ms: ms_content,
+		        		sender: ms_sender},
+		        success : function(result){
+		        	/* alert("result : " + result); */
+		        	if(result==1){
+		        	init2();
+		        	} else {
+		        		alert('실패');
+		        	}
+		        }	        
+		    });
+		}	
+		function init2(resp){
+			var ms_sender =  $("#sender").val();	
+			alert(ms_sender+"님에게 전송했습니다.");
+/* 			$('#writeRecipient')[0].reset();  */
+/* 			selectMessage(); */
+			 $("#sbwrite").val("");
+			 $("#sendTable tbody").remove();
+			 $("#receiveTable tbody").remove();
+			 $.ajax({
+				  url: "SelectSendMessageBox"
+				, method: "POST"
+				, success: function(resp) {
+					var ctx = '<tbody>';
+					$.each(resp, function(index, item) {	
+						ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+						ctx += '<input class="form-check-input position-static" type="checkbox" id="sendBlankCheckbox' + index + '" value="option1">';
+						ctx += '</div></th><td>';
+						ctx += item.ms_Sender;
+						ctx += '</td>'
+						ctx += '<td><label class="form-check-label" for="selectContents">';
+						ctx += item.ms_content;
+						ctx += '</label></td>';
+						ctx += '<td>' + item.ms_date + '</td>';
+						ctx += '</tr>';
+					});
+					ctx += '</tbody>';
+					$("#sendTable").append(ctx);
+				}
+			});
+			
+			$.ajax({
+				  url: "SelectReceiveMessageBox"
+				, method: "POST"
+				, success: function(resp) {
+					var ctx = '<tbody>';
+					$.each(resp, function(index, item) {
+						ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+						ctx += '<input class="form-check-input position-static receiveBlankCheckbox" type="checkbox" id="receiveBlankCheckbox' + index + '" value="option1">';
+						ctx += '</div></th><td id="receiveMessageBoxSender' + index + '">';
+						ctx += item.userid;
+						ctx += '</td>'
+						ctx += '<td><label class="form-check-label" for="selectContents">';
+						ctx += item.ms_content;
+						ctx += '</label></td>';
+						ctx += '<td>' + item.ms_date + '</td>';
+						ctx += '</tr>';
+					});
+					ctx += '</tbody>';
+					$("#receiveTable").append(ctx);
+				}
+			});
+		}
 	  	  
 /* 수정: 스크립트 추가: 종사자 클릭했을 때 첨부파일 show */
 
@@ -446,6 +577,52 @@
 			alert(ms_sender+"님에게 전송했습니다.");
 /* 			$('#writeRecipient')[0].reset();  */
 /* 			selectMessage(); */
+			 
+			 $("#sendTable tbody").remove();
+			 $("#receiveTable tbody").remove();
+			 $.ajax({
+				  url: "SelectSendMessageBox"
+				, method: "POST"
+				, success: function(resp) {
+					var ctx = '<tbody>';
+					$.each(resp, function(index, item) {	
+						ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+						ctx += '<input class="form-check-input position-static" type="checkbox" id="sendBlankCheckbox' + index + '" value="option1">';
+						ctx += '</div></th><td>';
+						ctx += item.ms_Sender;
+						ctx += '</td>'
+						ctx += '<td><label class="form-check-label" for="selectContents">';
+						ctx += item.ms_content;
+						ctx += '</label></td>';
+						ctx += '<td>' + item.ms_date + '</td>';
+						ctx += '</tr>';
+					});
+					ctx += '</tbody>';
+					$("#sendTable").append(ctx);
+				}
+			});
+			
+			$.ajax({
+				  url: "SelectReceiveMessageBox"
+				, method: "POST"
+				, success: function(resp) {
+					var ctx = '<tbody>';
+					$.each(resp, function(index, item) {
+						ctx += '<tr class="text-center"><th scope="row"><div class="form-check">';
+						ctx += '<input class="form-check-input position-static receiveBlankCheckbox" type="checkbox" id="receiveBlankCheckbox' + index + '" value="option1">';
+						ctx += '</div></th><td id="receiveMessageBoxSender' + index + '">';
+						ctx += item.userid;
+						ctx += '</td>'
+						ctx += '<td><label class="form-check-label" for="selectContents">';
+						ctx += item.ms_content;
+						ctx += '</label></td>';
+						ctx += '<td>' + item.ms_date + '</td>';
+						ctx += '</tr>';
+					});
+					ctx += '</tbody>';
+					$("#receiveTable").append(ctx);
+				}
+			});
 		}
 	</script>
 	
@@ -1342,7 +1519,7 @@
 									    </tr>
 									  </thead>
 									  <!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
-									  <tbody>
+									  <!-- <tbody>
 									    <tr class="text-center">
 									      <th scope="row">
 											<div class="form-check">
@@ -1352,7 +1529,7 @@
 										  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
 										  <td>"sysdate"</td>
 									    </tr>
-									  </tbody>
+									  </tbody> -->
 									</table>
 									<!-- 페이지네이션 -->
 									<nav id="receivePage" aria-label="Page navigation">
@@ -1394,7 +1571,7 @@
 										</div>
 									</div>
 									<!-- 쪽지 리스트 테이블 -->
-									<table class="table table-sm">
+									<table class="table table-sm" id="sendTable">
 									  <thead>
 									    <tr class="table-bordered text-center">
 									      <th scope="col"><small>선택</small></th>
@@ -1404,7 +1581,7 @@
 									    </tr>
 									  </thead>
 									  <!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
-									  <tbody>
+									  <!-- <tbody>
 									    <tr class="text-center">
 									      <th scope="row">
 											<div class="form-check">
@@ -1414,7 +1591,7 @@
 										  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
 										  <td>"sysdate"</td>
 									    </tr>
-									  </tbody>
+									  </tbody> -->
 									</table>
 									<!-- 페이지네이션 -->
 									<nav aria-label="Page navigation">

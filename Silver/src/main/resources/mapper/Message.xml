@@ -23,7 +23,7 @@
 	)
  </insert>  
 
-<select id="selectmessage" parameterType="int" resultType="message">
+<select id="selectmessageAll" parameterType="int" resultType="message">
  	SELECT 
      MS_SEQ,
    	 USERID,
@@ -35,6 +35,39 @@
    	 	MESSAGE
 	WHERE
    	 	MS_SEQ=#{ms_seq}
-</select>	
+   	ORDER BY
+   		 MS_DATE DESC
+</select>
 
+	<select id="selectMesageSender" parameterType="String" resultType="message">
+		SELECT 
+			MS_SEQ,
+		  	USERID,
+		  	MS_TITLE,
+		  	MS_CONTENT,
+		    MS_SENDER,
+		  	TO_CHAR(MS_DATE,'yyyy-mm-dd hh:mi:ss') MS_DATE
+		FROM
+	  	 	MESSAGE
+		WHERE
+	  	 	USERID=#{loginId}
+	  	ORDER BY
+	  		MS_DATE DESC
+	</select>
+	
+	<select id="selectMesageReceiver" parameterType="String" resultType="message">
+		SELECT 
+			MS_SEQ,
+		  	USERID,
+		  	MS_TITLE,
+		  	MS_CONTENT,
+		    MS_SENDER,
+		  	TO_CHAR(MS_DATE,'yyyy-mm-dd hh:mi:ss') MS_DATE
+		FROM
+	  	 	MESSAGE
+		WHERE
+	  	 	MS_SENDER=#{loginId}
+	  	ORDER BY
+	  		MS_DATE DESC
+	</select>
   </mapper>
