@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -308,16 +309,27 @@ public class FacilityController {
 	}
 	
 	@RequestMapping(value = "/pageresume", method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody ArrayList<DetailsResume> pageresume(
+	public @ResponseBody HashMap<String,Object> pageresume(
 			@RequestParam(defaultValue = "1") int page) {
 
-		ArrayList<DetailsResume> result = null;
+		HashMap<String,Object> result = new HashMap<String,Object>();
 		int totalBoard=dao.countResume();
 		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
 
-		result = dao.selallres(pn);
+		ArrayList<DetailsResume>sult = dao.selallres(pn);
+		result.put("navi", pn);
+		result.put("result", sult);
 
 		return result;
 	}
+	@RequestMapping(value = "/oneresume", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody DetailsResume oneresume(int re_seq) {
+		DetailsResume result = null;
+		
+		result = dao.oneresume(re_seq);
+	
+		return result;
+	} 
+	
 	
 }

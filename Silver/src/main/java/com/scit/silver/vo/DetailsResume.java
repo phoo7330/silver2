@@ -4,6 +4,7 @@ public class DetailsResume {
 	private String username;
 	private String gender;
 	private String birthday;
+	private String address;
 	
 	private int re_seq;
 	private String userid;
@@ -14,15 +15,18 @@ public class DetailsResume {
 	private String re_date;
 	private String re_areaa;
 	private String re_arebb;
+	private String re_qualification;
 	public DetailsResume() {
 		super();
 	}
-	public DetailsResume(String username, String gender, String birthday, int re_seq, String userid, String re_type,
-			String re_detailType, String re_job, String re_content, String re_date, String re_areaa, String re_arebb) {
+	public DetailsResume(String username, String gender, String birthday, String address, int re_seq, String userid,
+			String re_type, String re_detailType, String re_job, String re_content, String re_date, String re_areaa,
+			String re_arebb, String re_qualification) {
 		super();
 		this.username = username;
 		this.gender = gender;
 		this.birthday = birthday;
+		this.address = address;
 		this.re_seq = re_seq;
 		this.userid = userid;
 		this.re_type = re_type;
@@ -32,6 +36,7 @@ public class DetailsResume {
 		this.re_date = re_date;
 		this.re_areaa = re_areaa;
 		this.re_arebb = re_arebb;
+		this.re_qualification = re_qualification;
 	}
 	public String getUsername() {
 		return username;
@@ -50,6 +55,12 @@ public class DetailsResume {
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getRe_seq() {
 		return re_seq;
@@ -105,12 +116,18 @@ public class DetailsResume {
 	public void setRe_arebb(String re_arebb) {
 		this.re_arebb = re_arebb;
 	}
+	public String getRe_qualification() {
+		return re_qualification;
+	}
+	public void setRe_qualification(String re_qualification) {
+		this.re_qualification = re_qualification;
+	}
 	@Override
 	public String toString() {
-		return "DetailsResume [username=" + username + ", gender=" + gender + ", birthday=" + birthday + ", re_seq="
-				+ re_seq + ", userid=" + userid + ", re_type=" + re_type + ", re_detailType=" + re_detailType
-				+ ", re_job=" + re_job + ", re_content=" + re_content + ", re_date=" + re_date + ", re_areaa="
-				+ re_areaa + ", re_arebb=" + re_arebb + "]";
+		return "DetailsResume [username=" + username + ", gender=" + gender + ", birthday=" + birthday + ", address="
+				+ address + ", re_seq=" + re_seq + ", userid=" + userid + ", re_type=" + re_type + ", re_detailType="
+				+ re_detailType + ", re_job=" + re_job + ", re_content=" + re_content + ", re_date=" + re_date
+				+ ", re_areaa=" + re_areaa + ", re_arebb=" + re_arebb + ", re_qualification=" + re_qualification + "]";
 	}
 	
 	
