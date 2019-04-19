@@ -319,6 +319,7 @@ public class FacilityController {
 		ArrayList<DetailsResume>sult = dao.selallres(pn);
 		result.put("navi", pn);
 		result.put("result", sult);
+		System.out.println("그냥사이즈"+sult.size());
 
 		return result;
 	}
@@ -330,6 +331,23 @@ public class FacilityController {
 	
 		return result;
 	} 
+	@RequestMapping(value = "/searchp", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody HashMap<String,Object> searchp(
+			@RequestParam(defaultValue = "1") int page,
+			DetailsResume dr) {
+		System.out.println("페이지"+page);
+		System.out.println(dr);
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		int totalBoard=dao.countResume2(dr);
+		PageNavigator2 pn = new PageNavigator2(boardPerPage, pagePerGroup, page, totalBoard);
+
+		ArrayList<DetailsResume> sult = dao.searchp(pn, dr);
+		System.out.println("검색 사이즈: "+sult.size());
+		
+		result.put("navi", pn);
+		result.put("result", sult);
+		return result;
+	}
 	
 	
 }
