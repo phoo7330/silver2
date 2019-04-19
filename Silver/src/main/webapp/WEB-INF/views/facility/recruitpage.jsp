@@ -310,6 +310,7 @@ function insertjob(){
 		});
 }
 function insuccess(data){
+	$("#insertform")[0].reset();
 	 $("#table-recruit").show(); 
 	 if(data==1){
 		 alert("등록되었습니다.");
@@ -422,7 +423,7 @@ function insuccess2(data){
 	<!-- main 등록폼  -->
 	<div class="container" id="register-recruit">
 	<!-- 기관정보 -->
-	<form>
+	<form id="insertform">
 	<label for="facilityForm" class="col-form-label col-form-label-lg p-4"><strong>구인정보 입력</strong></label>
 		<table class="table table-bordered" id="facilityForm1">
 			<tbody>
