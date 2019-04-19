@@ -43,10 +43,10 @@
          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <ul class="navbar-nav">
                <li class="nav-item active">
-                    <a class="nav-link mr-3" href="#"><strong>기관정보</strong><span class="sr-only">(current)</span></a>
+                    <a class="nav-link mr-3" href="#"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
                  </li>
                  <li class="nav-item">
-                    <a class="nav-link mr-3" href="#"><strong>구인정보</strong></a>
+                    <a class="nav-link mr-3" href="#"><strong>문의사항</strong></a>
                  </li>
                  <li class="nav-item">
                     <a class="nav-link mr-3" href="#"><strong>인재정보</strong></a>   

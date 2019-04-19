@@ -552,10 +552,16 @@ $(function() {
 				<div class="card-deck p-4 d-flex flex-column position-static text-center" >
 					<div class="card mb-1 shadow-sm card border-info" id="card-all">
 						<div class="card-header">
-							<h4 class="my-4 font-weight-normal">${DetailsTwo.grade}</h4>
+							<!-- 등급에따라서 js에서 문자로 바꿔서 출력  -->
+							<h4 class="py-3 font-weight-normal">${DetailsTwo.grade} : <strong id="grade"></strong></h4>
 						</div>
-						<div class="card-body">
-					        <h4 id="grade" class="card-title pricing-card-title"></h4>
+						<div class="card-body p-0">
+					       <!-- Button trigger modal -->
+							<button type="button" class="btn btn-link mb-0 mt-3 p-0" data-toggle="modal" data-target="#request-visit">
+							<h4 class="mb-0"><strong>방문신청</strong></h4>  
+							</button>
+							<!-- Description -->
+							<p class="card-text"><small>방문 전 미리 신청하시면 빠른 안내가 가능합니다.</small></p>
 						</div>
 					</div>
 				</div>
@@ -564,9 +570,66 @@ $(function() {
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="request-visit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	  aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">기관 방문 신청</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+	        <!-- 아이디, 이름, 방문일, 신청일, 요청사항 -->
+	          <div class="form-row">
+	            <div class="form-group col">
+	              <label for="inputId">아이디</label>
+	              <input type="text" class="form-control form-control-sm" id="inputId" placeholder="member.userid" readonly>
+	            </div>
+	            <div class="form-group col">
+	              <label for="inputName">이름</label>
+	              <input type="text" class="form-control form-control-sm" id="inputName" placeholder="member.username" readonly>
+	            </div>
+	          </div>
+	          <div class="form-row">
+	            <div class="form-group col">
+	              <label for="inputId">방문일</label>
+	              <input type="date" class="form-control form-control-sm" id="inputId" placeholder="날짜선택">
+	            </div>
+	            <div class="form-group col">
+	              <label for="inputName">신청일</label>
+	              <input type="date" class="form-control form-control-sm" id="inputName" placeholder="sysdate" readonly>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label for="request-content">기타 요청사항</label>
+	            <textarea class="form-control" id="request-content" rows="4"></textarea>
+	          </div>
+	          <!-- 체크박스를 누르면 마이페이지 어르신정보값이 함께 전송되어야 함  -->
+	          <div class="form-group row justify-content-center">
+				<div class="form-check">
+	                <input class="form-check-input" type="checkbox" id="gridCheck1">
+	                <label class="form-check-label" for="gridCheck1">
+	                 기관관리자가 마이페이지의 어르신정보를 조회하는데 동의합니다. 
+	                </label>
+				</div>
+	          </div>
+	        </form>
+	      </div>
+	      <!-- 신청 및 닫기 버튼 -->
+	      <div class="modal-footer justify-content-center">
+	        <button type="button" class="btn btn-primary">신청</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>	
 
 	<!-- 하단 네비게이션 바  -->
-	
 	<nav class="nav-scroller py-1 mb-2 sticky-top bg-light border-bottom" id="nav-under">
 		<div class="container">
 			<div class="nav"> 
@@ -579,19 +642,7 @@ $(function() {
 			</div>
 		</div>
 	</nav>
-	
-	<!--  
-   public class Details {
-   private int detail_seq;
-   private int seach_seq;
-   private int detail_number; // 기관일련번호 /1 
-   private String establishment; // 설립일 / 1 
-   private String approval; // 승인일 / 1 
-   private String address; // 주소 / 4 
-   private String house_number; // 연락처 / 1 
-   private String parkinglot; // 주차시설
-	-->
-	
+
 	<!-- 1. 기본정보 탭  -->
 	<div class="container" id="tab-basic">
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
