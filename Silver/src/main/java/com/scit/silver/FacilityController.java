@@ -50,7 +50,13 @@ public class FacilityController {
 	
 	private static final String UPLOADPATH="c:/222/";
 	@RequestMapping(value = "/upDetails1", method = { RequestMethod.POST, RequestMethod.GET })
-	public String upDetails1(DetailsOne DetailsOne, Model model) {
+	public String upDetails1(DetailsOne DetailsOne, Model model, HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
+		
 		int result = 0;
 		result = dao.upDetails1(DetailsOne);
 		if(result==0) {
@@ -67,7 +73,12 @@ public class FacilityController {
 		
 	}
 	@RequestMapping(value = "/upDetails2", method = { RequestMethod.POST, RequestMethod.GET })
-	public String upDetails2(DetailsOne DetailsOne, Model model) {
+	public String upDetails2(DetailsOne DetailsOne, Model model,HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
 		
 		System.out.println(DetailsOne);
 		int result = 0;
@@ -87,7 +98,12 @@ public class FacilityController {
 	}
 
 	@RequestMapping(value = "/upDetails3", method = { RequestMethod.POST, RequestMethod.GET })
-	public String upDetails3(DetailsOne DetailsOne, Model model) {
+	public String upDetails3(DetailsOne DetailsOne, Model model, HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
 		
 		System.out.println(DetailsOne);
 		int result = 0;
@@ -268,7 +284,7 @@ public class FacilityController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String id=(String) session.getAttribute("loginId");
+		String id=(String) session.getAttribute("managerId");
 		System.out.println("[세션아이디]" + id);
 
 
@@ -303,8 +319,13 @@ public class FacilityController {
 		return result;
 	} 
 	@RequestMapping(value = "/talentpage", method = RequestMethod.GET)
-	public String talentpage(Locale locale, Model model) {
-
+	public String talentpage(Model model, HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
+		
 		return "facility/talentpage";
 	}
 	
