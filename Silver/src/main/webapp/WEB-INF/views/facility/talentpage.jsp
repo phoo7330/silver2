@@ -93,19 +93,75 @@ function selectresume(page){
 	}); 
 }
 
-function printre(resume){
-	console.log(resume);
+function printre(data){
+	console.log(data);
 	var list = '';
 	var paging = '';
 	var page = 1;
 	var countBoard = '';
-/* 	 $.each(data.result, function (index, item){
-		 list+='<tr style="cursor:pointer" class="select-table" data-value="'+item.sb_seq+'">';
-		 list+='<td>'+item.userid+'</td>';
-		 list+='<td>'+item.sbtitle+'</td>';
-		 list+='<td>'+item.sbdate+'</td></tr>';
-	 }); */
-	
+	var retr = 1;
+ 	 $.each(data.result, function (index, item){
+ 		 var closetr = data.result.length%2;  //length가 0일경우 짝수가 출력되서  tr이 정상적으로 닫힌다.
+ 		 //length가 0이 아닐경우 tr을 닫아줘야된다.
+ 		if(retr==1){
+ 			list += '<tr> <td class="w-50"><div class="container">';
+ 			list += '<h5 class="card-title">'+item.username+'<br><small>'+item.gender+' '+item.birthday+'</small></h5>';
+ 			list += '<h3 class="content">기타사항 : '+item.re_content+'</h3>';
+ 			list += '<p class="card-text mb-0">자격사항 : '+item.re_qualification+'</p>';
+ 			list += '<p class="card-text mb-0">희망직종 : '+item.re_job+'</p>';
+ 			list += '<p class="card-text mb-0">희망지역 : '+item.re_areaa+' '+item.re_arebb+'</p>';
+ 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+'</p>';
+ 			list += '<hr class="border-secondary">';
+ 			list += '<div class="float-right p-0">';
+ 			list += '<button class="btn btn-sm btn-outline-secondary" type="button" name="t-detail"data-toggle="modal" data-target="#talentForm" value="'+item.re_seq+'">';
+ 			list += '자세히보기</button></div></div></td>';
+ 			retr = 0;
+ 		}else{
+ 			list += '<td class="w-50"><div class="container">';
+ 			list += '<h5 class="card-title">'+item.username+'<br><small>'+item.gender+' '+item.birthday+'</small></h5>';
+ 			list += '<h3 class="content">기타사항 : '+item.re_content+'</h3>';
+ 			list += '<p class="card-text mb-0">자격사항 : '+item.re_qualification+'</p>';
+ 			list += '<p class="card-text mb-0">희망직종 : '+item.re_job+'</p>';
+ 			list += '<p class="card-text mb-0">희망지역 : '+item.re_areaa+' '+item.re_arebb+'</p>';
+ 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+'</p>';
+ 			list += '<hr class="border-secondary">';
+ 			list += '<div class="float-right p-0">';
+ 			list += '<button class="btn btn-sm btn-outline-secondary" type="button" name="t-detail"data-toggle="modal" data-target="#talentForm" value="'+item.re_seq+'">';
+ 			list += '자세히보기</button></div></div></td></tr>';
+ 			retr = 1;
+ 		} //if문
+ 		if(closetr!=0){
+ 			list += '<td></td></tr>';
+ 		}
+ 	}); //포이치 반복
+ 	 var start= data.navi.startPageGroup;
+	 var end=data.navi.endPageGroup;
+	 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage-1)+')\'"><span class="page-link">이전</span></li>'
+	 for(var i=start; start<end+1; start++){
+			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectresume('+start+')">'+start+'</a></b></li>';
+	 }
+	 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage+1)+')\'"><span class="page-link">다음</span></li>'
+	 //countComent+=data.navi.totalBoard;
+	 //$('#countcoment').html(countComent);
+	 $("#plist").html(list);
+	 $('#pag').html(paging);
+	 //자세히보기 버튼 클릭시 모달창안에 개별정보 입력
+	 $("button[name=t-detail]").click(function(){
+		 var re_seq = $(this).attr('value')
+		 $.ajax({
+		        type : 'get',
+		        url : 'oneresume',
+		        data : {
+		        	re_seq:re_seq
+		        },
+		        success : printone
+			}); 
+ 		});
+	 function printone(data){
+		 console.log(data);
+		// $("#username").html(list);
+	 }
+	 
 }
 
 /* 직종 선택 */
@@ -327,145 +383,17 @@ $('document').ready(function() {
 	<!-- 검색 리스트 -->
 <div class="container">
 	<table class="table table-bordered">
-	  <tbody>
-	    <tr>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	    </tr>
-	    <tr>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	      <td class="w-50">
-	      	<div class="container">
-		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-		      <h3 class="content">
-		        기타사항: 열심히 최선을 다해 일하겠습니다.
-		      </h3>
-		      <p class="card-text mb-0">자격사항</p>
-		      <p class="card-text mb-0">희망직종</p>
-		      <p class="card-text mb-0">희망지역</p>
-		      <p class="card-text mb-0">근무형태</p>
-		      	<hr class="border-secondary">
-		      <label class="col-form-label text-muted p-0">주소</label>
-		      <div class="float-right p-0">
-		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-		      	자세히보기
-		      	</button>
-		      </div>
-	        </div>
-	      </td>
-	    </tr>
+	  <tbody id="plist">
+	    
+	    <!-- 한페이지에 6개까지 리스트 출력됨  -->
+	    
 	  </tbody>
 	</table>
 </div>
 <!-- 페이지네이션 -->
 
 	<nav>
-	  <ul class="pagination justify-content-center mb-0 mt-4">
-	    <li class="page-item disabled">
-	      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">이전</a>
-	    </li>
-	    <li class="page-item"><a class="page-link" href="#">1</a></li>
-	    <li class="page-item active" aria-current="page">
-	      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-	    </li>
-	    <li class="page-item"><a class="page-link" href="#">3</a></li>
-	    <li class="page-item">
-	      <a class="page-link" href="#">다음</a>
-	    </li>
+	  <ul id="pag" class="pagination justify-content-center mb-0 mt-4">
 	  </ul>
 	</nav>
 
@@ -476,8 +404,8 @@ $('document').ready(function() {
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title text-light" id="username"><strong>"member.username"</strong>
-	          <p><small>(member.gender / member.birthday)</small></p>
-	          <p class="mb-0">주소 :<small> area, areab</small></p>
+	          <p id="genbir"><small>(member.gender / member.birthday)</small></p>
+	          <p class="mb-0" id="are">주소 :<small> area, areab</small></p>
 	        </h5>
 	        <!-- close button -->
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">

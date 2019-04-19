@@ -33,6 +33,8 @@ public interface FacilityMapper {
 	
 	public ArrayList<DetailsResume> selallres(RowBounds rb);
 	
+	public DetailsResume oneresume(int re_seq);
+	
 	public int countResume();
 	
 }

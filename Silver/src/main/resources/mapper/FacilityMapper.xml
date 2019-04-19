@@ -180,13 +180,37 @@ SELECT
     b.RE_CONTENT,
     b.RE_DATE,
     b.RE_AREAA,
-    b.RE_AREBB
+    b.RE_AREBB,
+    b.RE_QUALIFICATION
 FROM
     MEMBER a, RESUME b
 WHERE
     a.USERID = b.USERID
 ORDER BY
-	RE_DATE
+	RE_DATE DESC
+</select>
+
+<select id="oneresume" resultType="DetailsResume">
+SELECT
+    a.USERNAME,
+	a.GENDER,
+	a.BIRTHDAY,
+    b.RE_SEQ,
+    b.USERID,
+    b.RE_JOB,
+    b.RE_TYPE,
+    b.RE_DETAILTYPE,
+    b.RE_CONTENT,
+    b.RE_DATE,
+    b.RE_AREAA,
+    b.RE_AREBB,
+    b.RE_QUALIFICATION
+FROM
+    MEMBER a, RESUME b
+WHERE
+    a.USERID = b.USERID
+	AND
+	 b.RE_SEQ = #{re_seq}
 </select>
 
 <select id="countResume" resultType="int">

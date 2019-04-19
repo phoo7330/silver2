@@ -121,6 +121,13 @@ public class FacilityDAO {
 		return result;
 	}
 	
+	public DetailsResume oneresume(int re_seq) {
+		DetailsResume result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.oneresume(re_seq);
+		return result;
+	}
+	
 	public int countResume() {
 		int result = 0;
 
