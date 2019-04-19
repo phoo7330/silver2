@@ -166,4 +166,18 @@ WHERE
 	 AND
 	 USERID = #{userid}
 </delete>
+
+<select id="selallres" resultType="Resume">
+SELECT
+    RE_SEQ,
+    USERID,
+    RE_TYPE,
+    RE_DETAILTYPE,
+    RE_CONTENT,
+    RE_DATE,
+    RE_AREAA,
+    RE_AREBB
+FROM
+    RESUME
+</select>
 </mapper>

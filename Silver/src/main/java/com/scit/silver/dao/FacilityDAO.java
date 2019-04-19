@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.Job;
+import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SilverSearch;
 
 
@@ -105,6 +106,14 @@ public class FacilityDAO {
 		
 		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
 		result = mapper.deljob(job);
+		return result;
+	}
+	
+	public ArrayList<Resume> selallres() {
+		ArrayList<Resume> result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.selallres();
+		
 		return result;
 	}
 
