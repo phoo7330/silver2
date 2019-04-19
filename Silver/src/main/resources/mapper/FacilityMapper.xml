@@ -195,6 +195,7 @@ SELECT
     a.USERNAME,
 	a.GENDER,
 	a.BIRTHDAY,
+	a.ADDRESS,
     b.RE_SEQ,
     b.USERID,
     b.RE_JOB,
@@ -219,6 +220,93 @@ WHERE
 		COUNT(RE_SEQ) 
 	FROM 
 		RESUME
+</select>
+<select id="countResume2" parameterType="DetailsResume" resultType="int">
+	
+	SELECT 
+		COUNT(RE_SEQ) 
+	FROM 
+		MEMBER a, RESUME b
+	WHERE
+   		a.USERID = b.USERID
+<if test="gender != ''">
+	AND
+    a.GENDER = #{gender}
+</if>   
+<if test="re_type != ''">
+	AND
+    b.RE_TYPE = #{re_type}
+</if> 
+<if test="re_detailType != ''">
+	AND
+    b.RE_DETAILTYPE = #{re_detailType}
+</if> 
+<if test="re_job != ''">
+	AND
+    b.RE_JOB = #{re_job}
+</if> 
+<if test="re_areaa != ''">
+	AND
+    b.RE_AREAA = #{re_areaa}
+</if> 
+  <if test="re_arebb != ''">
+	AND
+    b.RE_AREBB = #{re_arebb}
+</if> <if test="re_qualification != ''">
+	AND
+    b.RE_QUALIFICATION = #{re_qualification}
+</if>	
+</select>
+<select id="searchp" parameterType="DetailsResume" resultType="DetailsResume">
+SELECT
+    a.USERNAME,
+	a.GENDER,
+	a.BIRTHDAY,
+    b.RE_SEQ,
+    b.USERID,
+    b.RE_JOB,
+    b.RE_TYPE,
+    b.RE_DETAILTYPE,
+    b.RE_CONTENT,
+    b.RE_DATE,
+    b.RE_AREAA,
+    b.RE_AREBB,
+    b.RE_QUALIFICATION
+FROM
+    MEMBER a, RESUME b
+WHERE
+    a.USERID = b.USERID
+<if test="gender != ''">
+	AND
+    a.GENDER = #{gender}
+</if>   
+<if test="re_type != ''">
+	AND
+    b.RE_TYPE = #{re_type}
+</if> 
+<if test="re_detailType != ''">
+	AND
+    b.RE_DETAILTYPE = #{re_detailType}
+</if> 
+<if test="re_job != ''">
+	AND
+    b.RE_JOB = #{re_job}
+</if> 
+<if test="re_areaa != ''">
+	AND
+    b.RE_AREAA = #{re_areaa}
+</if> 
+  <if test="re_arebb != ''">
+	AND
+    b.RE_AREBB = #{re_arebb}
+</if> <if test="re_qualification != ''">
+	AND
+    b.RE_QUALIFICATION = #{re_qualification}
+</if>   
+    
+    
+ORDER BY
+	RE_DATE DESC
 </select>
 
 </mapper>

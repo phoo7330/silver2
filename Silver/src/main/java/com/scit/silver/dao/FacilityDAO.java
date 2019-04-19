@@ -135,5 +135,22 @@ public class FacilityDAO {
 		result = mapper.countResume();
 		return result;
 	}
+	public int countResume2(DetailsResume dr) {
+		int result = 0;
+
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.countResume2(dr);
+		return result;
+	}
+
+	public ArrayList<DetailsResume> searchp(PageNavigator2 pn, DetailsResume dr){
+		RowBounds rb=new RowBounds(pn.getStartBoardCurrentPage(),pn.getBoardPerPage());//어디위치부터, 몇개까지
+
+		ArrayList<DetailsResume> result = null;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.searchp(rb, dr);
+		
+		return result;
+	}
 
 }

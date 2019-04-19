@@ -37,5 +37,9 @@ public interface FacilityMapper {
 	
 	public int countResume();
 	
+	public int countResume2(DetailsResume dr);
+	
+	public ArrayList<DetailsResume> searchp(RowBounds rb, DetailsResume dr);
+	
 }
  

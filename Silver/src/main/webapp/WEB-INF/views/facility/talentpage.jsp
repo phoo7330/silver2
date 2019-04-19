@@ -31,10 +31,18 @@
 
 
 <script>
-
+var ser = 0; // 검색버튼을 누른지 안누른지에 따라 페이징이 다르게 됨.
+var retr = 1; // 리스트 출력시 리스트 갯수가 짝수인지 홀수인지 판별
+var page = 1; 
 /* 지역 선택 */
 $('document').ready(function() {
 	selectresume();
+	ser = 0;
+	$("#t-searchbtn").on("click",function(){ //검색버튼
+		ser = 1;
+	
+		searchp();
+	});
 	
 	
 	var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
@@ -81,8 +89,7 @@ $('document').ready(function() {
 
 });
 function selectresume(page){
-	var page=page; 
-	
+	page=page; 
 	$.ajax({
         type : 'get',
         url : 'pageresume',
@@ -94,15 +101,13 @@ function selectresume(page){
 }
 
 function printre(data){
-	console.log(data);
 	var list = '';
 	var paging = '';
 	var page = 1;
 	var countBoard = '';
-	var retr = 1;
+	retr = 1;
  	 $.each(data.result, function (index, item){
- 		 var closetr = data.result.length%2;  //length가 0일경우 짝수가 출력되서  tr이 정상적으로 닫힌다.
- 		 //length가 0이 아닐경우 tr을 닫아줘야된다.
+ 		
  		if(retr==1){
  			list += '<tr> <td class="w-50"><div class="container">';
  			list += '<h5 class="card-title">'+item.username+'<br><small>'+item.gender+' '+item.birthday+'</small></h5>';
@@ -110,7 +115,7 @@ function printre(data){
  			list += '<p class="card-text mb-0">자격사항 : '+item.re_qualification+'</p>';
  			list += '<p class="card-text mb-0">희망직종 : '+item.re_job+'</p>';
  			list += '<p class="card-text mb-0">희망지역 : '+item.re_areaa+' '+item.re_arebb+'</p>';
- 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+'</p>';
+ 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+' '+item.re_detailType+'</p>';
  			list += '<hr class="border-secondary">';
  			list += '<div class="float-right p-0">';
  			list += '<button class="btn btn-sm btn-outline-secondary" type="button" name="t-detail"data-toggle="modal" data-target="#talentForm" value="'+item.re_seq+'">';
@@ -123,26 +128,42 @@ function printre(data){
  			list += '<p class="card-text mb-0">자격사항 : '+item.re_qualification+'</p>';
  			list += '<p class="card-text mb-0">희망직종 : '+item.re_job+'</p>';
  			list += '<p class="card-text mb-0">희망지역 : '+item.re_areaa+' '+item.re_arebb+'</p>';
- 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+'</p>';
+ 			list += '<p class="card-text mb-0">근무형태 : '+item.re_type+' '+item.re_detailType+'</p>';
  			list += '<hr class="border-secondary">';
  			list += '<div class="float-right p-0">';
  			list += '<button class="btn btn-sm btn-outline-secondary" type="button" name="t-detail"data-toggle="modal" data-target="#talentForm" value="'+item.re_seq+'">';
  			list += '자세히보기</button></div></div></td></tr>';
  			retr = 1;
  		} //if문
- 		if(closetr!=0){
- 			list += '<td></td></tr>'; 
- 		}
+ 		
  	}); //포이치 반복
+	 if(retr==0){
+		list += '<td></td></tr>'; 
+	} 
  	 var start= data.navi.startPageGroup;
-	 var end=data.navi.endPageGroup;
-	 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage-1)+')\'"><span class="page-link">이전</span></li>'
-	 for(var i=start; start<end+1; start++){
-			 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectresume('+start+')">'+start+'</a></b></li>';
+	 var end=data.navi.endPageGroup; 
+	 if(ser==1){ //검색버튼을 눌렀을 경우의 페이징
+		 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:searchp('+(data.navi.currentPage-1)+')\'"><span class="page-link">이전</span></li>'
+		 for(var i=start; start<end+1; start++){
+				 paging+='<li class="page-item"><b><a class="page-link" href="javascript:searchp('+start+')">'+start+'</a></b></li>';
+		 }
+		 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:searchp('+(data.navi.currentPage+1)+')\'"><span class="page-link">다음</span></li>'
+		 
+	 }else{
+		 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage-1)+')\'"><span class="page-link">이전</span></li>'
+		 for(var i=start; start<end+1; start++){
+				 paging+='<li class="page-item"><b><a class="page-link" href="javascript:selectresume('+start+')">'+start+'</a></b></li>';
+		 }
+		 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage+1)+')\'"><span class="page-link">다음</span></li>'
+		 
 	 }
-	 paging+='<li class="page-item disabled" style="cursor:pointer" onclick="location.href=\'javascript:selectresume('+(data.navi.currentPage+1)+')\'"><span class="page-link">다음</span></li>'
-	 //countComent+=data.navi.totalBoard;
-	 //$('#countcoment').html(countComent);
+		
+	 	if(data.result.length==0){//검색결과가 없을경우
+			list += '<th><h1>검색결과가 없습니다</h1></th>';
+			paging ='';
+		}
+	 	
+	 
 	 $("#plist").html(list);
 	 $('#pag').html(paging);
 	 //자세히보기 버튼 클릭시 모달창안에 개별정보 입력
@@ -157,11 +178,72 @@ function printre(data){
 		        success : printone
 			}); 
  		});
-	 function printone(data){
-		 console.log(data);
-		// $("#username").html(list);
+	 function printone(data){ //이력서 상세보기 모달에 정보넣어줌
+		 $("#username").html(data.username);
+		 $("#genbir").html(data.gender+" "+data.birthday);
+		 $("#are").html(data.address);
+		 $("#reare").html(data.re_areaa+" "+data.re_arebb);
+		 $("#rejob").html(data.re_job);
+		 $("#retype").html(data.re_type);
+		 $("#requa").html(data.re_qualification);
+		 $("#recon").html(data.re_content);
+		 
 	 }
-	 
+	
+}
+
+function searchp(page){ //옵션 선택해서 검색
+	page = page;
+	var sido1 = $("#sido1").val();
+	if(sido1=='시/도 선택'){
+		sido1 = null;
+	}
+	var gugun1 = $("#gugun1").val();
+	if(gugun1=='전체'){
+		gugun1 = null;
+	}
+	var work1 = $("#work1").val();
+	if(work1=='전체'){
+		work1 = null;
+	}
+	var detail = $("#detail").val();
+	if(detail=='전체'){
+		detail = null;
+	}
+	var job = $("#job1").val();
+	if(job=='전체'){
+		job = null;
+	}
+	var qualify1 = $("#qualify1").val();
+	if(qualify1=='선택'){
+		qualify1 = null;
+	}
+	var gen = $("#qualify1").val();
+	if($("#all").is(":checked")==true){
+		
+		gen = null;
+	}
+	if($("#man").is(":checked")==true){
+		var gen = '남성';
+	}
+	if($("#woman").is(":checked")==true){
+		var gen = '여성';
+	}
+	
+	  $.ajax({
+	        type : 'get',
+	        url : 'searchp',
+	        data : {re_areaa:sido1,
+	        		re_arebb:gugun1,
+	        		re_type:work1,	
+	        		re_detailType:detail,	
+	        		re_job:job,	
+	        		re_qualification:qualify1,	
+	        		gender:gen,	
+	        		page:page
+	       			},
+	        success : printre
+		});    
 }
 
 /* 직종 선택 */
@@ -403,9 +485,9 @@ $('document').ready(function() {
 	  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title text-light" id="username"><strong>"member.username"</strong>
-	          <p id="genbir"><small>(member.gender / member.birthday)</small></p>
-	          <p class="mb-0" id="are">주소 :<small> area, areab</small></p>
+	        <h5 class="modal-title text-light" ><strong id="username">"member.username"</strong>
+	          <p><small id="genbir">(member.gender / member.birthday)</small></p>
+	          <p class="mb-0">주소 :<small id="are"> area, areab</small></p>
 	        </h5>
 	        <!-- close button -->
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -416,20 +498,20 @@ $('document').ready(function() {
 	      <div class="modal-body">
 	        <div class="container">
 	           <h5><strong>희망지역</strong>
-	            <p><small>"희망지역"</small></p>
+	            <p id="reare"><small>"희망지역"</small></p>
 	            </h5>
 	            <h5><strong>희망직종</strong>
-	            <p><small>"희망직종"</small></p>
+	            <p id="rejob"><small>"희망직종"</small></p>
 	            </h5>
 	            <h5><strong>근무형태</strong>
-	            <p><small>"근무형태"</small></p>
+	            <p id="retype"><small>"근무형태"</small></p>
 	            </h5>
 				<hr class="border-secondary">
 				<h5><strong>자격사항</strong>
-	            <p><small>"자격사항"</small></p>
+	            <p id="requa"><small>"자격사항"</small></p>
 	            </h5>
 	            <h5><strong>기타사항</strong>
-	            <p><small>"적극적인 마인드로 다가가겠습니다."</small></p>
+	            <p id="recon"><small>"적극적인 마인드로 다가가겠습니다."</small></p>
 	            </h5> 
 				<hr class="border-secondary">
 	          <div class="text-center">
