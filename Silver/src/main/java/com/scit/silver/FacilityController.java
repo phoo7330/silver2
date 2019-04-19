@@ -54,7 +54,7 @@ public class FacilityController {
 		String mid = (String)session.getAttribute("managerId");
 		if(mid==null) {
 			model.addAttribute("message", "잘못된 접근입니다.");
-			return "index";
+			return "index"; 
 		}
 		
 		int result = 0;
