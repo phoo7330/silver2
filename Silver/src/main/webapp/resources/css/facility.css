@@ -122,25 +122,24 @@ hr { display: block; height: 1px;
  
 /* questionpage.jsp 
 -------------------------------------------------- */
- #message-card {			
-  height: 400px;
-  border-top: 3px solid #3471ba;
-  overflow-y: auto;
-  overflow-x: hidden;
- }
+
+table.table-bordered > thead > tr > th {
+    border-top:3px solid #3471ba;
+}
  
  .nav-link {
   background-color: #3471ba;
  }
  
  #question-tab,
- #send-tab,
- #write-tab {
+ #send-tab {
   height: 70px;
  }
  
- #receiveTable {
+.tab-content {
+ overflow-x: hidden;
+}
 
- }
- 
- 
+.card-img-top {
+ width: 100px;
+}
