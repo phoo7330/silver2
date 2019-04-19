@@ -613,16 +613,103 @@ $(function() {
 	            <label for="request-content">기타 요청사항</label>
 	            <textarea class="form-control" id="request-content" rows="4"></textarea>
 	          </div>
-	          <!-- 체크박스를 누르면 마이페이지 어르신정보값이 함께 전송되어야 함  -->
-	          <div class="form-group row justify-content-center">
-				<div class="form-check">
-	                <input class="form-check-input" type="checkbox" id="gridCheck1">
-	                <label class="form-check-label" for="gridCheck1">
-	                 기관관리자가 마이페이지의 어르신정보를 조회하는데 동의합니다. 
-	                </label>
-				</div>
+	          <!-- 어르신정보 -->
+	          <div class="form-group">
+	            <label for="silver-inform">어르신정보</label>
+	            	<div class="card">
+	            		<div class="container">
+			            	<!-- 이름 -->
+		                    <div class="row mt-2">
+		                      <div class="col-md-4">
+		                        <p>성함</p>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <p>"이름"</p>
+		                      </div>
+		                    </div>
+		                    <!-- 생년월일 -->
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <p>생년월일</p>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <p>"생년월일"</p>
+		                      </div>
+		                    </div>
+		                    <!-- 혈액형 -->
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <p>혈액형</p>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <p>"혈액형"</p>
+		                      </div>
+		                    </div>
+		                    
+		                    <hr class="border-dark">
+		                    
+		                    <!-- 식사, 보행 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p><small>식사</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"식사"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>보행</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"보행"</small></p>
+		                      </div>
+		                    </div>
+		                    <!-- 세면, 의복 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p><small>세면</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"세면"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>의복</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"의복"</small></p>
+		                      </div>
+		                    </div>
+		                    <!-- 목욕, 화장실 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p><small>목욕</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"목욕"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>화장실</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p><small>"화장실"</small></p>
+		                      </div>
+		                    </div>
+		                    
+		                    <hr class="border-dark">
+		                    
+		                    <!-- 기타 질환정보 -->
+							<div class="row">
+							<div class="col-md-4">
+							  <p>질환정보</p>
+							</div>
+							<div class="col-md-8">
+							  <p>"질환정보"</p>
+							</div>
+		                    </div>
+		                <!-- container -->    
+	                   	</div>
+		            </div>
 	          </div>
-	        </form>
+			</form>
 	      </div>
 	      <!-- 신청 및 닫기 버튼 -->
 	      <div class="modal-footer justify-content-center">

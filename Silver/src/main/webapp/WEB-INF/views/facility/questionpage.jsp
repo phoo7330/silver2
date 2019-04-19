@@ -32,29 +32,95 @@
 <body>
 
 <script>
-/* 쪽지함 show & hide 스크립트 */
+/* 방문문의/이력서 show & hide 스크립트 : 각 id 확인 
+ #question-tab : 좌측 방문문의/이력서 메뉴 버튼 
+ #receiveTable : 맨 처음 보이는 테이블 리스트 
+ #confirmForm : 리스트를 누르면 보이는 상세 내용 
+ #senderForm : 상세 내용에서 답장 버튼 누르면 나오는 메일 폼 
+ #s-forwarding : 메일 성공시 나오는 최종 폼 
+ */
 $(document).ready(function(){
 	  $("#senderForm").hide();
+	  $("#confirmForm").hide();
+	  $("#s-forwarding").hide();
+	  
+	  $("#question-tab").click(function(){    
+		$("#senderForm").hide();
+		$("#confirmForm").hide();
+		$("#s-forwarding").hide();
+		$("#receiveTable").show();
+		window.location.replace("#receiveTable");
+	});
 
-	  $("#replybtn").click(function(){    
+	  $("#temporarybtn").click(function(){    
 		 $("#receiveTable").hide();
-		 $("#receivePage").hide();
-		 $("#senderForm").show();
+		 $("#senderForm").hide();
+		 $("#s-forwarding").hide();
+		 $("#confirmForm").show();
+		 window.location.replace("#confirmForm");
     });
+	  
+	  $("#replybtn").click(function(){    
+		$("#receiveTable").hide();
+		$("#confirmForm").hide();
+		$("#s-forwarding").hide();
+		$("#senderForm").show();
+		window.location.replace("#senderForm");
+	  });
+	  
+	  $("#c-cancelbtn").click(function(){    
+		$("#senderForm").hide();
+		$("#confirmForm").hide();
+		$("#s-forwarding").hide();
+		$("#receiveTable").show();
+		window.location.replace("#receiveTable");
+	  });
 	  
 	  $("#sendbtn").click(function(){    
 		$("#senderForm").hide();
-		$("#receiveTable").show();
-		$("#receivePage").show();
+		$("#confirmForm").hide();
+		$("#receiveTable").hide();
+		$("#s-forwarding").show();
+		window.location.replace("#s-forwarding");
 	  });
 	  
-	  $("#cancelbtn").click(function(){    
+	  $("#s-cancelbtn").click(function(){    
 		$("#senderForm").hide();
-		$("#receiveTable").show();
-		$("#receivePage").show();
+		$("#receiveTable").hide();
+		$("#s-forwarding").hide();
+		$("#confirmForm").show();
+		window.location.replace("#confirmForm");
 	  });
 
 });
+
+/* 보낸메시지 show & hide 스크립트 : 각 id 확인 
+#sendTable : 보낸메시지함 테이블 리스트 
+#sentForm : 보낸메일함 폼 
+ */
+ 
+ $(document).ready(function(){
+	  $("#sentForm").hide();
+	  
+	  $("#send-tab").click(function(){    
+		$("#sentForm").hide();
+		$("#sendTable").show();
+		window.location.replace("#sendTable");
+	});
+	  
+	  $("#temporarybtn2").click(function(){    
+		$("#sendTable").hide();
+		$("#sentForm").show();
+		window.location.replace("#sentForm");
+	});
+	  
+	  $("#listbtn").click(function(){    
+		$("#sentForm").hide();
+		$("#sendTable").show();
+		window.location.replace("#sendTable");
+	});
+	  
+ });
 </script>
 	<!-- 메인 네비게이션 -->
 	<header>
@@ -108,56 +174,55 @@ $(document).ready(function(){
 	<!-- jumbotron --> 
 	</div>
 
-
-<!-- 메세지함 -->
-<div class="card mb-1 border-0" id="message-card">
+	<!-- 메세지함 -->
+	<div class="col-md-12">
 	<div class="row">
 		<!-- 왼쪽 : 메뉴 -->
-  		<div class="col-3">
+  		<div class="col-md-3 p-0">
     		<div class="nav flex-column nav-pills pt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       			<a class="nav-link active text-light border-bottom border-white" id="question-tab" data-toggle="pill" href="#v-question-tab" role="tab" aria-selected="true">
       			방문문의/이력서</a>
       			<a class="nav-link text-light border-bottom border-white" id="send-tab" data-toggle="pill" href="#v-send-tab" role="tab" aria-selected="false">
-      			보낸메세지</a>
-      			<a class="nav-link text-light border-bottom border-white" id="write-tab" data-toggle="pill" href="#v-write-tab" role="tab" aria-selected="false">
-      			메세지작성</a>
+      			보낸메시지</a>
 			</div>
   		</div>
   		<!-- 오른쪽 : 콘텐츠 -->
-		<div class="col-9">
+		<div class="col-md-9 p-0">
 			<div class="tab-content" id="v-pills-tabContent">
 				
-				<!-- 1. 방문문의/이력서 -->
-				<div class="tab-pane fade show active mr-5" id="v-question-tab" role="tabpanel">
-					<!-- 삭제/답장 버튼 -->
+			<!-- 1. 방문문의/이력서 -->
+			<div class="tab-pane fade show active mr-5" id="v-question-tab" role="tabpanel">
+				<div class="container" id="receiveTable">
+  				<!-- 삭제버튼 -->
 					<div class="form-group row pt-3 pb-0">
 						<div class="col-sm-12">
-				   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
-							<button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm">답장</button>
+				   		<button type="button" id="q-delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
 						</div>
 					</div>
 				<!-- 쪽지 리스트 테이블 -->
-				<table class="table table-sm" id="receiveTable">
+				<table class="table table-bordered table-sm">
 			  		<thead>
-					    <tr class="table-bordered text-center">
-					      <th scope="col"><small>선택</small></th>
-					      <th scope="col"><small>보낸사람</small></th>
-					      <th scope="col"><small>내용</small></th>
-					      <th scope="col"><small>날짜</small></th>
-					    </tr>
+						<tr class=" text-center">
+							<th class="w-10"><small>선택</small></th>
+							<th class="w-20"><small>구분</small></th> <!-- 이력서&방문문의 구분 -->
+							<th class="w-20"><small>아이디</small></th>
+							<th class="w-30"><small>제목</small></th>
+							<th class="w-20"><small>받은날짜</small></th> <!-- 보낸이가 메일을 보낸 시점 = 기간관리자가 메일을 받은 시점 -->
+						</tr>
 			  		</thead>
 			  		<!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
 			  		<tbody>
-					    <tr class="text-center">
-					      <td scope="row">
-							<div class="form-check">
-								<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1">
-							</div>
-					      </td>
-						  <td>"Sender"</td>
-						  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
-						  <td>"sysdate"</td>
-					    </tr>
+						<tr class="text-center">
+							<td scope="row">
+								<div class="form-check">
+									<input class="form-check-input position-static" type="checkbox" id="blankCheckbox1" value="option1">
+								</div>
+							</td>
+							<td>"Type"</td>  
+							<td>"Id"</td>
+							<td>"title"</td>
+							<td>"sysdate"</td>
+						</tr>
 			  		</tbody>
 				</table>
 				<!-- 페이지네이션 -->
@@ -178,54 +243,218 @@ $(document).ready(function(){
 				    </li>
 				  </ul>
 				</nav>
-				<!-- 쪽지 눌렀을 때 -->
-				<div class="form mb-3" id="senderForm">
-					<div class="form-group row">
-					   <label for="sender" class="col-sm-2 col-form-label col-form-label-sm"><small>보낸사람</small></label>
-					   <div class="col-sm-10">
-					   	<input type="text" class="form-control form-control-sm" id="sender" readonly>
-					   </div>
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="temporarybtn">tr대체-임시버튼</button>
+			<!-- class="container" id="receiveTable" end -->
+			</div>
+				<!-- 테이블 클릭 시 확인할 수 있는 내용 -->
+			<div class="container">
+				<div class="card mb-3" id="confirmForm">
+					<div class="card-body">
+		            <!-- Section -->
+		            <section class="sender-section">
+		              <!-- 제목 -->
+		              <h2 class="h1-responsive font-weight-bold my-3">"Title"</h2>
+		              <!-- 아이디/이름 | 받은날짜 -->
+		              <div class="form-row"> 
+		                <p class="col-md-6 dark-grey-text mb-2">"member.userid / member.username"</p>
+		                <p class="col dark-grey-text mb-1 text-right">"sysdate"</p>
+		              </div>
+		             <hr> 
+		              <!-- All grid row -->
+		              <div class="row">
+		                <!-- 좌측 -->
+		                <div class="col-md-5">
+		                  <div class="date-etc mb-4">      
+		                    <h3 class="font-weight-bold dark-grey-text mb-3">방문신청일</h3>
+		                    <h3 class="mb-5">"방문날짜"</h3>
+		                    <p class="dark-grey-text mb-4">"기타요청사항"</p>
+		                  </div>
+		                </div>
+		
+		                <!-- 우측 -->
+		                <div class="col-md-7">
+		                  <div class="silver-title mb-4">
+		                    <div class="row">
+		                      <h3 class="font-weight-bold dark-grey-text mb-3">어르신 정보</h3>
+		                    </div>
+		                  </div>
+		                  <div class="silver-inform">
+		                    <!-- 이름 -->
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <h5 class="font-weight-bold dark-grey-text">성함</h5>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <h5 class="font-weight-bold dark-grey-text">"이름"</h5>
+		                      </div>
+		                    </div>
+		                    <!-- 생년월일 -->
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <h5 class="font-weight-bold dark-grey-text">생년월일</h5>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <h5 class="font-weight-bold dark-grey-text">"생년월일"</h5>
+		                      </div>
+		                    </div>
+		                    <!-- 혈액형 -->
+		                    <div class="row">
+		                      <div class="col-md-4">
+		                        <h5 class="font-weight-bold dark-grey-text">혈액형</h5>
+		                      </div>
+		                      <div class="col-md-8">
+		                        <h5 class="font-weight-bold dark-grey-text">"혈액형"</h5>
+		                      </div>
+		                    </div>
+		                    
+		                    <hr class="border-dark">
+		                    
+		                    <!-- 식사, 보행 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>식사</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"식사"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>보행</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"보행"</small></p>
+		                      </div>
+		                    </div>
+		                    <!-- 세면, 의복 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>세면</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"세면"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>의복</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"의복"</small></p>
+		                      </div>
+		                    </div>
+		                    <!-- 목욕, 화장실 -->
+		                    <div class="row">
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>목욕</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"목욕"</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>화장실</small></p>
+		                      </div>
+		                      <div class="col-md-3">
+		                        <p class="font-weight-bold dark-grey-text"><small>"화장실"</small></p>
+		                      </div>
+		                    </div>
+		                    
+		                    <hr class="border-dark">
+		                    
+		                    <!-- 기타 질환정보 -->
+		                      <div class="col-md-12">
+		                        <p class="font-weight-bold dark-grey-text"><small>질환정보</small></p>
+		                        <p class="font-weight-bold dark-grey-text"><small>"질환정보"</small></p>
+		                     </div>
+		                  <!-- silver-inform -->  
+		                  </div>
+		                <!-- col-md-6 -->  
+		                </div>
+		              <!-- All grid row -->
+		              </div>
+		            <!-- Section -->
+		            </section>  
+					<!-- 버튼 -->
+					<div class="form-row justify-content-center mb-4">
+						<button type="button" id="replybtn" class="btn btn-outline-secondary mt-3 mx-1">답장</button>
+						<button type="button" id="c-cancelbtn" class="btn btn-outline-secondary mt-3 mx-1">취소</button>
 					</div>
-					<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
-					<button type="button" id="sendbtn" class="btn btn-outline-secondary btn-sm mt-3">보내기</button>
-					<button type="button" id="cancelbtn" class="btn btn-outline-secondary btn-sm mt-3">취소</button>
+					<!-- card-body -->
+					</div>
+	       		<!-- #confirmForm -->
+	       		</div>
+	       		
+	       		<!-- 답장 눌렀을 때  -->
+				<div class="card mb-3 container" id="senderForm">
+				  <div class="form-group row mt-4">
+				    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control form-control-sm" id="recipient" readonly>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">제목</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control form-control-sm" id="title-sender">
+				    </div>
+				  </div>
+				  <textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+					<div class="form-row justify-content-center mb-4">
+					  <button type="button" id="sendbtn" class="btn btn-outline-secondary mt-3 mx-1">보내기</button>
+					  <button type="button" id="s-cancelbtn" class="btn btn-outline-secondary mt-3 mx-1">취소</button>
+					</div>
 				</div>
+				
+				<!-- 메일 전송 성공 페이지 -->
+				<div class="d-flex justify-content-center p-5">
+					<div class="card border-0" id="s-forwarding" style="width: 30rem;">
+					  <img src="resources/image/email.png" class="card-img-top rounded mx-auto d-block">
+					  <div class="card-body text-center">
+					    <p class="text-muted">메일이 전송되었습니다.</p>
+					    <p class="text-muted">전송된 메일은 [보낸메시지]에서 확인할 수 있습니다.</p>
+					  </div>
+					</div>
+				</div>	
+			<!-- confirmForm .container -->
+			</div>
     		<!-- #v-question-tab end -->	  	
     		</div>
     		
-    		<!-- 2. 보낸메세지 -->
+    		
+    		<!-- 2. 보낸메시지 -->
 			<div class="tab-pane fade mr-5" id="v-send-tab" role="tabpanel">
-				<!-- 삭제 버튼 -->
+				<div class="container" id="sendTable">
+				<!-- 삭제버튼 -->
 				<div class="form-group row pt-3 pb-0">
 					<div class="col-sm-12">
-			   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
+			   		<button type="button" id="s-delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
 					</div>
 				</div>
 				<!-- 쪽지 리스트 테이블 -->
-				<table class="table table-sm">
-				  <thead>
-				    <tr class="table-bordered text-center">
-				      <th scope="col"><small>선택</small></th>
-				      <th scope="col"><small>받는사람</small></th>
-				      <th scope="col"><small>내용</small></th>
-				      <th scope="col"><small>날짜</small></th>
-				    </tr>
-				  </thead>
-				  <!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
-				  <tbody>
-				    <tr class="text-center">
-				      <th scope="row">
-						<div class="form-check">
-							<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1">
-						</div></th>
-					  <td>"Recipient"</td>
-					  <td><label class="form-check-label" for="selectContents">"contents"</label></td>
-					  <td>"sysdate"</td>
-				    </tr>
-				  </tbody>
+				<table class="table table-bordered table-sm">
+			  		<thead>
+						<tr class=" text-center">
+							<th class="w-10"><small>선택</small></th>
+							<th class="w-20"><small>구분</small></th> <!-- 이력서&방문문의 구분 -->
+							<th class="w-20"><small>받는사람</small></th>
+							<th class="w-30"><small>제목</small></th>
+							<th class="w-20"><small>보낸날짜</small></th> <!-- 기간관리자가 메일을 보낸 시점 -->
+						</tr>
+			  		</thead>
+			  		<!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
+			  		<tbody>
+						<tr class="text-center">
+							<td scope="row">
+								<div class="form-check">
+									<input class="form-check-input position-static" type="checkbox" id="blankCheckbox2" value="option1">
+								</div>
+							</td>
+							<td>"Type"</td>  
+							<td>"Id"</td>
+							<td>"title"</td>
+							<td>"sysdate"</td>
+						</tr>
+			  		</tbody>
 				</table>
 				<!-- 페이지네이션 -->
-				<nav aria-label="Page navigation">
+				<nav id="receivePage" aria-label="Page navigation">
 				  <ul class="pagination pagination-sm justify-content-center">
 				    <li class="page-item">
 				      <a class="page-link" aria-label="Previous">
@@ -242,39 +471,46 @@ $(document).ready(function(){
 				    </li>
 				  </ul>
 				</nav>
-			<!-- #v-send-tab end -->
-		      </div>
-      
-		      <!-- 3. 메세지작성 -->
-		      <div class="tab-pane fade mr-5" id="v-write-tab" role="tabpanel">
-				<!-- 보내기 버튼 -->
-				<div class="form-group row pt-3 pb-0">
-					<div class="col-sm-12">
-			   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="temporarybtn2">tr대체-임시버튼</button>
+				<!-- class="container" id="sendTable" end -->
+				</div>
+				
+				 <!-- tr 눌렀을 때  -->
+				<div class="card mb-3 container" id="sentForm">
+				  <div class="form-group row mt-4">
+				    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control form-control-sm" id="recipient" readonly>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">제목</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control form-control-sm" id="title-sender" readonly>
+				    </div>
+				  </div>
+				  <textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;" readonly></textarea>
+					<div class="form-row justify-content-center mb-4">
+					  <button type="button" id="listbtn" class="btn btn-outline-secondary mt-3 mx-1">목록</button>
+					  <button type="button" id="t-delbtn" class="btn btn-outline-secondary mt-3 mx-1">삭제</button>
 					</div>
 				</div>
-				<!-- 받는사람 -->
-				<form>
-				  <div class="form-group row">
-				    <label for="writeRecipient" class="col-sm-2 col-form-label col-form-label-sm"><small>받는사람</small></label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control form-control-sm" id="writeRecipient" placeholder="받는사람을 입력하세요.">
-				    </div>
-				   </div>
-				</form>
-				<div class="form-group pb-3">
-				    <textarea class="form-control" id="writeMessage" rows="10"></textarea>
+				
+				<div class="d-flex justify-content-center p-5">
 				</div>
-      		<!-- #v-write-tab end -->
-      		</div>
+				<!-- #v-send-tab end -->
+		      </div>
+		      
+		     
+
 			<!-- #v-pills-tabContent end -->
 			</div>
 		<!-- .col-9 end -->
 		</div>
 	<!-- .row end -->
 	</div>
-<!-- #message-card end -->
-</div>	
+	</div>
 
 	<!-- Footer -->
 	<footer class="page-footer font-small" id="table-footer">
@@ -283,6 +519,8 @@ $(document).ready(function(){
 			Copyright (c) 2019 <span>Silver Surfer, Foundation for Smart Cloud IT Master</span> All Rights Reserved.
 		</div>
 	</footer>
+	
+	
 		
 </body>
 </html>
