@@ -115,6 +115,10 @@ hr { display: block; height: 1px;
  	margin-top: 105px;
  }
  
+ .w-50 {
+  width: 50%;
+}
+
  
 /* questionpage.jsp 
 -------------------------------------------------- */

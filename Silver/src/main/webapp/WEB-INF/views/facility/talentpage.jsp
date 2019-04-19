@@ -326,50 +326,130 @@ $('document').ready(function() {
 
 	<!-- 검색 리스트 -->
 <div class="container">
-
-	<div class="card-group">
-	  <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 열심히 최선을 다해 일하겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>	
-			</div>
-	    </div>
-	  </div>
-	   <div class="card">
-	    <div class="card-body">
-	      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
-	      <h3 class="content">
-	        기타사항: 적극적인 마인드로 다가가겠습니다.
-	      </h3>
-	      <p class="card-text mb-0">자격사항</p>
-	      <p class="card-text mb-0">희망직종</p>
-	      <p class="card-text mb-0">희망지역</p>
-	      <p class="card-text mb-0">근무형태</p>
-	    </div>
-	    <div class="card-footer">
-	    	<label class="col-form-label text-muted p-0"><small>주소</small></label>
-			<div class="float-right p-0">
-				<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
-				  자세히보기
-				</button>
-			</div>
-	    </div>
-	  </div>
-	</div> <!-- 2개씩  -->
-	
+	<table class="table table-bordered">
+	  <tbody>
+	    <tr>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	      <td class="w-50">
+	      	<div class="container">
+		      <h5 class="card-title">member.username<br><small>("member.gender", member.birthday)</small></h5>
+		      <h3 class="content">
+		        기타사항: 열심히 최선을 다해 일하겠습니다.
+		      </h3>
+		      <p class="card-text mb-0">자격사항</p>
+		      <p class="card-text mb-0">희망직종</p>
+		      <p class="card-text mb-0">희망지역</p>
+		      <p class="card-text mb-0">근무형태</p>
+		      	<hr class="border-secondary">
+		      <label class="col-form-label text-muted p-0">주소</label>
+		      <div class="float-right p-0">
+		      	<button class="btn btn-sm btn-outline-secondary" type="button" id="t-detail"data-toggle="modal" data-target="#talentForm">
+		      	자세히보기
+		      	</button>
+		      </div>
+	        </div>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
 </div>
 <!-- 페이지네이션 -->
 
