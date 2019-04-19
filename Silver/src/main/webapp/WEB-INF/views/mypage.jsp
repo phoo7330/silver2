@@ -308,7 +308,7 @@
 			  var val = $("#sbwrite").val();
 			  if (!val) {
 				  alert("메세지를 입력해주세요.");
-				  return
+				  return 
 			  }
 			  insertReply(); 
 			  
