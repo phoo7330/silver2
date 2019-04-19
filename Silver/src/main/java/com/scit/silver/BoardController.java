@@ -66,8 +66,8 @@ public class BoardController {
 			return "redirect:/searchDetail?seach_seq="+seq;
 		}
 		else {
-			return "redirect:/searchDetail2?seach_seq="+seq;
-		}
+			return "redirect:/searchDetail2?seach_seq="+seq; 
+		} 
 	}
 	@RequestMapping(value = "/pageboard", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody HashMap<String,Object> pageboard(
