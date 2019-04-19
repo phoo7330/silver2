@@ -310,7 +310,7 @@ function printB(data){
 		 list+='<td>'+item.sbdate+'</td></tr>';
 	 });
 	 var start= data.navi.startPageGroup;
-	 var end=data.navi.endPageGroup;
+	 var end=data.navi.endPageGroup; 
 	
 	 paging+='<li style="cursor:pointer" onclick="location.href=\'javascript:selectBoard('+(data.navi.currentPage-1)+')\'" class="page-item disabled"><span class="page-link">&laquo;</span></li>'
 	 for(var i=start; start<end+1; start++){
