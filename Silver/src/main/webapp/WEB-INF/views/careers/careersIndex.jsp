@@ -181,7 +181,7 @@ function wlist(accidentDeath){
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
-	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">구인글 상세보기</button></span>';
 			list += '</td></tr>';
 	    });
 	      $('#mlist').html(list);
@@ -196,7 +196,7 @@ function wlist(accidentDeath){
 	        list += '<p class="mb-0">모집직종 : '+item.jo_job+'</p>';
 	        list += '<p class="mb-0">근무형태 : '+item.jo_type+'</p>';
 	        list += '<p class="mb-0">등록일 : '+item.jo_date+'</p>';
-	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">기관정보 확인</button></span>';
+	        list += '<span class="table-remove"><button type="button" class="btn informbtn btn-danger btn-rounded btn-sm my-0">구인글 상세보기</button></span>';
 			list += '</td></tr>';
 	    });
   
@@ -577,6 +577,29 @@ function write(accidentDeath){
 		});
 	});
 	
+	/* 구인정보 상세보기 & 빠른지원 show and hide */
+	
+ $(document).ready(function(){
+	  $("#quick-applyForm").hide();
+	  
+	  $("#quick-applybtn").click(function(){    
+		$("#recruit-detail").hide();
+		$("#quick-applyForm").show();
+	});
+	  
+	  $("#q-applybtn").click(function(){
+		/* 지원 시 완료 alert창 띄우기 */
+		$("#quick-applyForm").hide();
+		$("#recruit-detail").show();
+	});
+	  
+	  $("#q-cancelbtn").click(function(){    
+		$("#quick-applyForm").hide();
+		$("#recruit-detail").show();
+	});
+	  
+ });	
+	
 	</script>
 	
 	<!-- 메인 네비게이션 -->
@@ -691,24 +714,19 @@ function write(accidentDeath){
 				 
 				<div class="card border-0" id="map">
 				</div>
-				
-				<!-- 기관정보 -->
+		
+				<!-- card-center -->
 				<div class="card border-top-2" id="information">
-					<div class="container">
-						<!-- 
-						 <h2 class="featurette-heading">경희늘푸른노인전문병원
-						 	<span class="text-muted">Checkmate.</span>
-						 </h2>
-       					 <p class="lead"></p>
-       					 -->
-					<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구인정보</strong></label>
+					<!-- 구인글 상세보기 -->
+					<div class="container" id="recruit-detail">
+					<label for="facilityForm" class="col-form-label col-form-label-lg mt-3"><strong>구인정보</strong></label>
 						<table class="table table-bordered" id="facilityForm">
 							<tbody>
 							    <tr>
 							      <th class="bg-light w-30">기관명</th>
-							      <th id="jname">"seach_seq"</th>
+							      <th class="w-20" id="jname">"seach_seq"</th>
 							      <th class="bg-light w-30">급여종류</th>
-							      <th id="jtype">"Type"</th>
+							      <th class="w-20" id="jtype">"Type"</th>
 							    </tr>
 							    <tr>
 							      <td class="bg-light">주소</td>
@@ -727,26 +745,88 @@ function write(accidentDeath){
 							      <td class="bg-light">상세내용</td>
 							      <td colspan="3" id="jcon">"jo_content"</td>
 							    </tr>
-							   <!--  <tr>
-							    	<td colspan="4" class="text-center"><strong>채용관련정보</strong></td>
-							    </tr> -->
-							   <!--  <tr>
-							      <td class="bg-light">채용담당자</td>
-							      <td>"직종"</td>
-							      <td class="bg-light">전화번호</td>
-							      <td>"전화번호"</td>
-							    </tr> -->
 							 </tbody>
 						</table>
 							<!--  -->
 						<div class="btn-group float-right pt-3">
+							<div>
+								<button type="button" class="btn btn-outline-secondary mx-1" id="quick-applybtn">빠른지원</button>
+							</div>
 							<div id="detailbt">
 								<!-- 상세정보 가기버튼 -->
 							</div>
 							<div>
-							<button type="button" class="btn btn-outline-danger mx-1" id="gobackbtn">목록보기</button>	  
+								<button type="button" class="btn btn-outline-danger mx-1" id="gobackbtn">목록보기</button>	  
 							</div>
 						</div>
+					</div>
+					
+					<!-- 빠른지원 양식 -->
+					<div class="container" id="quick-applyForm">
+					  <!-- 개인정보 -->
+					  <label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>개인정보</strong></label>
+					  <table class="table table-bordered" id="facilityForm">
+					    <tbody>
+					      <tr>
+					        <th class="bg-light w-30">성명</th>
+					        <th>"member.username"</th>
+					      </tr>
+					      <tr>
+					        <td class="bg-light w-30">성별</td>
+					        <td>"member.gender"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">생년월일</td>
+					        <td>"member.birthday"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">전화번호</td>
+					        <td>"member.telephone"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">주소</td>
+					        <td colspan="3">"주소"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">자격사항</td>
+					        <td colspan="3">"자격사항"</td>
+					      </tr>
+					    </tbody>
+					  </table>
+					  <!-- 구직정보 -->
+					  <label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구직정보</strong></label>
+					  <table class="table table-bordered" id="facilityForm">
+					    <tbody>
+					      <tr>
+					        <th class="bg-light w-30">희망직종</th>
+					        <th colspan="3">"희망직종"</th>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">희망지역</td>
+					        <td colspan="3">"희망지역"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">근무형태</td>
+					        <td colspan="3">"근무형태"</td>
+					      </tr>
+					      <tr>
+					        <td class="bg-light">기타사항</td>
+					        <td colspan="3" class="etc p-0 mb-0">
+					          <textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4"></textarea>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+					  <div class="btn-group d-flex justify-content-center mt-3 mb-3">
+						<!-- 지원 시 완료 alert창 띄우기 -->					  
+					    <div>
+					      <button type="button" class="btn btn-outline-danger mx-1" id="q-applybtn">지원</button>
+					    </div>
+					    <div>
+					      <button type="button" class="btn btn-outline-danger mx-1" id="q-cancelbtn">취소</button>
+					    </div>
+					  </div>
+					  
 					</div>
 				</div>
 				
