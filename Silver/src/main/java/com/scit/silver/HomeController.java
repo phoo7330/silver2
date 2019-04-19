@@ -50,6 +50,10 @@ public class HomeController {
 		return "facility/questionpage";
 	}
 	 
-	
+	@RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
+	public String adminlogin(Locale locale, Model model) {
+
+		return "admin/adminlogin";
+	}
 	
 }
