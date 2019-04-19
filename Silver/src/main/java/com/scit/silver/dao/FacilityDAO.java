@@ -2,14 +2,16 @@ package com.scit.silver.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsResume;
 import com.scit.silver.vo.Job;
-import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SilverSearch;
+import com.test.fileTest.util.PageNavigator2;
 
 
 @Repository
@@ -109,11 +111,21 @@ public class FacilityDAO {
 		return result;
 	}
 	
-	public ArrayList<Resume> selallres() {
-		ArrayList<Resume> result = null;
+	public ArrayList<DetailsResume> selallres(PageNavigator2 pn) {
+		RowBounds rb=new RowBounds(pn.getStartBoardCurrentPage(),pn.getBoardPerPage());//어디위치부터, 몇개까지
+
+		ArrayList<DetailsResume> result = null;
 		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
-		result = mapper.selallres();
+		result = mapper.selallres(rb);
 		
+		return result;
+	}
+	
+	public int countResume() {
+		int result = 0;
+
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		result = mapper.countResume();
 		return result;
 	}
 
