@@ -285,7 +285,33 @@
 			});
 		  //function end
 		  });
-	 
+	 //이력서 수정버튼 클릭시   수정 등록 취소 버튼 셋팅
+	  $(document).ready(function(){
+	  	$('#cnlResumebtn').hide();
+	  	$('#udtResumebtn').hide();
+	  	$('#istResumebtn').hide();
+	  	
+	  		$('#resumebtn').click(function(){
+	  		 	$('#resumebtn').hide();
+	  			$('#cnlResumebtn').show();
+	  			$('#udtResumebtn').show();
+	  		  	$('#istResumebtn').show();
+	  		});
+	  });
+	 // 이력서 수정 취소 등록 기능
+	 $(function(){
+		 $('#cnlResumebtn').on('click',function(){
+			 location.reload();
+		 });
+		 
+		 $('#udtResumebtn').on('click',function(){
+			 $('#udtResumebtn').submit();
+		 });
+		 
+		 $('#istResumebtn').on('click',function(){
+			 $('#istResumebtn').submit();
+		 });
+	});
 	  /* 쪽지함 show & hide 스크립트 */
 	  $(document).ready(function(){
 		  $("#senderForm").hide();
@@ -1707,48 +1733,50 @@
 							    </div>
 							</div>
 							<!-- 개인정보 -->
+						
 							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>개인정보</strong></label>
 							<p class="text-muted"><small>* 표시는 필수입력 사항입니다.</small></p>
 							<table class="table table-bordered" id="facilityForm">
 								<tbody>
 								    <tr>
-										<th class="bg-light w-30">* 성명</th>
+										<th class="bg-light w-30"> 성명</th>
 										<th>${member.username}</th>
 										<th class="bg-light w-30">성별</th>
-										<th>"member.gender"</th>
+										<th>${member.gender}</th>
 								    </tr>
 	                				<tr>
-										<td class="bg-light">* 생년월일</td>
-										<td>"member.birthday"</td>
-										<td class="bg-light">* 전화번호</td>
-										<td>"member.telephone"</td>
+										<td class="bg-light"> 생년월일</td>
+										<td>${member.birthday}</td>
+										<td class="bg-light"> 전화번호</td>
+										<td>${member.telephone}</td>
 								    </tr>
 							    	<tr>
 										<td class="bg-light">주소</td>
 										<td colspan="3">
-					                      <form class="form-inline my-3 row">									
+					                       <!-- <div class="form-inline my-3 row">									
 						                      <div class="form-group col-md-12">
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col mr-1" name="gugun1" id="gugun1"></select>
 						                      </div>
-						                  </form>	
-										
-						                      <div class="form-group my-3">
-						                      	<input type="text" class="form-control form-control-sm" placeholder="나머지 주소를 입력하세요." id="dong1">
+						                  </div> -->	
+											<div class="form-group my-3">
+						                      	<input type="text" class="form-control form-control-sm" value="${member.address}" id="dong1" readonly="readonly">
 						                      </div>      
 										</td>
 									</tr>
 									<tr>
 										<td class="bg-light">자격사항</td>
 										<td colspan="3">
-					                      <div class="form-group my-3">
+					                      <div class="form-group my-3" id="showQualify1">
 					                        <select class="form-control form-control-sm" name="qualify1" id="qualify1"></select>
+					                      	<input type="text" class="form-control form-control-sm"  id="qualify2" readonly="readonly">
 					                      </div>
 										</td>
 									</tr>
 							 	</tbody>
 							</table>
 							<!-- 구직정보 -->
+							<form action="insertResume" method="post" id="insertResume">
 							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구직정보</strong></label>
 							<table class="table table-bordered" id="facilityForm">
 								<tbody>
@@ -1757,40 +1785,51 @@
 										<th colspan="3">
 											<div class="form-group my-3">
 						                      <select class="form-control form-control-sm" name="job1" id="job1"></select>
+						                      <input type="text" class="form-control form-control-sm" name="job1" id="job1" readonly="readonly">
 											</div>
 										</th>
 									</tr>
 									<tr>
 										<td class="bg-light">* 희망지역</td>
 										<td colspan="3">
-											<form class="form-inline my-3 row">									
+											<div class="form-inline my-3 row">									
 						                      <div class="form-group col-md-12">
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col" name="gugun1" id="gugun1"></select>
+						                      	 <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido1" readonly="readonly">
+						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun1" readonly="readonly">
 						                      </div>
-											</form>
+											</div>
 										</td>
 									</tr>
 									<tr>
 										<td class="bg-light">* 근무형태</td>
 										<td colspan="3">
-											<form class="form-inline my-3 row">									
+											<div class="form-inline my-3 row">									
 						                      <div class="form-group col-md-12">
 												<select class="form-control form-control-sm col mr-1" name="work1" id="work1"></select>
 												<select class="form-control form-control-sm col" name="detail" id="detail"></select>
+						                      	<input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work1" readonly="readonly">
+						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail" readonly="readonly">
 						                      </div>
-											</form>
+											</div>
 										</td>
 									</tr>
 									<tr>
 										<td class="bg-light">기타사항</td>
 										<td colspan="3" class="etc p-0 mb-0">
-											<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4"></textarea>
+											<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4" readonly="readonly"></textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							
+								<div class="text-center pt-3 pb-5" id="updateRsm">
+								<input type="button" id="resumebtn" class="btn btn-outline-secondary" value="수정">
+								<input type="button" id="cnlResumebtn" class="btn btn-outline-secondary" value="취소">
+								<input type="button" id="udtResumebtn" class="btn btn-outline-secondary" value="수정">
+								<input type="button" id="istResumebtn" class="btn btn-outline-secondary" value="등록">
+								</div>
+						</form>
 						<!-- .container -->	
 						</div>
 					<!-- 이력서 양식 -->	
