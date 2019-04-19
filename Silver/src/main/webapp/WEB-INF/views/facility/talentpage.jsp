@@ -131,7 +131,7 @@ function printre(data){
  			retr = 1;
  		} //if문
  		if(closetr!=0){
- 			list += '<td></td></tr>';
+ 			list += '<td></td></tr>'; 
  		}
  	}); //포이치 반복
  	 var start= data.navi.startPageGroup;
