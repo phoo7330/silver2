@@ -293,7 +293,7 @@
 		  $("#replybtn").click(function(){  
 			 var temp = $(".receiveBlankCheckbox:checked");
 			 if (temp.length != 1) {
-				 alert("제대로 선택해주세요");
+				 alert("선택 체크하고 눌러주세요");
 				 return;
 			 }
 			 var tempid = temp.attr("id");
@@ -305,11 +305,12 @@
 	      });
 		  
 		  $("#sendbtn").click(function(){
-			  if ($("#sbwrite").html.length < 1) {
+			  var val = $("#sbwrite").val();
+			  if (!val) {
 				  alert("메세지를 입력해주세요.");
 				  return
 			  }
-			  insertReply();
+			  insertReply(); 
 			  
 			$("#senderForm").hide();
 			$("#receiveTable").show();
@@ -575,9 +576,7 @@
 		function init(resp){
 			var ms_sender =  $("#writeRecipient").val();	
 			alert(ms_sender+"님에게 전송했습니다.");
-/* 			$('#writeRecipient')[0].reset();  */
-/* 			selectMessage(); */
-			 
+
 			 $("#sendTable tbody").remove();
 			 $("#receiveTable tbody").remove();
 			 $.ajax({
@@ -599,6 +598,7 @@
 					});
 					ctx += '</tbody>';
 					$("#sendTable").append(ctx);
+					
 				}
 			});
 			
