@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -298,5 +299,9 @@ public class FacilityController {
 	
 		return result;
 	} 
-	
+	@RequestMapping(value = "/talentpage", method = RequestMethod.GET)
+	public String talentpage(Locale locale, Model model) {
+
+		return "facility/talentpage";
+	}
 }

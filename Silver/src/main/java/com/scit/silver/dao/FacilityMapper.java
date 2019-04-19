@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.Job;
+import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SilverSearch;
 
 public interface FacilityMapper {
@@ -28,6 +29,7 @@ public interface FacilityMapper {
 	
 	public int deljob(Job job);
 	
+	public ArrayList<Resume> selallres();
 	
 }
  

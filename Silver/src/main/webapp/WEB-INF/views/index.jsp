@@ -104,7 +104,7 @@ $(function(){
 				</div>
 			</div>
 			<!--Logo-->
-		  <a class="carousel-control-prev w-50 active" href="facilitymypage" role="button" data-slide="prev">
+		  <a class="carousel-control-prev w-50 active" href="adminlogin" role="button" data-slide="prev">
 		    <span class="pb-2 pr-5"><img src="resources/image/carouselLogo.png"></span>
 		  </a>
 		</div>
