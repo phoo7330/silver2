@@ -18,6 +18,7 @@
     ,RE_DATE
     ,RE_AREAA
     ,RE_AREBB
+    ,RE_QUALIFICATION
     )
     VALUES
     (
@@ -27,9 +28,10 @@
    	,#{re_detailType}
     ,#{re_job}
   	,#{re_content}
-  	,#{re_date}
-  	,#{re_areaA}
-   	,#{re_areaB}
+  	,SYSDATE
+  	,#{re_areaa}
+   	,#{re_arebb}
+   	,#{re_qualification}
     )
   </insert>
   
@@ -45,6 +47,7 @@
 	    ,R.RE_DATE
 	    ,R.RE_AREAA
 	    ,R.RE_AREBB
+	    ,R.RE_QUALIFICATION
 	    ,M.USERID
 	    ,M.USERNAME
 	    ,M.BIRTHDAY
@@ -66,9 +69,11 @@
         ,RE_DETAILTYPE = #{re_detailType}
         ,RE_JOB = #{re_job}
         ,RE_CONTENT = #{re_content}
-        ,RE_DATE = #{re_date}
-        ,RE_AREAA = #{re_areaA}
-        ,RE_AREBB = #{re_areaB}
+        ,RE_DATE = SYSDATE
+        ,RE_AREAA = #{re_areaa}
+        ,RE_AREBB = #{re_arebb}
+        ,RE_QUALIFICATION = #{re_qualification}
+        
     WHERE 
         USERID = #{userid}
   </update>
