@@ -50,12 +50,6 @@ public class HomeController {
 		return "admin/adminlogin";
 	}
 	
-	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
-	public String adminMain(Locale locale, Model model) {
-
-		return "admin/adminMain";
-	}
-	
 	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)
 	public String messagepage(Locale locale, Model model) {
 

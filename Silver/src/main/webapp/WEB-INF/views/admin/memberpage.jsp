@@ -90,7 +90,7 @@ $(document).ready(function(){
   <!-- 메인 네비게이션 -->
    <header>
       <nav class="navbar navbar-expand-md fixed-top p-1 navbar-light bg-light border-1" id="main-nav">
-          <a class="navbar-brand mr-5 p-0" href="adminMain"><img src="resources/image/adminLogo.png"></a>
+          <a class="navbar-brand mr-5 p-0" href="memberpage"><img src="resources/image/adminLogo.png"></a>
           <!-- 오른쪽 상단 토글러 버튼 -->
          <button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -102,7 +102,7 @@ $(document).ready(function(){
                		<a class="nav-link mr-3" href="memberpage"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item">
-               		<a class="nav-link mr-3" href="messagepage"><strong>메시지함</strong></a>
+               		<a class="nav-link mr-3" href="messagepage"><strong>질의응답</strong></a>
                </li>
                <li class="nav-item">
                 	<a class="nav-link mr-3" href="boardpage"><strong>게시판</strong></a>   
