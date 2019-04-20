@@ -37,8 +37,6 @@ public class HomeController {
 
 		return "careers/careersIndex";
 	}
-
-
 	
 	@RequestMapping(value = "/questionpage", method = RequestMethod.GET)
 	public String questionpage(Locale locale, Model model) {
@@ -56,5 +54,41 @@ public class HomeController {
 	public String adminMain(Locale locale, Model model) {
 
 		return "admin/adminMain";
+	}
+	
+	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)
+	public String messagepage(Locale locale, Model model) {
+
+		return "admin/messagepage";
+	}
+	
+	@RequestMapping(value = "/memberpage", method = RequestMethod.GET)
+	public String memberpage(Locale locale, Model model) {
+
+		return "admin/memberpage";
+	}
+	
+	@RequestMapping(value = "/boardpage", method = RequestMethod.GET)
+	public String boardpage(Locale locale, Model model) {
+
+		return "admin/boardpage";
+	}
+	
+	@RequestMapping(value = "/openMemberpage", method = RequestMethod.GET)
+	public String openMemberpage(Locale locale, Model model) {
+
+		return "admin/openMemberpage";
+	}
+	
+	@RequestMapping(value = "/openFacilitypage", method = RequestMethod.GET)
+	public String openFacilitypage(Locale locale, Model model) {
+
+		return "admin/openFacilitypage";
+	}
+	
+	@RequestMapping(value = "/openFacilitypage2", method = RequestMethod.GET)
+	public String openFacilitypage2(Locale locale, Model model) {
+
+		return "admin/openFacilitypage2";
 	}
 }

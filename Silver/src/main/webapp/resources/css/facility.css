@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.nav-brand, h1, h2, h3, h4, h5 {
+	font-family: 'Jeju Gothic';
+}
+
 #main-nav,
 #search-nav {
 	background-color: #3471ba;

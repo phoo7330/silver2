@@ -43,17 +43,14 @@
          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <ul class="navbar-nav">
                <li class="nav-item active">
-                    <a class="nav-link mr-3" href="#"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link mr-3" href="#"><strong>문의사항</strong></a>
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link mr-3" href="#"><strong>인재정보</strong></a>   
-                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link mr-3" href="#"><strong>메세지함</strong></a>   
-                 </li>
+               		<a class="nav-link mr-3" href="memberpage"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+               		<a class="nav-link mr-3" href="messagepage"><strong>메시지함</strong></a>
+               </li>
+               <li class="nav-item">
+                	<a class="nav-link mr-3" href="boardpage"><strong>게시판</strong></a>   
+               </li>
               </ul>
             <!-- 로그아웃 -->
             <ul class="navbar-nav mt-2 mt-md-0">
@@ -65,8 +62,6 @@
          </div>  
       </nav>   
    </header>
-   
-   
    
 
 </body>
