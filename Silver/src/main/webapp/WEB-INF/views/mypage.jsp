@@ -299,7 +299,6 @@
 		$('#detail').hide();
 		 //이력서 수정버튼 클릭시   수정 등록 취소 버튼 셋팅
 		$('#resumebtn').click(function(){
-	  			$('#qualify1').show();
 	  			$('#job2').hide();
 	  			$('#gugun2').hide();
 	  			$('#sido2').hide();
@@ -311,6 +310,7 @@
 	  			$('#sido1').show();
 	  			$('#work1').show();
 	  			$('#detail').show();
+	  			$('#qualify1').show();
 	  			$('#exampleFormControlTextarea5').attr('readonly',false);
 	  			$('#resumebtn').hide();
 	  			$('#cnlResumebtn').show();
