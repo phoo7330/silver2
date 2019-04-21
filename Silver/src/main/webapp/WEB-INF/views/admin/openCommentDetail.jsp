@@ -131,7 +131,7 @@ $(document).ready(function(){
 			    </div>
 			    <div>
 			      <button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${sbcone.sbc_seq}" id="c-delbtn">삭 제</button>
-			    </div>
+			    </div> 
 			    <div>
 			      <button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="c-warningbtn">경 고</button>	  
 			    </div>
