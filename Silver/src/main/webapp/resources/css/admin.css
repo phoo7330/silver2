@@ -6,7 +6,16 @@
 .nav-brand, h1, h2, h3, h4, h5 {
 	font-family: 'Jeju Gothic';
 }
+/* adminMain
+-------------------------------------------------- */
+body {
+ background-color: #d9d9d9;
+}
 
+/* Navigation */
+.navbar a img {
+	height: 35px;
+}
 /* adminlogin.jsp
 -------------------------------------------------- */
 .div-signin {
@@ -43,16 +52,5 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-/* adminMain
--------------------------------------------------- */
-body {
- background-color: #d9d9d9;
-}
-
-/* Navigation */
-.navbar a img {
-	height: 35px;
 }
 

@@ -6,6 +6,7 @@
 <html>
 <head>
 
+
    <title>실버서퍼에 오신 것을 환영합니다.</title>
    
    <!-- 인코딩 --> 
@@ -16,7 +17,7 @@
    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
    
    <!-- Custom CSS 추가 -->
-   <link rel="stylesheet" href="<c:url value="/resources/css/memberpage.css"/>">
+   <link rel="stylesheet" href="<c:url value="/resources/css/boardpage.css"/>">
    
    <!-- jQuery javaScript 추가 -->
    <script src="resources/js/jquery.min.js"></script>
@@ -31,59 +32,32 @@
 <body>
 
 <script>
-/* 새창열기, 닫기 & 값 보내기 참고 
- * https://sourcestudy.tistory.com/341 
- */
 $(document).ready(function(){
-	  $("#g-temporarybtn").click(function(){    
+	
+	  $("#r-temporarybtn").click(function(){    
 		window.open(
-		"openMemberpage",
-		"memberDetail",
+		"openRecruitDetail",
+		"recruitDetail",
 		"toolbar=no, width=1000,height=800, top=150, left=150"
 		);
 	});
 	  
-});
-
-$(document).ready(function(){
+	  $("#t-temporarybtn").click(function(){    
+			window.open(
+			"openTalentDetail",
+			"talentedDetail",
+			"toolbar=no, width=1000,height=800, top=150, left=150"
+			);
+		});	 
+	  
 	  $("#f-temporarybtn").click(function(){    
-		window.open(
-		"openFacilitypage",
-		"facilityDetail",
-		"toolbar=no, width=1000,height=800, top=150, left=150"
-		);
-	});
+			window.open(
+			"openBoardDetail",
+			"boarddDetail",
+			"toolbar=no, width=1000,height=800, top=150, left=150"
+			);
+		});	
 	  
-});
-
-$(document).ready(function(){
-	  $("#f2-temporarybtn").click(function(){    
-		window.open(
-		"openFacilitypage2",
-		"facilityDetail2",
-		"toolbar=no, width=1000,height=800, top=150, left=150"
-		);
-	});
-	  
-});
-
-$(document).ready(function(){
-	  $("#table-facility").hide();
-	  
-	  $("#general-userbtn").click(function(){    
-		$("#table-facility").hide();
-		$("#table-member").show();
-	});
-
-	  $("#practician-userbtn").click(function(){    
-		$("#table-facility").hide();
-		$("#table-member").show();
-	});
-
-	  $("#facility-userbtn").click(function(){    
-		 $("#table-member").hide();
-		 $("#table-facility").show();
-	 });
 });
 </script>
 
@@ -102,7 +76,7 @@ $(document).ready(function(){
                		<a class="nav-link mr-3" href="memberpage"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item">
-               		<a class="nav-link mr-3" href="messagepage"><strong>질의응답</strong></a>
+               		<a class="nav-link mr-3" href="messagepage"><strong>메시지함</strong></a>
                </li>
                <li class="nav-item active">
                 	<a class="nav-link mr-3" href="boardpage"><strong>게시판</strong></a>   
@@ -118,35 +92,173 @@ $(document).ready(function(){
          </div>  
       </nav>   
    </header>
-  
-  <!-- 회원관리 --> 
-	<div class="col-md-12 ml-sm-auto mt-4 pt-4 border-0">
-		<div class="row">
-			<!-- 좌측 -->
-			<div class="card col-md-8 p-0 border-0">
-				<div class="card border-top-2" id="information">
-					
-				</div>	
-			</div>
-			
-			<!-- 우측 -->
-			<div class="card col-md-4 p-0 border-0" id="listcard">
-				<div class="card border-top-2" id="card-graph">
-				   	<div class="container">
-					<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>게시판통계</strong></label>
-						<div class="form-row">
-						
-						
+ 
+<!-- col-md-12 --> 
+<div class="col-md-12 ml-sm-auto mt-4 pt-4 border-0">
+	<div class="row">
+		<!-- 메시지함 -->
+		<div class="card col-md-8 p-0 border-0" style="background-color: #f8f9fa;">
+			<div class="card border-top-2" id="information">
+				<!-- Collapse --> 
+				<div class="accordion m-0" id="adminMessage">
+				<!-- 구인게시판 -->
+				  <div class="card">
+				    <div class="card-header border-0" id="headingOne">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				          구인게시판
+				        </button>
+				      </h2>
+				    </div>
+				    
+					<!-- collapseOne -->
+				    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#adminMessage">
+				      <div class="card-body border-0">
+				      	<div class="table-responsive text-center" id="table-recruit">
+						  <table class="table table-bordered bg-light">
+						    <thead>
+						      <tr>
+						        <th class="w-10">#</th>
+						        <th class="w-20">기관명</th>
+						        <th class="w-20">급여종류</th>
+						        <th class="w-30">모집직종</th>
+						        <th class="w-20">등록일</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td scope="row">1</td>
+						        <td>"silvername"</td>
+						        <td>"type"</td>
+						        <td>"모집직종"</td>     
+						        <td>"등록일"</td>  
+						      </tr>
+						    </tbody>
+						  </table>
 						</div>
+						
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="r-temporarybtn">tr: 구인정보 상세보기 </button> 
+				      	
+				      </div>
+				    <!-- .collapse show end -->  
+				    </div>
+				  <!-- .card --> 
+				  </div>
+				  
+				  <!-- 구직게시판 -->
+				  <div class="card">
+				    <div class="card-header border-0" id="headingTwo">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				          구직게시판
+				        </button>
+				      </h2>
+				    </div>
+				    
+				    <!-- collapseTwo -->
+				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#adminMessage">
+						<div class="card-body border-0">
+						  <div class="table-responsive text-center" id="table-f-board">
+						    <table class="table table-bordered bg-light">
+						      <thead>
+						        <tr>
+						          <th class="w-10">#</th>
+						          <th class="w-20">이름</th>
+						          <th class="w-20">생년월일</th>
+						          <th class="w-30">자격사항</th>
+						          <th class="w-30">희망직종</th>
+						          <th class="w-20">희망지역</th>
+						        </tr>
+						      </thead>
+						      <tbody>
+						        <tr>
+						          <td scope="row">1</td>
+						          <td>"username"</td>
+						          <td>"birthday"</td>
+						          <td>"자격사항"</td>     
+						          <td>"희망직종"</td>  
+						          <td>"희망지역"</td>
+						        </tr>
+						      </tbody>
+						    </table>
+						  </div>	
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="t-temporarybtn">tr: 작성글 상세보기 </button> 
+						<!-- card-body -->
+						</div>
+				    <!-- .collapse show end -->  
+				    </div>
+				  <!-- .card --> 
+				  </div>
+				  
+				  <!-- 기관게시판 -->
+				  <div class="card">
+				    <div class="card-header border-0" id="headingThree">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				          기관게시판
+				        </button>
+				      </h2>
+				    </div>
+				    
+				    <!-- collapseThree -->
+				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#adminMessage">
+				      <div class="card-body border-0">
+						  <div class="table-responsive text-center" id="table-f-board">
+						    <table class="table table-bordered bg-light">
+						      <thead>
+						        <tr>
+						          <th class="w-10">#</th>
+						          <th class="w-20">시설명</th>
+						          <th class="w-20">작성자</th>
+						          <th class="w-30">제목</th>
+						          <th class="w-20">작성날짜</th>
+						        </tr>
+						      </thead>
+						      <tbody>
+						        <tr>
+						          <td scope="row">1</td>
+						          <td>"silvername"</td>
+						          <td>"username"</td>  
+						          <td>"Title"</td>  
+						          <td>"Date"</td>
+						        </tr>
+						      </tbody>
+						    </table>
+						  </div>	
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="f-temporarybtn">tr: 작성글 상세보기 </button> 
+					<!-- card-body -->
+					</div>
+				    <!-- .collapse show end -->  
+				    </div>
+				  <!-- .card --> 
+				  </div>
+				<!-- .accordion -->  
+				</div>
+			<!-- #information -->	
+			</div>	
+		<!-- card col-md8 p-0 border-0 end -->
+		</div>
+		
+		<!-- 통계 -->
+		<div class="card col-md-4 p-0 border-0" id="listcard">
+			<div class="card border-top-2" id="card-graph">
+			   	<div class="container">
+				<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>게시판통계</strong></label>
+					<div class="form-row">
+					
+					
 					</div>
 				</div>
-			<!-- #listcard end -->
 			</div>
-			
+		<!-- #listcard end -->
 		</div>
-	</div> 
+		
+	</div>
+</div> 
   
-   
 
 </body>
 </html>
