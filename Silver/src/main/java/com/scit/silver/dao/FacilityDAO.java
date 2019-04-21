@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsResume;
+import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Job;
 import com.scit.silver.vo.SilverSearch;
 import com.test.fileTest.util.PageNavigator2;
@@ -58,6 +59,26 @@ public class FacilityDAO {
 		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
 		try {
 			result = mapper.upDetails3(DetailsOne);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int upDetails4(DetailsTwo DetailsTwo) {
+		int result = 0;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		try {
+			result = mapper.upDetails4(DetailsTwo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int upDetails5(DetailsTwo DetailsTwo) {
+		int result = 0;
+		FacilityMapper mapper = session.getMapper(FacilityMapper.class);
+		try {
+			result = mapper.upDetails5(DetailsTwo);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

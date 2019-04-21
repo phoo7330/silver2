@@ -17,31 +17,28 @@ body {
 	height: 35px;
 }
 
-/* information
+/* messagepage
 -------------------------------------------------- */
-#information {
+#collapseOne,
+#collapseTwo,
+#collapseThree {
  position: relative;
  top: 1;
- height: calc(100vh - 50px);
+ height: calc(80vh - 101px);
  overflow-x: hidden;
  overflow-y: auto;
- border-top: 5px solid #000000;
- border-radius: 0;
  background-color: #d9d9d9;
 }
 
-/* list 
--------------------------------------------------- */
-.card {
- position: relative;
- top: 1;
- height: calc(100vh - 50px);
- overflow-x: hidden;
- overflow-y: auto;
+.collapsed {
+ color:#000000;
+ text-decoration:none;
 }
 
-/* table
--------------------------------------------------- */
+table.table-bordered > thead > tr > th {
+ border-top:3px solid #000000;
+}
+
 .w-10 {
   width: 10%;
 }
@@ -62,10 +59,13 @@ body {
   width: 70%;
 }
 
-table.table-bordered > thead > tr > th {
- border-top:3px solid #000000;
+/* information
+-------------------------------------------------- */
+#information {
+ border-top: 5px solid #000000;
+ border-radius: 0;
+ background-color: #d9d9d9;
 }
-
 #card-graph {
  position: relative;
  top: 1;
@@ -74,6 +74,5 @@ table.table-bordered > thead > tr > th {
  overflow-y: auto;
  border-top: 5px solid #000000;
  border-radius: 0;
- background-color: #ffffff;
+ background-color: #f8f9fa;
 }
-

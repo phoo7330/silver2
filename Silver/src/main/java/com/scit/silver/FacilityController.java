@@ -116,8 +116,56 @@ public class FacilityController {
 			int seach_seq =DetailsOne.getSeach_seq();
 			DetailsOne reDetailsOne = sdao.selectmap4(seach_seq);
 			model.addAttribute("DetailsOne", reDetailsOne);
-			model.addAttribute("0", "정보수정에 성공했습니다.");
+			model.addAttribute("message", "정보수정에 성공했습니다.");
 			return "facility/facilitymypage";
+		}
+		
+	}
+	@RequestMapping(value = "/upDetails4", method = { RequestMethod.POST, RequestMethod.GET })
+	public String upDetails4(DetailsTwo DetailsTwo, Model model, HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
+		
+		System.out.println(DetailsTwo);
+		int result = 0;
+		result = dao.upDetails4(DetailsTwo);
+		if(result==0) {
+			System.out.println("업데이트 실패");
+			model.addAttribute("message", "정보수정에 실패했습니다.");
+			return "facility/facilitymypage2";
+		}else {
+			int seach_seq =DetailsTwo.getSeach_seq();
+			DetailsTwo reDetailsTwo = sdao.selectmap3(seach_seq);
+			model.addAttribute("DetailsTwo", reDetailsTwo);
+			model.addAttribute("message", "정보수정에 성공했습니다.");
+			return "facility/facilitymypage2";
+		}
+		
+	}
+	@RequestMapping(value = "/upDetails5", method = { RequestMethod.POST, RequestMethod.GET })
+	public String upDetails5(DetailsTwo DetailsTwo, Model model, HttpSession session) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
+		
+		System.out.println(DetailsTwo);
+		int result = 0;
+		result = dao.upDetails5(DetailsTwo);
+		if(result==0) {
+			System.out.println("업데이트 실패");
+			model.addAttribute("message", "정보수정에 실패했습니다.");
+			return "facility/facilitymypage2";
+		}else {
+			int seach_seq =DetailsTwo.getSeach_seq();
+			DetailsTwo reDetailsTwo = sdao.selectmap3(seach_seq);
+			model.addAttribute("DetailsTwo", reDetailsTwo);
+			model.addAttribute("message", "정보수정에 성공했습니다.");
+			return "facility/facilitymypage2";
 		}
 		
 	}
@@ -153,10 +201,19 @@ public class FacilityController {
 		}
 		String name = dao.mname(mid);
 		int seach_seq = mdao.selseq(name);
-		DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
-		model.addAttribute("DetailsOne", DetailsOne);
+		int type = sdao.TypeSearch(seach_seq);
+		if(type==1) {
+			DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
+			model.addAttribute("DetailsOne", DetailsOne);
+			
+			return "facility/facilitymypage";
 		
-		return "facility/facilitymypage";
+		}else {
+		DetailsTwo DetailsTwo = sdao.selectmap3(seach_seq);
+		model.addAttribute("DetailsTwo", DetailsTwo);
+		return "facility/facilitymypage2";
+		}
+	
 	}
 	@RequestMapping(value = "/insertjob", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody 

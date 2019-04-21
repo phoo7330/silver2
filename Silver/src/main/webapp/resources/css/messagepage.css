@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.nav-brand, h1, h2, h3, h4, h5 {
+	font-family: 'Jeju Gothic';
+}
+/* adminMain
+-------------------------------------------------- */
+body {
+ background-color: #d9d9d9;
+}
+
+/* Navigation */
+.navbar a img {
+	height: 35px;
+}
+
 /* messagepage
 -------------------------------------------------- */
 #collapseOne,
@@ -7,7 +24,7 @@
 #collapseThree {
  position: relative;
  top: 1;
- height: calc(80vh - 100px);
+ height: calc(80vh - 101px);
  overflow-x: hidden;
  overflow-y: auto;
 }
@@ -39,4 +56,47 @@ table.table-bordered > thead > tr > th {
 
 .w-70 {
   width: 70%;
+}
+
+/* information
+-------------------------------------------------- */
+#information {
+ border-top: 5px solid #000000;
+ border-radius: 0;
+ background-color: #d9d9d9;
+}
+#card-graph {
+ position: relative;
+ top: 1;
+ height: calc(100vh - 50px);
+ overflow-x: hidden;
+ overflow-y: auto;
+ border-top: 5px solid #000000;
+ border-radius: 0;
+ background-color: #ffffff;
+}
+
+/* questionpage.jsp 
+-------------------------------------------------- */
+
+table.table-bordered > thead > tr > th {
+ border-top:3px solid #000000;
+}
+ 
+ #question-tab,
+ #send-tab {
+  height: 75px;
+  
+ }
+ 
+.tab-content {
+ overflow-x: hidden;
+}
+
+.card-img-top {
+ width: 100px;
+}
+
+#s-forwarding {
+ background-color: #d9d9d9;
 }

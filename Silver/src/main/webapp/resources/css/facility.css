@@ -97,6 +97,10 @@ table.table-bordered > thead > tr {
 	width: 30%;
 }
 
+.w-40 {
+	width: 40%;
+}
+
 #r-savebtn,
 #r-cancelbtn,
 #r-editbtn,
@@ -140,7 +144,7 @@ table.table-bordered > thead > tr > th {
  
  #question-tab,
  #send-tab {
-  height: 70px;
+  height: 75px;
  }
  
 .tab-content {
