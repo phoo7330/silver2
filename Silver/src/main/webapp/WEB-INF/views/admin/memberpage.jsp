@@ -64,7 +64,7 @@
 			'width': 600,
 			'height': 400,
 			pieSliceText: 'label',
-			legend: 'none'
+			legend: 'none' 
 		};
 
 		var chart = new google.visualization.PieChart(
