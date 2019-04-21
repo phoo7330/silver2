@@ -3,7 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>SilverSurfer</title>
+	
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	
 	<!-- 인코딩 -->
 	<meta charset="UTF-8">
@@ -14,8 +18,20 @@
 	
 	<!-- Custom CSS 추가 -->
 	<link rel="stylesheet" href="resources/css/custom.css">
+	<link rel="stylesheet" href="resources/css/index.css">
+	
 	<!-- 제이쿼리 추가 -->
 	<script src="resources/js/jquery.min.js"></script>
+
+	<!-- jQuery javaScript 추가 -->
+	<script src="resources/js/jquery.min.js"></script>
+	
+	<!-- Popper javaScript 추가 -->
+	<script src="resources/js/popper.min.js"></script>
+	
+	<!-- Bootstrap javaScript 추가 -->
+	<script src="resources/js/bootstrap.min.js"></script>
+	
 
 </head>
 <script type="text/javascript">
@@ -79,7 +95,7 @@ $(function(){
 		</nav>	
 	</header>
 	<!-- 메인 캐러셀 -->
-	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between pt-5 mt-3" data-ride="carousel">
+	<div id="mainCarousel" class="carousel slide carousel-fade justify-content-between pt-5 mt-3 border-1" data-ride="carousel">
 	    <div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
 				<!--Mask color-->
@@ -110,7 +126,7 @@ $(function(){
 		</div>
 	</div>
 
-	<!-- 검색 네비게이션 -->
+<!-- 
 	<nav class="navbar border-top-0 p-3 m-0" id="search-nav">
 		<div class="col-1"></div>
 			<div class="col form-group mb-0">
@@ -120,10 +136,10 @@ $(function(){
 				
 					  <div class="input-group-append">
 					  	<button class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" type="submit"><img src="resources/image/search.svg" ></button>
-					   <!-- 
+					   
 					    <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
 					        aria-hidden="true"><img src="resources/image/search.svg"></i></span>
-					  -->
+					 
 					  </div>
 					
 					</div>
@@ -131,87 +147,143 @@ $(function(){
 			</div>
 		<div class="col-1"></div>
 	</nav>
+ -->
+	<main role="main">
+		<!-- Section -->
+	<div class="col-md-12">
+		<section class="text-center">
+		  <h2 class="h1-responsive font-weight-bold text-center my-4">장기요양기관 종류</h2>
+		  <p class="grey-text text-center w-responsive mx-auto mb-4">실버서퍼는 국민건강보험 평가를 통한 객관적인 요양 서비스 정보를 제공합니다. 안심하고 이용하세요.</p>
+		  <!-- Grid row -->
+		  <div class="row">
+		    <!-- Grid column 1 -->
+		    <div class="col-md-3 mb-4">
+		      <!-- Card -->
+		      <div class="card border-1 rounded-0" id="main-card1">
+		        <!-- Card image -->
+		        <div class="view view-cascade overlay">
+		          <img src="" class="card-img-top">
+		          <a>
+		            <div class="mask rgba-white-slight"></div>
+		          </a>
+		        </div>
+		        <!-- Card image -->
+		        <div class="card-body text-center">
+		          <h1 id="icon-size">
+		            <i class="fas fa-user-md"></i>
+		          </h1>
+		          <h4 class="card-title m-4"><strong><a href="">요양병원</a></strong>
+		          </h4>
+		          <p class="card-text">요양환자 30인 이상을 수용할 수 있는 시설을 갖추고, 의료서비스 제공을 목적으로 개설된 의료기관입니다. 
+		          </p>
+		        </div>
+		        <!-- Card content -->
+		      </div>
+		      <!-- Card -->
+		    </div>
+		    <!-- Grid column 1 end -->
+		
+		    <!-- Grid column 2 -->
+		    <div class="col-md-3 mb-4">
+		      <!-- Card -->
+		      <div class="card border-1 rounded-0" id="main-card2">
+		        <!-- Card image -->
+		        <div class="view view-cascade overlay">
+		          <img src="" class="card-img-top">
+		          <a>
+		            <div class="mask rgba-white-slight"></div>
+		          </a>
+		        </div>
+		        <!-- Card image -->
+		        <div class="card-body text-center">
+		          <h1 id="icon-size">
+		            <i class="fas fa-wheelchair"></i>
+		          </h1>
+		          <h4 class="card-title m-4"><strong><a href="">요양원</a></strong>
+		          </h4>
+		          <p class="card-text">병이나 기능장애·심신쇠약으로 자립해서 살기가 힘들고 간호를 받아야 하는 어르신들에게 의료보호와 복지서비스를 제공하는 통합적 시설입니다.
+		          </p>
+		        </div>
+		        <!-- Card content -->
+		      </div>
+		      <!-- Card -->
+		    </div>
+		    <!-- Grid column 2 end -->
+		    
+		    <!-- Grid column 3 -->
+		    <div class="col-md-3 mb-4">
+		      <!-- Card -->
+		      <div class="card border-1 rounded-0" id="main-card3">
+		        <!-- Card image -->
+		        <div class="view view-cascade overlay">
+		          <img src="" class="card-img-top">
+		          <a>
+		            <div class="mask rgba-white-slight"></div>
+		          </a>
+		        </div>
+		        <!-- Card image -->
+		        <div class="card-body text-center">
+		          <h1 id="icon-size">
+		            <i class="fas fa-ambulance"></i>
+		          </h1>
+		          <h4 class="card-title m-4"><strong><a href="">방문시설</a></strong>
+		          </h4>
+		          <p class="card-text">재가장기요양기관으로 방문요양, 방문목욕, 방문간호, 주야간보호, 단기보호, 복지용구 등을 포함하는 시설입니다. 
+		          </p>
+		        </div>
+		        <!-- Card content -->
+		      </div>
+		      <!-- Card -->
+		    </div>
+		    <!-- Grid column 3 end -->
+		    
+		    <!-- Grid column 4 -->
+		    <div class="col-md-3 mb-4">
+		      <!-- Card -->
+		      <div class="card border-1 rounded-0" id="main-card4">
+		        <!-- Card image -->
+		        <div class="view view-cascade overlay">
+		          <img src="" class="card-img-top">
+		          <a>
+		            <div class="mask rgba-white-slight"></div>
+		          </a>
+		        </div>
+		        <!-- Card image -->
+		        <div class="card-body text-center">
+		          <h1 id="icon-size">
+		            <i class="fas fa-hospital-alt"></i>
+		          </h1>
+		          <h4 class="card-title m-4"><strong><a href="">치매전담</a></strong>
+		          </h4>
+		          <p class="card-text">치매전담형 장기요양기관은 치매 어르신이 안정감을 느낄 수 있는 시설환경 제공, 전문인력 배치 및 치매 맞춤형 서비스를 제공합니다. 
+		          </p>
+		        </div>
+		        <!-- Card content -->
+		      </div>
+		      <!-- Card -->
+		    </div>
+		    <!-- Grid column 4 end -->
+		  </div>
+		  <!-- Grid row -->
+		</section>
+		<!-- Section: Products v.1 -->
+	</div>
+	</main>
 
-<main role="main">
+<div class="col-md-12 p-0">
+	<div class="card border-0">
+		<img src="resources/image/footer_bg.png" class="img-fluid" alt="Responsive image">
+	</div>
+</div>
 
-
-</main>
-
-
-
-<!-- 
-	기관 종류 설명
-	<div class="container">
-		<div class="card-deck col-md-12 row mt-5">
-			카드01
-	  		<div class="col-md-4 p-0 ">
-				<div class="card">
-					Card image
-					<div class="view overlay">
-						<img src="resources/image/card01.jpg" class="card-img-top" alt="photo">
-						<div class="mask rgba-white-slight"></div>
-					</div>
-					Card content
-					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#f8ae4c;">
-					Title
-			        <h4 class="card-title white-text">Title of the news</h4>
-			        Text
-			        <p class="card-text white-text">For</p>
-			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
-					</div>
-				</div>
-			</div>
-	 		카드02
-	 		<div class="col-md-4 p-0">
-				<div class="card border-white ">
-					Card image
-					<div class="view">
-						<img src="resources/image/card02.jpg" class="card-img-top" alt="photo">
-					</div>
-					Card content
-					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#d6dc3b;">
-					Title
-			        <h4 class="card-title white-text">Title of the news</h4>
-			        Text
-			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
-			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
-					</div>
-				</div>
-			</div>
-	 		카드03
-	 		<div class="col-md-4 p-0">
-				<div class="card border-white ">
-					Card image
-					<div class="view">
-						<img src="resources/image/card03.jpg" class="card-img-top" alt="photo">
-					</div>
-					Card content
-					<div class="card-body text-center shadow-lg p-2 mb-3 rounded" style="background-color:#4ac5e2;">
-					Title
-			        <h4 class="card-title white-text">Title of the news</h4>
-			        Text
-			        <p class="card-text white-text">For people in North Ayrshire (with illness, disability or frailty) who need support to live as well as possible</p>
-			        <a href="#" class="btn btn-secondary btn-md waves-effect">Button</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>	
--->
-	
-	<!-- 정리해야함 -->
-	
-
-
-	<!-- jQuery javaScript 추가 -->
-	<script src="resources/js/jquery.min.js"></script>
-	
-	<!-- Popper javaScript 추가 -->
-	<script src="resources/js/popper.min.js"></script>
-	
-	<!-- Bootstrap javaScript 추가 -->
-	<script src="resources/js/bootstrap.min.js"></script>
-	
+<!-- Footer -->
+<footer class="page-footer font-small">
+     <!-- Copyright -->
+     <div class="footer-copyright py-4 px-3 text-light">
+       서울특별시 강남구 영동대로 513 4F <br/>
+      Copyright (c) 2019 <span>Silver Surfer, Foundation for Smart Cloud IT Master</span> All Rights Reserved.
+   </div>
+</footer>
 
 </body>
 </html>

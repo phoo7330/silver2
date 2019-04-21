@@ -97,6 +97,10 @@ table.table-bordered > thead > tr {
 	width: 30%;
 }
 
+.w-40 {
+	width: 40%;
+}
+
 #r-savebtn,
 #r-cancelbtn,
 #r-editbtn,
