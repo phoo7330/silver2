@@ -136,4 +136,24 @@ public class AdminDAO {
 		result = mapper.delcoment2(sbc_seq);
 		return result;
 	}
+	
+	public int counttype(String jo_type) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.counttype(jo_type);
+		return result;
+	}
+	public int countjob(String jo_job) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.countjob(jo_job);
+		return result;
+	}
+	
+	public int countgen(String gender) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.countgen(gender);
+		return result;
+	}
 }

@@ -48,6 +48,24 @@ $(document).ready(function(){
 		window.location.replace("#main-information");
 	});
 
+	  $("#b-warningbtn").click(function(){  //회원경고
+		  var id = $(this).attr("data-value");
+
+		  $.ajax({
+		        type : 'post',
+		        url : 'warningmem',
+		        data : {userid:id
+		        },
+		        success : function(data){
+		        	if(data==1){
+		        		alert("경고횟수가 추가되었습니다");
+		        		window.close();
+		        	}
+		        	
+		        }        	
+			}); 
+		  
+	  });
 	  $("#b-delbtn").click(function(){ //삭제버튼을 눌렀을떄
 		  var sb_seq = $(this).attr("data-value");
 	  
@@ -128,7 +146,7 @@ $(document).ready(function(){
 				 	 <button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${sbone.sb_seq}" id="b-delbtn">삭 제</button>
 				  </div>
 				  <div>
-				  	<button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="b-warningbtn">경 고</button>	  
+				  	<button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${sbone.userid}" id="b-warningbtn">경 고</button>	  
 				  </div>
 			  </div>
 		</div>

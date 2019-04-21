@@ -45,7 +45,11 @@ public interface AdminMapper {
 	public ArrayList<SilverBoardComent> selectallComent();
 	
 	public int delcoment2(int sbc_seq);
-
 	
+	public int counttype(String jo_type);
+	
+	public int countjob(String jo_job);
+
+	public int countgen(String gender);
 }
  

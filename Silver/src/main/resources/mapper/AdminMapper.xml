@@ -269,4 +269,32 @@ ORDER BY
 	WHERE
 		SBC_SEQ = #{sbc_seq}
 </update>
+
+<select id="counttype" parameterType="String" resultType="int">
+SELECT 
+    COUNT(USERID)
+FROM
+    JOBOFFER
+WHERE
+    JO_TYPE = #{jo_type}
+
+</select>
+<select id="countjob" parameterType="String" resultType="int">
+SELECT 
+    COUNT(USERID)
+FROM
+    JOBOFFER
+WHERE
+    JO_JOB = #{jo_job}
+
+</select>
+<select id="countgen" parameterType="String" resultType="int">
+SELECT 
+    COUNT(USERID)
+FROM
+    JOBOFFER
+WHERE
+    JO_GENDER = #{JO_GENDER}
+
+</select>
 </mapper>

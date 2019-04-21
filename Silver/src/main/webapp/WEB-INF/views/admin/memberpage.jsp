@@ -353,7 +353,7 @@ $(document).ready(function(){
 							
 							</div>
 							<div id="chart_div2">
-							ㅇㅇㅇㅇ
+							
 							</div>
 						</div>
 					</div>

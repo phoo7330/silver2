@@ -27,12 +27,162 @@
    
    <!-- Bootstrap javaScript 추가 -->
    <script src="resources/js/bootstrap.min.js"></script>
-   
+      <!-- 그래프 api -->
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 <body>
 
 <script>
+//어떤 그래프를 사용할지 지정 : Google Visualization 라이브러리 로드 
+google.load('visualization', '1.0', {'packages':['corechart']});
+
+// 그래프 API 로드가 완료되면 실행할 수 있도록 이벤트 지정 
+google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart2);
+google.setOnLoadCallback(drawChart3);
+
+function drawChart() {
+	var data = new google.visualization.DataTable();
+
+	data.addColumn('string', '인물');
+	data.addColumn('number', '취득표');
+	var a,b,c = 0; /*  "정규직","계약직","시간제" */
+	a = parseInt('${ctype1}');
+	b = parseInt('${ctype2}');
+	c = parseInt('${ctype3}');
+	data.addRows([
+			['정규직', a],
+			['계약직', b],
+			['시간제', c],
+			
+	]);
+
+	// 그래프의 옵션을 지정 
+	var opt = {
+		'title': '구인계시판 근무형태 분포',
+		'width': 400,
+		'height': 400,
+		pieSliceText: 'label',
+		legend: 'none' 
+	};
+
+
+var chart = new google.visualization.PieChart(
+		document.getElementById('chart_div'));
+chart.draw(data, opt);
+
+
+}
+
+
+  function drawChart2() {
+	var data2 = new google.visualization.DataTable();
+
+	data2.addColumn('string', '인물');
+	data2.addColumn('number', '취득표');
+	var a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23 = 0;
+	
+	a1 = parseInt('${cjob1}');
+	a2 = parseInt('${cjob2}');
+	a3 = parseInt('${cjob3}');
+	a4 = parseInt('${cjob4}');
+	a5 = parseInt('${cjob5}');
+	a6 = parseInt('${cjob6}');
+	a7 = parseInt('${cjob7}');
+	a8 = parseInt('${cjob8}');
+	a9 = parseInt('${cjob9}');
+	a10 = parseInt('${cjob10}');
+	a11 = parseInt('${cjob11}');
+	a12 = parseInt('${cjob12}');
+	a13 = parseInt('${cjob13}');
+	a14 = parseInt('${cjob14}');
+	a15 = parseInt('${cjob15}');
+	a16 = parseInt('${cjob16}');
+	a17 = parseInt('${cjob17}');
+	a18 = parseInt('${cjob18}');
+	a19 = parseInt('${cjob19}');
+	a20 = parseInt('${cjob20}');
+	a21 = parseInt('${cjob21}');
+	a22 = parseInt('${cjob22}');
+	a23 = parseInt('${cjob23}');
+	data2.addRows([
+			['시설장', a1],
+			['사무국장', a2],
+			['사회복지사', a3],
+			['의사', a4],
+			['촉탁의사', a5],
+			['간호사', a6],
+			['간호조무사', a7],
+			['치과위생사', a8],
+			['물리치료사', a9],
+			['작업치료사', a10],
+			['요양보호사 1급', a11],
+			['요양보호사 2급', a12],
+			['요양보호사 기존유예자', a13],
+			['영양사', a14],
+			['사무원', a15],
+			['조리원', a16],
+			['위생원', a17],
+			['관리인', a18],
+			['보조원 운전사', a19],
+			['프로그램관리자', a20],
+			['치매전문교육이수자', a21],
+			['청구담당자', a22],
+			['기타', a23],
+	]);
+
+	
+	// 그래프의 옵션을 지정 
+	var opt2 = {
+		'title': '구인게시판 직종 분포',
+		'width': 400,
+		'height': 400,
+		pieSliceText: 'label',
+		legend: 'none' 
+	};
+
+	var chart2 = new google.visualization.PieChart(
+			document.getElementById('chart_div2'));
+	chart2.draw(data2, opt2);
+
+}  
+
+  function drawChart3() {
+		var data3 = new google.visualization.DataTable();
+
+		data3.addColumn('string', '인물');
+		data3.addColumn('number', '취득표');
+		var a,b,c = 0;  
+		a = parseInt('${cgen1}');
+		b = parseInt('${cgen2}');
+		c = parseInt('${cgen3}');
+		data3.addRows([
+				['남성', a],
+				['여성', b],
+				['전체', c],
+		]);
+
+		// 그래프의 옵션을 지정 
+		var opt3 = {
+			'title': '구인게시판 성별 분포',
+			'width': 400,
+			'height': 400,
+			pieSliceText: 'label',
+			legend: 'none' 
+		};
+
+
+	var chart3 = new google.visualization.PieChart(
+			document.getElementById('chart_div3'));
+	chart3.draw(data3, opt3);
+
+
+	}
+
+
+
 $(function() {
+	
 	selectboard();
 	selectboard2();
 	selectboard3();
@@ -245,8 +395,7 @@ $(document).ready(function(){
 						      </tbody>
 						    </table>
 						  </div>	
-<!-- button : tr 연결 후 삭제 -->	
-<button type="button" class="btn btn-link" id="f-temporarybtn">tr: 작성글 상세보기 </button> 
+
 					<!-- card-body -->
 					</div>
 				    <!-- .collapse show end -->  
@@ -287,8 +436,7 @@ $(document).ready(function(){
 						      </tbody>
 						    </table>
 						  </div>	
-<!-- button : tr 연결 후 삭제 -->	
-<button type="button" class="btn btn-link" id="c-temporarybtn">tr: 작성글 상세보기 </button> 
+ 
 					<!-- card-body -->
 					</div>
 				    <!-- .collapse show end -->  
@@ -308,8 +456,15 @@ $(document).ready(function(){
 			   	<div class="container">
 				<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>게시판통계</strong></label>
 					<div class="form-row">
-					
-					
+					<div id="chart_div">
+							
+					</div>
+					<div id="chart_div2">
+							
+					</div>
+					<div id="chart_div3">
+							
+					</div>
 					</div>
 				</div>
 			</div>

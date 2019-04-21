@@ -165,6 +165,71 @@ public class AdminController {
 			model.addAttribute("message", "잘못된 접근입니다.");
 			return "index"; 
 		}
+		
+		int a,b,c = 0;
+		a=dao.counttype("정규직");
+		b=dao.counttype("계약직");
+		c=dao.counttype("시간제");
+		
+		model.addAttribute("ctype1", a);
+		model.addAttribute("ctype2", b);
+		model.addAttribute("ctype3", c);
+		int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23 = 0;
+		a1=dao.countjob("시설장");
+		a2=dao.countjob("사무국장");
+		a3=dao.countjob("사회복지사");
+		a4=dao.countjob("의사");
+		a5=dao.countjob("촉탁의사");
+		a6=dao.countjob("간호사");
+		a7=dao.countjob("간호조무사");
+		a8=dao.countjob("치과위생사");
+		a9=dao.countjob("물리치료사");
+		a10=dao.countjob("작업치료사");
+		a11=dao.countjob("요양보호사 1급");
+		a12=dao.countjob("요양보호사 2급");
+		a13=dao.countjob("요양보호사 기존유예자");
+		a14=dao.countjob("영양사");
+		a15=dao.countjob("사무원");
+		a16=dao.countjob("조리원");
+		a17=dao.countjob("위생원");
+		a18=dao.countjob("관리인");
+		a19=dao.countjob("보조원 운전사");
+		a20=dao.countjob("프로그램관리자");
+		a21=dao.countjob("치매전문교육이수자");
+		a22=dao.countjob("청구담당자");
+		a23=dao.countjob("기타");
+		model.addAttribute("cjob1", a1);
+		model.addAttribute("cjob2", a2);
+		model.addAttribute("cjob3", a3);
+		model.addAttribute("cjob4", a4);
+		model.addAttribute("cjob5", a5);
+		model.addAttribute("cjob6", a6);
+		model.addAttribute("cjob7", a7);
+		model.addAttribute("cjob8", a8);
+		model.addAttribute("cjob9", a9);
+		model.addAttribute("cjob10", a10);
+		model.addAttribute("cjob11", a11);
+		model.addAttribute("cjob12", a12);
+		model.addAttribute("cjob13", a13);
+		model.addAttribute("cjob14", a14);
+		model.addAttribute("cjob15", a15);
+		model.addAttribute("cjob16", a16);
+		model.addAttribute("cjob17", a17);
+		model.addAttribute("cjob18", a18);
+		model.addAttribute("cjob19", a19);
+		model.addAttribute("cjob20", a20);
+		model.addAttribute("cjob21", a21);
+		model.addAttribute("cjob22", a22);
+		model.addAttribute("cjob23", a23);
+		
+		
+		int mm, ww, all = 0;
+		mm = dao.countgen("남");
+		ww = dao.countgen("여");
+		all = dao.countgen("전체");
+		model.addAttribute("cgen1", mm);
+		model.addAttribute("cgen2", ww);
+		model.addAttribute("cgen3", all);
 		return "admin/boardpage";
 	}
 	
