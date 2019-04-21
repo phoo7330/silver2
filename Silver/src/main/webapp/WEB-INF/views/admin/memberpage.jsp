@@ -43,35 +43,35 @@
 	// 그래프 API 로드가 완료되면 실행할 수 있도록 이벤트 지정 
 	google.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var data = new google.visualization.DataTable();
+function drawChart() {
+	var data = new google.visualization.DataTable();
 
-		data.addColumn('string', '인물');
-		data.addColumn('number', '취득표');
+	data.addColumn('string', '인물');
+	data.addColumn('number', '취득표');
 
-		data.addRows([
-				['티모', 51],
-				['베인', 34],
-				['문도', 20],
-				['이즈리얼', 11],
-				['아리', 8],
-				['애쉬', 4],
-		]);
+	data.addRows([
+			['티모', 51],
+			['베인', 34],
+			['문도', 20],
+			['이즈리얼', 11],
+			['아리', 8],
+			['애쉬', 4],
+	]);
 
-		// 그래프의 옵션을 지정 
-		var opt = {
-			'title': '인기 투표',
-			'width': 600,
-			'height': 400,
-			pieSliceText: 'label',
-			legend: 'none' 
-		};
+	// 그래프의 옵션을 지정 
+	var opt = {
+		'title': '인기 투표',
+		'width': 600,
+		'height': 400,
+		pieSliceText: 'label',
+		legend: 'none' 
+	};
 
-		var chart = new google.visualization.PieChart(
-				document.getElementById('chart_div'));
-		chart.draw(data, opt);
+	var chart = new google.visualization.PieChart(
+			document.getElementById('chart_div'));
+	chart.draw(data, opt);
 
-	}
+}
  
 var type = 1;
 
@@ -120,6 +120,7 @@ function selectmem2(type){
 		success:init2
 		});
 }
+
 function init2(data){
 	console.log(data);
 	console.log(data[0].type);
@@ -135,7 +136,6 @@ function init2(data){
 	 });
 
    $("#selmember2").html(list);
-
    
  /*   $(".select-table").click(function(){    
 		  console.log("클릭");
@@ -147,8 +147,6 @@ function init2(data){
 	}); */
 }
  
- 
- 
 $(document).ready(function(){
 	  $("#g-temporarybtn").click(function(){    
 		window.open(
@@ -159,11 +157,6 @@ $(document).ready(function(){
 	});
 	  
 });
-
-
-	  
-	  
-
 
 $(document).ready(function(){
 	  $("#f2-temporarybtn").click(function(){    
@@ -199,7 +192,9 @@ $(document).ready(function(){
 		 type = 3;
 		selectmem2(type);
 	 });
+	  
 });
+
 </script>
 
   <!-- 메인 네비게이션 -->
@@ -217,7 +212,7 @@ $(document).ready(function(){
                		<a class="nav-link mr-3" href="memberpage"><strong>회원관리</strong><span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item">
-               		<a class="nav-link mr-3" href="messagepage"><strong>질의응답</strong></a>
+               		<a class="nav-link mr-3" href="messagepage"><strong>메시지함</strong></a>
                </li>
                <li class="nav-item">
                 	<a class="nav-link mr-3" href="boardpage"><strong>게시판</strong></a>   

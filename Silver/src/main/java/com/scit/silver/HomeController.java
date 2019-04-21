@@ -76,10 +76,10 @@ public class HomeController {
 		return "admin/openRecruitDetail";
 	}
 	
-	@RequestMapping(value = "/openTalentDetail", method = RequestMethod.GET)
-	public String openTalentDetail(Locale locale, Model model) {
+	@RequestMapping(value = "/openCommentDetail", method = RequestMethod.GET)
+	public String openCommentDetail(Locale locale, Model model) {
 
-		return "admin/openTalentDetail";
+		return "admin/openCommentDetail";
 	}
 	
 	@RequestMapping(value = "/openBoardDetail", method = RequestMethod.GET)

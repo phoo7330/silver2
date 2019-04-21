@@ -42,9 +42,9 @@ $(document).ready(function(){
 		);
 	});
 	  
-	  $("#t-temporarybtn").click(function(){    
+	  $("#c-temporarybtn").click(function(){    
 			window.open(
-			"openTalentDetail",
+			"openCommentDetail",
 			"talentedDetail",
 			"toolbar=no, width=1000,height=800, top=150, left=150"
 			);
@@ -151,60 +151,14 @@ $(document).ready(function(){
 				    <div class="card-header border-0" id="headingTwo">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          구직게시판
+				          기관게시판
 				        </button>
 				      </h2>
 				    </div>
 				    
 				    <!-- collapseTwo -->
 				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#adminMessage">
-						<div class="card-body border-0">
-						  <div class="table-responsive text-center" id="table-f-board">
-						    <table class="table table-bordered bg-light">
-						      <thead>
-						        <tr>
-						          <th class="w-10">#</th>
-						          <th class="w-20">이름</th>
-						          <th class="w-20">생년월일</th>
-						          <th class="w-30">자격사항</th>
-						          <th class="w-30">희망직종</th>
-						          <th class="w-20">희망지역</th>
-						        </tr>
-						      </thead>
-						      <tbody>
-						        <tr>
-						          <td scope="row">1</td>
-						          <td>"username"</td>
-						          <td>"birthday"</td>
-						          <td>"자격사항"</td>     
-						          <td>"희망직종"</td>  
-						          <td>"희망지역"</td>
-						        </tr>
-						      </tbody>
-						    </table>
-						  </div>	
-<!-- button : tr 연결 후 삭제 -->	
-<button type="button" class="btn btn-link" id="t-temporarybtn">tr: 작성글 상세보기 </button> 
-						<!-- card-body -->
-						</div>
-				    <!-- .collapse show end -->  
-				    </div>
-				  <!-- .card --> 
-				  </div>
-				  
-				  <!-- 기관게시판 -->
-				  <div class="card">
-				    <div class="card-header border-0" id="headingThree">
-				      <h2 class="mb-0">
-				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				          기관게시판
-				        </button>
-				      </h2>
-				    </div>
-				    
-				    <!-- collapseThree -->
-				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#adminMessage">
-				      <div class="card-body border-0">
+<div class="card-body border-0">
 						  <div class="table-responsive text-center" id="table-f-board">
 						    <table class="table table-bordered bg-light">
 						      <thead>
@@ -229,6 +183,48 @@ $(document).ready(function(){
 						  </div>	
 <!-- button : tr 연결 후 삭제 -->	
 <button type="button" class="btn btn-link" id="f-temporarybtn">tr: 작성글 상세보기 </button> 
+					<!-- card-body -->
+					</div>
+				    <!-- .collapse show end -->  
+				    </div>
+				  <!-- .card --> 
+				  </div>
+				  
+				  <!-- 기관게시판 -->
+				  <div class="card">
+				    <div class="card-header border-0" id="headingThree">
+				      <h2 class="mb-0">
+				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				          댓글관리
+				        </button>
+				      </h2>
+				    </div>
+				    
+				    <!-- collapseThree -->
+				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#adminMessage">
+				      <div class="card-body border-0">
+						  <div class="table-responsive text-center" id="table-board-c">
+						    <table class="table table-bordered bg-light">
+						      <thead>
+						        <tr>
+						          <th class="w-10">#</th>
+						          <th class="w-20">시설명</th>
+						          <th class="w-30">댓글작성자</th>
+						          <th class="w-40">댓글내용</th>
+						        </tr>
+						      </thead>
+						      <tbody>
+						        <tr>
+						          <td scope="row">1</td>
+						          <td>"silvername"</td>
+						          <td>"member.username"</td>  
+						          <td>"댓글내용"</td>  
+						        </tr>
+						      </tbody>
+						    </table>
+						  </div>	
+<!-- button : tr 연결 후 삭제 -->	
+<button type="button" class="btn btn-link" id="c-temporarybtn">tr: 작성글 상세보기 </button> 
 					<!-- card-body -->
 					</div>
 				    <!-- .collapse show end -->  
