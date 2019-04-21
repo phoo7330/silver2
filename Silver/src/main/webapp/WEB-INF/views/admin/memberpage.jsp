@@ -42,36 +42,72 @@
 
 	// 그래프 API 로드가 완료되면 실행할 수 있도록 이벤트 지정 
 	google.setOnLoadCallback(drawChart);
+	google.setOnLoadCallback(drawChart2);
 
-function drawChart() {
-	var data = new google.visualization.DataTable();
 
-	data.addColumn('string', '인물');
-	data.addColumn('number', '취득표');
+	function drawChart() {
+		var data = new google.visualization.DataTable();
 
-	data.addRows([
-			['티모', 51],
-			['베인', 34],
-			['문도', 20],
-			['이즈리얼', 11],
-			['아리', 8],
-			['애쉬', 4],
-	]);
+		data.addColumn('string', '인물');
+		data.addColumn('number', '취득표');
+		var a,b,c = 0;
+		a = parseInt('${count1}');
+		b = parseInt('${count2}');
+		c = parseInt('${count3}');
+		data.addRows([
+				['일반', a],
+				['종사자', b],
+				['기관', c],
+				
+		]);
 
-	// 그래프의 옵션을 지정 
-	var opt = {
-		'title': '인기 투표',
-		'width': 600,
-		'height': 400,
-		pieSliceText: 'label',
-		legend: 'none' 
-	};
+		// 그래프의 옵션을 지정 
+		var opt = {
+			'title': '회원분포',
+			'width': 400,
+			'height': 400,
+			pieSliceText: 'label',
+			legend: 'none' 
+		};
+
 
 	var chart = new google.visualization.PieChart(
 			document.getElementById('chart_div'));
 	chart.draw(data, opt);
 
+
 }
+
+	
+	function drawChart2() {
+		var data2 = new google.visualization.DataTable();
+
+		data2.addColumn('string', '인물');
+		data2.addColumn('number', '취득표');
+		var aa,bb = 0;
+		aa = parseInt('${count11}');
+		bb = parseInt('${count22}');
+		data2.addRows([
+				['남성', aa],
+				['여성', bb],
+				
+		]);
+
+		// 그래프의 옵션을 지정 
+		var opt2 = {
+			'title': '성별',
+			'width': 400,
+			'height': 400,
+			pieSliceText: 'label',
+			legend: 'none' 
+		};
+
+		var chart2 = new google.visualization.PieChart(
+				document.getElementById('chart_div2'));
+		chart2.draw(data2, opt2);
+
+	}
+
  
 var type = 1;
 
@@ -316,7 +352,9 @@ $(document).ready(function(){
 							<div id="chart_div">
 							
 							</div>
-						
+							<div id="chart_div2">
+							ㅇㅇㅇㅇ
+							</div>
 						</div>
 					</div>
 				</div>

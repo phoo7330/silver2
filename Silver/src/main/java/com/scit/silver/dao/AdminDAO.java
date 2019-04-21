@@ -78,4 +78,19 @@ public class AdminDAO {
 		result = mapper.delmember(userid);
 		return result;
 	}
+	
+	public int countmember(int type) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.countmember(type);
+		return result;
+		
+	}
+	
+	public int counts(String gender) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.counts(gender);
+		return result;
+	}
 }

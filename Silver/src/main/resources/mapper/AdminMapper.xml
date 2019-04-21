@@ -158,4 +158,24 @@ WHERE
  DELETE FROM MEMBER
         WHERE USERID=#{userid}
 </delete>
+
+<select id="countmember" parameterType="int" resultType="int">
+SELECT 
+    COUNT(USERID)
+FROM
+    MEMBER
+WHERE
+    TYPE = #{type}
+
+</select>
+<select id="counts" parameterType="String" resultType="int">
+SELECT 
+    COUNT(USERID)
+FROM
+    MEMBER
+WHERE
+    GENDER = #{gender}
+
+</select>
+
 </mapper>
