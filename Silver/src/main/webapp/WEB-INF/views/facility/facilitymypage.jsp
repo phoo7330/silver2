@@ -105,7 +105,7 @@ $(function() {
               alert("병상정보를 입력하세요");
               return;
            }
-           $("#upfa3").submit(); 
+           $("#upfa3").submit();  
       });
 });   
 </script>
