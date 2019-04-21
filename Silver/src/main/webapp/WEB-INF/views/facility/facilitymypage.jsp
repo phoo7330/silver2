@@ -159,7 +159,7 @@ $(function() {
          <!-- 이미지 미리보기 -->
          <div class="view overlay">
            <div class="view view-cascade overlay border" style="height: 170px;">
-              <img src ="img/${DetailsOne.name}"/>
+              <img src ="img/${DetailsOne.name}" style="height: 170px;"/>
             </div>
 
          <div class="text-center mt-2">
@@ -321,7 +321,7 @@ $(function() {
            <!-- card-body -->
            </div>
          <!-- Edit-button -->
-         <div class="card-footer border-0" id="column1">
+         <div class="card-footer border-0 pb-3" id="column1">
             <button type="button" id="editbtn-1" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editContent1">수정</button>
          </div>
        <!-- cardMenu -->
@@ -426,7 +426,7 @@ $(function() {
            <!-- card-body -->
            </div>
          <!-- Edit-button -->
-         <div class="card-footer border-0" id="column2">
+         <div class="card-footer border-0 pb-3" id="column2">
             <button type="button" id="editbtn-2" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editContent2">수정</button>
          </div>
        <!-- cardMenu -->
@@ -554,7 +554,7 @@ $(function() {
            <!-- card-body -->
            </div>
          <!-- Edit-button -->
-         <div class="card-footer border-0" id="column3">
+         <div class="card-footer border-0 pb-3" id="column3">
             <button type="button" id="editbtn-3" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editContent3">수정</button>
          </div>
        <!-- cardMenu -->
@@ -598,10 +598,36 @@ $(function() {
       <!--Modal-->
       </div>
       
-    
-   <!-- row -->
-   </div>
-</div>
+	    <!-- 시설게시판  -->
+	    <div class="col-md-12">
+			<div class="card">
+				<div class="row col-md-12">
+					<h5 class="col-md-9 font-weight-bold m-4 pl-0">시설게시판</h5>
+				</div>
+				<p class="lead ml-4 mb-0"><small>전체 이용후기 00 </small></p>
+				<div class="table-responsive text-center p-4">
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr>
+							<th class="w-30">작성자</th>
+							<th class="w-40">제목</th>
+							<th class="w-30">작성날짜</th>
+						</tr>
+					</thead>
+					<tbody class="table-sm" id="sbList">
+						<tr>
+							<td>"작성자"</td>
+							<td>"제목"</td>
+							<td>"작성날짜"</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	   <!-- row -->
+	   </div>
+	</div>
 
    <!-- Footer -->
    <footer class="page-footer font-small">
