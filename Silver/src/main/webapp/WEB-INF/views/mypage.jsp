@@ -316,6 +316,7 @@
 	  			$('#cnlResumebtn').show();
 	  			//모델값의 존재여부로 if로 update or insert 버튼을 생성
 	  			var rs2 = "${rs}";
+	  			
 	  			if(rs2 == ""){
 	  				$('#istResumebtn').show();
 	  			}else{
