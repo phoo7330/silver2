@@ -152,16 +152,20 @@ public class MemberController {
 				model.addAttribute("DetailsOne", DetailsOne);
 				
 				return "facility/facilitymypage";
-			} else if(result.getType()==10) {
-				session.setAttribute("adminId", result.getUserid());
-				session.setAttribute("usertype", "10");
-				System.out.println("[사이트관리자]: "+result.getUserid());
 			} else {
 				model.addAttribute("message", "id와 pw를 확인해주세요.");
 				return "index";
 			}
 			
 		}
+		
+		else if(type==10) {
+			Member result = dao.selectMember(member);
+			session.setAttribute("adminId", result.getUserid());
+			session.setAttribute("usertype", "10");
+			System.out.println("[사이트관리자]: "+result.getUserid());
+			return "admin/memberpage";
+		} 
 		return "index";
 	}
 	

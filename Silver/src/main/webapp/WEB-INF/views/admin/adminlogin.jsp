@@ -35,14 +35,15 @@
 
 	<!-- 로그인 폼 : id 임의 지정해놓음. -->
 	<div class="div-signin text-center">
-	<form class="form-signin" action="" method="post">
+	<form class="form-signin" action="selectMember" method="post">
 		<img class="form-control mb-4 border-0" src="resources/image/adminLogo.png"> 
 		<!-- Id -->
-    	<input type="text" id="admin-id" class="form-control form-control-sm mb-4" placeholder="ID">
+		<input type="hidden" name="type" value="10">
+    	<input type="text" id="userid" name="userid" class="form-control form-control-sm mb-4" placeholder="ID">
 	    <!-- Password -->
-	    <input type="password" id="admin-password" class="form-control form-control-sm mb-4" placeholder="Password">
+	    <input type="password" id="userpwd" name="userpwd" class="form-control form-control-sm mb-4" placeholder="Password">
 		 <!-- Sign in button -->
-    	<button class="btn btn-secondary btn-block mt-4" type="button" id="loginbtn">Login</button>	
+    	<button class="btn btn-secondary btn-block mt-4" type="submit" id="loginbtn">Login</button>	
 	</form>
 	</div>
 	
