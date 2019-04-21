@@ -4,7 +4,7 @@
 <html>
 <head>
 
-	<title><img src="resources/image/carouselLogo_1.png">SilverSurfer</title>
+	<title>SilverSurfer</title>
 	
 	<!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
