@@ -299,13 +299,13 @@
 		$('#detail').hide();
 		 //이력서 수정버튼 클릭시   수정 등록 취소 버튼 셋팅
 		$('#resumebtn').click(function(){
-	  			$('#qualify2').hide();
+	  			$('#qualify1').show();
 	  			$('#job2').hide();
 	  			$('#gugun2').hide();
 	  			$('#sido2').hide();
 	  			$('#work2').hide();
 	  			$('#detail2').hide();
-	  			$('#qualify1').show();
+	  			$('#showQualify1').hide();
 	  			$('#job1').show();
 	  			$('#gugun1').show();
 	  			$('#sido1').show();
@@ -465,26 +465,31 @@
 	  }
 	  
 	   function selectresume(){
-		  var list = '<th>';
-		  
+		  var re_qualification="";
+		  var re_job= '';
+		  var re_areaa= '';
+		  var re_arebb= '';
+		  var re_type= '';
+		  var re_detailType= '';
+		  var re_content= '';  
 		  $.ajax({
 			  type : 'POST'
 		      ,url : 'selectResume'
-		      ,dataType: 'JSON'
 		      ,success : function(resp){
-		        	$.each(resp, function(index,item) {
-		        		console.log(item);
-		        		list += '<td>'+item.re_qualification+'</td>';
-		        		/* list += '<td>'+item.re_job+'</td>';
-		        		list += '<td>'+item.re_date+'</td>';
-		        		list += '<td>'+item.re_areaa+'</td>';
-		        		list += '<td>'+item.re_arebb+'</td>';
-		        		list += '<td>'+item.re_type+'</td>';
-		        		list += '<td>'+item.re_detailType+'</td>';
-		        		list += '<td>'+item.re_content;'</td>'; */
-		        		list += '</th>';
-		        	});	
-		        	$("#showQualify1").html(list);
+		        		re_qualification += resp.re_qualification ;
+		        		re_job += resp.re_job;
+		        		re_areaa += resp.re_areaa;
+		        		re_arebb += resp.re_arebb;
+		        		re_type += resp.re_type;
+		        		re_detailType += resp.re_detailType;
+		        		re_content += resp.re_content;
+		        		$("#showQualify1").val(re_qualification);
+		        		$("#job2").val(re_job);
+		        		$("#sido2").val(re_areaa);
+		        		$("#gugun2").val(re_arebb);
+		        		$("#work2").val(re_type);
+		        		$("#detail2").val(re_detailType);
+		        		$("#exampleFormControlTextarea5").val(re_content);
 		          }
 		  	   ,error : function(){
 		  		   alert('이력서실패');
@@ -1910,11 +1915,12 @@
 									<tr>
 										<td class="bg-light">자격사항</td>
 										<td colspan="3">
-					                      <div class="form-group my-3" id="showQualify1">
-					                        <select class="form-control form-control-sm"  name="qualify1" id="qualify1"></select>
-					                      	<!-- <input type="text" class="form-control form-control-sm"  id="qualify2"  readonly="readonly"> -->
-					                      </div>
-										</td>
+					                      	<div class="form-group my-3" >
+						                        <select class="form-control form-control-sm"  name="qualify1" id="qualify1"></select>
+						                      	 <input type="text" class="form-control form-control-sm"  id="showQualify1"  readonly="readonly" > 
+						                  	  </div>
+					                  	 
+					                    </td>
 									</tr>
 							 	</tbody>
 							</table>
@@ -1932,9 +1938,10 @@
 									<tr>
 										<th class="bg-light w-30">* 희망직종</th>
 										<th colspan="3">
-											<div class="form-group my-3">
+											<div class="form-group my-3" >
 						                      <select class="form-control form-control-sm" name="job1" id="job1"></select>
-						                     <!--  <input type="text" class="form-control form-control-sm" name="job1" id="job2" readonly="readonly"> -->
+						                     <input type="text" class="form-control form-control-sm" name="job1" id="job2" readonly="readonly"> 
+												<div id="job"></div>
 											</div>
 										</th>
 									</tr>
@@ -1942,11 +1949,12 @@
 										<td class="bg-light">* 희망지역</td>
 										<td colspan="3">
 											<div class="form-inline my-3 row">									
-						                      <div class="form-group col-md-12">
+						                      <div class="form-group col-md-12" >
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col" name="gugun1" id="gugun1"></select>
-						                      	 <!-- <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido2"  readonly="readonly">
-						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun2"  readonly="readonly"> -->
+						                       <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido2"  readonly="readonly">
+						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun2"  readonly="readonly"> 
+						                      	<div id="sido"></div>
 						                      </div>
 											</div>
 										</td>
@@ -1955,11 +1963,11 @@
 										<td class="bg-light">* 근무형태</td>
 										<td colspan="3">
 											<div class="form-inline my-3 row">									
-						                      <div class="form-group col-md-12">
+						                      <div class="form-group col-md-12" >
 												<select class="form-control form-control-sm col mr-1" name="work1" id="work1"></select>
 												<select class="form-control form-control-sm col" name="detail" id="detail"></select>
-						                      	<!-- <input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work2"   readonly="readonly">
-						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail2"  readonly="readonly"> -->
+						                      <input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work2"   readonly="readonly">
+						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail2"  readonly="readonly"> 
 						                      </div>
 											</div>
 										</td>
