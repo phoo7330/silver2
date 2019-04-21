@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
+import com.scit.silver.vo.Job;
 import com.scit.silver.vo.Member;
 import com.scit.silver.vo.Resume;
+import com.scit.silver.vo.SilverBoard;
+import com.scit.silver.vo.SilverBoardComent;
 
 
 @Repository
@@ -91,6 +94,46 @@ public class AdminDAO {
 		int result = 0;
 		AdminMapper mapper = session.getMapper(AdminMapper.class);
 		result = mapper.counts(gender);
+		return result;
+	}
+	
+	public Job selonejob(int jo_seq) {
+		Job result = null;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.selonejob(jo_seq);
+		return result;
+	}
+	public int deljob2(int jo_seq) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.deljob2(jo_seq);
+		return result;
+	}
+	public ArrayList<SilverBoard> selectallboard(){
+		ArrayList<SilverBoard> result = null;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.selectallboard();
+		return result;
+	}
+	
+	public int delboard2(int sb_seq) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.delboard2(sb_seq);
+		return result;
+	}
+	
+	public ArrayList<SilverBoardComent> selectallComent(){
+		ArrayList<SilverBoardComent> result = null;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.selectallComent();
+		return result;
+	}
+
+	public int delcoment2(int sbc_seq) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.delcoment2(sbc_seq);
 		return result;
 	}
 }

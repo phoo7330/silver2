@@ -32,8 +32,87 @@
 <body>
 
 <script>
+$(function() {
+	selectboard();
+	selectboard2();
+	selectboard3();
+});
+function selectboard3(){
+	$.ajax({
+		url:"selb3", 
+		type:"get",
+		success:init3
+		});
+}
+function init3(data){
+	console.log(data);
+	var list3 = '';
+	 $.each(data, function (index, item){
+		 list3 += '<tr style="cursor:pointer" class="select-table2" onclick="window.open(\'openCommentDetail\',\'talentedDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openCommentDetail?sbc_seq='+item.sbc_seq+'\'" >';
+		 list3 += '<td scope="row">'+(index+1)+'</td>';
+		 list3 += '<td>'+item.userid+'</td>';
+		 list3 += '<td>'+item.sbc_write+'</td>';
+		 list3 += '<td>'+item.sbc_date+'</td>';
+		 list3 += '</tr>';
+	 });
+	 
+	  $("#selectboard3").html(list3); 
+}
+
+function selectboard2(){
+	$.ajax({
+		url:"selb2", 
+		type:"get",
+		success:init2
+		});
+}
+function init2(data){
+	console.log(data);
+	var list2 = '';
+	 $.each(data, function (index, item){
+		 list2 += '<tr style="cursor:pointer" class="select-table2" onclick="window.open(\'openBoardDetail\',\'boarddDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openBoardDetail?sb_seq='+item.sb_seq+'\'" >';
+		 list2 += '<td scope="row">'+(index+1)+'</td>';
+		 list2 += '<td>'+item.userid+'</td>';
+		 list2 += '<td>'+item.sbtitle+'</td>';
+		 list2 += '<td>'+item.sbdate+'</td>';
+		 list2 += '</tr>';
+	 });
+	 
+  $("#selectboard2").html(list2); 
+}
+
+function selectboard(){
+	$.ajax({
+		url:"selb1", 
+		type:"get",
+		success:init
+		});
+}
+function init(data){
+	console.log(data);
+	 var list = '';
+	 $.each(data, function (index, item){
+		 list += '<tr style="cursor:pointer" class="select-table" onclick="window.open(\'openRecruitDetail\',\'recruitDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openRecruitDetail?jo_seq='+item.jo_seq+'\'" >';
+		 list += '<td scope="row">'+(index+1)+'</td>';
+		 list += '<td>'+item.userid+'</td>';
+		 list += '<td>'+item.silvername+'</td>';
+		 list += '<td>'+item.jo_job+'</td>';
+		 list += '<td>'+item.jo_date+'</td>';
+		 list += '</tr>';
+	 });
+	 
+  $("#selectboard1").html(list); 
+}
+
+
 $(document).ready(function(){
-	
+	$("#f-temporarybtn").click(function(){  //게시판2 상세보기 
+		window.open(
+		"openBoardDetail",
+		"boarddDetail",
+		"toolbar=no, width=1000,height=800, top=150, left=150"
+		);
+	});	
 	  $("#r-temporarybtn").click(function(){    
 		window.open(
 		"openRecruitDetail",
@@ -50,13 +129,7 @@ $(document).ready(function(){
 			);
 		});	 
 	  
-	  $("#f-temporarybtn").click(function(){    
-			window.open(
-			"openBoardDetail",
-			"boarddDetail",
-			"toolbar=no, width=1000,height=800, top=150, left=150"
-			);
-		});	
+	  
 	  
 });
 </script>
@@ -119,26 +192,19 @@ $(document).ready(function(){
 						    <thead>
 						      <tr>
 						        <th class="w-10">#</th>
+						        <th class="w-20">기관아이디</th>
 						        <th class="w-20">기관명</th>
-						        <th class="w-20">급여종류</th>
 						        <th class="w-30">모집직종</th>
 						        <th class="w-20">등록일</th>
 						      </tr>
 						    </thead>
-						    <tbody>
-						      <tr>
-						        <td scope="row">1</td>
-						        <td>"silvername"</td>
-						        <td>"type"</td>
-						        <td>"모집직종"</td>     
-						        <td>"등록일"</td>  
-						      </tr>
+						    <tbody id="selectboard1">
+						      
 						    </tbody>
 						  </table>
 						</div>
 						
-<!-- button : tr 연결 후 삭제 -->	
-<button type="button" class="btn btn-link" id="r-temporarybtn">tr: 구인정보 상세보기 </button> 
+ 
 				      	
 				      </div>
 				    <!-- .collapse show end -->  
@@ -164,16 +230,14 @@ $(document).ready(function(){
 						      <thead>
 						        <tr>
 						          <th class="w-10">#</th>
-						          <th class="w-20">시설명</th>
 						          <th class="w-20">작성자</th>
 						          <th class="w-30">제목</th>
 						          <th class="w-20">작성날짜</th>
 						        </tr>
 						      </thead>
-						      <tbody>
+						      <tbody id="selectboard2">
 						        <tr>
 						          <td scope="row">1</td>
-						          <td>"silvername"</td>
 						          <td>"username"</td>  
 						          <td>"Title"</td>  
 						          <td>"Date"</td>
@@ -208,12 +272,12 @@ $(document).ready(function(){
 						      <thead>
 						        <tr>
 						          <th class="w-10">#</th>
-						          <th class="w-20">시설명</th>
 						          <th class="w-30">댓글작성자</th>
 						          <th class="w-40">댓글내용</th>
+						          <th class="w-20">작성날짜</th>
 						        </tr>
 						      </thead>
-						      <tbody>
+						      <tbody id="selectboard3">
 						        <tr>
 						          <td scope="row">1</td>
 						          <td>"silvername"</td>

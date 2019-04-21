@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.AdminDAO;
+import com.scit.silver.dao.BoardDAO;
 import com.scit.silver.dao.JobDAO;
 import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
@@ -22,6 +23,8 @@ import com.scit.silver.vo.Member;
 import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SeniorCitizen;
 import com.scit.silver.vo.SeniorCitizenDetails;
+import com.scit.silver.vo.SilverBoard;
+import com.scit.silver.vo.SilverBoardComent;
 
 @Controller
 public class AdminController {
@@ -32,7 +35,8 @@ public class AdminController {
 	SeniorDAO sndao;
 	@Autowired
 	JobDAO jdao;
-	
+	@Autowired
+	BoardDAO bdao;
 	
 	@RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
 	public String adminlogin(Locale locale, Model model) {
@@ -52,7 +56,7 @@ public class AdminController {
 		a=dao.countmember(1);
 		b=dao.countmember(2);
 		c=dao.countmember(3);
-		System.out.println("a"+a+"b"+b+"c"+c);
+		
 		model.addAttribute("count1", a);
 		model.addAttribute("count2", b);
 		model.addAttribute("count3", c);
@@ -87,9 +91,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/openMemberpage", method = RequestMethod.GET)
-	public String openMemberpage(String userid, Model model) {
-
-		System.out.println(userid);
+	public String openMemberpage(String userid, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
 		int type = dao.whattype2(userid);
 		Member member = null;
 		member = dao.selonemem(userid);
@@ -114,7 +121,6 @@ public class AdminController {
 		}else {	//종사자일경우 member,노인정보,이력서 정보
 			Resume resume = dao.selonere(userid);
 			model.addAttribute("resume", resume);
-			System.out.println(resume);
 			return "admin/openMemberpage";
 		}
 		
@@ -123,8 +129,12 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/openFacilitypage", method = RequestMethod.GET)
-	public String openFacilitypage(String username, Model model) {
-		System.out.println(username);
+	public String openFacilitypage(String username, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
 		int type = dao.whattype(username);
 		
 		if(type==1) {
@@ -149,11 +159,90 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/boardpage", method = RequestMethod.GET)
-	public String boardpage(Locale locale, Model model) {
-		ArrayList<Job> result = jdao.selectAllJob();
-		
-		System.out.println(result);
+	public String boardpage(Locale locale, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
 		return "admin/boardpage";
 	}
 	
+	@RequestMapping(value = "/selb1", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<Job> selb1() {
+		ArrayList<Job> result = jdao.selectAllJob();
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/openRecruitDetail", method = RequestMethod.GET)
+	public String openRecruitDetail(int jo_seq, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
+		
+		Job result = dao.selonejob(jo_seq);
+		model.addAttribute("job", result);
+		return "admin/openRecruitDetail";
+	}
+	@RequestMapping(value = "/deljob2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int deljob2(int jo_seq) {
+		int result = dao.deljob2(jo_seq);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/selb2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<SilverBoard> selb2() {
+		ArrayList<SilverBoard> result = dao.selectallboard();
+		
+		return result;
+	}
+	@RequestMapping(value = "/openBoardDetail", method = RequestMethod.GET)
+	public String openBoardDetail(int sb_seq, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
+		//System.out.println(sb_seq);
+		SilverBoard result = bdao.selectsbone(sb_seq);
+		model.addAttribute("sbone", result);
+		return "admin/openBoardDetail";
+	}
+	
+	@RequestMapping(value = "/delboard2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int delboard2(int sb_seq) {
+		int result = dao.delboard2(sb_seq);
+		
+		return result;
+	}
+	@RequestMapping(value = "/selb3", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<SilverBoardComent> selb3() {
+		ArrayList<SilverBoardComent> result = dao.selectallComent();
+		
+		return result;
+	}
+	@RequestMapping(value = "/openCommentDetail", method = RequestMethod.GET)
+	public String openCommentDetail(int sbc_seq, Model model, HttpSession session) {
+		String aid = (String)session.getAttribute("adminId");
+		if(aid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index"; 
+		}
+		SilverBoardComent sbc = bdao.selectonec(sbc_seq);
+		
+		model.addAttribute("sbcone", sbc);
+		return "admin/openCommentDetail";
+	}
+	
+	@RequestMapping(value = "/delcoment2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int delcoment2(int sbc_seq) {
+		
+		int result = dao.delcoment2(sbc_seq);
+		
+		return result;
+	}
 }

@@ -32,6 +32,7 @@
 <script>
 $(document).ready(function(){
 	
+	
 	  $("#b-viewList").click(function(){    
 		window.close();
 	});
@@ -47,6 +48,24 @@ $(document).ready(function(){
 		window.location.replace("#main-information");
 	});
 
+	  $("#b-delbtn").click(function(){ //삭제버튼을 눌렀을떄
+		  var sb_seq = $(this).attr("data-value");
+	  
+		   $.ajax({
+				url:"delboard2", 
+				type:"post",
+				data:{"sb_seq":sb_seq
+				},
+				success:function(data){
+					alert("삭제되었습니다");
+					opener.parent.location.reload();  //자식팝업창 닫으면서 부모창 새로고침
+					  window.close();
+					}
+				}); 
+		  
+	  });
+	  
+	  
 	  $("#b-cancelbtn").click(function(){    
 		 $("#senderForm").hide();
 		 $("#b-informationForm").show();
@@ -70,8 +89,8 @@ $(document).ready(function(){
 		  <div class="form-row mt-4" id="main-information"> 
 			<h2 class="col-md-6">게시글 상세보기</h2>
 			<div class="col-md-6 text-right">
-			  <p class="dark-grey-text mb-0">"silvername"</p>
-			  <p class="dark-grey-text mb-0">"member.userid"</p>
+			  <p class="dark-grey-text mb-0">작성자</p>
+			  <p class="dark-grey-text mb-0">${sbone.userid}</p>
 			</div>
 		  </div>
 		 <hr> 
@@ -89,14 +108,14 @@ $(document).ready(function(){
 			    <!-- 게시판 타이틀 -->
 			    <tr>
 			      <td class="pb-0 bg-light">
-			        <h3 class="font-weight-bold">"Title"</h3>
-			        <h6 id="board-date"><small>"Date"</small></h6>
+			        <h3 class="font-weight-bold">${sbone.sbtitle}</h3>
+			        <h6 id="board-date"><small>${sbone.sbdate}</small></h6>
 			      </td>
 			    </tr>
 			    <!-- 게시판 내용 -->
 			    <tr>
 			      <td class="board-text" style="height: 20rem;">
-			        <p class="text-justify font-weight-light p-1" id="board-contents">"contents"</p>
+			        <p class="text-justify font-weight-light p-1" id="board-contents">${sbone.sbwrite}</p>
 			      </td>
 			    </tr>
 			  </table>
@@ -106,7 +125,7 @@ $(document).ready(function(){
 				 	 <button type="button" class="btn btn-outline-dark mx-1 rounded-0" id="b-messagebtn">메시지</button>
 				  </div>
 				  <div>
-				 	 <button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="b-delbtn">삭 제</button>
+				 	 <button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${sbone.sb_seq}" id="b-delbtn">삭 제</button>
 				  </div>
 				  <div>
 				  	<button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="b-warningbtn">경 고</button>	  

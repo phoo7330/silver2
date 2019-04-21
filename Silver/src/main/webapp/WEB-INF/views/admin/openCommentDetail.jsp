@@ -31,7 +31,7 @@
 <body>
 <script>
 $(document).ready(function(){
-	
+	console.log("${sbcone}");
 	  $("#c-viewList").click(function(){    
 		window.close();
 	});
@@ -46,7 +46,22 @@ $(document).ready(function(){
 		$("#senderForm").show();
 		window.location.replace("#main-information");
 	});
-
+	  $("#c-delbtn").click(function(){ //삭제버튼을 눌렀을떄
+		  var sbc_seq = $(this).attr("data-value");
+	  
+		   $.ajax({
+				url:"delcoment2", 
+				type:"post",
+				data:{"sbc_seq":sbc_seq
+				},
+				success:function(data){
+					alert("삭제되었습니다");
+					opener.parent.location.reload();  //자식팝업창 닫으면서 부모창 새로고침
+					  window.close();
+					}
+				}); 
+		  
+	  });
 	  $("#c-cancelbtn").click(function(){    
 		 $("#senderForm").hide();
 		 $("#c-informationForm").show();
@@ -70,7 +85,8 @@ $(document).ready(function(){
 		  <div class="form-row mt-4" id="main-information"> 
 			<h2 class="col-md-6">게시글 댓글관리</h2>
 			<div class="col-md-6 text-right">
-			  <p class="dark-grey-text mb-0">"silvername"</p> <!-- 시설명 -->
+			  <p class="dark-grey-text mb-0">작성자</p> <!-- 작성자 -->
+			  <p class="dark-grey-text mb-0">${sbcone.userid}</p>
 			</div>
 		  </div>
 		 <hr> 
@@ -87,24 +103,24 @@ $(document).ready(function(){
 			  </div>
 			  <table class="table table-bordered" id="commentForm">
 			    <!-- 게시판 타이틀 -->
-			    <thead>
+			    <!-- <thead>
 			      <tr>
 			        <th class="w-30 bg-light">게시글제목</th>
 			        <th class="w-70">"게시글제목"</th>
 			      </tr>
-			    </thead>
+			    </thead> -->
 			    <tbody>
 			      <tr>
 			        <td class="w-30 bg-light">댓글작성자</td>
-			        <td class="w-70">"댓글작성자"</td>
+			        <td class="w-70">${sbcone.userid}</td>
 			      </tr>
 			      <tr>
 			        <td class="w-30 bg-light">작성날짜</td>
-			        <td class="w-70">"작성날짜"</td>
+			        <td class="w-70">${sbcone.sbc_date}</td>
 			      </tr>
 			      <tr>
 			        <td class="w-30 bg-light">댓글내용</td>
-			        <td class="w-70" style="height:200px;">"댓글내용"</td>
+			        <td class="w-70" style="height:200px;">${sbcone.sbc_write}</td>
 			      </tr>
 			    </tbody>
 			  </table>
@@ -114,7 +130,7 @@ $(document).ready(function(){
 			      <button type="button" class="btn btn-outline-dark mx-1 rounded-0" id="c-messagebtn">메시지</button>
 			    </div>
 			    <div>
-			      <button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="c-delbtn">삭 제</button>
+			      <button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${sbcone.sbc_seq}" id="c-delbtn">삭 제</button>
 			    </div>
 			    <div>
 			      <button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="c-warningbtn">경 고</button>	  

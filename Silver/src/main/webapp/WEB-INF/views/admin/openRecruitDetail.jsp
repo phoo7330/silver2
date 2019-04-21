@@ -31,13 +31,36 @@
 <body>
 <script>
 $(document).ready(function(){
-	
+		console.log('${job}');
+		what();
 	  $("#r-viewList").click(function(){    
 		window.close();
 	});
 	  
 });
-
+function what(){
+	//vo에 담겨있는 시설타입을 꺼내 각타입에 맞는 문자로 변환해서 출력
+	var type=0;
+	var sttype='';
+	type='${job.type}';
+	if(type==1){
+		sttype+='요양병원';
+		$('#siltype').html(sttype);
+		return;
+	}else if(type==2){
+		sttype+='요양원';
+		$('#siltype').html(sttype);
+		return;
+	}else if(type==3){
+		sttype+='방문시설';
+		$('#siltype').html(sttype);
+		return;
+	}else if(type==4){
+		sttype+='치매전담'; 
+		$('#siltype').html(sttype);
+		return;
+	}
+}
 $(document).ready(function(){
 	  $("#senderForm").hide();
 	  
@@ -46,7 +69,22 @@ $(document).ready(function(){
 		$("#senderForm").show();
 		window.location.replace("#main-information");
 	});
-
+	  $("#r-delbtn").click(function(){ //삭제버튼을 눌렀을떄
+		  var jo_seq = $(this).attr("data-value");
+	  
+		   $.ajax({
+				url:"deljob2", 
+				type:"post",
+				data:{"jo_seq":jo_seq
+				},
+				success:function(data){
+					alert("삭제되었습니다");
+					opener.parent.location.reload();  //자식팝업창 닫으면서 부모창 새로고침
+					  window.close();
+					}
+				}); 
+		  
+	  });
 	  $("#s-cancelbtn").click(function(){    
 		 $("#senderForm").hide();
 		 $("#r-informationForm").show();
@@ -70,8 +108,8 @@ $(document).ready(function(){
 		  <div class="form-row mt-4" id="main-information"> 
 			<h2 class="col-md-6">구인정보 상세보기</h2>
 			<div class="col-md-6 text-right">
-			  <p class="dark-grey-text mb-0">"DetailsOne.silvername"</p>
-			  <p class="dark-grey-text mb-0">"게시글등록일"</p>
+			  <p class="dark-grey-text mb-0">${job.silvername}</p>
+			  <p class="dark-grey-text mb-0">${job.jo_date}</p>
 			</div>
 		  </div>
 		 <hr> 
@@ -89,33 +127,33 @@ $(document).ready(function(){
 				<tbody>
 					<tr>
 						<th class="bg-light">기관명</th>
-						<th colspan="3" id="onename"></th>
+						<th colspan="3" id="onename">${job.silvername}</th>
 					</tr>
 	       			<tr>
 						<td class="bg-light w-20">급여종류</td>
-						<td class="w-30 pb-0"></td>
-						<td class="bg-light w-20">등록일</td>
-						<td class="w-30 pb-0"></td>
+						<td class="w-30 pb-0" id="siltype"></td>
+						<td class="bg-light w-20">구인글등록일</td>
+						<td class="w-30 pb-0">${job.jo_date}</td>
 					</tr>
 					<tr>
 						<td class="bg-light">주소</td>
-						<td colspan="3" class="pb-0">${DetailsOne.hp_address}</td>
+						<td colspan="3" class="pb-0">${job.areaa} ${job.areab} ${job.areac}</td>
 					</tr>
 					<tr>
 						<td class="bg-light w-20">모집직종</td>
-						<td class="w-30 pb-0"></td>
+						<td class="w-30 pb-0">${job.jo_job}</td>
 						<td class="bg-light w-20">모집인원</td>
-						<td class="w-30 pb-0"></td>
+						<td class="w-30 pb-0">${job.jo_int}</td>
 					</tr>
 					<tr>
 						<td class="bg-light w-20">근무형태</td>
-						<td class="w-30 pb-0"></td>
+						<td class="w-30 pb-0">${job.jo_type}</td>
 						<td class="bg-light w-20">상세근무형태</td>
-						<td class="w-30 pb-0"></td>
+						<td class="w-30 pb-0">${job.jo_detailtype}</td>
 					</tr>
 					<tr style="height: 200px;">
 						<td class="bg-light">상세내용</td>
-						<td colspan="3" class="etc1 pb-0">"상세내용"</td>
+						<td colspan="3" class="etc1 pb-0">${job.jo_content}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -125,7 +163,7 @@ $(document).ready(function(){
 				 	 <button type="button" class="btn btn-outline-dark mx-1 rounded-0" id="r-messagebtn">메시지</button>
 				  </div>
 				  <div>
-				 	 <button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="r-delbtn">삭 제</button>
+				 	 <button type="button" class="btn btn-outline-danger mx-1 rounded-0" data-value="${job.jo_seq}" id="r-delbtn">삭 제</button>
 				  </div>
 				  <div>
 				  	<button type="button" class="btn btn-outline-danger mx-1 rounded-0" id="r-warningbtn">경 고</button>	  

@@ -70,21 +70,9 @@ public class HomeController {
 		return "admin/openFacilitypage2";
 	}
 	
-	@RequestMapping(value = "/openRecruitDetail", method = RequestMethod.GET)
-	public String openRecruitDetail(Locale locale, Model model) {
-
-		return "admin/openRecruitDetail";
-	}
 	
-	@RequestMapping(value = "/openCommentDetail", method = RequestMethod.GET)
-	public String openCommentDetail(Locale locale, Model model) {
-
-		return "admin/openCommentDetail";
-	}
 	
-	@RequestMapping(value = "/openBoardDetail", method = RequestMethod.GET)
-	public String openBoardDetail(Locale locale, Model model) {
-
-		return "admin/openBoardDetail";
-	}
+	
+	
+	
 }

@@ -178,4 +178,95 @@ WHERE
 
 </select>
 
+<select id="selonejob" parameterType="int" resultType="Job">
+SELECT 
+  a.SEACH_SEQ,
+  a.TYPE,
+  a.AREAA,
+  a.AREAB,
+  a.AREAC,
+  a.SILVERNAME,
+  a.SERVICE,
+  a.GRADE,
+  a.LAUITUDE,
+  a.LONGITUDE,
+  b.JO_SEQ,
+  b.USERID,
+  b.JO_TYPE,
+  b.JO_DETAILTYPE,
+  b.JO_JOB,
+  b.JO_CONTENT,
+  b.JO_DATE,
+  b.JO_GENDER,
+  b.JO_INT
+FROM
+    SILVERSEARCH a, JOBOFFER b
+WHERE
+    a.SEACH_SEQ = b.SEACH_SEQ
+    AND
+    b.JO_SEQ = #{jo_seq}
+
+
+</select>
+
+<update id="deljob2" parameterType="int">
+  UPDATE JOBOFFER
+	SET
+	    JO_TYPE = null,
+		JO_DETAILTYPE = null,
+		JO_JOB = null,
+		JO_CONTENT = '관리자에 의해 삭제된 구인글입니다.',
+		JO_DATE = SYSDATE,
+		JO_GENDER = null,
+		JO_INT = null
+	WHERE
+		JO_SEQ = #{jo_seq}
+</update>
+
+
+<select id="selectallboard" resultType="SilverBoard">
+SELECT 
+	SB_SEQ,
+    SBTITLE,
+    SBWRITE,
+    USERID,
+    TO_CHAR(SBDATE,'yyyy-mm-dd hh:mi:ss') SBDATE
+FROM
+    SILVERBOARD
+
+ORDER BY
+    SBDATE DESC
+
+</select>
+
+<update id="delboard2" parameterType="int">
+  UPDATE SILVERBOARD
+	SET
+	    SBTITLE = '관리자에 의해 삭제된 게시글입니다.',
+	    SBWRITE = '관리자에 의해 삭제된 게시글입니다.',
+	    SBDATE = SYSDATE
+	WHERE
+		SB_SEQ = #{sb_seq}
+</update>
+<select id="selectallComent" resultType="SilverBoardComent">
+	SELECT 
+		SBC_SEQ,
+		USERID,
+		SB_SEQ,
+		SBC_DATE,
+		SBC_WRITE
+	FROM
+		SILVERBOARDCOMENT
+	ORDER BY
+		SBC_DATE DESC
+</select>
+
+<update id="delcoment2" parameterType="int">
+  UPDATE SILVERBOARDCOMENT
+  	SET
+	    SBC_WRITE = '관리자에 의해 삭제된 댓글입니다.',
+	    SBC_DATE = SYSDATE
+	WHERE
+		SBC_SEQ = #{sbc_seq}
+</update>
 </mapper>
