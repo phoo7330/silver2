@@ -38,6 +38,26 @@
 		SEACH_SEQ = #{seach_seq}
   
   </update>
+   <update id="upDetails4" parameterType="DetailsTwo">
+   UPDATE DETAILS
+	SET
+        DETAIL_NUMBER=#{detail_number},
+		ESTABLISHMENT=#{establishment},
+		APPROVAL=#{approval},
+		TEL=#{tel}
+	WHERE
+		SEACH_SEQ = #{seach_seq}
+  
+  </update>
+     <update id="upDetails5" parameterType="DetailsTwo">
+   UPDATE DETAILS
+	SET
+        PARKINGLOT=#{parkinglot}
+		
+	WHERE
+		SEACH_SEQ = #{seach_seq}
+  
+  </update>
   
   <select id="mname" parameterType="String" resultType="String">
   SELECT

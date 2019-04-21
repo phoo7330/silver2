@@ -50,7 +50,42 @@ $(function() {
          }
          $("#picture1").submit();
       });
-     
+  //기관정보 업데이트 버튼을 누르면
+    $('#saveContent1').on('click', function(){
+    	 var denumlang = $('#detail_number').val().length;
+         var estlang = $('#establishment').val().length;
+         var applang = $('#approval').val().length;
+         var tellang = $('#tel').val().length;
+        
+         if(denumlang<1){
+             alert("기관일련번호를 입력하세요");
+             return;
+          }
+         if(estlang<1){
+             alert("설립일을 입력하세요");
+             return;
+          }
+         if(applang<1){
+             alert("승인일을 입력하세요");
+             return;
+          }
+         if(tellang<1){
+             alert("연락처를 입력하세요");
+             return;
+          }
+         $("#upfa1").submit(); 
+    });
+  //주차정보수정
+    $('#saveContent3').on('click', function(){
+        var parkleng = $('#parkinglot').val().length;
+        
+        if(parkleng<1){
+             alert("시설정보를 입력하세요");
+             return;
+          }
+          $("#upfa3").submit(); 
+     });
+  
 });   
 </script>
 
@@ -103,7 +138,7 @@ $(function() {
          <!-- 이미지 미리보기 -->
          <div class="view overlay">
            <div class="view view-cascade overlay border" style="height: 170px;">
-              <img src ="img/${DetailsTwo.name}"/>
+             <%--  <img src ="img/${DetailsTwo.name}"/> --%>
             </div>
 
          <div class="text-center mt-2">
@@ -282,7 +317,7 @@ $(function() {
       
             <!--Body-->
             <div class="modal-body">
-            <form class="container" id="upfa1" action="upSilverSearch" method="post">
+            <form class="container" id="upfa1" action="upDetails4" method="post">
                <input type="hidden" name="seach_seq" value="${DetailsTwo.seach_seq}">
                 <div class="form-group row">
                   <label for="establishment" class="col-sm-4 col-form-label">기관일련번호</label>
@@ -293,19 +328,19 @@ $(function() {
                 <div class="form-group row">
                   <label for="hp_service" class="col-sm-4 col-form-label">설립일</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="hp_service" id="hp_service" value="${DetailsTwo.establishment}">
+                    <input type="text" class="form-control" name="establishment" id="establishment" value="${DetailsTwo.establishment}">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="protection" class="col-sm-4 col-form-label">승인일</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="protection" id="protection" value="${DetailsTwo.approval}">
+                    <input type="text" class="form-control" name="approval" id="approval" value="${DetailsTwo.approval}">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="protection" class="col-sm-4 col-form-label">연락처</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="location" id="location" value="${DetailsTwo.tel}">
+                    <input type="text" class="form-control" name="tel" id="tel" value="${DetailsTwo.tel}">
                   </div>
                 </div>
               </form>
@@ -360,7 +395,7 @@ $(function() {
       
           <!--Body-->
           <div class="modal-body">
-            <form class="container" id="upfa3" action="upDetails3" method="post">
+            <form class="container" id="upfa3" action="upDetails5" method="post">
                 <div class="form-group row">
                    <input type="hidden" name="seach_seq" value="${DetailsTwo.seach_seq}">
                   <label for="physiotherapy" class="col-sm col-form-label"> ${DetailsTwo.parkinglot}</label>

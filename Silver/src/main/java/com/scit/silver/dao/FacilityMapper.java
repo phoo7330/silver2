@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsResume;
+import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Job;
 import com.scit.silver.vo.SilverSearch;
 
@@ -16,6 +17,10 @@ public interface FacilityMapper {
 	public int upDetails2(DetailsOne DetailsOne);
 	
 	public int upDetails3(DetailsOne DetailsOne);
+	
+	public int upDetails4(DetailsTwo DetailsTwo);
+	
+	public int upDetails5(DetailsTwo DetailsTwo);
 	
 	public String mname(String userid);
 	

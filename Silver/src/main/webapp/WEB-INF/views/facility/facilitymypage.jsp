@@ -346,7 +346,7 @@ $(function() {
       
             <!--Body-->
             <div class="modal-body">
-            <form class="container" id="upfa1" action="upSilverSearch" method="post">
+            <form class="container" id="upfa1" action="upDetails1" method="post">
                <input type="hidden" name="seach_seq" value="${DetailsOne.seach_seq}">
                 <div class="form-group row">
                   <label for="establishment" class="col-sm-4 col-form-label">설립정보</label>

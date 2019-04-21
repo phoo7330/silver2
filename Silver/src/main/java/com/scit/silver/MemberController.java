@@ -148,14 +148,25 @@ public class MemberController {
 			}
 			if(result.getType()==3) {
 				session.setAttribute("managerId", result.getUserid());
-				session.setAttribute("usertype", "3");
+				
 				System.out.println("[시설관리자]: "+result.getUserid());
 				int seach_seq = dao.selseq(result.getUsername());
-				DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
-				System.out.println(DetailsOne);
-				model.addAttribute("DetailsOne", DetailsOne);
 				
-				return "facility/facilitymypage";
+				int silvertype = sdao.TypeSearch(seach_seq);
+					if (silvertype == 1) {
+						session.setAttribute("usertype", "1");
+						DetailsOne DetailsOne = sdao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
+						System.out.println(DetailsOne);
+						model.addAttribute("DetailsOne", DetailsOne);
+						return "facility/facilitymypage";
+					}else {
+						session.setAttribute("usertype", "2");
+						DetailsTwo DetailsTwo = sdao.selectmap3(seach_seq);
+						System.out.println(DetailsTwo);
+						model.addAttribute("DetailsTwo", DetailsTwo);
+						return "facility/facilitymypage2";
+					}
+				
 			} else {
 				model.addAttribute("message", "id와 pw를 확인해주세요.");
 				return "index";
