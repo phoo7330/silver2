@@ -349,10 +349,12 @@ $(document).ready(function(){
 				   	<div class="container">
 					<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>회원통계</strong></label>
 						<div class="form-row">
-							<div id="chart_div">
+							<div class="mt-2 d-flex justify-content-center" id="chart_div">
 							
 							</div>
-							<div id="chart_div2">
+
+							<div class="d-flex justify-content-center" id="chart_div2">
+
 							
 							</div>
 						</div>
