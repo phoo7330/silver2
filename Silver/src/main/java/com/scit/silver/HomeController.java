@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
+	@RequestMapping(value = "test", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		
+		return "test";
+	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
@@ -54,11 +58,7 @@ public class HomeController {
 	
 
 	
-	@RequestMapping(value = "/boardpage", method = RequestMethod.GET)
-	public String boardpage(Locale locale, Model model) {
-
-		return "admin/boardpage";
-	}
+	
 	
 	
 	

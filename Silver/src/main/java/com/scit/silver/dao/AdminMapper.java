@@ -22,5 +22,10 @@ public interface AdminMapper {
 	public DetailsTwo seldetwo(String silvername);
 	
 	public DetailsOne seldeone(String silvername);
+	
+	public int warningmem(String userid);
+	
+	public int delmember(String userid);
+	
 }
  

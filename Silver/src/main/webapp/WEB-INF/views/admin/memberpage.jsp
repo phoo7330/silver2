@@ -26,6 +26,8 @@
    
    <!-- Bootstrap javaScript 추가 -->
    <script src="resources/js/bootstrap.min.js"></script>
+   <!-- 그래프 api -->
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
    
 </head>
 <body>
@@ -34,6 +36,43 @@
 /* 새창열기, 닫기 & 값 보내기 참고 
  * https://sourcestudy.tistory.com/341 
  */
+
+	// 어떤 그래프를 사용할지 지정 : Google Visualization 라이브러리 로드 
+	google.load('visualization', '1.0', {'packages':['corechart']});
+
+	// 그래프 API 로드가 완료되면 실행할 수 있도록 이벤트 지정 
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.DataTable();
+
+		data.addColumn('string', '인물');
+		data.addColumn('number', '취득표');
+
+		data.addRows([
+				['티모', 51],
+				['베인', 34],
+				['문도', 20],
+				['이즈리얼', 11],
+				['아리', 8],
+				['애쉬', 4],
+		]);
+
+		// 그래프의 옵션을 지정 
+		var opt = {
+			'title': '인기 투표',
+			'width': 600,
+			'height': 400,
+			pieSliceText: 'label',
+			legend: 'none'
+		};
+
+		var chart = new google.visualization.PieChart(
+				document.getElementById('chart_div'));
+		chart.draw(data, opt);
+
+	}
+ 
 var type = 1;
 
 $(function() {
@@ -58,7 +97,7 @@ function init(data){
 	list = '';
 	 $.each(data, function (index, item){
 		 list += '<tr style="cursor:pointer" class="select-table" onclick="window.open(\'openMemberpage\',\'memberDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openMemberpage?userid='+item.userid+'\'" >';
-		 list += '<td scope="row">'+index+'</td>';
+		 list += '<td scope="row">'+(index+1)+'</td>';
 		 list += '<td>'+item.userid+'</td>';
 		 list += '<td>'+item.username+'</td>';
 		 list += '<td>'+item.birthday+'</td>';
@@ -87,7 +126,7 @@ function init2(data){
 	list = '';									
 	 $.each(data, function (index, item){
 		 list += '<tr style="cursor:pointer" class="select-table" onclick="window.open(\'openFacilitypage\',\'facilityDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openFacilitypage?username='+item.username+'\'" >';
-		 list += '<td scope="row">'+index+'</td>';
+		 list += '<td scope="row">'+(index+1)+'</td>';
 		 list += '<td>'+item.userid+'</td>';
 		 list += '<td>'+item.username+'</td>';
 		 list += '<td>'+item.address+'</td>';
@@ -265,11 +304,7 @@ $(document).ready(function(){
 							    </tbody>
 							  </table>
 							</div>
-							
-<!-- button : tr 연결 후 삭제 -->	
-<button type="button" class="btn btn-link" id="g-temporarybtn">tr: 일반/종사자 </button>
-<button type="button" class="btn btn-link" id="f-temporarybtn">tr: 기관관리자1 </button>
-<button type="button" class="btn btn-link" id="f2-temporarybtn">tr: 기관관리자2 </button>
+
 												
 						<!-- .form-row end -->	
 						</div>
@@ -283,7 +318,9 @@ $(document).ready(function(){
 				   	<div class="container">
 					<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>회원통계</strong></label>
 						<div class="form-row">
-						
+							<div id="chart_div">
+							
+							</div>
 						
 						</div>
 					</div>

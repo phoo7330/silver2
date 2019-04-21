@@ -66,6 +66,16 @@ public class AdminDAO {
 		return result;
 		
 	}
-
-
+	public int warningmem(String userid) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.warningmem(userid);
+		return result;
+	}
+	public int delmember(String userid) {
+		int result = 0;
+		AdminMapper mapper = session.getMapper(AdminMapper.class);
+		result = mapper.delmember(userid);
+		return result;
+	}
 }

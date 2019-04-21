@@ -48,14 +48,7 @@
 	</div>
 	
 	
-	<!-- 로그인 연결 후 지우세요 -->
-	<footer class="footer mt-auto py-3 text-center">
-	  <div class="container">
-	  	<a class="text-musted" href="memberpage">adminMain 연결 : 로그인 연결 후 지우세요.</a>
-	  </div>
-	</footer>
-	<!-- 여기까지 삭제 -->
-	
+
 
 </body>
 </html>

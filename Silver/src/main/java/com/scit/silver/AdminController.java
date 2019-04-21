@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.AdminDAO;
+import com.scit.silver.dao.JobDAO;
 import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
+import com.scit.silver.vo.Job;
 import com.scit.silver.vo.Member;
 import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SeniorCitizen;
@@ -28,6 +30,8 @@ public class AdminController {
 	AdminDAO dao;
 	@Autowired
 	SeniorDAO sndao;
+	@Autowired
+	JobDAO jdao;
 	
 	
 	@RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
@@ -52,6 +56,11 @@ public class AdminController {
 		ArrayList<Member> result = null;
 		
 		result = dao.selmember(type);
+		/*for(int i = 0; i<result.size(); i++) {
+			if(result.get(i).getWarning()>=3) {
+				int j = dao.delmember(result.get(i).getUserid());
+			}
+		}*/
 	
 		return result;
 	}
@@ -115,6 +124,22 @@ public class AdminController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value = "/warningmem", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int warningmem(String userid) {
+		int result = 0;
+		result = dao.warningmem(userid);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/boardpage", method = RequestMethod.GET)
+	public String boardpage(Locale locale, Model model) {
+		ArrayList<Job> result = jdao.selectAllJob();
+		
+		System.out.println(result);
+		return "admin/boardpage";
 	}
 	
 }

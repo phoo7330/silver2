@@ -147,6 +147,15 @@ WHERE
             and
     		A.SILVERNAME = #{silvername}
 	</select>	
-
-
+<update id="warningmem" parameterType="String">
+  UPDATE MEMBER
+	SET
+        WARNING = (WARNING+1)
+	WHERE
+		USERID=#{userid}
+</update>
+<delete id="delmember" parameterType="String">
+ DELETE FROM MEMBER
+        WHERE USERID=#{userid}
+</delete>
 </mapper>
