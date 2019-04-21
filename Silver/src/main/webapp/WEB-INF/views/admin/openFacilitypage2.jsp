@@ -30,8 +30,32 @@
 </head>
 <body>
 <script>
+function what(){
+	//vo에 담겨있는 시설타입을 꺼내 각타입에 맞는 문자로 변환해서 출력
+	var type=0;
+	var sttype='';
+	type='${DetailsTwo.type}';
+	if(type==2){
+		sttype+='요양원';
+		$('#type').val(sttype);
+		$('#whattype').html(sttype);
+		return;
+	}else if(type==3){
+		sttype+='방문시설';
+		$('#type').val(sttype);
+		$('#whattype').html(sttype);
+		return;
+	}else if(type==4){
+		sttype+='치매전담'; 
+		$('#type').val(sttype);
+		$('#whattype').html(sttype);
+		return;
+	}
+}
+
+
 $(document).ready(function(){
-	
+		what();
 	  $("#closebtn").click(function(){    
 		window.close();
 	});
@@ -70,8 +94,8 @@ $(document).ready(function(){
 		  <div class="form-row mt-4" id="main-information"> 
 			<h2 class="col-md-6">기관정보</h2>
 			<div class="col-md-6 text-right">
-			  <p class="dark-grey-text mb-0">"DetailsTwo.type"</p>
-			  <p class="dark-grey-text mb-0">"DetailsTwo.establishment"</p>
+			  <p class="dark-grey-text mb-0" id="whattype"></p>
+			  <p class="dark-grey-text mb-0">설립입 : ${DetailsTwo.establishment}</p>
 			</div>
 		  </div>
 		 <hr> 
@@ -85,7 +109,7 @@ $(document).ready(function(){
 	                <div class="form-group row mt-3">
 	                  <label for="establishment" class="col-sm-4 col-form-label">급여종류</label>
 	                  <div class="col-sm-8">
-	                    <input type="text" class="form-control" name="type" id="type" value="${DetailsTwo.type}">
+	                    <input type="text" class="form-control" name="type" id="type" value="">
 	                  </div>
 	                </div>
 	                <div class="form-group row">
@@ -134,19 +158,19 @@ $(document).ready(function(){
 				    <tbody>
 				      <tr>
 				        <td colspan="2" class="w-30">기관일련번호</td>
-				        <td colspan="2" class="w-70">"DetailsTwo.detail_number"</td>
+				        <td colspan="2" class="w-70">${DetailsTwo.detail_number}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">설립일</td>
-				        <td colspan="2" class="w-70">"DetailsTwo.establishment"</td>
+				        <td colspan="2" class="w-70">${DetailsTwo.establishment}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">승인일</td>
-				        <td colspan="2" class="w-70">"DetailsTwo.approval"</td>
+				        <td colspan="2" class="w-70">${DetailsTwo.approval}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">연락처</td>
-				        <td colspan="2" class="w-70">"DetailsTwo.tel"</td>
+				        <td colspan="2" class="w-70">${DetailsTwo.tel}</td>
 				      </tr>
 				    </tbody>  
 				    <thead class="thead-light">
@@ -156,7 +180,7 @@ $(document).ready(function(){
 				    </thead>
 				    <tbody>
 				      <tr>
-				      	<td colspan="4">"DetailsTwo.parkinglot"</td>
+				      	<td colspan="4">${DetailsTwo.parkinglot}</td>
 				      </tr>
 				    </tbody>
 				  </table>

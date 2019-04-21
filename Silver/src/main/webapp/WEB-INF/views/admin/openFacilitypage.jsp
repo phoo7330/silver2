@@ -31,7 +31,7 @@
 <body>
 <script>
 $(document).ready(function(){
-	
+	console.log('${DetailsOne}');
 	  $("#closebtn").click(function(){    
 		window.close();
 	});
@@ -85,7 +85,7 @@ $(document).ready(function(){
 	                <div class="form-group row mt-3">
 	                  <label for="establishment" class="col-sm-4 col-form-label">급여종류</label>
 	                  <div class="col-sm-8">
-	                    <input type="text" class="form-control" name="type" id="type" value="${DetailsOne.type}">
+	                    <input type="text" class="form-control" name="type" id="type" value="요양병원">
 	                  </div>
 	                </div>
 	                <div class="form-group row">
@@ -134,27 +134,27 @@ $(document).ready(function(){
 				    <tbody>
 				      <tr>
 				        <td colspan="2" class="w-30">설립정보</td>
-				        <td colspan="2" class="w-70">"DetailsOne.establishment"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.establishment}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">봉사활동</td>
-				        <td colspan="2" class="w-70">"DetailsOne.hp_service"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.hp_service}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">간병형태</td>
-				        <td colspan="2" class="w-70">"DetailsOne.protection"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.protection}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">입지정보</td>
-				        <td colspan="2" class="w-70">"DetailsOne.location"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.location}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">종교활동</td>
-				        <td colspan="2" class="w-70">"DetailsOne.religion"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.religion}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">전화번호</td>
-				        <td colspan="2" class="w-70">"DetailsOne.hospital_tel"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.hospital_tel}</td>
 				      </tr>
 				    </tbody>
 				    <thead class="thead-light">
@@ -165,19 +165,19 @@ $(document).ready(function(){
 				    <tbody>
 				      <tr>
 				        <td colspan="2" class="w-30">쉬는날</td>
-				        <td colspan="2" class="w-70">"DetailsOne.holiday"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.holiday}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">점심시간</td>
-				        <td colspan="2" class="w-70">"DetailsOne.lunchtime"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.lunchtime}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">평일접수</td>
-				        <td colspan="2" class="w-70">"DetailsOne.receipttime"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.receipttime}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-30">토요일접수</td>
-				        <td colspan="2" class="w-70">"DetailsOne.?"</td>
+				        <td colspan="2" class="w-70">${DetailsOne.facilityinformation}</td>
 				      </tr>
 				    </tbody>
 				    <thead class="thead-light">
@@ -187,7 +187,7 @@ $(document).ready(function(){
 				    </thead>
 				    <tbody>
 				      <tr>
-				      	<td colspan="4">"DetailsOne.facilityinformation"</td>
+				      	<td colspan="4">${DetailsOne.treatment}</td>
 				      </tr>
 				    </tbody>
 				  </table>

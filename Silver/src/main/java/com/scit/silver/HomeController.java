@@ -44,7 +44,7 @@ public class HomeController {
 		return "facility/questionpage";
 	}
 	 
-	
+
 	
 	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)
 	public String messagepage(Locale locale, Model model) {
@@ -52,6 +52,7 @@ public class HomeController {
 		return "admin/messagepage";
 	}
 	
+
 	
 	@RequestMapping(value = "/boardpage", method = RequestMethod.GET)
 	public String boardpage(Locale locale, Model model) {
@@ -59,17 +60,9 @@ public class HomeController {
 		return "admin/boardpage";
 	}
 	
-	@RequestMapping(value = "/openMemberpage", method = RequestMethod.GET)
-	public String openMemberpage(Locale locale, Model model) {
-
-		return "admin/openMemberpage";
-	}
 	
-	@RequestMapping(value = "/openFacilitypage", method = RequestMethod.GET)
-	public String openFacilitypage(Locale locale, Model model) {
+	
 
-		return "admin/openFacilitypage";
-	}
 	
 	@RequestMapping(value = "/openFacilitypage2", method = RequestMethod.GET)
 	public String openFacilitypage2(Locale locale, Model model) {

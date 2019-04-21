@@ -34,6 +34,82 @@
 /* 새창열기, 닫기 & 값 보내기 참고 
  * https://sourcestudy.tistory.com/341 
  */
+var type = 1;
+
+$(function() {
+	selectmem1(type);
+	
+	
+});
+ 
+function selectmem1(type){
+	$.ajax({
+		url:"selmem1", 
+		type:"get",
+		data:{"type":type,
+			
+		},
+		success:init
+		});
+} 
+
+function init(data){
+	console.log(data[0].type);
+	list = '';
+	 $.each(data, function (index, item){
+		 list += '<tr style="cursor:pointer" class="select-table" onclick="window.open(\'openMemberpage\',\'memberDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openMemberpage?userid='+item.userid+'\'" >';
+		 list += '<td scope="row">'+index+'</td>';
+		 list += '<td>'+item.userid+'</td>';
+		 list += '<td>'+item.username+'</td>';
+		 list += '<td>'+item.birthday+'</td>';
+		 list += '<td>'+item.gender+'</td>';
+		 list += '<td>'+item.registration+'</td>';
+		 list += '</tr>';
+	 });
+	
+   $("#selmember1").html(list);
+	
+}
+
+function selectmem2(type){
+	$.ajax({
+		url:"selmem2", 
+		type:"get",
+		data:{"type":type,
+			
+		},
+		success:init2
+		});
+}
+function init2(data){
+	console.log(data);
+	console.log(data[0].type);
+	list = '';									
+	 $.each(data, function (index, item){
+		 list += '<tr style="cursor:pointer" class="select-table" onclick="window.open(\'openFacilitypage\',\'facilityDetail\', \'toolbar=no, width=1000,height=800, top=150, left=150\').location.href=\'openFacilitypage?username='+item.username+'\'" >';
+		 list += '<td scope="row">'+index+'</td>';
+		 list += '<td>'+item.userid+'</td>';
+		 list += '<td>'+item.username+'</td>';
+		 list += '<td>'+item.address+'</td>';
+		 list += '<td>'+item.registration+'</td>';
+		 list += '</tr>';
+	 });
+
+   $("#selmember2").html(list);
+
+   
+ /*   $(".select-table").click(function(){    
+		  console.log("클릭");
+		window.open(
+		"openFacilitypage?key="+$(this).attr("data-value"),// url
+		"facilityDetail", //이름??
+		"toolbar=no, width=1000,height=800, top=150, left=150"
+		);
+	}); */
+}
+ 
+ 
+ 
 $(document).ready(function(){
 	  $("#g-temporarybtn").click(function(){    
 		window.open(
@@ -45,16 +121,10 @@ $(document).ready(function(){
 	  
 });
 
-$(document).ready(function(){
-	  $("#f-temporarybtn").click(function(){    
-		window.open(
-		"openFacilitypage",
-		"facilityDetail",
-		"toolbar=no, width=1000,height=800, top=150, left=150"
-		);
-	});
+
 	  
-});
+	  
+
 
 $(document).ready(function(){
 	  $("#f2-temporarybtn").click(function(){    
@@ -70,19 +140,25 @@ $(document).ready(function(){
 $(document).ready(function(){
 	  $("#table-facility").hide();
 	  
-	  $("#general-userbtn").click(function(){    
+	  $("#general-userbtn").click(function(){ //일반사용자 클릭시   
 		$("#table-facility").hide();
 		$("#table-member").show();
+		type = 1;
+		selectmem1(type);
 	});
 
 	  $("#practician-userbtn").click(function(){    
 		$("#table-facility").hide();
 		$("#table-member").show();
+		type = 2;
+		selectmem1(type);
 	});
 
 	  $("#facility-userbtn").click(function(){    
 		 $("#table-member").hide();
 		 $("#table-facility").show();
+		 type = 3;
+		selectmem2(type);
 	 });
 });
 </script>
@@ -154,7 +230,7 @@ $(document).ready(function(){
 							        <th class="w-20">가입일</th>
 							      </tr>
 							    </thead>
-							    <tbody>
+							    <tbody id="selmember1">
 							      <tr>
 							        <td scope="row">1</td>
 							        <td>"member.userid"</td>
@@ -174,11 +250,11 @@ $(document).ready(function(){
 							        <th class="w-10">#</th>
 							        <th class="w-20">아이디</th>
 							        <th class="w-20">기관명</th>
-							        <th class="w-20">기관분류</th>
 							        <th class="w-30">주소</th>
+							        <th class="w-20">가입일</th>
 							      </tr>
 							    </thead>
-							    <tbody>
+							    <tbody id="selmember2">
 							      <tr>
 							        <td scope="row">1</td>
 							        <td>"member.userid"</td>

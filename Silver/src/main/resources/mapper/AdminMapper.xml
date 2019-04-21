@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.scit.silver.dao.AdminMapper">
+
+<select id="selmember" parameterType="int" resultType="Member">
+SELECT 
+    USERID,
+    TYPE,
+    USERPWD,
+    USERNAME,
+    BIRTHDAY,
+    GENDER,
+    ADDRESS,
+    REGISTRATION,
+    EMAIL,
+    WARNING,
+    TELEPHONE
+FROM
+    MEMBER
+WHERE
+    TYPE = #{type}
+ORDER BY
+    REGISTRATION DESC
+
+
+</select>
+<select id="whattype" parameterType="String" resultType="int">
+SELECT 
+    TYPE
+FROM
+    SILVERSEARCH
+WHERE
+    SILVERNAME = #{silvername}
+
+</select>
+<select id="whattype2" parameterType="String" resultType="int">
+SELECT 
+    TYPE
+FROM
+    MEMBER
+WHERE
+    USERID = #{userid}
+
+</select>
+<select id="selonemem" parameterType="String" resultType="Member">
+SELECT 
+    USERID,
+    TYPE,
+    USERNAME,
+    BIRTHDAY,
+    GENDER,
+    ADDRESS,
+    REGISTRATION,
+    EMAIL,
+    WARNING,
+    TELEPHONE
+FROM
+    MEMBER
+WHERE
+    USERID = #{userid}
+
+</select>
+
+<select id="selonere" parameterType="String" resultType="Resume">
+SELECT 
+    RE_SEQ
+    USERID,
+    RE_TYPE,
+    RE_DETAILTYPE,
+    RE_JOB,
+    RE_CONTENT,
+    RE_DATE,
+    RE_AREAA,
+    RE_AREBB,
+    RE_QUALIFICATION
+FROM
+    RESUME
+WHERE
+    USERID=#{userid}
+</select>
+
+ <select id="seldetwo" parameterType="String" resultType="DetailsTwo">	
+		select  
+			A.SEACH_SEQ
+			,A.TYPE
+			,A.AREAA
+			,A.AREAB
+			,A.AREAC
+			,A.SILVERNAME
+			,A.SERVICE
+			,A.GRADE
+			,A.LAUITUDE
+			,A.LONGITUDE
+			,A.ORGNAME
+			,A.NAME
+            ,B.DETAIL_NUMBER
+            ,TO_CHAR(B.ESTABLISHMENT, 'YYYY-MM-DD') ESTABLISHMENT
+            ,TO_CHAR(B.APPROVAL, 'YYYY-MM-DD') APPROVAL
+            ,B.address
+            ,B.tel
+            ,B.parkinglot
+
+         FROM 
+             SILVERSEARCH A 	
+            ,DETAILS B
+    	where 
+            B.SEACH_SEQ = A.SEACH_SEQ 
+            and
+    		A.SILVERNAME = #{silvername}
+	</select>
+<select id="seldeone" parameterType="String" resultType="DetailsOne">	
+		   select 
+         A.SEACH_SEQ
+         ,A.TYPE
+         ,A.AREAA
+         ,A.AREAB
+         ,A.AREAC
+         ,A.SILVERNAME
+         ,A.SERVICE
+         ,A.GRADE
+         ,A.LAUITUDE
+         ,A.LONGITUDE
+         ,A.ORGNAME
+         ,A.NAME
+            ,C.Establishment
+            ,C.HP_SERVICE
+            ,C.PROTECTION
+            ,C.Location
+            ,C.Religion
+            ,C.Hospital_tel
+            ,C.hp_address
+            ,C.holiday
+            ,C.lunchTime
+            ,C.ReceiptTime
+            ,C.Facilityinformation
+            ,C.treatment
+
+         from 
+             SILVERSEARCH A    
+            ,Hospital_details C
+       where 
+             C.SEACH_SEQ = A.SEACH_SEQ 
+            and
+    		A.SILVERNAME = #{silvername}
+	</select>	
+
+
+</mapper>

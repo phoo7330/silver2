@@ -30,8 +30,25 @@
 </head>
 <body>
 <script>
+function what(){
+	//vo에 담겨있는 시설타입을 꺼내 각타입에 맞는 문자로 변환해서 출력
+	var type=0;
+	var memtype='';
+	type='${member.type}';
+	if(type==1){
+		memtype+='일반사용자';
+		$('#type').html(memtype);
+		return;
+	}else if(type==2){
+		memtype+='종사자';
+		$('#type').html(memtype);
+		return;
+	}
+}
+
+
 $(document).ready(function(){
-	
+	what();
 	  $("#closebtn").click(function(){    
 		window.close();
 	});
@@ -70,8 +87,8 @@ $(document).ready(function(){
 		  <div class="form-row mt-4" id="main-information"> 
 			<h2 class="col-md-6">회원정보</h2>
 			<div class="col-md-6 text-right">
-			  <p class="dark-grey-text mb-0">member.type</p>
-			  <p class="dark-grey-text mb-0">"member.registration"</p>
+			  <p class="dark-grey-text mb-0" id="type">member.type</p>
+			  <p class="dark-grey-text mb-0">${member.registration}</p>
 			</div>
 		  </div>
 		 <hr> 
@@ -91,40 +108,40 @@ $(document).ready(function(){
 				    <tbody>
 				     <tr>
 				        <td>아이디</td>
-				        <td>"member.userid"</td>
+				        <td>${member.userid}</td>
 				      </tr>
 				      <tr>
-				      <tr>
+				     <!--  <tr>  비밀번호는 보이면 안되
 				        <td>비밀번호</td>
 				        <td>"member.userpw"</td>
-				      </tr>
+				      </tr> -->
 				      <tr>
 				        <td>이름</td>
-				        <td>"member.username"</td>
+				        <td>${member.username}</td>
 				      </tr>
 				      <tr>
 				        <td>생년월일</td>
-				        <td>"member.birthday"</td>
+				        <td>${member.birthday}</td>
 				      </tr>
 				      <tr>
 				        <td>성별</td>
-				        <td>"member.gender"</td>
+				        <td>${member.gender}</td>
 				      </tr>
 				      <tr>
 				        <td>주소</td>
-				        <td>"member.address"</td>
+				        <td>${member.address}</td>
 				      </tr>
 				      <tr>
 				        <td>이메일</td>
-				        <td>"member.email"</td>
+				        <td>${member.email}</td>
 				      </tr>
 				      <tr>
 				        <td>연락처</td>
-				        <td>"member.telephone"</td>
+				        <td>${member.telephone}</td>
 				      </tr>
 				      <tr>
 				        <td>경고</td>
-				        <td>"member.warning"</td>
+				        <td>${member.warning}</td>
 				      </tr>
 				    </tbody>
 				  </table>
@@ -145,15 +162,15 @@ $(document).ready(function(){
 				    <tbody>
 				      <tr>
 				        <td colspan="2" class="w-50">성함</td>
-				        <td colspan="2" class="w-50">"성함"</td>
+				        <td colspan="2" class="w-50">${sc.sc_name}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-50">생년월일</td>
-				        <td colspan="2" class="w-50">"생년월일"</td>
+				        <td colspan="2" class="w-50">${sc.sc_birthday}</td>
 				      </tr>
 				      <tr>
 				        <td colspan="2" class="w-50">혈액형</td>
-				        <td colspan="2" class="w-50">"혈액형"</td>
+				        <td colspan="2" class="w-50">${sc.sc_bloodtype}</td>
 				      </tr>
 				    </tbody>
 				    <thead class="thead-light">
@@ -164,21 +181,21 @@ $(document).ready(function(){
 				    <tbody>
 				      <tr>
 				        <td class="w-20">식사</td>
-				        <td class="w-40">"식사"</td>
+				        <td class="w-40">${scd.scd_meal}</td>
 				        <td class="w-20">보행</td>
-				        <td class="w-40">"보행"</td>
+				        <td class="w-40">${scd.scd_care}</td>
 				      </tr>
 				      <tr>
 				        <td class="w-20">세면</td>
-				        <td class="w-40">"세면"</td>
+				        <td class="w-40">${scd.scd_washing}</td>
 				        <td class="w-20">의복</td>
-				        <td class="w-40">"의복"</td>
+				        <td class="w-40">${scd.scd_clothing}</td>
 				      </tr>
 				      <tr>
 				        <td class="w-20">목욕</td>
-				        <td class="w-40">"목욕"</td>
+				        <td class="w-40">${scd.scd_bath}</td>
 				        <td class="w-20">화장실</td>
-				        <td class="w-40">"화장실"</td>
+				        <td class="w-40">${scd.scd_toilet}</td>
 				      </tr>
 				    </tbody>
 				    <thead class="thead-light">
@@ -188,13 +205,14 @@ $(document).ready(function(){
 				    </thead>
 				    <tbody>
 				      <tr>
-				      	<td colspan="4">"기타 질환정보"</td>
+				      	<td colspan="4">${scd.scd_disease}${scd.scd_others}</td>
 				      </tr>
 				    </tbody>
 				  </table>
 				</div>
-<!-- type==2 일 경우, 추가로 보이는 정보 -->		    	
-		    	<!-- 종사자-이력서 정보 -->
+<!-- type==2 일 경우, 추가로 보이는 정보 -->		    
+<c:if test="${member.type==2}">
+<!-- 종사자-이력서 정보 -->
 		    		<div class="container text-center" id="resume-inform">
 				  	 <hr class="hr border-dark mt-5 mb-0">
 				  	  <table class="table">
@@ -206,7 +224,7 @@ $(document).ready(function(){
 					    <tbody>
 					      <tr>
 					        <td class="w-30">자격사항</td>
-					        <td class="w-70">"자격사항"</td>
+					        <td class="w-70">${resume.re_qualification}</td>
 					      </tr>
 					      <tr>
 					        <td class="w-30">첨부파일</td>
@@ -214,15 +232,15 @@ $(document).ready(function(){
 					      </tr>
 					      <tr>
 					        <td class="w-30">희망직종</td>
-					        <td class="w-70">"희망직종"</td>
+					        <td class="w-70">${resume.re_job}</td>
 					      </tr>
 					      <tr>
 					        <td class="w-30">희망지역</td>
-					        <td class="w-70">"희망지역"</td>
+					        <td class="w-70">${resume.re_areaa} ${resume.re_arebb}</td>
 					      </tr>
 					      <tr>
 					        <td class="w-30">근무형태</td>
-					        <td class="w-70">"근무형태"</td>
+					        <td class="w-70">${resume.re_type}</td>
 					      </tr>
 					    </tbody>
 					    <thead class="thead-light">
@@ -232,11 +250,13 @@ $(document).ready(function(){
 					    </thead>
 					    <tbody>
 					      <tr>
-					        <td colspan="2">"기타사항"</td>
+					        <td colspan="2">${resume.re_content}</td>
 					      </tr>
 					    </tbody>
 					  </table>
 					</div>
+</c:if>	
+		    	
 		    <!-- col-md-6 end -->  
 		    </div> 
 		  <!-- row end -->
