@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 이력서정보 등록 -->
+  <mapper namespace="com.scit.silver.dao.ResumeMapper">
+  <insert id="insertResume" parameterType="Resume">
+  INSERT INTO 
+    RESUME
+    (
+    RE_SEQ
+    ,USERID
+    ,RE_TYPE
+    ,RE_DETAILTYPE
+    ,RE_JOB
+    ,RE_CONTENT
+    ,RE_DATE
+    ,RE_AREAA
+    ,RE_AREBB
+    ,RE_QUALIFICATION
+    )
+    VALUES
+    (
+    RE_SEQ.NEXTVAL
+    ,#{userid}
+    ,#{re_type}
+   	,#{re_detailType}
+    ,#{re_job}
+  	,#{re_content}
+  	,SYSDATE
+  	,#{re_areaa}
+   	,#{re_arebb}
+   	,#{re_qualification}
+    )
+  </insert>
+  
+  <!-- 이력서정보 조회 -->
+  <select id="selectResume" parameterType="String" resultType="Resume">
+  	SELECT
+  		R.RE_SEQ
+	    ,R.USERID
+	    ,R.RE_TYPE
+	    ,R.RE_DETAILTYPE
+	    ,R.RE_JOB
+	    ,R.RE_CONTENT
+	    ,R.RE_DATE
+	    ,R.RE_AREAA
+	    ,R.RE_AREBB
+	    ,R.RE_QUALIFICATION
+	    ,M.USERID
+	    ,M.USERNAME
+	    ,M.BIRTHDAY
+	    ,M.GENDER
+	    ,M.ADDRESS
+	FROM
+  		RESUME R
+  		,Member M
+  	WHERE
+  		R.USERID=#{userid}
+  	AND
+  		M.USERID=#{userid}
+  </select>
+  <!-- 이력서정보 변경 -->
+  <update id="updateResume" parameterType="Resume">
+  UPDATE RESUME
+    SET
+        RE_TYPE = #{re_type}
+        ,RE_DETAILTYPE = #{re_detailType}
+        ,RE_JOB = #{re_job}
+        ,RE_CONTENT = #{re_content}
+        ,RE_DATE = SYSDATE
+        ,RE_AREAA = #{re_areaa}
+        ,RE_AREBB = #{re_arebb}
+        ,RE_QUALIFICATION = #{re_qualification}
+        
+    WHERE 
+        USERID = #{userid}
+  </update>
+ </mapper>

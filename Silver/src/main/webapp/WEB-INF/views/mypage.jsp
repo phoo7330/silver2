@@ -285,7 +285,75 @@
 			});
 		  //function end
 		  });
+	 //이력서
+	  $(document).ready(function(){
+		 
+		$('#cnlResumebtn').hide();
+	  	$('#istResumebtn').hide();
+	  	$('#udtResumebtn').hide();
+	  	$('#qualify1').hide();
+		$('#job1').hide();
+		$('#gugun1').hide();
+		$('#sido1').hide();
+		$('#work1').hide();
+		$('#detail').hide();
+		 //이력서 수정버튼 클릭시   수정 등록 취소 버튼 셋팅
+		$('#resumebtn').click(function(){
+	  			$('#qualify1').show();
+	  			$('#job2').hide();
+	  			$('#gugun2').hide();
+	  			$('#sido2').hide();
+	  			$('#work2').hide();
+	  			$('#detail2').hide();
+	  			$('#showQualify1').hide();
+	  			$('#job1').show();
+	  			$('#gugun1').show();
+	  			$('#sido1').show();
+	  			$('#work1').show();
+	  			$('#detail').show();
+	  			$('#exampleFormControlTextarea5').attr('readonly',false);
+	  			$('#resumebtn').hide();
+	  			$('#cnlResumebtn').show();
+	  			//모델값의 존재여부로 if로 update or insert 버튼을 생성
+	  			var rs2 = "${rs}";
+	  			if(rs2 == ""){
+	  				$('#istResumebtn').show();
+	  			}else{
+	  				$('#udtResumebtn').show();
+	  			}
+	  			$('#udtResumebtn').click(function(){
+	  				updateresume();
+	  				location.reload();
+
+	  			});
+	  			
+				$('#istResumebtn').click(function(){
+					insertresume();
+					location.reload();
+
+	  			});
+	  		  	
+	  		});
+	  });
+	 //이력서 출력
 	 
+	 
+	 // 이력서 수정 취소 등록 기능
+	 $(function(){
+		 $('#cnlResumebtn').on('click',function(){
+			 location.reload();
+		 });
+		 
+		 $('#udtResumebtn').on('click',function(){
+			 $('#udtResumebtn').submit();
+			 location.reload();
+		 });
+		 
+		 $('#istResumebtn').on('click',function(){
+			 $('#istResumebtn').submit();
+			 location.reload();
+		 });
+	});
 	  /* 쪽지함 show & hide 스크립트 */
 	  $(document).ready(function(){
 		  $("#senderForm").hide();
@@ -324,6 +392,118 @@
 		  });
 
 	  });
+	  function insertresume(){
+		  var re_type = $("#work1").val();
+		  var re_detailType = $("#detail").val();
+		  var re_job = $("#job1").val();
+		  var re_content = $("#exampleFormControlTextarea5").val();
+		  var re_areaa = $("#sido1").val();
+		  var re_arebb = $("#gugun1 ").val();
+		  var re_qualification = $("#qualify1").val();
+		  
+		  console.log(re_type);
+		  console.log(re_detailType);
+		  console.log(re_content);
+		  console.log(re_areaa);
+		  console.log(re_arebb);
+		  console.log(re_qualification);
+		  
+		  $.ajax({
+		        type : 'post',
+		        url : 'insertResume',
+		        data : {re_type: re_type
+		        		,re_detailType: re_detailType
+		        		,re_job : re_job
+		        		,re_content : re_content
+		        		,re_areaa : re_areaa
+		        		,re_arebb : re_arebb
+		        		,re_qualification : re_qualification
+		        },
+		        success : function(){
+		  				console.log("통과했는지?");
+		  				alert('이력서등록 성공!');
+		  				return true;
+		        },
+		        error: function(){
+		        	alert('이미 이력서가 등록되어있습니다.');
+		        	return false;
+		        }
+		  });
+	  }
+	  
+	  function updateresume(){
+		  var re_type = $("#work1").val();
+		  var re_detailType = $("#detail").val();
+		  var re_job = $("#job1").val();
+		  var re_content = $("#exampleFormControlTextarea5").val();
+		  var re_areaa = $("#sido1").val();
+		  var re_arebb = $("#gugun1 ").val();
+		  var re_qualification = $("#qualify1").val();
+		 
+		  console.log(re_type);
+		  console.log(re_detailType);
+		  console.log(re_content);
+		  console.log(re_areaa);
+		  console.log(re_arebb);
+		  console.log(re_qualification);
+		 
+		  $.ajax({
+		        type : 'post',
+		        url : 'updateResume',
+		        data : {re_type: re_type
+		        		,re_detailType: re_detailType
+		        		,re_job : re_job
+		        		,re_content : re_content
+		        		,re_areaa : re_areaa
+		        		,re_arebb : re_arebb
+		        		,re_qualification : re_qualification
+		        },
+		        success : function(){
+		  				console.log("업데이트통과했는지?");
+		  				alert('이력서수정 성공!');
+		  				return true;
+		        },
+		        error: function(){
+		        	alert('이력서수정 실패. 값을 다시 확인해주십시오.');
+		        	return false;
+		        }
+		  });
+	  }
+	  
+	   /* function selectresume(){
+		  var re_qualification="";
+		  var re_job= '';
+		  var re_areaa= '';
+		  var re_arebb= '';
+		  var re_type= '';
+		  var re_detailType= '';
+		  var re_content= '';  
+		  $.ajax({
+			  type : 'POST'
+		      ,url : 'selectResume'
+		      ,success : function(resp){
+		        		re_qualification += resp.re_qualification ;
+		        		re_job += resp.re_job;
+		        		re_areaa += resp.re_areaa;
+		        		re_arebb += resp.re_arebb;
+		        		re_type += resp.re_type;
+		        		re_detailType += resp.re_detailType;
+		        		re_content += resp.re_content;
+		        		$("#showQualify1").val(re_qualification);
+		        		$("#job2").val(re_job);
+		        		$("#sido2").val(re_areaa);
+		        		$("#gugun2").val(re_arebb);
+		        		$("#work2").val(re_type);
+		        		$("#detail2").val(re_detailType);
+		        		$("#exampleFormControlTextarea5").val(re_content);
+		          }
+		  	   ,error : function(){
+		  		   alert('이력서실패');
+		  	   }
+		      });
+		} */ 
+		
+	  
 	  
 	  function insertReply(){
 			var ms_sender =  $("#sender").val();//받는사람
@@ -1707,90 +1887,112 @@
 							    </div>
 							</div>
 							<!-- 개인정보 -->
+						
 							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>개인정보</strong></label>
 							<p class="text-muted"><small>* 표시는 필수입력 사항입니다.</small></p>
 							<table class="table table-bordered" id="facilityForm">
 								<tbody>
 								    <tr>
-										<th class="bg-light w-30">* 성명</th>
+										<th class="bg-light w-30"> 성명</th>
 										<th>${member.username}</th>
 										<th class="bg-light w-30">성별</th>
-										<th>"member.gender"</th>
+										<th>${member.gender}</th>
 								    </tr>
 	                				<tr>
-										<td class="bg-light">* 생년월일</td>
-										<td>"member.birthday"</td>
-										<td class="bg-light">* 전화번호</td>
-										<td>"member.telephone"</td>
+										<td class="bg-light"> 생년월일</td>
+										<td>${member.birthday}</td>
+										<td class="bg-light"> 전화번호</td>
+										<td>${member.telephone}</td>
 								    </tr>
 							    	<tr>
 										<td class="bg-light">주소</td>
-										<td colspan="3">
-					                      <form class="form-inline my-3 row">									
+										<td colspan="3">${member.address}</td>
+					                       <!-- <div class="form-inline my-3 row">									
 						                      <div class="form-group col-md-12">
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col mr-1" name="gugun1" id="gugun1"></select>
 						                      </div>
-						                  </form>	
+						                  </div> -->	
+											<%-- <div class="form-group my-3">
+						                      	<input type="text" class="form-control form-control-sm" value="${member.address}" id="dong1" readonly="readonly">
+						                      </div>   --%>    
 										
-						                      <div class="form-group my-3">
-						                      	<input type="text" class="form-control form-control-sm" placeholder="나머지 주소를 입력하세요." id="dong1">
-						                      </div>      
-										</td>
 									</tr>
 									<tr>
 										<td class="bg-light">자격사항</td>
 										<td colspan="3">
-					                      <div class="form-group my-3">
-					                        <select class="form-control form-control-sm" name="qualify1" id="qualify1"></select>
-					                      </div>
-										</td>
+					                      	<div class="form-group my-3" >
+						                        <select class="form-control form-control-sm"  name="qualify1" id="qualify1"></select>
+						                      	 <input type="text" class="form-control form-control-sm"  id="showQualify1" value="${rs.re_qualification}" readonly="readonly" > 
+						                  	  </div>
+					                  	 
+					                    </td>
 									</tr>
 							 	</tbody>
 							</table>
 							<!-- 구직정보 -->
+							<c:if test="${rs==null}"> <!-- 이력서 모델이 없을때 등록 -->
+							<form action="insertResume" method="post" id="insertResume">
+							</c:if>
+							<c:if test="${rs!=null}"> <!-- 이력서 모델이 있을떄 수정 -->
+							<form action="updateResume" method="post" id="updateResume">
+							</c:if>
+							
 							<label for="facilityForm" class="col-form-label col-form-label-lg pt-3"><strong>구직정보</strong></label>
 							<table class="table table-bordered" id="facilityForm">
 								<tbody>
 									<tr>
 										<th class="bg-light w-30">* 희망직종</th>
 										<th colspan="3">
-											<div class="form-group my-3">
+											<div class="form-group my-3" >
 						                      <select class="form-control form-control-sm" name="job1" id="job1"></select>
+						                     <input type="text" class="form-control form-control-sm" name="job1" id="job2" value="${rs.re_job}" readonly="readonly"> 
+												<div id="job"></div>
 											</div>
 										</th>
 									</tr>
 									<tr>
 										<td class="bg-light">* 희망지역</td>
 										<td colspan="3">
-											<form class="form-inline my-3 row">									
-						                      <div class="form-group col-md-12">
+											<div class="form-inline my-3 row">									
+						                      <div class="form-group col-md-12" >
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col" name="gugun1" id="gugun1"></select>
+						                       <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido2" value="${rs.re_areaa}" readonly="readonly">
+						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun2" value="${rs.re_arebb}"  readonly="readonly"> 
+						                      	<div id="sido"></div>
 						                      </div>
-											</form>
+											</div>
 										</td>
 									</tr>
 									<tr>
 										<td class="bg-light">* 근무형태</td>
 										<td colspan="3">
-											<form class="form-inline my-3 row">									
-						                      <div class="form-group col-md-12">
+											<div class="form-inline my-3 row">									
+						                      <div class="form-group col-md-12" >
 												<select class="form-control form-control-sm col mr-1" name="work1" id="work1"></select>
 												<select class="form-control form-control-sm col" name="detail" id="detail"></select>
+						                      <input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work2"  value="${rs.re_type}" readonly="readonly">
+						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail2" value="${rs.re_detailType}"  readonly="readonly"> 
 						                      </div>
-											</form>
+											</div>
 										</td>
 									</tr>
 									<tr>
-										<td class="bg-light">기타사항</td>
-										<td colspan="3" class="etc p-0 mb-0">
-											<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4"></textarea>
+									  <td class="bg-light">기타사항</td>
+										<td colspan="3" class="etc p-0 mb-0" >
+											<textarea class="form-control p-0" id="exampleFormControlTextarea5" name="re_content" rows="4" readonly="readonly">${rs.re_content}</textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							
+								<div class="text-center pt-3 pb-5" id="updateRsm">
+								<input type="button" id="resumebtn" class="btn btn-outline-secondary" value="수정" >
+								<input type="button" id="cnlResumebtn" class="btn btn-outline-secondary" value="취소">
+								<input type="button" id="udtResumebtn" class="btn btn-outline-secondary" value="수정">
+								<input type="button" id="istResumebtn" class="btn btn-outline-secondary" value="등록">
+								</div>
+						</form>
 						<!-- .container -->	
 						</div>
 					<!-- 이력서 양식 -->	

@@ -27,5 +27,6 @@
 		<mapper resource="mapper/FacilityMapper.xml" />
 		<mapper resource="mapper/Message.xml" /> 
 		<mapper resource="mapper/AdminMapper.xml" />
+		<mapper resource="mapper/ResumeMapper.xml" /> 
 	</mappers>
 </configuration>

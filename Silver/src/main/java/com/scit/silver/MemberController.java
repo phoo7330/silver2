@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.MemberDAO;
 import com.scit.silver.dao.MessageDAO;
+import com.scit.silver.dao.ResumeDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Member;
+import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SeniorCitizen;
 import com.scit.silver.vo.SeniorCitizenDetails;
 import com.scit.silver.vo.SilverSearch;
@@ -34,6 +36,8 @@ public class MemberController {
 	SearchDAO sdao;
 	@Autowired
 	SeniorDAO sndao;
+	@Autowired
+	ResumeDAO rdao;
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
 	public String login() {
@@ -201,6 +205,8 @@ public class MemberController {
 		SeniorCitizen scResult = null;
 		SeniorCitizenDetails scdResult = null;
 		Integer seq = null;
+		Resume resume = null;
+		
 		String loginId = (String) session.getAttribute("loginId");
 		
 		result = dao.selectMember2(loginId);
@@ -220,6 +226,14 @@ public class MemberController {
 		System.out.println("[어르신상세정보]: "+scdResult);
 		model.addAttribute("scd", scdResult);
 		}
+		
+		resume = rdao.selectResume(loginId);
+		
+		if(resume != null) {
+			model.addAttribute("rs", resume);
+		}
+		System.out.println("[이력서]"+resume);
+		
 		System.out.println("[마이페이지]: "+result);
 		model.addAttribute("member", result);
 		
