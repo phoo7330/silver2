@@ -140,7 +140,7 @@ $(document).ready(function(){
           <a class="navbar-brand mr-5 p-0" href="memberpage"><img src="resources/image/adminLogo.png"></a>
           <!-- 오른쪽 상단 토글러 버튼 -->
          <button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span> 
          </button>
          <!-- 네비게이션 상단 메뉴 -->
          <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
