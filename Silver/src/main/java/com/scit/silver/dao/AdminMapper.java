@@ -27,5 +27,10 @@ public interface AdminMapper {
 	
 	public int delmember(String userid);
 	
+	public int countmember(int type);
+	
+	public int counts(String gender);
+
+	
 }
  

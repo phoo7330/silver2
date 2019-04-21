@@ -48,6 +48,20 @@ public class AdminController {
 			return "index"; 
 		}
 		
+		int a,b,c = 0;
+		a=dao.countmember(1);
+		b=dao.countmember(2);
+		c=dao.countmember(3);
+		System.out.println("a"+a+"b"+b+"c"+c);
+		model.addAttribute("count1", a);
+		model.addAttribute("count2", b);
+		model.addAttribute("count3", c);
+		
+		int aa,bb = 0;
+		aa=dao.counts("남성");
+		bb=dao.counts("여성");
+		model.addAttribute("count11", aa);
+		model.addAttribute("count22", bb);
 		return "admin/memberpage";
 	}
 	
