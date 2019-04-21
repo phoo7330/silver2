@@ -235,7 +235,7 @@ $(document).ready(function(){
 					        <td class="w-70">${resume.re_job}</td>
 					      </tr>
 					      <tr>
-					        <td class="w-30">희망지역</td>
+					        <td class="w-30">희망지역</td> 
 					        <td class="w-70">${resume.re_areaa} ${resume.re_arebb}</td>
 					      </tr>
 					      <tr>
