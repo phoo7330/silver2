@@ -39,7 +39,7 @@ public class ResumeController {
 	}
 	
 	@RequestMapping(value = "/selectResume", method = RequestMethod.POST)
-	public @ResponseBody Resume selectResume(HttpSession session) {
+	public String selectResume(HttpSession session) {
 		Resume result = null;
 		
 		String loginId = (String) session.getAttribute("loginId");
@@ -52,7 +52,7 @@ public class ResumeController {
 		}
 		System.out.println("[selectResume 성공]: "+result);
 		
-		return result;
+		return "redirect:/mypage";
 	}
 	
 	

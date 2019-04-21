@@ -287,7 +287,7 @@
 		  });
 	 //이력서
 	  $(document).ready(function(){
-		   selectresume(); 
+		 
 		$('#cnlResumebtn').hide();
 	  	$('#istResumebtn').hide();
 	  	$('#udtResumebtn').hide();
@@ -323,10 +323,14 @@
 	  			}
 	  			$('#udtResumebtn').click(function(){
 	  				updateresume();
+	  				location.reload();
+
 	  			});
 	  			
 				$('#istResumebtn').click(function(){
 					insertresume();
+					location.reload();
+
 	  			});
 	  		  	
 	  		});
@@ -342,10 +346,12 @@
 		 
 		 $('#udtResumebtn').on('click',function(){
 			 $('#udtResumebtn').submit();
+			 location.reload();
 		 });
 		 
 		 $('#istResumebtn').on('click',function(){
 			 $('#istResumebtn').submit();
+			 location.reload();
 		 });
 	});
 	  /* 쪽지함 show & hide 스크립트 */
@@ -464,7 +470,7 @@
 		  });
 	  }
 	  
-	   function selectresume(){
+	   /* function selectresume(){
 		  var re_qualification="";
 		  var re_job= '';
 		  var re_areaa= '';
@@ -495,7 +501,7 @@
 		  		   alert('이력서실패');
 		  	   }
 		      });
-		} 
+		} */ 
 		
 	  
 	  
@@ -1917,7 +1923,7 @@
 										<td colspan="3">
 					                      	<div class="form-group my-3" >
 						                        <select class="form-control form-control-sm"  name="qualify1" id="qualify1"></select>
-						                      	 <input type="text" class="form-control form-control-sm"  id="showQualify1"  readonly="readonly" > 
+						                      	 <input type="text" class="form-control form-control-sm"  id="showQualify1" value="${rs.re_qualification}" readonly="readonly" > 
 						                  	  </div>
 					                  	 
 					                    </td>
@@ -1940,7 +1946,7 @@
 										<th colspan="3">
 											<div class="form-group my-3" >
 						                      <select class="form-control form-control-sm" name="job1" id="job1"></select>
-						                     <input type="text" class="form-control form-control-sm" name="job1" id="job2" readonly="readonly"> 
+						                     <input type="text" class="form-control form-control-sm" name="job1" id="job2" value="${rs.re_job}" readonly="readonly"> 
 												<div id="job"></div>
 											</div>
 										</th>
@@ -1952,8 +1958,8 @@
 						                      <div class="form-group col-md-12" >
 						                        <select class="form-control form-control-sm col mr-1" name="sido1" id="sido1"></select>
 						                        <select class="form-control form-control-sm col" name="gugun1" id="gugun1"></select>
-						                       <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido2"  readonly="readonly">
-						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun2"  readonly="readonly"> 
+						                       <input type="text" class="form-control form-control-sm col mr-1" name="sido1" id="sido2" value="${rs.re_areaa}" readonly="readonly">
+						                      	 <input type="text" class="form-control form-control-sm col" name="gugun1" id="gugun2" value="${rs.re_arebb}"  readonly="readonly"> 
 						                      	<div id="sido"></div>
 						                      </div>
 											</div>
@@ -1966,8 +1972,8 @@
 						                      <div class="form-group col-md-12" >
 												<select class="form-control form-control-sm col mr-1" name="work1" id="work1"></select>
 												<select class="form-control form-control-sm col" name="detail" id="detail"></select>
-						                      <input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work2"   readonly="readonly">
-						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail2"  readonly="readonly"> 
+						                      <input type="text" class="form-control form-control-sm col mr-1" name="work1" id="work2"  value="${rs.re_type}" readonly="readonly">
+						                      	<input type="text" class="form-control form-control-sm col" name="detail" id="detail2" value="${rs.re_detailType}"  readonly="readonly"> 
 						                      </div>
 											</div>
 										</td>
@@ -1975,13 +1981,13 @@
 									<tr>
 									  <td class="bg-light">기타사항</td>
 										<td colspan="3" class="etc p-0 mb-0" >
-											<textarea class="form-control p-0" id="exampleFormControlTextarea5" name="re_content" rows="4" readonly="readonly""></textarea>
+											<textarea class="form-control p-0" id="exampleFormControlTextarea5" name="re_content" rows="4" readonly="readonly">${rs.re_content}</textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 								<div class="text-center pt-3 pb-5" id="updateRsm">
-								<input type="button" id="resumebtn" class="btn btn-outline-secondary" value="수정">
+								<input type="button" id="resumebtn" class="btn btn-outline-secondary" value="수정" >
 								<input type="button" id="cnlResumebtn" class="btn btn-outline-secondary" value="취소">
 								<input type="button" id="udtResumebtn" class="btn btn-outline-secondary" value="수정">
 								<input type="button" id="istResumebtn" class="btn btn-outline-secondary" value="등록">
