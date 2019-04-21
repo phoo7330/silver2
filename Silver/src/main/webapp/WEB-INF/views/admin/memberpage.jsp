@@ -354,7 +354,7 @@ $(document).ready(function(){
 							</div>
 
 							<div class="d-flex justify-content-center" id="chart_div2">
-
+ 
 							
 							</div>
 						</div>
