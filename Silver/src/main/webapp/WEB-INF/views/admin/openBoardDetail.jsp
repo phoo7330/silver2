@@ -95,21 +95,13 @@ $(document).ready(function(){
 			    </tr>
 			    <!-- 게시판 내용 -->
 			    <tr>
-			      <td class="board-text" style="height: 15rem;">
+			      <td class="board-text" style="height: 20rem;">
 			        <p class="text-justify font-weight-light p-1" id="board-contents">"contents"</p>
 			      </td>
 			    </tr>
-			    <!-- 게시판 댓글 목록 -->
-			    <tr>
-			      <td class="pl-3 bg-light font-weight-bold">댓글</td>
-			    </tr>
-			    <!-- 댓글 리스트 -->
-			    <tr>
-			      <td>"댓글리스트"</td>
-			    </tr>
 			  </table>
 			 <!-- 버튼 -->
-			   <div class="btn-group mt-5 pb-1 d-flex justify-content-center" >
+			   <div class="fixed-bottom btn-group m-5 pb-3 d-flex justify-content-center" >
 				  <div>
 				 	 <button type="button" class="btn btn-outline-dark mx-1 rounded-0" id="b-messagebtn">메시지</button>
 				  </div>
