@@ -610,7 +610,7 @@ function printc(data){ //빠른지원메뉴에 값을 전부 넣어둔다. 이�
 	
 }
 
-function insertmessage(){  //이력서 내용으로 쪽지 보내기
+function insertmessage(){  //이력서 내용으로 쪽지 보내기 
 	var userid = "${sessionScope.workerId}";
 	var title = '구직신청';
 	var content = '성명 : '+$('#username').html()+'\n성별 : '+$('#gender').html()+'\n생년월일 : '+$('#birthday').html()+'\n전화번호 : '+$('#telephone').html()+'\n주소 : '+$('#address').html();
