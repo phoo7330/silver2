@@ -8,6 +8,7 @@ public interface MessageMapper {
 	
 	public int insertmessage1(message ms);
 	
+	public ArrayList<message> selmessage1(String userid);
 
 	public int insertMessage(message ms);
 

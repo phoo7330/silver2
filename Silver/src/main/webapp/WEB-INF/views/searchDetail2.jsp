@@ -36,12 +36,23 @@ $(function(){
 	what();
 	mark();
 	selectBoard();
+	senior();
 	
 	
 	$("#cancelbtn").on("click",function(){
 		$('#insertform')[0].reset(); //게시글 취소버튼
 	});
-	
+	$("#m-insertb").on("click",function(){ // 쪽지 보내기 버튼
+		if('${message}'!=''){
+			alert('${message}');
+		};
+		if('${silid}'==''){
+			alert("현 시설은 아직 가입하지 않은 시설입니다. 전화로 문의해주세요.");
+			return;
+		}
+		
+		insertmessage();
+	});
 	$("#btn-comment").on("click",function(){
 		insertComment();
 	});
@@ -52,6 +63,70 @@ $(function(){
 		updateBoard2();
 		});
 });
+
+function senior(){   // 방문신청에 노인정보를 미리 넣어둠
+	var senior = '';
+	//console.log('${sc}');
+	senior += '-기본정보\n이름 : ${sc.sc_name} 생년월일 : ${sc.sc_birthday} 혈액형 : ${sc.sc_bloodtype}';
+	senior += '\n-일상생활 수행정도\n식사 : ${scd.scd_meal} 보행 : ${scd.scd_care} 세면 : ${scd.scd_washing}';
+	senior += '\n의복 : ${scd.scd_clothing} 목욕 : ${scd.scd_bath} 화장실 : ${scd.scd_toilet}';
+	senior += '\n질환정보 : ${scd.scd_disease}';
+	senior += '\n기타사항 : ${scd.scd_others}';
+	
+	$("#con2").html(senior);
+}
+function insertmessage(){
+	var ms_vdate=$('#ms_vdate').val();
+	console.log(ms_vdate);
+	if(ms_vdate==''){
+		alert("방문날짜를 입력하세요");
+		return;
+	}
+	var title = $('#request-title').val().length;
+	if(title<1){
+		alert("제목을 입력하세요");
+		return;
+	}
+	var content = $('#request-content').val().length;
+	if(content<10){
+		alert("내용을 10자이상 입력하세요");
+		return;
+	}
+	
+	var userid = $('#inputId').val();
+	var title = $('#request-title').val();
+	var content = $('#request-content').val();
+	var content2 = $('#con2').val();
+	var sender = $('#ms_sender').val();
+	console.log(userid);
+	console.log(title);
+	console.log(content);
+	console.log(content2);
+	console.log(sender);
+	//$('#insertmessage1')[0].submit();
+	$.ajax({
+        type : 'post',
+        url : 'insertmessage1',
+        data : {userid:userid,
+        		ms_title:title,
+        		ms_content:content,
+        		ms_content2:content2,
+        		ms_Sender:sender,
+        		ms_vdate:ms_vdate	
+        },
+        success : function(data){
+        	if(data==1){
+        		alert("신청되었습니다!");
+            	location.reload();
+        	}else{
+        		alert("신청에 실패했습니다. 다시시도하거나 관리자에게 문의하세요.");
+            	location.reload();
+        	}
+        	
+        }
+	});  
+	
+}
 function insertComment(){
 	var sb_seq=$('#sb_seq').val();
 	var sbc_seq=$('#thisseq').val();
@@ -583,42 +658,44 @@ $(function() {
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
+	        <form id="insertmessage1" action="insertmessage1" method="post" >
 	        <!-- 아이디, 이름, 방문일, 신청일, 요청사항 -->
 	          <div class="form-row">
 	            <div class="form-group col">
 	              <label for="inputId">아이디</label>
-	              <input type="text" class="form-control form-control-sm" id="inputId" placeholder="member.userid" readonly>
+	              <input type="hidden" id="ms_sender" name="ms_sender" value="${silid}">
+	              <input type="text" class="form-control form-control-sm" name="userid" id="inputId" value="${member.userid}" disabled>
 	            </div>
 	            <div class="form-group col">
 	              <label for="inputName">이름</label>
-	              <input type="text" class="form-control form-control-sm" id="inputName" placeholder="member.username" readonly>
+	              <input type="text" class="form-control form-control-sm" id="inputName" value="${member.username}" disabled>
 	            </div>
 	          </div>
 	          <div class="form-row">
 	            <div class="form-group col">
 	              <label for="inputId">방문일</label>
-	              <input type="date" class="form-control form-control-sm" id="inputId" placeholder="날짜선택">
+	              <input type="date" class="form-control form-control-sm" name="ms_vdate" id="ms_vdate" placeholder="날짜선택">
 	            </div>
 	            <div class="form-group col">
 	              <label for="inputName">신청일</label>
 	              <input type="date" class="form-control form-control-sm" id="inputName" placeholder="sysdate" readonly>
 	            </div>
 	          </div>
-	          <div class="form-group">
+	           <div class="form-group">
 	            <label for="request-title">제목</label>
-	            <textarea class="form-control" id="request-title" rows="1"></textarea>
+	            <textarea class="form-control" name="ms_title" id="request-title" rows="1"></textarea>
 	          </div>
 	          <div class="form-group">
 	            <label for="request-content">기타 요청사항</label>
-	            <textarea class="form-control" id="request-content" rows="4"></textarea>
+	            <textarea class="form-control" name="ms_content" id="request-content" rows="4"></textarea>
 	          </div>
 	          <!-- 어르신정보 -->
 	          <div class="form-group">
 	            <label for="silver-inform">어르신정보</label>
 	            	<div class="card">
-	            		<div class="container">
-			            	<!-- 이름 -->
+	            	<textarea id="con2" name="ms_content2" class="container" rows="8" cols="40" disabled></textarea>
+	            		<!-- <div class="container">
+			            	이름
 		                    <div class="row mt-2">
 		                      <div class="col-md-4">
 		                        <p>성함</p>
@@ -627,7 +704,7 @@ $(function() {
 		                        <p>"이름"</p>
 		                      </div>
 		                    </div>
-		                    <!-- 생년월일 -->
+		                    생년월일
 		                    <div class="row">
 		                      <div class="col-md-4">
 		                        <p>생년월일</p>
@@ -636,7 +713,7 @@ $(function() {
 		                        <p>"생년월일"</p>
 		                      </div>
 		                    </div>
-		                    <!-- 혈액형 -->
+		                    혈액형
 		                    <div class="row">
 		                      <div class="col-md-4">
 		                        <p>혈액형</p>
@@ -648,7 +725,7 @@ $(function() {
 		                    
 		                    <hr class="border-dark">
 		                    
-		                    <!-- 식사, 보행 -->
+		                    식사, 보행
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <p><small>식사</small></p>
@@ -663,7 +740,7 @@ $(function() {
 		                        <p><small>"보행"</small></p>
 		                      </div>
 		                    </div>
-		                    <!-- 세면, 의복 -->
+		                    세면, 의복
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <p><small>세면</small></p>
@@ -678,7 +755,7 @@ $(function() {
 		                        <p><small>"의복"</small></p>
 		                      </div>
 		                    </div>
-		                    <!-- 목욕, 화장실 -->
+		                    목욕, 화장실
 		                    <div class="row">
 		                      <div class="col-md-3">
 		                        <p><small>목욕</small></p>
@@ -696,7 +773,7 @@ $(function() {
 		                    
 		                    <hr class="border-dark">
 		                    
-		                    <!-- 기타 질환정보 -->
+		                    기타 질환정보
 							<div class="row">
 							<div class="col-md-4">
 							  <p>질환정보</p>
@@ -705,15 +782,15 @@ $(function() {
 							  <p>"질환정보"</p>
 							</div>
 		                    </div>
-		                <!-- container -->    
-	                   	</div>
+		                container    
+	                   	</div> -->
 		            </div>
 	          </div>
-			</form>
+	        </form>
 	      </div>
 	      <!-- 신청 및 닫기 버튼 -->
 	      <div class="modal-footer justify-content-center">
-	        <button type="button" class="btn btn-primary">신청</button>
+	        <button type="button" id="m-insertb" class="btn btn-primary">신청</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 	      </div>
 	    </div>

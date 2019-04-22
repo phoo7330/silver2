@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.scit.silver.dao.AdminDAO;
 import com.scit.silver.dao.MemberDAO;
-import com.scit.silver.dao.MessageDAO;
 import com.scit.silver.dao.ResumeDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.dao.SeniorDAO;
@@ -23,7 +23,6 @@ import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SeniorCitizen;
 import com.scit.silver.vo.SeniorCitizenDetails;
 import com.scit.silver.vo.SilverSearch;
-import com.scit.silver.vo.message;
 
 
 @Controller
@@ -38,6 +37,8 @@ public class MemberController {
 	SeniorDAO sndao;
 	@Autowired
 	ResumeDAO rdao;
+	@Autowired
+	AdminDAO adao;
 	
 	@RequestMapping(value = "/login", method = { RequestMethod.POST, RequestMethod.GET })
 	public String login() {
@@ -179,6 +180,22 @@ public class MemberController {
 			session.setAttribute("adminId", result.getUserid());
 			session.setAttribute("usertype", "10");
 			System.out.println("[사이트관리자]: "+result.getUserid());
+			int a,b,c = 0;
+			a=adao.countmember(1);
+			b=adao.countmember(2);
+			c=adao.countmember(3);
+			
+			model.addAttribute("count1", a);
+			model.addAttribute("count2", b);
+			model.addAttribute("count3", c);
+			
+			int aa,bb = 0;
+			aa=adao.counts("남성");
+			bb=adao.counts("여성");
+			model.addAttribute("count11", aa);
+			model.addAttribute("count22", bb);
+			
+			
 			return "admin/memberpage";
 		} 
 		return "index";

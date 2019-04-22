@@ -28,6 +28,13 @@ public class MessageDAO {
 		
 	}
 	
+	public ArrayList<message> selmessage1(String userid){
+		ArrayList<message> result = null;
+		MessageMapper mapper = session.getMapper(MessageMapper.class);	
+		result = mapper.selmessage1(userid);	
+		return result;
+	}
+	
 	public int insertMessage(message ms) {
 		int result = 0;
 		MessageMapper mapper = session.getMapper(MessageMapper.class);

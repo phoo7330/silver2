@@ -30,11 +30,7 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/searchDetail2", method = RequestMethod.GET)
-	public String searchDetail2(Locale locale, Model model) {
 
-		return "searchDetail2";
-	}
 
 	@RequestMapping(value = "/careersIndex", method = RequestMethod.GET)
 	public String careersIndex(Locale locale, Model model) {
@@ -42,12 +38,7 @@ public class HomeController {
 		return "careers/careersIndex";
 	}
 	
-	@RequestMapping(value = "/questionpage", method = RequestMethod.GET)
-	public String questionpage(Locale locale, Model model) {
 
-		return "facility/questionpage";
-	}
-	 
 
 	
 	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)

@@ -39,7 +39,48 @@
  #senderForm : 상세 내용에서 답장 버튼 누르면 나오는 메일 폼 
  #s-forwarding : 메일 성공시 나오는 최종 폼 
  */
+function selmessage(){ //메세지를 불러온다.
+	 var userid="${sessionScope.managerId}";
+	 $.ajax({
+	        type : 'get',
+	        url : 'selmes1',
+	        data : {userid:userid
+	        },
+	        success : output
+	        
+		});   
+ }
+ 
+function output(data){
+	console.log("output 들어옴");
+	console.log(data);
+	var list = '';
+	if(data.length==0){
+		console.log("메세지없음");
+		list +='<tr><td colspan="4" class="text-center">메세지가 없습니다.</td></tr>';
+		$("#selmessage").html(list);
+		
+	} else{
+		$.each(data, function (index, item){
+			console.log("구인글있음");
+			list += '<tr class="text-center" style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.ms_seq+')\'" >';
+			list += '<td scope="row"><div class="form-check"><input class="form-check-input position-static" type="checkbox" id="blankCheckbox1" value="option1"></div></td>';
+			list += '<td>'+item.userid+'</td>';
+			list += '<td>'+item.ms_title+'</td>';
+			list += '<td>'+item.ms_date+'</td>';
+			list += '</tr>'
+	});
+	
+	$("#selmessage").html(list);
+	}
+	console.log("끝");
+
+}
+
+
 $(document).ready(function(){
+		selmessage();// 페이지 처음 로딩시 메세지 불러옴
+	
 	  $("#senderForm").hide();
 	  $("#confirmForm").hide();
 	  $("#s-forwarding").hide();
@@ -52,7 +93,7 @@ $(document).ready(function(){
 
 	});
 
-	  $("#temporarybtn").click(function(){    
+	  $("#temporarybtn").click(function(){   // 받은메세지 상세보기 버튼 
 		 $("#receiveTable").hide();
 		 $("#senderForm").hide();
 		 $("#s-forwarding").hide();
@@ -204,14 +245,14 @@ $(document).ready(function(){
 			  		<thead>
 						<tr class=" text-center">
 							<th class="w-10"><small>선택</small></th>
-							<th class="w-20"><small>구분</small></th> <!-- 이력서&방문문의 구분 -->
-							<th class="w-20"><small>아이디</small></th>
-							<th class="w-30"><small>제목</small></th>
-							<th class="w-20"><small>받은날짜</small></th> <!-- 보낸이가 메일을 보낸 시점 = 기간관리자가 메일을 받은 시점 -->
+							<!-- 이력서&방문문의 구분 -->
+							<th class="w-15"><small>보낸사람</small></th>
+							<th class="w-40"><small>제목</small></th>
+							<th class="w-35"><small>받은날짜</small></th> <!-- 보낸이가 메일을 보낸 시점 = 기간관리자가 메일을 받은 시점 -->
 						</tr>
 			  		</thead>
 			  		<!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
-			  		<tbody>
+			  		<tbody id="selmessage">
 						<tr class="text-center">
 							<td scope="row">
 								<div class="form-check">

@@ -5,6 +5,58 @@
   
   
   <mapper namespace="com.scit.silver.dao.MessageMapper">
+  <insert id="insertmessage1" parameterType="message">
+    INSERT INTO MESSAGE(
+        MS_SEQ,
+        USERID,
+        MS_TITLE,
+        MS_CONTENT,
+        MS_DATE,
+        MS_SENDER,
+        MS_CONTENT2,
+        MS_DEL1,
+        MS_DEL2,
+        MS_VDATE
+	)VALUES(
+	    MS_SEQ.NEXTVAL,
+	    #{userid},
+	    #{ms_title},  
+	    #{ms_content},
+        SYSDATE,
+        #{ms_Sender},
+        #{ms_content2},
+        1,
+        1,
+	    #{ms_vdate}
+	)
+  
+  </insert>
+  <select id="selmessage1" parameterType="String" resultType="message">
+  SELECT
+     MS_SEQ,
+        USERID,
+        MS_TITLE,
+        MS_CONTENT,
+        MS_DATE,
+        MS_SENDER,
+        MS_CONTENT2,
+        MS_DEL1,
+        MS_DEL2,
+        MS_VDATE
+FROM
+    MESSAGE
+WHERE
+    MS_SENDER = #{userid}
+    AND
+    MS_DEL2 = 1
+  
+  
+  </select>
+  
+  
+  
+  
+  
   <insert id="insertMessage" parameterType="message">
 	INSERT INTO MESSAGE(
 	    MS_SEQ,
