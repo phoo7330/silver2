@@ -12,57 +12,89 @@ p, a {
  font-family: 'Nanum Gothic', sans-serif;	
 }
 
+/* search
+-------------------------------------------------- */
+#search-nav2 {
+ padding-top: 75px;
+}
 
-	#search-box {
-	 height: 100px;
-	 background-color: black;
-	}
-	
-	#map-api {
-	 height: 520px;
-	}
-	
-	#list {
-	 height: 520px;
-	}
+#search-box {
+ height: 100px;
+ background-color: black;
+}
 
-	#card-all {
-	 height: 10rem; 
-	 width: 18rem;
-	}
-	
-	.card-header {
-	 height: 5rem;
-	 background-color: #e1f1f6; 
-	}
-	
-	.card-body {
-	 height: 5rem;
-	}
-	
-	#nav-under {
-	 height: 3rem;
-	}
-	
-	#card-content {
-		height: 10rem;
-		width: 10rem;
-	}
-	
-	#picture,
-	#map,
-	#list {
-		height: 33rem;
-	}
-	
-	.modal-header {
-		height: 3rem;
-		background-color: #e4ebf2;
-	}
-	
-	#write-board {
-		top: 50%;
-		transform: translate(0, -50%);
-		margin: 0 auto;
-		height: 720px;
-	}
+#map-api {
+ height: 520px;
+}
+
+#list {
+ height: 520px;
+}
+
+#card-all {
+ height: 15rem; 
+ width: 15rem;
+ border-radius: 120px;
+ border:3px solid #902228;
+}
+
+#hr-grade {
+ border:2px solid #902228;
+}
+
+.card-header {
+ height: 5rem;
+ border-bottom:3px solid #5f5f5f;
+}
+
+.card-body {
+ height: 5rem;
+}
+
+#card-content {
+height: 10rem;
+width: 10rem;
+}
+
+#picture,
+#map,
+#list {
+ height: 34rem; 
+}
+
+.modal-header {
+height: 3rem;
+background-color: #e4ebf2;
+}
+
+#write-board {
+top: 50%;
+transform: translate(0, -50%);
+margin: 0 auto;
+height: 720px;
+}
+
+.btn-outline-danger {
+ border-color: #902228;
+ color: #902228;
+}
+
+.btn-danger {
+ border-color: #902228;
+ background-color: #902228;
+}
+
+/* searchDetail
+-------------------------------------------------- */
+
+#nav-under {
+ height: 3rem;
+}
+
+#f-information {
+ padding-top: 73px;
+}
+
+.text-danger {
+ color: #902228;	
+}

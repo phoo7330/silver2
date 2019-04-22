@@ -196,7 +196,7 @@ function listC(data){
 		list += '<a class="dropdown-item" href="javascript:updatecom('+item.sbc_seq+')"><small>수정</small></a>';
 		list += '<input type="hidden" id="sbc_seq" value="'+item.sbc_seq+'">'
 		list += '<a class="dropdown-item" href="javascript:delcom('+item.sbc_seq+')"><small>삭제</small></a></div></div></div>';
-		list += '<h6 id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
+		list += '<h6 class="col-md-12" id="table-contents">'+item.sbc_write+'</h6></td></tr>'; 
  
 		
 	}); 
@@ -568,47 +568,61 @@ $(function() {
 	
 });
 </script>
-<!-- 네비게이션 바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
- 		<a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-	    <span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse justify-content-between" id="navbar">
-		  <!-- 왼쪽 자동 정렬 -->
-		  	<div class="navbar-nav"> 
-		  		<a class="nav-item nav-link active" href="institution">
-		  			요양기관 <span class="sr-only">(current)</span> </a>
-		  		<a class="nav-item nav-link" href="worker">
-		  			종사자 </a>
-		  		<a class="nav-item nav-link" href="inquiry">
-		  			자주하는질문 </a>	
-			</div>
-		  <!-- 오른쪽 자동 정렬 -->
-		  	<c:if test="${sessionScope.loginId==null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<a class="nav-item nav-link" href="login">
-		  			로그인 </a>
-		  		<a class="nav-item nav-link" href="signup">
-		  			회원가입 </a>
-		  	</div>
-		  	</c:if>
-		  	
-		  	<c:if test="${sessionScope.loginId!=null}">
-		  	<div class="navbar-nav mr-sm-2">
-		  		<p class="lead">${sessionScope.loginId}님 환영합니다.</p>
-		  		<a class="nav-item nav-link" href="logout">
-		  			로그아웃 </a>
-		  	</div>
-			</c:if>
-		</div>  
-	</nav>	
-
-<hr class="my-1">
+	<!-- 메인 네비게이션 -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<!-- 오른쪽 상단 토글러 버튼 -->
+			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      	<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 네비게이션 상단 메뉴 -->
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<ul class="navbar-nav">
+					<li class="nav-item active" style="color: black;">
+			  			<a class="nav-link text-light mr-3" href="search"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  		</li>
+			  	</ul>
+				<!-- 로그인 안한 경우 -->
+			  	<c:if test="${sessionScope.loginId==null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
+			  		</li>
+			  	</ul>
+			  	</c:if>
+			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
+			  	<c:if test="${sessionScope.loginId!=null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="log">
+			  			<div class="dropdown mr-5">
+			  				<span class="welcome"><small>환영합니다</small></span>
+			  					<a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  						<small>${sessionScope.loginId}님</small>
+			  					</a>
+				  			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				  				<a class="dropdown-item" href="mypage"><small>마이페이지</small></a>
+				  				<a class="dropdown-item" href="logout"><small>로그아웃</small></a>
+				  			</div>
+			  			</div>
+			  		</li>
+				</ul>
+			  	</c:if>
+			</div>  
+		</nav>	
+	</header>   
 	
 	<!-- 왼쪽/기관정보 -->
-	<div class="position-relative overflow-hidden p-1 p-md-1 m-md-1 bg-white">
+	<div class="position-relative overflow-hidden bg-white" id="f-information">
 		<div class="row mb-1">
 		<div class="col-md-1">
 		</div>
@@ -625,23 +639,26 @@ $(function() {
 		<!-- 오른쪽/등급 -->
 			<div class="col-md-4">
 				<div class="card-deck p-4 d-flex flex-column position-static text-center" >
-					<div class="card mb-1 shadow-sm card border-info" id="card-all">
-						<div class="card-header">
-							<!-- 등급에따라서 js에서 문자로 바꿔서 출력  -->
-							<h4 class="py-3 font-weight-normal">${DetailsTwo.grade} : <strong id="grade"></strong></h4>
-						</div>
-						<div class="card-body p-0">
-					       <!-- Button trigger modal -->
-							<button type="button" class="btn btn-link mb-0 mt-3 p-0" data-toggle="modal" data-target="#request-visit">
-							<h4 class="mb-0"><strong>방문신청</strong></h4>  
-							</button>
-							<!-- Description -->
-							<p class="card-text"><small>방문 전 미리 신청하시면 빠른 안내가 가능합니다.</small></p>
+					<div class="card shadow-sm card" id="card-all">
+						<div class="card-body p-2">  
+					     	<h1 class="pt-3 mb-0 font-weight-normal text-dark">${DetailsTwo.grade} </h1> 	
+					    	<h2><strong class="pt-0 mb-0 text-dark" id="grade"></strong></h2>
+						 	<hr id="hr-grade">   
+							     <c:if test="${sessionScope.loginId!=null}">
+							     	<button type="button" class="btn btn-link mb-0 mt-3 p-0" data-toggle="modal" data-target="#request-visit">
+									<h4 class="mb-0"><strong>방문신청</strong></h4>  
+									</button>
+							     </c:if>	
+								 <c:if test="${sessionScope.loginId==null}">
+								 	<button id="notlogin" type="button" class="btn btn-link mb-0 mt-3 p-0" >
+									<h3 class="mb-0"><strong class="text-danger">방문신청</strong></h3>  
+									</button>
+								 </c:if>	
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-1">
+				<div class="col-md-1">
 			</div>
 		</div>
 	</div>
@@ -694,96 +711,6 @@ $(function() {
 	            <label for="silver-inform">어르신정보</label>
 	            	<div class="card">
 	            	<textarea id="con2" name="ms_content2" class="container" rows="8" cols="40" disabled></textarea>
-	            		<!-- <div class="container">
-			            	이름
-		                    <div class="row mt-2">
-		                      <div class="col-md-4">
-		                        <p>성함</p>
-		                      </div>
-		                      <div class="col-md-8">
-		                        <p>"이름"</p>
-		                      </div>
-		                    </div>
-		                    생년월일
-		                    <div class="row">
-		                      <div class="col-md-4">
-		                        <p>생년월일</p>
-		                      </div>
-		                      <div class="col-md-8">
-		                        <p>"생년월일"</p>
-		                      </div>
-		                    </div>
-		                    혈액형
-		                    <div class="row">
-		                      <div class="col-md-4">
-		                        <p>혈액형</p>
-		                      </div>
-		                      <div class="col-md-8">
-		                        <p>"혈액형"</p>
-		                      </div>
-		                    </div>
-		                    
-		                    <hr class="border-dark">
-		                    
-		                    식사, 보행
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <p><small>식사</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"식사"</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>보행</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"보행"</small></p>
-		                      </div>
-		                    </div>
-		                    세면, 의복
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <p><small>세면</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"세면"</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>의복</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"의복"</small></p>
-		                      </div>
-		                    </div>
-		                    목욕, 화장실
-		                    <div class="row">
-		                      <div class="col-md-3">
-		                        <p><small>목욕</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"목욕"</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>화장실</small></p>
-		                      </div>
-		                      <div class="col-md-3">
-		                        <p><small>"화장실"</small></p>
-		                      </div>
-		                    </div>
-		                    
-		                    <hr class="border-dark">
-		                    
-		                    기타 질환정보
-							<div class="row">
-							<div class="col-md-4">
-							  <p>질환정보</p>
-							</div>
-							<div class="col-md-8">
-							  <p>"질환정보"</p>
-							</div>
-		                    </div>
-		                container    
-	                   	</div> -->
 		            </div>
 	          </div>
 	        </form>
@@ -821,7 +748,7 @@ $(function() {
 			<!-- 기관일련번호 -->
 			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
-					<div class="card mb-1 shadow-sm card border-info" id="card-content">
+					<div class="card mb-1 shadow-sm" id="card-content">
 						<div class="card-header">
 							<div class="mb-1 my-3 text-musted">기관일련번호</div>
 						</div>
@@ -834,7 +761,7 @@ $(function() {
 			<!-- 설립일 -->
 			
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
-					<div class="card mb-1 shadow-sm card border-info" id="card-content">
+					<div class="card mb-1 shadow-sm" id="card-content">
 						<div class="card-header">
 							<div class="mb-1 my-3 text-musted">설립일</div>
 						</div>
@@ -847,7 +774,7 @@ $(function() {
 			<!-- 승인일 -->
 		
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
-					<div class="card mb-1 shadow-sm card border-info" id="card-content">
+					<div class="card mb-1 shadow-sm" id="card-content">
 						<div class="card-header">
 							<div class="mb-1 my-3 text-musted">승인일</div>
 						</div>
@@ -860,7 +787,7 @@ $(function() {
 			<!-- 연락처 -->
 		
 				<div class="card-deck p-1 d-flex flex-column position-static text-center" >
-					<div class="card mb-1 shadow-sm card border-info" id="card-content">
+					<div class="card mb-1 shadow-sm" id="card-content">
 						<div class="card-header">
 							<div class="mb-1 my-3 text-musted">연락처</div>
 						</div>
