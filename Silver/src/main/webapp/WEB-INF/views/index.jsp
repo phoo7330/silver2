@@ -120,13 +120,12 @@ $(function(){
 				</div>
 			</div>
 			<!--Logo-->
-		  <a class="carousel-control-prev w-50 active" href="adminlogin" role="button" data-slide="prev">
+		  <a class="carousel-control-prev w-50 active" href="index" role="button" data-slide="prev">
 		    <span class="pb-2 pr-5"><img src="resources/image/carouselLogo.png"></span>
 		  </a>
 		</div>
 	</div>
 
-<!-- 
 	<nav class="navbar border-top-0 p-3 m-0" id="search-nav">
 		<div class="col-1"></div>
 			<div class="col form-group mb-0">
@@ -135,11 +134,7 @@ $(function(){
 					  <input class="form-control my-0 py-1 amber-border" type="text" placeholder="지역 혹은 기관명을 검색하세요." aria-label="Search">
 				
 					  <div class="input-group-append">
-					  	<button class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" type="submit"><img src="resources/image/search.svg" ></button>
-					   
-					    <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-					        aria-hidden="true"><img src="resources/image/search.svg"></i></span>
-					 
+					  	<button class="btn btn-block btn-lg btn-light btn-sm" id="searchbtn" type="submit"><img src="resources/image/search.svg"></button>
 					  </div>
 					
 					</div>
@@ -147,7 +142,7 @@ $(function(){
 			</div>
 		<div class="col-1"></div>
 	</nav>
- -->
+
 	<main role="main">
 		<!-- Section -->
 	<div class="col-md-12">

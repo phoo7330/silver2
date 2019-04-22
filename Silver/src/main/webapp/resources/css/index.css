@@ -2,26 +2,22 @@
  background-color: #565656;
 }
 
-.carousel {
- border-bottom :4px solid #c21a24;
-}
-
 #main-card1 {
-  border-top: 12px solid #c21a24;
+  border-bottom: 12px solid #c21a24;
   height: 350px;
 }
 
 #main-card2 {
-  border-top: 12px solid #f6ad55;
+  border-bottom: 12px solid #f6ad55;
   height: 350px;
 }
 
 #main-card3 {
-  border-top: 12px solid #d6da4a;
+  border-bottom: 12px solid #d6da4a;
   height: 350px;
 }
 
 #main-card4 {
-  border-top: 12px solid #51c5e0;
+  border-bottom: 12px solid #51c5e0;
   height: 350px;
 }

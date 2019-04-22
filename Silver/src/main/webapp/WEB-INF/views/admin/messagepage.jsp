@@ -232,8 +232,8 @@ $(document).ready(function(){
 								<div class="card border-dark" id="confirmForm">
 									<div class="card-body">
 						            
-						              <!-- 일반사용자: 회원변경 / 기관관리자: 기관정보 -->
-						              <h5 class="font-weight-bold my-3">"회원변경" or "기관정보"</h5>
+						              <!-- indexpage: 문의하기 / mypage: 회원변경 / 기관마이페이지: 기관정보 -->
+						              <h5 class="font-weight-bold my-3">"Title - 문의하기,회원변경,기관정보,</h5>
 						              <!-- 아이디/이름 | 받은날짜 -->
 						              <div class="form-row"> 
 						                <p class="col-md-6 dark-grey-text mb-2">"userid/username"</p>
