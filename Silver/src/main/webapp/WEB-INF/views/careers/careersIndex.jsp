@@ -668,7 +668,7 @@ function insertmessage(){  //이력서 내용으로 쪽지 보내기
 	
 	<!-- 메인 네비게이션 -->
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm p-3" id="main-nav">
 	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
 	 		<!-- 오른쪽 상단 토글러 버튼 -->
 			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -787,10 +787,10 @@ function insertmessage(){  //이력서 내용으로 쪽지 보내기
 						<table class="table table-bordered" id="facilityForm">
 							<tbody>
 							    <tr>
-							      <th class="bg-light w-30">기관명</th>
-							      <th class="w-20" id="jname">"seach_seq"</th>
-							      <th class="bg-light w-30">급여종류</th>
-							      <th class="w-20" id="jtype">"Type"</th>
+							      <th class="bg-light w-20">기관명</th>
+							      <th class="w-30" id="jname">"seach_seq"</th>
+							      <th class="bg-light w-20">급여종류</th>
+							      <th class="w-30" id="jtype">"Type"</th>
 							    </tr>
 							    <tr>
 							      <td class="bg-light">주소</td>

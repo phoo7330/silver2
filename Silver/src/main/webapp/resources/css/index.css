@@ -2,7 +2,7 @@
 
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
-@import url('https://fonts.googleapis.com/css?family=Song+Myung');
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 .nav-brand, h1, h2, h3, h4, h5 {
  font-family: 'Noto Sans KR', sans-serif;
@@ -15,7 +15,7 @@ p, a {
 
 .h3-responsive,
 #p-caption {
- font-family: 'Song Myung', serif;
+ font-family: 'Jeju Gothic';
 }
  
  
@@ -37,4 +37,5 @@ p, a {
 
 .btn-danger {
  background-color: #902228;
+ border-color: #902228;
 }
