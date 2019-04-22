@@ -80,7 +80,7 @@ $(function(){
 				if(data==1){
 					alert("문의를 보냈습니다.");
 				}else{
-					alert("실패했습니다.");
+					alert("실패했습니다."); 
 				}
 				console.log(data);
 				$("#contact")[0].reset();
