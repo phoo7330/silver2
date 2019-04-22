@@ -1,23 +1,40 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+@import url('https://fonts.googleapis.com/css?family=Song+Myung');
+
+.nav-brand, h1, h2, h3, h4, h5 {
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+p, a {
+ font-family: 'Nanum Gothic', sans-serif;	
+}
+
+
+.h3-responsive,
+#p-caption {
+ font-family: 'Song Myung', serif;
+}
+ 
+ 
 .page-footer {
  background-color: #565656;
 }
 
-#main-card1 {
-  border-bottom: 12px solid #c21a24;
-  height: 350px;
-}
-
-#main-card2 {
-  border-bottom: 12px solid #f6ad55;
-  height: 350px;
-}
-
-#main-card3 {
-  border-bottom: 12px solid #d6da4a;
-  height: 350px;
-}
-
+#main-card1,
+#main-card2,
+#main-card3,
 #main-card4 {
-  border-bottom: 12px solid #51c5e0;
+  border-top: 4px solid #902228;
   height: 350px;
+}
+
+.carousel {
+ border-bottom: 4px solid #902228;
+}
+
+.btn-danger {
+ background-color: #902228;
 }
