@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -25,12 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.scit.silver.dao.FacilityDAO;
 import com.scit.silver.dao.MemberDAO;
+import com.scit.silver.dao.MessageDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsResume;
 import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Job;
 import com.scit.silver.vo.SilverSearch;
+import com.scit.silver.vo.message;
 import com.test.fileTest.util.PageNavigator2;
 
 
@@ -44,6 +46,8 @@ public class FacilityController {
 	SearchDAO sdao;
 	@Autowired
 	MemberDAO mdao;
+	@Autowired
+	MessageDAO msdao;
 	
 	private static final int boardPerPage=6;
 	private static final int pagePerGroup=3;
@@ -426,6 +430,64 @@ public class FacilityController {
 		result.put("result", sult);
 		return result;
 	}
+	@RequestMapping(value = "/questionpage", method = RequestMethod.GET)
+	public String questionpage(HttpSession session, Model model) {
+		String mid = (String)session.getAttribute("managerId");
+		if(mid==null) {
+			model.addAttribute("message", "잘못된 접근입니다.");
+			return "index";
+		}
+		return "facility/questionpage";
+		
+	
+	}
 	
 	
+	@RequestMapping(value = "/selmes1", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<message> selmes1(String userid) {
+		ArrayList<message> result = null;
+		result = msdao.selmessage1(userid);
+		return result;
+	}
+	@RequestMapping(value = "/selmes2", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody ArrayList<message> selmes2(String userid) {
+		ArrayList<message> result = null;
+		result = msdao.selmessage2(userid);
+		return result;
+	}
+	
+	@RequestMapping(value = "/selectonem", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody message selectonem(int ms_seq) {
+		message result = null;
+		result = msdao.selectonem(ms_seq);
+		System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/remessage1", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int remessage1(message m) {
+		int result = 0;
+		result = msdao.insertmessage1(m);
+		System.out.println(m);
+		System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/delmessage1", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody int delmessage1(
+			 HttpServletRequest request,
+	         int[] checkBoxArr//배열 받기 traditional: true
+
+			) {
+		int result = 0;
+        for(int i = 0; i<checkBoxArr.length; i++) {
+        	System.out.println("반복"+i);
+        	result = msdao.delmessage1(checkBoxArr[i]);
+        }
+        
+		System.out.println(result);
+		return result;
+	}
+	
+
 }

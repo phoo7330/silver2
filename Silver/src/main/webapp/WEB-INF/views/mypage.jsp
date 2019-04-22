@@ -49,7 +49,7 @@
 	    			ctx += item.ms_Sender;
 	    			ctx += '</td>'
 	    			ctx += '<td><label class="form-check-label" for="selectContents">';
-	    			ctx += item.ms_content;
+	    			ctx += item.ms_title;
 	    			ctx += '</label></td>';
 	    			ctx += '<td>' + item.ms_date + '</td>';
 	    			ctx += '</tr>';
@@ -71,7 +71,7 @@
 	    			ctx += item.userid;
 	    			ctx += '</td>'
 	    			ctx += '<td><label class="form-check-label" for="selectContents">';
-	    			ctx += item.ms_content;
+	    			ctx += item.ms_title;
 	    			ctx += '</label></td>';
 	    			ctx += '<td>' + item.ms_date + '</td>';
 	    			ctx += '</tr>';
@@ -1674,7 +1674,7 @@
 							  </li>
 							  <li class="nav-item">
 							    <a class="nav-link" id="write-message" data-toggle="pill" href="#pills-write" role="tab" aria-controls="pills-contact" aria-selected="false">쪽지쓰기</a>
-							  </li>
+							  </li> 
 							</ul>
 							<!-- 네비게이션 연결 -->
 							<div class="tab-content" id="pills-tabContent">
@@ -1694,7 +1694,7 @@
 									    <tr class="table-bordered text-center">
 									      <th scope="col"><small>선택</small></th>
 									      <th scope="col"><small>보낸사람</small></th>
-									      <th scope="col"><small>내용</small></th>
+									      <th scope="col"><small>제목</small></th>
 									      <th scope="col"><small>날짜</small></th>
 									    </tr>
 									  </thead>
@@ -1756,7 +1756,7 @@
 									    <tr class="table-bordered text-center">
 									      <th scope="col"><small>선택</small></th>
 									      <th scope="col"><small>받는사람</small></th>
-									      <th scope="col"><small>내용</small></th>
+									      <th scope="col"><small>제목</small></th>
 									      <th scope="col"><small>날짜</small></th>
 									    </tr>
 									  </thead>
@@ -1813,6 +1813,10 @@
 									    <textarea class="form-control" id="writeMessage" rows="10"></textarea>
 									</div>
 								</div>
+								
+								
+								
+								
 							</div>									
 						</div>
 					</div>

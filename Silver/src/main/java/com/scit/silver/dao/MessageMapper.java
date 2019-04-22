@@ -9,6 +9,14 @@ public interface MessageMapper {
 	public int insertmessage1(message ms);
 	
 	public ArrayList<message> selmessage1(String userid);
+	
+	public message selectonem(int ms_seq);
+	
+	public int delmessage1(int ms_seq);
+	
+	public ArrayList<message> selmessage2(String userid);
+	
+	
 
 	public int insertMessage(message ms);
 

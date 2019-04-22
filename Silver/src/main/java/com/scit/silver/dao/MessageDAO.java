@@ -35,6 +35,31 @@ public class MessageDAO {
 		return result;
 	}
 	
+	public message selectonem(int ms_seq) {
+		message result = null;
+		MessageMapper mapper = session.getMapper(MessageMapper.class);	
+		result = mapper.selectonem(ms_seq);
+		return result;
+	}
+	
+	public int delmessage1(int ms_seq) {
+		int result = 0;
+		MessageMapper mapper = session.getMapper(MessageMapper.class);	
+		result = mapper.delmessage1(ms_seq);
+		return result;
+	}
+	public ArrayList<message> selmessage2(String userid){
+		ArrayList<message> result = null;
+		MessageMapper mapper = session.getMapper(MessageMapper.class);	
+		result = mapper.selmessage2(userid);	
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	public int insertMessage(message ms) {
 		int result = 0;
 		MessageMapper mapper = session.getMapper(MessageMapper.class);

@@ -13,10 +13,14 @@
         MS_CONTENT,
         MS_DATE,
         MS_SENDER,
+        <if test="ms_content2 != null">
         MS_CONTENT2,
+        </if>
         MS_DEL1,
-        MS_DEL2,
-        MS_VDATE
+        MS_DEL2
+        <if test="ms_vdate != null">
+        ,MS_VDATE
+        </if>
 	)VALUES(
 	    MS_SEQ.NEXTVAL,
 	    #{userid},
@@ -24,10 +28,14 @@
 	    #{ms_content},
         SYSDATE,
         #{ms_Sender},
+        <if test="ms_content2 != null">
         #{ms_content2},
+        </if>
         1,
-        1,
-	    #{ms_vdate}
+        1
+        <if test="ms_vdate != null">
+	    ,#{ms_vdate}
+	    </if>
 	)
   
   </insert>
@@ -37,7 +45,7 @@
         USERID,
         MS_TITLE,
         MS_CONTENT,
-        MS_DATE,
+       TO_CHAR(MS_DATE,'yyyy-mm-dd hh:mi:ss') MS_DATE,
         MS_SENDER,
         MS_CONTENT2,
         MS_DEL1,
@@ -49,10 +57,55 @@ WHERE
     MS_SENDER = #{userid}
     AND
     MS_DEL2 = 1
+  </select>
+  <select id="selmessage2" parameterType="String" resultType="message">
+  SELECT
+     MS_SEQ,
+        USERID,
+        MS_TITLE,
+        MS_CONTENT,
+       TO_CHAR(MS_DATE,'yyyy-mm-dd hh:mi:ss') MS_DATE,
+        MS_SENDER,
+        MS_CONTENT2,
+        MS_DEL1,
+        MS_DEL2,
+        MS_VDATE
+FROM
+    MESSAGE
+WHERE
+    USERID = #{userid}
+    AND
+    MS_DEL1 = 1
+  </select>  
+  <update id="delmessage1" parameterType="int">
+  UPDATE MESSAGE
+	SET
+	    MS_DEL2 = 0
+	WHERE
+		MS_SEQ = #{ms_seq}
+  
+  </update>
+    <select id="selectonem" parameterType="int" resultType="message">
+  SELECT
+     MS_SEQ,
+        USERID,
+        MS_TITLE,
+        MS_CONTENT,
+        TO_CHAR(MS_DATE,'yyyy-mm-dd hh:mi:ss') MS_DATE,
+        MS_SENDER,
+        MS_CONTENT2,
+        MS_DEL1,
+        MS_DEL2,
+        MS_VDATE
+FROM
+    MESSAGE
+WHERE
+    MS_SEQ = #{ms_seq}
+    AND
+    MS_DEL2 = 1
   
   
   </select>
-  
   
   
   
