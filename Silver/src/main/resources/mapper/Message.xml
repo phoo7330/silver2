@@ -57,6 +57,8 @@ WHERE
     MS_SENDER = #{userid}
     AND
     MS_DEL2 = 1
+ORDER BY
+	MS_DATE DESC
   </select>
   <select id="selmessage2" parameterType="String" resultType="message">
   SELECT
@@ -76,6 +78,8 @@ WHERE
     USERID = #{userid}
     AND
     MS_DEL1 = 1
+ORDER BY
+	MS_DATE DESC
   </select>  
   <update id="delmessage1" parameterType="int">
   UPDATE MESSAGE
