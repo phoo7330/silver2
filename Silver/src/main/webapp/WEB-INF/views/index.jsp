@@ -39,6 +39,55 @@ $(function(){
 		if('${message}'!=''){
 			alert('${message}');
 		};
+		
+		$("#contactbtn").click(function(){   //문의사항 보내기 .아이디가 없으므로 히든값에 admin으로 아이디넣음
+			var con2 = '이름 : '+$("#contact-name").val()+' 이메일 : '+$("#contact-email").val();
+			var con1 = $("#contact-message").val();
+			var userid = 'admin';
+			var title = $("#contact-title").val();
+			
+			if($("#contact-email").val().length<8){
+				alert("이메일을 입력하세요");
+				return;
+			}
+			if($("#contact-name").val().length<2){
+				alert("이름을 입력하세요");
+				return;
+			}
+			if($("#contact-title").val().length<5){
+				alert("제목을 5자 이상입력하세요");
+				return;
+			}
+			if($("#contact-message").val().length<10){
+				alert("문의내용을 10자 이상입력하세요");
+				return;
+			}
+			
+		console.log(con2);
+		console.log(con1);
+		console.log(userid);
+		console.log(title);
+		$.ajax({
+			url:"insertmessage1", 
+			type:"post",
+			data:{"ms_Sender":userid,
+				"userid":userid,
+				"ms_title":title,
+				"ms_content":con1,
+				"ms_content2":con2
+			},
+			success:function(data){
+				if(data==1){
+					alert("문의를 보냈습니다.");
+				}else{
+					alert("실패했습니다.");
+				}
+				console.log(data);
+				$("#contact")[0].reset();
+			}
+			}); 
+		
+		});
 });
 </script>
 <body>
@@ -272,12 +321,13 @@ $(function(){
 	    <p class="w-responsive m-3">서비스 이용 중 생긴 불편함이나 요청 혹은 제안을 보내주세요.</p>
 	    <div class="row">
 	      <div class="col-md-9 pr-0 ">
-	        <form class="m-3">
+	        <form class="m-3" id="contact">
 	          <div class="row">
 	          	<!-- Grid column 1 -->
 	            <div class="col-md-6">
 	              <div class="md-form mb-3">
 	              	<label for="contact-name" class="">이름</label>
+	              	
 	                <input type="text" id="contact-name" class="form-control pr-0 rounded-0">
 	              </div>
 	            </div>
@@ -285,7 +335,7 @@ $(function(){
 	            <div class="col-md-6 pr-0">
 	              <div class="md-form mb-3">
 	              	<label for="contact-email" class="">이메일</label>
-	                <input type="text" id="contact-email" class="form-control pr-0 rounded-0">
+	                <input type="email" id="contact-email" class="form-control pr-0 rounded-0">
 	              </div>
 	            </div>
 	          </div>
@@ -310,7 +360,7 @@ $(function(){
 	          </div>
 	          <!-- 버튼 -->
 	          <div class="text-center text-md-left mt-3">
-	          	<button type="button" class="btn btn-danger rounded-0">보내기</button>
+	          	<button type="button" id="contactbtn" class="btn btn-danger rounded-0">보내기</button>
 	          </div>
 	        </form>
 	      </div>
