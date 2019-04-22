@@ -1882,6 +1882,13 @@
 									    <textarea class="form-control" id="writeMessage" rows="10"></textarea>
 									</div>
 								</div>
+<<<<<<< HEAD
+=======
+								
+								
+								
+								
+>>>>>>> branch 'master' of https://github.com/phoo7330/silver2.git
 							</div>									
 						</div>
 					</div>

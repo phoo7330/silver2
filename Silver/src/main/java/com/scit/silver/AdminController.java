@@ -311,9 +311,8 @@ public class AdminController {
 		return result;
 	}
 	
-	
 	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)
-	public String messagepage(HttpSession session, Model model) {
+	public String messagepage(HttpSession session, Locale locale, Model model) {
 		String aid = (String)session.getAttribute("adminId");
 		if(aid==null) {
 			model.addAttribute("message", "잘못된 접근입니다.");

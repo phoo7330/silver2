@@ -1,68 +1,55 @@
 @charset "UTF-8";
 
-@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+	#search-box {
+	 height: 100px;
+	 background-color: black;
+	}
+	
+	#map-api {
+	 height: 520px;
+	}
+	
+	#list {
+	 height: 520px;
+	}
 
-.navbar, h1, h2, h3, h4, h5 {
- font-family: 'Noto Sans KR', sans-serif;
-}
-
-p, a {
- font-family: 'Nanum Gothic', sans-serif;
-}
-
-
-#search-box {
- height: 100px;
- background-color: black;
-}
-
-#map-api {
- height: 520px;
-}
-
-#list {
- height: 520px;
-}
-
-#card-all {
- height: 10rem; 
- width: 18rem;
-}
-
-.card-header {
- height: 5rem;
- background-color: #e1f1f6; 
-}
-
-.card-body {
- height: 5rem;
-}
-
-#nav-under {
- height: 3rem;
-}
-
-#card-content {
-	height: 10rem;
-	width: 10rem;
-}
-
-#picture,
-#map,
-#list {
-	height: 33rem;
-}
-
-.modal-header {
-	height: 3rem;
-	background-color: #e4ebf2;
-}
-
-#write-board {
-	top: 50%;
-	transform: translate(0, -50%);
-	margin: 0 auto;
-	height: 720px;
-}
+	#card-all {
+	 height: 10rem; 
+	 width: 18rem;
+	}
+	
+	.card-header {
+	 height: 5rem;
+	 background-color: #e1f1f6; 
+	}
+	
+	.card-body {
+	 height: 5rem;
+	}
+	
+	#nav-under {
+	 height: 3rem;
+	}
+	
+	#card-content {
+		height: 10rem;
+		width: 10rem;
+	}
+	
+	#picture,
+	#map,
+	#list {
+		height: 33rem;
+	}
+	
+	.modal-header {
+		height: 3rem;
+		background-color: #e4ebf2;
+	}
+	
+	#write-board {
+		top: 50%;
+		transform: translate(0, -50%);
+		margin: 0 auto;
+		height: 720px;
+	}
