@@ -39,6 +39,50 @@ $(function(){
 		if('${message}'!=''){
 			alert('${message}');
 		};
+		
+		$("#contactbtn").click(function(){
+			if($("#contact-email").val().length<8){
+				alert("이메일을 입력하세요");
+				return;
+			}
+			if($("#contact-name").val().length<2){
+				alert("이름을 입력하세요");
+				return;
+			}
+			if($("#contact-title").val().length<5){
+				alert("제목을 5자 이상 입력하세요");
+				return;
+			}
+			if($("#contact-message").val().length<10){
+				alert("내용을 10자 이상 입력하세요");
+				return;
+			}
+			
+			var title = $("#contact-title").val();
+			var content = $("#contact-message").val();
+			var content2 = '이름 : '+$("#contact-name").val()+' 이메일 : '+$("#contact-email").val();
+			var id = 'admin';
+			$.ajax({
+		        type : 'post',
+		        url : 'insertmessage1',
+		        data : {userid:id,
+		        		ms_title:title,
+		        		ms_content:content,
+		        		ms_content2:content2,
+		        		ms_Sender:id
+		        },
+		        success : function(data){
+		        	if(data==1){
+		        		alert("문의를 보냈습니다!");
+		        		location.reload();
+		        	}else{
+		        		alert("문의에 실패했습니다. ");
+		        		location.reload();
+		        	}
+		        	
+		        }
+			});  
+		});
 });
 </script>
 <body>
@@ -310,7 +354,7 @@ $(function(){
 	          </div>
 	          <!-- 버튼 -->
 	          <div class="text-center text-md-left mt-3">
-	          	<button type="button" class="btn btn-danger rounded-0">보내기</button>
+	          	<button type="button" id="contactbtn" class="btn btn-danger rounded-0">보내기</button>
 	          </div>
 	        </form>
 	      </div>
