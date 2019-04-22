@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>실버서퍼-기관검색</title>
+   <title>SilverSurfer</title>
    
    <!-- 인코딩 -->
    <meta charset="UTF-8">
@@ -23,62 +23,76 @@
 </head>
 <body>
 
-<!-- 네비게이션 바 -->
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-       <a class="navbar-brand" href="index"><img src="resources/image/box.svg"> 실버서퍼</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
-       <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-between" id="navbar">
-        <!-- 왼쪽 자동 정렬 -->
-           <div class="navbar-nav"> 
-              <a class="nav-item nav-link active" href="institution">
-                 요양기관 <span class="sr-only">(current)</span> </a>
-              <a class="nav-item nav-link" href="practician">
-                 종사자 </a>
-              <a class="nav-item nav-link" href="inquiry">
-                 자주하는질문 </a>   
-         </div>
-        <!-- 오른쪽 자동 정렬 -->
-           <c:if test="${sessionScope.loginId==null}">
-           <div class="navbar-nav mr-sm-2">
-              <a class="nav-item nav-link" href="login">
-                 로그인 </a>
-              <a class="nav-item nav-link" href="signup">
-                 회원가입 </a>
-           </div>
-           </c:if>
-           
-           <c:if test="${sessionScope.loginId!=null}">
-           <div class="navbar-nav mr-sm-2">
-              <p class="lead">${sessionScope.loginId}님 환영합니다.</p>
-              <a class="nav-item nav-link" href="logout">
-                 로그아웃 </a>
-           </div>
-         </c:if>
-      </div>  
-   </nav>   
-
-<hr class="my-1">
+	<!-- 메인 네비게이션 -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top p-3" id="main-nav">
+	 		<a class="navbar-brand mr-5 p-0" href="index"><img src="resources/image/silversurferLogo.png"></a>
+	 		<!-- 오른쪽 상단 토글러 버튼 -->
+			<button class="navbar-toggler pt-0" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      	<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- 네비게이션 상단 메뉴 -->
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<ul class="navbar-nav">
+					<li class="nav-item active" style="color: black;">
+			  			<a class="nav-link text-light mr-3" href="search"><strong>요양기관</strong><span class="sr-only">(current)</span></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="careersIndex"><strong>종사자</strong></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light mr-3" href="inquiry"><strong>자주하는질문</strong></a>	
+			  		</li>
+			  	</ul>
+				<!-- 로그인 안한 경우 -->
+			  	<c:if test="${sessionScope.loginId==null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="login"><small>로그인</small></a>
+			  		</li>
+			  		<li class="nav-item">
+			  			<a class="nav-link text-light" href="signup"><small>회원가입</small></a>
+			  		</li>
+			  	</ul>
+			  	</c:if>
+			  	<!-- 로그인 후(dropdown) : 마이페이지/로그아웃 -->
+			  	<c:if test="${sessionScope.loginId!=null}">
+			  	<ul class="navbar-nav mt-2 mt-md-0">
+			  		<li class="log">
+			  			<div class="dropdown mr-5">
+			  				<span class="welcome"><small>환영합니다</small></span>
+			  					<a class="dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  						<small>${sessionScope.loginId}님</small>
+			  					</a>
+				  			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				  				<a class="dropdown-item" href="mypage"><small>마이페이지</small></a>
+				  				<a class="dropdown-item" href="logout"><small>로그아웃</small></a>
+				  			</div>
+			  			</div>
+			  		</li>
+				</ul>
+			  	</c:if>
+			</div>  
+		</nav>	
+	</header>   
 
    <!-- 대시보드 -->
    <!-- <div class="container"> -->
    <header id="search">
-      <div class="p-1 bg-white text-black">
+      <div class="bg-white text-black" id="search-nav2">
          <div class="row shadow-sm p-3 bg-white rounded">
             <div class="container">
             <div class="row mx-1">
             <!-- 버튼 -->
-               <button type="button" class="btn btn-outline-info btn-sm mx-1 categoryBtn" btnFlag="1">요양병원</button>
-               <button type="button" class="btn btn-outline-info btn-sm mx-1 categoryBtn" btnFlag="2">요양원</button>
-               <button type="button" class="btn btn-outline-info btn-sm mx-1 categoryBtn" btnFlag="3">방문시설</button>
-               <button type="button" class="btn btn-outline-info btn-sm mx-1 categoryBtn" btnFlag="4">치매전담</button>
+               <button type="button" class="btn btn-outline-danger btn-sm mx-1 categoryBtn" btnFlag="1">요양병원</button>
+               <button type="button" class="btn btn-outline-danger btn-sm mx-1 categoryBtn" btnFlag="2">요양원</button>
+               <button type="button" class="btn btn-outline-danger btn-sm mx-1 categoryBtn" btnFlag="3">방문시설</button>
+               <button type="button" class="btn btn-outline-danger btn-sm mx-1 categoryBtn" btnFlag="4">치매전담</button>
                
             <!-- 검색 -->
             <form id="searchsilver" name="searchsilver" class="form-inline mt-2 mt-md-0" onsubmit="return false">
-               <input id="silvername" name="silvername" class="form-control mr-sm-2 form-control-sm mx-2" type="text" placeholder="시설명 검색" aria-label="search">
-               <button id="searchbtn" class="btn btn-info my-2 my-sm-0 btn-sm" type="submit">검색</button>
+               <input id="silvername" name="silvername" class="form-control mr-sm-2 mx-2" type="text" placeholder="시설명 검색" aria-label="search">
+               <button id="searchbtn" class="btn btn-danger my-2 my-sm-0 btn-sm" type="submit">검색</button>
             </form>
             </div>
             </div>
@@ -90,8 +104,8 @@
    <div class="container">   
       <div class="row my-1">
          <!-- 지도 -->
-         <div class="col-md-6">
-            <div class="card p-2" id="map">
+         <div class="col-md-6 pr-0">
+            <div class="card border-0" id="map">
             </div>
          </div>
       <!-- 리스트 -->
@@ -105,9 +119,11 @@
                        <div class="col-sm-8 info">
                           <p id="count" class="text-secondary font-weight-bold"></p>
                        </div>   
+                       <!-- 
                        <div class="col-sm-4">
                        <button type="button" class="btn btn-sm btn-info float-right">엑셀로 출력</button>
                        </div>
+                        -->
                     </div>
                  <hr class="my-1">
                  </div>
@@ -330,7 +346,7 @@ function wlist(accidentDeath){
           
          list += '<tbody>';//개별 tr 클릭시 search_seq값을 컨트롤러로 넘긴다.
          list += '<tr style="cursor:pointer" onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
-         list += '<td scope="row"><p class="text-primary font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 4.5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
+         list += '<td scope="row"><p class="text-dark font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 4.5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
          list += '</tr>';
          list += '</tbody>';
          
@@ -356,7 +372,7 @@ function wlist(accidentDeath){
          
          list += '<tbody>'; //개별 tr 클릭시 search_seq값을 컨트롤러로 넘긴다.
          list += '<tr style="cursor:pointer" onclick="location.href=\'searchDetail?seach_seq='+item.seach_seq+'\'" class="onesilver" name="seach_seq" data-value="'+item.seach_seq+'">';
-         list += '<td scope="row"><p class="text-primary font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
+         list += '<td scope="row"><p class="text-dark font-weight-bold my-0">'+item.grade+'등급</p><p class="text-danger my-0">'+siltype+'</p><p class="my-0 font-weight-bold">'+item.silvername+'</p>'+item.areaa+item.areab+item.areac+'<br><p class="text-dark bg-light" style="width: 5rem;">'+item.service+'</p><hr class="my-1"></span></td>'; //등급 & 시설종류 1.요양병원 2.요양원 3.방문시설 4.치매전담
          list += '</tr>';
          list += '</tbody>';
          
