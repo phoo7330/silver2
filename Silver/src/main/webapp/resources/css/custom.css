@@ -2,10 +2,16 @@
 
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
 
-.nav-brand, h1, h2, h3, h4, h5 {
-	font-family: 'Jeju Gothic';
+.navbar, h1, h2, h3, h4, h5 {
+ font-family: 'Noto Sans KR', sans-serif;
 }
+
+p, a {
+ font-family: 'Nanum Gothic', sans-serif;
+}
+
 
 /* Navigation
 -------------------------------------------------- */
@@ -26,16 +32,16 @@
 -------------------------------------------------- */
 
 .carousel {
-  margin-bottom: 0rem;
+ margin-bottom: 0rem;
 }
 /* Since positioning the image, we need to help out the caption */
 
 .carousel-caption {
-  bottom: 3rem;
+ bottom: 3rem;
 }
 
 .carousel-control-prev span img {
-	height: 12rem;
+ height: 12rem;
 	
 }
 /* Declare heights because of positioning of img element */
@@ -43,13 +49,13 @@
 .carousel-item {
   height: 18rem;
 }
-   */
+*/
 
 /* Search
 -------------------------------------------------- */
 #search-nav {
-	border-bottom: 4px solid #902228;
-	background-color: #5f5f5f;
+ border-bottom: 4px solid #902228;
+ background-color: #5f5f5f;
 }
 
 .input-group.md-form.form-sm.form-2 input.amber-border  {
