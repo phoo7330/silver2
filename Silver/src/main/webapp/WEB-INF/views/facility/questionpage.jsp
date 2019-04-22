@@ -250,7 +250,7 @@ $(document).ready(function(){
 							<th class="w-40"><small>제목</small></th>
 							<th class="w-35"><small>받은날짜</small></th> <!-- 보낸이가 메일을 보낸 시점 = 기간관리자가 메일을 받은 시점 -->
 						</tr>
-			  		</thead>
+			  		</thead> 
 			  		<!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
 			  		<tbody id="selmessage">
 						<tr class="text-center">
