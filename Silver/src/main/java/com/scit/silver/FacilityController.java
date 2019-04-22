@@ -26,11 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.scit.silver.dao.FacilityDAO;
 import com.scit.silver.dao.MemberDAO;
 import com.scit.silver.dao.MessageDAO;
+import com.scit.silver.dao.ResumeDAO;
 import com.scit.silver.dao.SearchDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsResume;
 import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.Job;
+import com.scit.silver.vo.Resume;
 import com.scit.silver.vo.SilverSearch;
 import com.scit.silver.vo.message;
 import com.test.fileTest.util.PageNavigator2;
@@ -48,6 +50,7 @@ public class FacilityController {
 	MemberDAO mdao;
 	@Autowired
 	MessageDAO msdao;
+	
 	
 	private static final int boardPerPage=6;
 	private static final int pagePerGroup=3;
@@ -488,6 +491,7 @@ public class FacilityController {
 		System.out.println(result);
 		return result;
 	}
+
 	
 
 }

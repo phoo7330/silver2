@@ -578,17 +578,81 @@ function write(accidentDeath){
 	});
 	
 	/* 구인정보 상세보기 & 빠른지원 show and hide */
+function callc(){
+	userid = "${sessionScope.workerId}";
+		console.log(userid);
+		$.ajax({
+			url:"selonere", 
+			type:"get",
+			data:{"userid":userid},
+			success:printc
+			});
+	}
+function printc(data){ //빠른지원메뉴에 값을 전부 넣어둔다. 이력서가 등록이 안되어있으면 리턴시킨다.
+	if(data==null){
+		alert("마이페이지에서 이력서를 먼저 등록해주세요!");
+		return;
+	}
 	
+	console.log(data);
+	console.log('${member}');
+	$('#username').html('${member.username}');
+	$('#gender').html('${member.gender}');
+	$('#birthday').html('${member.birthday}');
+	$('#telephone').html('${member.telephone}');
+	$('#address').html('${member.address}');
+	
+	$('#re_qu').html(data.re_qualification);
+	$('#rejob').html(data.re_job);
+	$('#reare').html(data.re_areaa+" "+data.re_arebb);
+	$('#retype').html(data.re_type);
+	$('#exampleFormControlTextarea5').html(data.re_content);
+	
+}
+
+function insertmessage(){  //이력서 내용으로 쪽지 보내기
+	var userid = "${sessionScope.workerId}";
+	var title = '구직신청';
+	var content = '성명 : '+$('#username').html()+'\n성별 : '+$('#gender').html()+'\n생년월일 : '+$('#birthday').html()+'\n전화번호 : '+$('#telephone').html()+'\n주소 : '+$('#address').html();
+	var content2 = '희망직종 : '+$('#rejob').html()+'\n희망지역 : '+$('#reare').html()+'\n근무형태 : '+$('#retype').html()+'\n기타사항 : '+$('#exampleFormControlTextarea5').html();
+	var sender = $('#jname').html();
+	
+	console.log(sender.length);
+	
+	 $.ajax({
+        type : 'post',
+        url : 'insertmessage1',
+        data : {userid:userid,
+        		ms_title:title,
+        		ms_content:content,
+        		ms_content2:content2,
+        		ms_Sender:sender	
+        },
+        success : function(data){
+        	if(data==1){
+        		alert("신청되었습니다!");
+        	}else{
+        		alert("신청에 실패했습니다. 다시시도하거나 관리자에게 문의하세요.");
+        	} 
+        	
+        }
+	});   
+	
+}
+
+
  $(document).ready(function(){
 	  $("#quick-applyForm").hide();
 	  
-	  $("#quick-applybtn").click(function(){    
+	  $("#quick-applybtn").click(function(){ //빠른지원을 눌렀을때 이력서 정보를 불러와 넣자   
+		  callc();
 		$("#recruit-detail").hide();
 		$("#quick-applyForm").show();
 	});
 	  
-	  $("#q-applybtn").click(function(){
+	  $("#q-applybtn").click(function(){ //지원하기 버튼
 		/* 지원 시 완료 alert창 띄우기 */
+		insertmessage();
 		$("#quick-applyForm").hide();
 		$("#recruit-detail").show();
 	});
@@ -750,7 +814,9 @@ function write(accidentDeath){
 							<!--  -->
 						<div class="btn-group float-right pt-3">
 							<div>
+							<c:if test="${sessionScope.workerId!=null}">
 								<button type="button" class="btn btn-outline-secondary mx-1" id="quick-applybtn">빠른지원</button>
+							</c:if>
 							</div>
 							<div id="detailbt">
 								<!-- 상세정보 가기버튼 -->
@@ -769,27 +835,27 @@ function write(accidentDeath){
 					    <tbody>
 					      <tr>
 					        <th class="bg-light w-30">성명</th>
-					        <th>"member.username"</th>
+					        <th id="username"></th>
 					      </tr>
 					      <tr>
 					        <td class="bg-light w-30">성별</td>
-					        <td>"member.gender"</td>
+					        <td id="gender"></td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">생년월일</td>
-					        <td>"member.birthday"</td>
+					        <td id="birthday"></td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">전화번호</td>
-					        <td>"member.telephone"</td>
+					        <td id="telephone"></td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">주소</td>
-					        <td colspan="3">"주소"</td>
+					        <td colspan="3" id="address">"주소"</td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">자격사항</td>
-					        <td colspan="3">"자격사항"</td>
+					        <td colspan="3" id="re_qu"></td>
 					      </tr>
 					    </tbody>
 					  </table>
@@ -799,20 +865,20 @@ function write(accidentDeath){
 					    <tbody>
 					      <tr>
 					        <th class="bg-light w-30">희망직종</th>
-					        <th colspan="3">"희망직종"</th>
+					        <th colspan="3" id="rejob">"희망직종"</th>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">희망지역</td>
-					        <td colspan="3">"희망지역"</td>
+					        <td colspan="3" id="reare">"희망지역"</td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">근무형태</td>
-					        <td colspan="3">"근무형태"</td>
+					        <td colspan="3" id="retype">"근무형태"</td>
 					      </tr>
 					      <tr>
 					        <td class="bg-light">기타사항</td>
 					        <td colspan="3" class="etc p-0 mb-0">
-					          <textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4"></textarea>
+					          <textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="4" disabled></textarea>
 					        </td>
 					      </tr>
 					    </tbody>
