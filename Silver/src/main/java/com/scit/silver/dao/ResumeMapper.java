@@ -9,4 +9,6 @@ public interface ResumeMapper {
 	public Resume selectResume(String loginId);
 	
 	public int updateResume(Resume resume);
+	
+	public Resume selonere(String loginId);
 }

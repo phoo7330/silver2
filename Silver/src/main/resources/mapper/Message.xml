@@ -9,7 +9,9 @@
     INSERT INTO MESSAGE(
         MS_SEQ,
         USERID,
+        <if test="ms_title != null">
         MS_TITLE,
+        </if>
         MS_CONTENT,
         MS_DATE,
         MS_SENDER,
@@ -24,7 +26,9 @@
 	)VALUES(
 	    MS_SEQ.NEXTVAL,
 	    #{userid},
+	    <if test="ms_title != null">
 	    #{ms_title},  
+	    </if>
 	    #{ms_content},
         SYSDATE,
         #{ms_Sender},

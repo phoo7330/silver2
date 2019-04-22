@@ -50,4 +50,17 @@ public class ResumeDAO {
 		}
 		return result;
 	}
+	
+	public Resume selonere(String loginId) {
+		Resume result = null;
+		
+		ResumeMapper  mapper = session.getMapper(ResumeMapper.class);
+		try{
+		result = mapper.selonere(loginId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return result;
+	}
 }

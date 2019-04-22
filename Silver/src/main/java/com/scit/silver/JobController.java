@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.JobDAO;
+import com.scit.silver.dao.ResumeDAO;
 import com.scit.silver.vo.Job;
+import com.scit.silver.vo.Resume;
 import com.test.fileTest.util.PageNavigator;
 
 
@@ -26,6 +28,8 @@ public class JobController {
 	
 	@Autowired
 	JobDAO dao;
+	@Autowired
+	ResumeDAO rdao;
 	
 	private static final int boardPerPage = 4;
 	private static final int pagePerGroup = 3;
@@ -141,4 +145,14 @@ public class JobController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/selonere", method = { RequestMethod.POST, RequestMethod.GET })
+	public @ResponseBody Resume selonere(String userid) {
+		Resume result = null;
+		result = rdao.selonere(userid);
+		return result;
+	}
+	
+	
+	
 }

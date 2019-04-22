@@ -77,4 +77,23 @@
     WHERE 
         USERID = #{userid}
   </update>
+  
+  
+  <select id="selonere" parameterType="String" resultType="Resume">
+	SELECT
+		RE_SEQ, 
+		USERID,
+		RE_TYPE,
+		RE_DETAILTYPE,
+		RE_JOB, 
+		RE_CONTENT, 
+		RE_DATE,
+		RE_AREAA, 
+		RE_AREBB, 
+		RE_QUALIFICATION
+	FROM
+		RESUME
+	WHERE
+		USERID = #{userid}
+  </select>
  </mapper>
