@@ -485,7 +485,7 @@ function insuccess2(data){
 				<tr>
 					<td class="bg-light">상세내용</td>
 					<td colspan="3" class="etc p-0 mb-0">
-						<textarea class="form-control p-0" id="exampleFormControlTextarea5" rows="10"></textarea>
+						<textarea class="form-control" id="exampleFormControlTextarea5" rows="10"></textarea>
 					</td>
 				</tr>
 			</tbody>

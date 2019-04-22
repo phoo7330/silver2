@@ -452,7 +452,7 @@ $(document).ready(function(){
 		
 		<!-- 통계 -->
 		<div class="card col-md-4 p-0 border-0" id="listcard">
-			<div class="card border-top-2" id="card-graph">
+			<div class="card border-top-2 bg-white" id="card-graph">
 			   	<div class="container">
 				<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>게시판통계</strong></label>
 					<div class="form-row">

@@ -598,7 +598,7 @@ $(function() {
       <!--Modal-->
       </div>
       
-	    <!-- 시설게시판  -->
+		<!-- 
 	    <div class="col-md-12">
 			<div class="card">
 				<div class="row col-md-12">
@@ -625,6 +625,7 @@ $(function() {
 				</div>
 			</div>
 		</div>
+		 -->
 	   <!-- row -->
 	   </div>
 	</div>

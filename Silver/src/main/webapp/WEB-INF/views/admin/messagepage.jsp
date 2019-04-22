@@ -332,8 +332,8 @@ $(document).ready(function(){
 <div class="col-md-12 ml-sm-auto mt-4 pt-4 border-0">
 	<div class="row">
 		<!-- 메시지함 -->
-		<div class="card col-md-8 p-0 border-top-2" style="background-color: #d9d9d9; border-top:5px solid #000000;">
-			<div class="card border-0" id="information">
+		<div class="col-md-12 p-0 border-top-2" style="background-color: #d9d9d9; border-top:5px solid #000000;">
+			<!-- <div class="card border-0" id="information"> -->
 				<div class="container">
 					<label for="table-member" class="col-form-label col-form-label-lg mt-3"><strong>메시지함</strong></label>
 					<!-- 1. 메세지함 -->
@@ -581,23 +581,22 @@ $(document).ready(function(){
 				<!-- .container -->
 				</div>	
 			<!-- #information -->	
-			</div>	
+			<!-- </div>	-->
 		<!-- card col-md8 p-0 border-0 end -->
 		</div>
 		
-		<!-- 통계 -->
+		<!-- 
 		<div class="card col-md-4 p-0 border-0" id="listcard">
 			<div class="card border-top-2" id="card-graph">
 			   	<div class="container">
 				<label for="statistics-member" class="col-form-label col-form-label-lg mt-3"><strong>메시지통계</strong></label>
 					<div class="form-row">
 					
-					
 					</div>
 				</div>
 			</div>
-		<!-- #listcard end -->
 		</div>
+		 -->
 	<!-- .row -->	
 	</div>
 <!-- .col-md-12 -->

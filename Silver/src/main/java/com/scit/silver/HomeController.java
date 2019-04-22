@@ -75,7 +75,11 @@ public class HomeController {
 		return "admin/openFacilitypage2";
 	}
 	
-	
+	@RequestMapping(value = "/inquiry", method = RequestMethod.GET)
+	public String inquiry(Locale locale, Model model) {
+
+		return "inquiry";
+	}
 	
 	
 	

@@ -91,4 +91,18 @@ p, a {
 		.th-name {
 		  width: 30%;
 		}
+		
+		input[type='radio']:checked:after {
+		 color: #902228;
+		}
+		
+		.btn-danger {
+		 border-color: #902228;
+		 background-color: #902228;
+		}
+		
+		.btn-outline-danger {
+		 border-color: #902228;
+		 color: #902228;
+		}
 	

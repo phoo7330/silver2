@@ -114,12 +114,13 @@ $(function() {
 		<label for="inputPassword" class="sr-only">비밀번호</label>
 		<input type="password" id="inputPassword" name="userpwd" value="${member.userpwd}" class="form-control" placeholder="비밀번호를 입력하세요." required>
 		<div class="checkbox mb-3">
-			
+			<!-- 
 			<label>
 				<input type="checkbox" value="remember-me"> 아이디를 저장하시겠습니까
 			</label>
+			 -->
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+		<button class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
 		 <p class="mt-5 mb-3 text-muted">&copy; 실버서퍼 2019</p>
 	</form>
 	</div>

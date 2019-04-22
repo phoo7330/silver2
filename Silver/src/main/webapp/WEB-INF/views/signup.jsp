@@ -404,7 +404,7 @@ function printsilver2(data){
 				<li>일반사용자와 요양기관 구직</li>	
 				<li>하고있는 종사자로 등록하기</li>		          
 				</ul>
-				<button id="custombtn" type="button" class="btn btn-lg btn-block btn-outline-info">가입하기</button>
+				<button id="custombtn" type="button" class="btn btn-lg btn-block btn-outline-danger">가입하기</button>
 			</div>
 		</div>
 	</div>
@@ -419,7 +419,7 @@ function printsilver2(data){
 				<li>실제 요양기관을 운영중인</li>
 				<li>기관 담당자 등록하기</li>
 				</ul>
-				<button id="facilitybtn" type="button" class="btn btn-lg btn-block btn-outline-info">가입하기</button>
+				<button id="facilitybtn" type="button" class="btn btn-lg btn-block btn-outline-danger">가입하기</button>
 			</div>
 		</div>
 	</div>
@@ -552,7 +552,7 @@ function printsilver2(data){
 				<div class="col">
 				</div>
 					<div class="col-sm-6">
-						<button type="button" id="signupbtn" class="btn btn-info btn-lg btn-block">회원가입</button>
+						<button type="button" id="signupbtn" class="btn btn-danger btn-lg btn-block">회원가입</button>
 					</div>
 				<div class="col">
 				</div>
@@ -610,12 +610,12 @@ function printsilver2(data){
 			<div class="col">
 			</div>
 			    <label for="inputInstitution" class="col-sm-2 col-form-label">기관명</label>
-			    <div class="col-sm-3 pr-0">
+			    <div class="col-sm-2 pr-0">
 			      <input type="text" name="username" id="username" class="form-control" placeholder="기관명" readonly>
 			    </div>
 			    <!-- 기관검색 모달창 버튼 : 모달창은 맨 아래 -->
-			    <div class="col-sm-1">
-					<button type="button" class="btn btn-info btn-md btn-block" id="f-searchbtn" data-toggle="modal" data-target="#search-popup">검색</button>
+			    <div class="col-sm-2">
+					<button type="button" class="btn btn-danger btn-md btn-block" id="f-searchbtn" data-toggle="modal" data-target="#search-popup">검색</button>
 				</div>
 			<div class="col">
 			</div>
@@ -659,7 +659,7 @@ function printsilver2(data){
 				<div class="col">
 				</div>
 					<div class="col-sm-6 mb-5">
-						<button type="button" id="insertbtn" class="btn btn-info btn-lg btn-block">기관등록 요청하기</button>
+						<button type="button" id="insertbtn" class="btn btn-danger btn-lg btn-block">기관등록 요청하기</button>
 					</div>
 				<div class="col">
 				</div>
@@ -701,7 +701,7 @@ function printsilver2(data){
 					      <input type="text" id="sname" name="searchFacility" class="form-control" placeholder="지역 혹은 기관명을 입력하세요.">
 					    </div>
 					    <div class="col-sm-3">
-							<button type="button" id="modal-searchbtn" class="btn btn-info btn-md btn-block">검색</button>
+							<button type="button" id="modal-searchbtn" class="btn btn-danger btn-md btn-block">검색</button>
 						</div>
 				</form>
 					</div>	
@@ -712,7 +712,7 @@ function printsilver2(data){
 				
 		      <!--Footer-->
 		      <div class="modal-footer justify-content-center">
-		        <a type="button" class="btn btn-outline-info" data-dismiss="modal">닫기</a>
+		        <a type="button" class="btn btn-outline-danger" data-dismiss="modal">닫기</a>
 		        </div>
 		    </div>
 		  </div>
