@@ -32,6 +32,43 @@
 </head>
 <body>
 	<script>
+	
+	 $(document).ready(function(){
+		  $("#confirmForm").hide();
+		  $("#replyForm").hide();
+		  
+		  $("#temporary").click(function(){    
+			$("#message-table").hide();
+			$("#replyForm").hide();
+			$("#confirmForm").show();
+		});
+		  
+		  $("#m-replybtn").click(function(){    
+			$("#message-table").hide();
+			$("#confirmForm").hide();
+			$("#replyForm").show();
+		});
+		  
+		  $("#m-delbtn").click(function(){    
+			$("#replyForm").hide();
+			$("#confirmForm").hide();
+			$("#message-table").show();
+		});
+		  
+		  $("#r-sendbtn").click(function(){    
+			$("#replyForm").hide();
+			$("#confirmForm").hide();
+			$("#message-table").show();
+		});
+		  
+		  $("#r-cancelbtn").click(function(){    
+		    $("#replyForm").hide();
+			$("#confirmForm").hide();
+			$("#message-table").show();
+		});
+	
+	 });	
+	
 	$(function() {	
 		$("#insertgo").on("click",function(){	
 			insertMessage();  //보내기버튼
@@ -942,11 +979,9 @@
 							<div class="col-sm-1"></div>
 								<label for="editBirth" class="col-sm-2 col-form-label col-form-label-sm"><small>성별</small></label>
 							    <div class="col-sm-8">
-									<input type="text" class="form-control form-control-sm"
-												id="inputGender" name="gender" value="${member.gender}"	readonly="readonly">
+									<input type="text" class="form-control form-control-sm" id="inputGender" name="gender" value="${member.gender}"	readonly="readonly">
 							    </div>
 							</div>		
-					
 					</div>	
 				</div>
 				<!-- 1-2. 연락처 -->
@@ -1680,12 +1715,11 @@
 							<div class="tab-content" id="pills-tabContent">
 								<!-- 받은쪽지함 -->
 								<div class="tab-pane fade show active" id="pills-receive" role="tabpanel" aria-labelledby="pills-home-tab">
-									<!-- 삭제/답장 버튼 -->
+									<!-- 삭제 버튼 -->
+									<div class="form" id="message-table">
 									<div class="form-group row pt-3 pb-0">
 										<div class="col-sm-12">
 								   			<button type="button" id="delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
-											<button type="button" id="replybtn" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#messageForm">
-											답장</button>
 										</div>
 									</div>
 									<!-- 쪽지 리스트 테이블 -->
@@ -1729,19 +1763,54 @@
 									    </li>
 									  </ul>
 									</nav>
-									<!-- 쪽지 눌렀을 때 -->
-									<div class="form mb-3" id="senderForm">
-										<div class="form-group row">
-										   <label for="sender" class="col-sm-2 col-form-label col-form-label-sm"><small>보낸사람</small></label>
-										   <div class="col-sm-10">
-										   	<input type="text" class="form-control form-control-sm" id="sender" readonly>
-										   </div>
+									<button type="button" class="btn btn-link" id="temporary">tr:임시버튼</button>
+									</div>
+								    <!-- 메시지 확인 -->
+									<div class="form" id="confirmForm">
+									<!-- 보내기 버튼 -->
+										<div class="form-group row pt-3 pb-0">
+											<div class="col-sm-12">
+									   			<button type="button" id="m-replybtn" class="btn btn-outline-secondary btn-sm">답장 </button>
+									   			<button type="button" id="m-delbtn" class="btn btn-outline-secondary btn-sm">삭제</button>
+											</div>
 										</div>
-											<textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
-											<button type="button" id="sendbtn" class="btn btn-outline-secondary btn-sm mt-3">보내기</button>
-											<button type="button" id="cancelbtn" class="btn btn-outline-secondary btn-sm mt-3">취소</button>
-								    </div>  	
-								</div>
+										<!-- 받는사람 -->
+										<form>
+										  <div class="form-group row">
+										    <label for="confirmForm" class="col-sm-2 col-form-label col-form-label-sm"><small>받는사람</small></label>
+										    <div class="col-sm-10">
+										      <input type="text" class="form-control form-control-sm" id="confirmForm" readonly>
+										    </div>
+										   </div>
+										</form>
+										<div class="form-group pb-3">
+										    <textarea class="form-control" id="confirmMessage" rows="10" readonly></textarea>
+										</div>
+									</div> 
+									<!-- 메시지 보내기 -->
+									<div class="form" id="replyForm">
+									<!-- 보내기 버튼 -->
+										<div class="form-group row pt-3 pb-0">
+											<div class="col-sm-12">
+									   			<button type="button" id="r-sendbtn" class="btn btn-outline-secondary btn-sm">보내기</button>
+									   			<button type="button" id="r-cancelbtn" class="btn btn-outline-secondary btn-sm">취소</button>
+											</div>
+										</div>
+										<!-- 받는사람 -->
+										<form>
+										  <div class="form-group row">
+										    <label for="confirmForm" class="col-sm-2 col-form-label col-form-label-sm"><small>받는사람</small></label>
+										    <div class="col-sm-10">
+										      <input type="text" class="form-control form-control-sm" id="confirmForm" readonly>
+										    </div>
+										   </div>
+										</form>
+										<div class="form-group pb-3">
+										    <textarea class="form-control" id="confirmMessage" rows="10"></textarea>
+										</div>
+									</div> 
+									<!-- .tab-pane fade -->	
+									</div>
 								<!-- 보낸쪽지함 -->
 								<div class="tab-pane fade" id="pills-send" role="tabpanel" aria-labelledby="pills-profile-tab">
 									<!-- 삭제 버튼 -->
@@ -1813,10 +1882,6 @@
 									    <textarea class="form-control" id="writeMessage" rows="10"></textarea>
 									</div>
 								</div>
-								
-								
-								
-								
 							</div>									
 						</div>
 					</div>
