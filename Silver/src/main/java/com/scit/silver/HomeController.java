@@ -41,11 +41,6 @@ public class HomeController {
 
 
 	
-	@RequestMapping(value = "/messagepage", method = RequestMethod.GET)
-	public String messagepage(Locale locale, Model model) {
-
-		return "admin/messagepage";
-	}
 	
 
 	
