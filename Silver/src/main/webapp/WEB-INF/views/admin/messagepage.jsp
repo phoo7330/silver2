@@ -7,7 +7,7 @@
 <head>
 
 
-   <title>실버서퍼에 오신 것을 환영합니다.</title>
+   <title>실버서퍼에 오신 것을 환영합니다.</title> 
    
    <!-- 인코딩 --> 
    <meta charset="UTF-8">
