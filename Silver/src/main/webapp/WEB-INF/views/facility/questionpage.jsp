@@ -207,7 +207,7 @@ $(document).ready(function(){		////페이지 시작부분
 		 $("#confirmForm").show();
 
     });
-    $("#q-delbtn").click(function(){   // 받은메세지 상세보기 버튼 
+    $("#q-delbtn").click(function(){   
     	var checkBoxArr = [];			// 한개일경우, 배열일경우 다르다
 
     	$("input[name=blankCheckbox1]:checked").each(function(i){
@@ -555,7 +555,7 @@ $(document).ready(function(){		////페이지 시작부분
 				  <div class="form-group row mt-4">
 				    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
 				    <div class="col-sm-10" id="recipient">
-				      <input type="text" class="form-control form-control-sm" id="recipient" value="" disabled>
+				      <!-- <input type="text" class="form-control form-control-sm" id="recipient" value="" disabled> -->
 				    </div>
 				  </div>
 				  <div class="form-group row">

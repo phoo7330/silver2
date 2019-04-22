@@ -39,7 +39,158 @@
  #senderForm : 상세 내용에서 답장 버튼 누르면 나오는 메일 폼 
  #s-forwarding : 메일 성공시 나오는 최종 폼 
  */
+ function selmessage2(){
+		var userid="${sessionScope.adminId}";
+		 $.ajax({
+		        type : 'get',
+		        url : 'selmes2',
+		        data : {userid:userid
+		        },
+		        success : output2
+		        
+			});   
+	 }
+	 
+	function output2(data){
+		console.log("output 들어옴");
+		console.log(data);
+		var list = '';
+		if(data.length==0){
+			console.log("메세지없음");
+			list +='<tr><td colspan="4" class="text-center">메세지가 없습니다.</td></tr>';
+			$("#selmessage2").html(list);
+			
+		} else{
+			$.each(data, function (index, item){
+				console.log("구인글있음");
+				list += '<tr class="text-center">';
+				list += '<td scope="row"><div class="form-check"><input class="form-check-input position-static" type="checkbox" name="blankCheckbox2" value="'+item.ms_seq+'"></div></td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel2('+item.ms_seq+')\'" >'+item.ms_Sender+'</td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel2('+item.ms_seq+')\'" >'+item.ms_title+'</td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel2('+item.ms_seq+')\'" >'+item.ms_date+'</td>';
+				list += '</tr>'
+		});
+		
+		$("#selmessage2").html(list);
+		}
+		console.log("끝");
+
+	}
+
+	function onesel2(ms_seq){
+		console.log("온셀2:"+ms_seq);
+		$("#sendTable").hide();  //보낸글 자세히보기
+		$("#sentForm").show();
+		 $.ajax({
+				url:"selectonem", 
+				type:"get",
+				data:{"ms_seq":ms_seq},
+				success:oneoutput2
+				});
+	}
+	function oneoutput2(data){
+		console.log(data);
+		$("#sendp").val(data.ms_Sender);
+		$("#sendtitle").val(data.ms_title);
+		$("#sendcon").val(data.ms_content);
+		$("#senddate").val(data.ms_date);
+		
+		
+	}
+	function selmessage(){ //메세지를 불러온다.
+		 var userid="${sessionScope.adminId}";
+		 $.ajax({
+		        type : 'get',
+		        url : 'selmes1',
+		        data : {userid:userid
+		        },
+		        success : output
+		        
+			});   
+	 }
+	 
+	function output(data){
+		console.log("output 들어옴");
+		console.log(data);
+		var list = '';
+		if(data.length==0){
+			console.log("메세지없음");
+			list +='<tr><td colspan="4" class="text-center">메세지가 없습니다.</td></tr>';
+			$("#selmessage").html(list);
+			
+		} else{
+			$.each(data, function (index, item){
+				console.log("구인글있음");
+				list += '<tr class="text-center">';
+				list += '<td scope="row"><div class="form-check"><input class="form-check-input position-static" type="checkbox" name="blankCheckbox1" value="'+item.ms_seq+'"></div></td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.ms_seq+')\'" >'+item.userid+'</td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.ms_seq+')\'" >'+item.ms_title+'</td>';
+				list += '<td style="cursor:pointer" onclick="location.href=\'javascript:onesel('+item.ms_seq+')\'" >'+item.ms_date+'</td>';
+				list += '</tr>'
+		});
+		
+		$("#selmessage").html(list);
+		}
+		console.log("끝");
+
+	}
+	function onesel(ms_seq){
+		console.log(ms_seq);
+		 $("#receiveTable").hide();
+		 $("#senderForm").hide();
+		 $("#s-forwarding").hide();
+		 $("#confirmForm").show();
+		 $.ajax({
+				url:"selectonem", 
+				type:"get",
+				data:{"ms_seq":ms_seq},
+				success:oneoutput
+				});
+	}
+	function oneoutput(data){
+		console.log(data);
+		$("#userid").html("보낸이 : "+data.userid);
+		$("#ms_title").html(data.ms_title);
+		$("#ms_content").html(data.ms_content);
+		$("#ms_date").html(data.ms_date);
+		$("#ms_content2").html(data.ms_content2);
+		$("#ms_vdate").html(data.ms_vdate);
+		var id = '';
+	    id += '<input type="text" class="form-control form-control-sm" id="ms_Sender" value="'+data.userid+'" disabled>';
+
+		$("#recipient").html(id);
+		
+	}
+	function remessage(){  //답장보내기
+		var ms_Sender=$("#ms_Sender").val();
+		var userid="${sessionScope.adminId}";
+		var ms_title=$("#remestitle").val();
+		var ms_content=$("#rewrite").val();
+		console.log(ms_Sender);
+		console.log(ms_title);
+		console.log(ms_content);
+		console.log(userid);
+		
+		  $.ajax({
+			url:"remessage1", 
+			type:"post",
+			data:{"ms_Sender":ms_Sender,
+				"userid":userid,
+				"ms_title":ms_title,
+				"ms_content":ms_content
+			},
+			success:function(data){
+				
+				$("#remestitle").val('');
+				$("#rewrite").val('');
+			}
+			});  
+		
+	}
+ 
 $(document).ready(function(){
+	selmessage();// 페이지 불러올때 받은 쪽지 불러옴
+	selmessage2();// 보낸메세지함도 불러옴
 	  $("#senderForm").hide();
 	  $("#confirmForm").hide();
 	  $("#s-forwarding").hide();
@@ -57,7 +208,34 @@ $(document).ready(function(){
 		 $("#s-forwarding").hide();
 		 $("#confirmForm").show();
     });
-	  
+	  $("#q-delbtn").click(function(){   
+	    	var checkBoxArr = [];			// 한개일경우, 배열일경우 다르다
+
+	    	$("input[name=blankCheckbox1]:checked").each(function(i){
+
+	    	checkBoxArr.push($(this).val());
+
+	    	});
+	    	
+	    		jQuery.ajaxSettings.traditional = true;
+
+	   		 $.ajax({
+	   			url:"delmessage1", 
+	   			type:"post",
+	   			data:{"checkBoxArr":checkBoxArr
+	   				
+	   			},
+	   			success:function(data){
+	   				alert("삭제되었습니다.");
+	   				window.location.reload(); 
+	   			}
+	   			});  
+	    	
+			//console.log(checkBoxArr); // 체크된 메세지만 선택해서 시퀀스를가져옴
+			
+			
+
+	   });
 	  $("#replybtn").click(function(){    
 		$("#receiveTable").hide();
 		$("#confirmForm").hide();
@@ -72,7 +250,8 @@ $(document).ready(function(){
 		$("#receiveTable").show();
 	  });
 	  
-	  $("#sendbtn").click(function(){    
+	  $("#sendbtn").click(function(){
+		  remessage();
 		$("#senderForm").hide();
 		$("#confirmForm").hide();
 		$("#receiveTable").hide();
@@ -185,23 +364,22 @@ $(document).ready(function(){
 							  		<thead>
 										<tr class=" text-center">
 											<th class="w-10"><small>선택</small></th>
-											<th class="w-20"><small>구분</small></th> <!-- 회원 구분 -->
-											<th class="w-20"><small>아이디</small></th>
-											<th class="w-30"><small>제목</small></th>
-											<th class="w-20"><small>받은날짜</small></th>
+											<th class="w-15"><small>받는사람</small></th>
+											<th class="w-40"><small>제목</small></th>
+											<th class="w-35"><small>받은날짜</small></th>
 										</tr>
 							  		</thead>
-							  		<tbody>
+							  		<tbody id="selmessage">
 										<tr class="text-center">
 											<td scope="row">
 												<div class="form-check">
 													<input class="form-check-input position-static" type="checkbox" id="blankCheckbox1" value="option1">
 												</div>
 											</td>
-											<td>"member.type"</td>  
-											<td>"member.userid"</td>
-											<td>"title"</td>
-											<td>"sysdate"</td>
+											
+											<td></td>
+											<td></td>
+											<td></td>
 										</tr>
 							  		</tbody>
 								</table>
@@ -222,10 +400,7 @@ $(document).ready(function(){
 								      </a>
 								    </li>
 								  </ul>
-								</nav>
-				<!-- button : tr 연결 후 삭제 -->	
-				<button type="button" class="btn btn-link" id="temporarybtn">tr대체-임시버튼</button>
-							<!-- class="container" id="receiveTable" end -->
+						<!-- class="container" id="receiveTable" end -->
 							</div>
 							<!-- 테이블 클릭 시 확인할 수 있는 내용 -->
 							<div class="container pt-3">
@@ -233,30 +408,34 @@ $(document).ready(function(){
 									<div class="card-body">
 						            
 						              <!-- indexpage: 문의하기 / mypage: 회원변경 / 기관마이페이지: 기관정보 -->
-						              <h5 class="font-weight-bold my-3">"Title - 문의하기,회원변경,기관정보,</h5>
+						              <h5 class="font-weight-bold my-3" id="ms_title"></h5>
 						              <!-- 아이디/이름 | 받은날짜 -->
 						              <div class="form-row"> 
-						                <p class="col-md-6 dark-grey-text mb-2">"userid/username"</p>
-						                <p class="col dark-grey-text mb-1 text-right">"sysdate"</p>
+						                <p class="col-md-6 dark-grey-text mb-2" id="userid"></p>
+						                <p class="col dark-grey-text mb-1 text-right" id="ms_date"></p>
 						              </div>
 						             <hr> 
 						              <!-- All grid row -->
 						              <div class="justify-content-center">
 						              	<form>
-										  <div class="form-group">
+										  <!-- <div class="form-group">
 										    <label for="attatchment">첨부파일</label>
 										    <input type="text" class="form-control " id="attatchment" readonly>
 										    <small id="formHelp" class="form-text text-muted">첨부파일 확인</small>
 										  </div>
-										  <!-- 수정사항 체크박스 : 기관명,급여종류,주소 중 체크된 내용 추가 -->
+										  수정사항 체크박스 : 기관명,급여종류,주소 중 체크된 내용 추가
 										  <div class="form-group">
 										    <label for="modification">수정사항</label>
 										    <input type="text" class="form-control " id="modification" readonly>
 										    <small id="formHelp" class="form-text text-muted">기관관리자만 해당</small>
-										  </div>
+										  </div> -->
 										  <div class="form-group">
 										    <label for="etc-textarea">기타사항</label>
-										    <textarea class="form-control" id="etc-textarea" rows="3" readonly></textarea>
+										    <textarea class="form-control" id="ms_content" rows="3" readonly></textarea>
+										  </div>
+										  <div class="form-group">
+										    <label for="etc-textarea">기타사항2</label>
+										    <textarea class="form-control" id="ms_content2" rows="3" readonly></textarea>
 										  </div>
 										</form>
 						              <!-- All grid row end -->
@@ -276,17 +455,17 @@ $(document).ready(function(){
 								<div class="card mb-3 container border-dark" id="senderForm">
 								  <div class="form-group row mt-4">
 								    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
-								    <div class="col-sm-10">
+								    <div class="col-sm-10" id="recipient">
 								      <input type="text" class="form-control form-control-sm" id="recipient" readonly>
 								    </div>
 								  </div>
 								  <div class="form-group row">
 								    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">제목</label>
 								    <div class="col-sm-10">
-								      <input type="text" class="form-control form-control-sm" id="title-sender">
+								      <input type="text" class="form-control form-control-sm" id="remestitle">
 								    </div>
 								  </div>
-								  <textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;"></textarea>
+								  <textarea class="form-control" id="rewrite"  style="height: 15rem;"></textarea>
 									<div class="form-row justify-content-center m-3">
 									  <button type="button" id="sendbtn" class="btn btn-outline-dark mx-1 rounded-0">보내기</button>
 									  <button type="button" id="s-cancelbtn" class="btn btn-outline-dark mx-1 rounded-0">취소</button>
@@ -323,24 +502,23 @@ $(document).ready(function(){
 							  		<thead>
 										<tr class=" text-center">
 											<th class="w-10"><small>선택</small></th>
-											<th class="w-20"><small>구분</small></th> <!-- 이력서&방문문의 구분 -->
-											<th class="w-20"><small>받는사람</small></th>
-											<th class="w-30"><small>제목</small></th>
-											<th class="w-20"><small>보낸날짜</small></th> <!-- 기간관리자가 메일을 보낸 시점 -->
+											<th class="w-15"><small>받는사람</small></th>
+											<th class="w-40"><small>제목</small></th>
+											<th class="w-35"><small>보낸날짜</small></th><!-- 기간관리자가 메일을 보낸 시점 -->
 										</tr>
 							  		</thead>
 							  		<!-- 체크박스: 다중선택 후 삭제 / 답장의 경우 한개만 선택 가능 -->
-							  		<tbody>
+							  		<tbody id="selmessage2">
 										<tr class="text-center">
 											<td scope="row">
 												<div class="form-check">
 													<input class="form-check-input position-static" type="checkbox" id="blankCheckbox2" value="option1">
 												</div>
 											</td>
-											<td>"Type"</td>  
-											<td>"Id"</td>
-											<td>"title"</td>
-											<td>"sysdate"</td>
+											<td></td>  
+											<td></td>
+											<td></td>
+											<td></td>
 										</tr>
 							  		</tbody>
 								</table>
@@ -362,8 +540,6 @@ $(document).ready(function(){
 								    </li>
 								  </ul>
 								</nav>
-				<!-- button : tr 연결 후 삭제 -->	
-				<button type="button" class="btn btn-link" id="temporarybtn2">tr대체-임시버튼</button>
 								<!-- class="container" id="sendTable" end -->
 								</div>
 								
@@ -374,16 +550,16 @@ $(document).ready(function(){
 										  <div class="form-group row mt-4">
 										    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
 										    <div class="col-sm-10">
-										      <input type="text" class="form-control form-control-sm" id="recipient" readonly>
+										      <input type="text" class="form-control form-control-sm" id="sendp" readonly>
 										    </div>
 										  </div>
 										  <div class="form-group row">
 										    <label for="sender" class="col-sm-2 col-form-label col-form-label-sm">제목</label>
 										    <div class="col-sm-10">
-										      <input type="text" class="form-control form-control-sm" id="title-sender" readonly>
+										      <input type="text" class="form-control form-control-sm" id="sendtitle" readonly>
 										    </div>
 										  </div>
-										  <textarea class="form-control" id="sbwrite" name="sbwrite" style="height: 15rem;" readonly></textarea>
+										  <textarea class="form-control" id="sendcon" name="sendcon" style="height: 15rem;" readonly></textarea>
 										  <div class="form-row justify-content-center m-3">
 										      <button type="button" id="listbtn" class="btn btn-outline-dark mx-1 rounded-0">목록</button>
 											  <button type="button" id="t-delbtn" class="btn btn-outline-dark mx-1 rounded-0">삭제</button>

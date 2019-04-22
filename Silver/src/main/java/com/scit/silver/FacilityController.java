@@ -460,7 +460,7 @@ public class FacilityController {
 	public @ResponseBody message selectonem(int ms_seq) {
 		message result = null;
 		result = msdao.selectonem(ms_seq);
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 	
@@ -468,7 +468,7 @@ public class FacilityController {
 	public @ResponseBody int remessage1(message m) {
 		int result = 0;
 		result = msdao.insertmessage1(m);
-		System.out.println(m);
+		System.out.println("답장하기 : "+m);
 		System.out.println(result);
 		return result;
 	}
