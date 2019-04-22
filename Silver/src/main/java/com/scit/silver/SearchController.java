@@ -3,6 +3,7 @@ package com.scit.silver;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -16,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scit.silver.dao.SearchDAO;
+import com.scit.silver.dao.SeniorDAO;
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
+import com.scit.silver.vo.Member;
+import com.scit.silver.vo.SeniorCitizen;
+import com.scit.silver.vo.SeniorCitizenDetails;
 import com.scit.silver.vo.SilverSearch;
 import com.test.fileTest.util.PageNavigator;
 
@@ -26,6 +31,8 @@ public class SearchController {
 
 	@Autowired
 	SearchDAO dao;
+	@Autowired
+	SeniorDAO sdao;
 
 	private static final int boardPerPage = 4;
 	private static final int pagePerGroup = 3;
@@ -99,16 +106,38 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/searchDetail", method = RequestMethod.GET)
-	public String searchDetail(int seach_seq, Model model) {
-
+	public String searchDetail(int seach_seq, Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("loginId");
+		if(userid!=null) {
+			SeniorCitizen sc = sdao.SelectSenior(userid);
+			System.out.println("[sc] : "+sc);
+			Member member = dao.selmem(userid);
+			
+			if(sc==null) {
+				model.addAttribute("message","어르신정보를 먼저 등록해주세요.");
+			}else {
+				int seq = sdao.SelectSeq(userid);
+				SeniorCitizenDetails scd = sdao.SelectSeniorDetails(seq);
+				System.out.println("[scd]"+scd);
+				model.addAttribute("sc",sc);
+				model.addAttribute("scd",scd);
+				model.addAttribute("member",member);
+			}
+		}
+		
+		
+		
 		int type = dao.TypeSearch(seach_seq); // 시퀀스번호에 맞는 컬럼의 타입이 담긴값
 		if (type == 1) {
 			DetailsOne DetailsOne = dao.selectmap4(seach_seq); // 타입이 1일경우 요양병원에서 값을 가져온다.
-
+			String silid = dao.selsilid(DetailsOne.getSilvername());
+			model.addAttribute("silid",silid);
 			model.addAttribute("DetailsOne", DetailsOne);
 			return "searchDetail";
 		} else {
 			DetailsTwo DetailsTwo = dao.selectmap3(seach_seq); // 그외의 경우 통일된컬럼에서 값을 가져온다.
+			String silid = dao.selsilid(DetailsTwo.getSilvername());
+			model.addAttribute("silid",silid);
 			System.out.println("나머지 타입일경우");
 			System.out.println("[detail2의 객체정보]: " + DetailsTwo);
 			model.addAttribute("DetailsTwo", DetailsTwo);

@@ -20,8 +20,18 @@ public class MessageController {
 	@Autowired
 	MessageDAO mdao;
 	
+	
+	@RequestMapping(value = "/insertmessage1", method = RequestMethod.POST)
+	@ResponseBody
+	public int insertmessage1(message ms) {
+		int result = 0;
+		System.out.println(ms);
+		result = mdao.insertmessage1(ms);
+		return result;
+	}
+	
 	@RequestMapping(value = "/insertMessage",  method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody int insertMessage(String ms, String sender, HttpSession session, Model model) {
+	public  int insertMessage(String ms, String sender, HttpSession session, Model model) {
 		System.out.println("Message"+ms);
 		
 		message message = new message();

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 
-import com.scit.silver.vo.DetailsTwo;
 import com.scit.silver.vo.DetailsOne;
+import com.scit.silver.vo.DetailsTwo;
+import com.scit.silver.vo.Member;
 import com.scit.silver.vo.SilverSearch;
 
 public interface SearchMapper {
@@ -30,5 +31,9 @@ public interface SearchMapper {
 	public int TypeSearch (int seach_seq);
 
 	public void insertSilverSearch(SilverSearch silversearch);
+	
+	public String selsilid(String silvername);
+	
+	public Member selmem(String userid);
 }
  

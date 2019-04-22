@@ -14,6 +14,20 @@ public class MessageDAO {
 	@Autowired
 	SqlSession session;
 	
+	
+	public int insertmessage1(message ms) {
+		int result = 0;
+		MessageMapper mapper = session.getMapper(MessageMapper.class);
+		try {
+			result = mapper.insertmessage1(ms);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+	
 	public int insertMessage(message ms) {
 		int result = 0;
 		MessageMapper mapper = session.getMapper(MessageMapper.class);

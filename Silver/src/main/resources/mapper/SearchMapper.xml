@@ -219,5 +219,25 @@
 	
 	
 	</select>	 
+	
+	<select id="selsilid" parameterType="String" resultType="String">
+	SELECT 
+    	USERID
+	FROM
+	    MEMBER
+	WHERE
+	    USERNAME = #{username}
+	
+	</select>
 		 
+<select id="selmem" parameterType="String" resultType="Member">
+SELECT
+    USERID,
+    USERNAME
+FROM
+    MEMBER
+WHERE
+    USERID=#{userid}
+
+</select>
 </mapper>

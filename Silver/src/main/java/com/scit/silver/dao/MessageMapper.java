@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import com.scit.silver.vo.message;
 
 public interface MessageMapper {
+	
+	public int insertmessage1(message ms);
+	
 
 	public int insertMessage(message ms);
 

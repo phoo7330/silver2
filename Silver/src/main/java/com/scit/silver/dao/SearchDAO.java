@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.scit.silver.vo.DetailsOne;
 import com.scit.silver.vo.DetailsTwo;
+import com.scit.silver.vo.Member;
 import com.scit.silver.vo.SilverSearch;
 import com.test.fileTest.util.PageNavigator;
 
@@ -129,5 +130,20 @@ public class SearchDAO {
 	   return result;
    }
    
+   public String selsilid(String silvername) {
+	   String result = null;
+	   SearchMapper mapper = session.getMapper(SearchMapper.class);
+		
+	   result = mapper.selsilid(silvername);
+	   return result;
+   }
+   public Member selmem(String userid) {
+	   Member result = null;
+	   SearchMapper mapper = session.getMapper(SearchMapper.class);
+		
+	   result = mapper.selmem(userid);
+	   return result;
+	   
+   }
    
 }
