@@ -321,7 +321,7 @@ $(document).ready(function(){		////페이지 시작부분
 			  			<a class="nav-link text-light mr-3" href="talentpage"><strong>인재정보</strong></a>	
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="questionpage"><strong>메세지함</strong></a>	
+			  			<a class="nav-link text-light mr-3" href="questionpage"><strong>메시지함</strong></a>	
 			  		</li>
 			  	</ul>
 				<!-- 로그아웃 -->
@@ -359,7 +359,7 @@ $(document).ready(function(){		////페이지 시작부분
   		<div class="col-md-3 p-0">
     		<div class="nav flex-column nav-pills pt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       			<a class="nav-link active text-light border-bottom border-white p-4 text-center" id="question-tab" data-toggle="pill" href="#v-question-tab" role="tab" aria-selected="true">
-      			방문문의/이력서</a>
+      			받은메시지</a>
       			<a class="nav-link text-light border-bottom border-white p-4 text-center" id="send-tab" data-toggle="pill" href="#v-send-tab" role="tab" aria-selected="false">
       			보낸메시지</a>
 			</div>

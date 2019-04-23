@@ -1803,7 +1803,6 @@
 									    </li>
 									  </ul>
 									</nav>
-									<button type="button" class="btn btn-link" id="temporary">tr:임시버튼</button>
 									</div>
 								    <!-- 메시지 확인 -->
 									<div class="form" id="confirmForm">

@@ -148,7 +148,7 @@ $(function(){
 		        	<img class="d-block w-100" src="resources/image/main01.png" alt="First slide">
 		        	<div class="mask rgba-black-light"></div>
 				</div>
-				<div class="carousel-caption pb-5">
+				<div class="carousel-caption pb-3">
 		        	<h1 class="h3-responsive text-dark">전국 요양 서비스</h1>
 					<p class="text-dark" id="p-caption">전국의 노인 요양 시설,<br>실버서퍼에서 찾아보세요.</p>
 				</div>
@@ -159,7 +159,7 @@ $(function(){
 					<img class="d-block w-100" src="resources/image/main02.png" alt="Second slide">
 					<div class="mask rgba-black-strong"></div>
 				</div>
-				<div class="carousel-caption pb-5">
+				<div class="carousel-caption pb-3">
 					<h1 class="h3-responsive text-dark">요양 종사자 마당</h1>
 					<p class="text-dark" id="p-caption">전국 요양기관 구인 구직,<br>실버서퍼에서 찾아보세요.</p>
 				</div>

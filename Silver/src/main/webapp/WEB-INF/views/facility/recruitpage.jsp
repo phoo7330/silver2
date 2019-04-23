@@ -351,7 +351,7 @@ function insuccess2(data){
 			  			<a class="nav-link text-light mr-3" href="talentpage"><strong>인재정보</strong></a>	
 			  		</li>
 			  		<li class="nav-item">
-			  			<a class="nav-link text-light mr-3" href="questionpage"><strong>메세지함</strong></a>	
+			  			<a class="nav-link text-light mr-3" href="questionpage"><strong>메시지함</strong></a>	
 			  		</li>
 			  	</ul>
 				<!-- 로그아웃 -->

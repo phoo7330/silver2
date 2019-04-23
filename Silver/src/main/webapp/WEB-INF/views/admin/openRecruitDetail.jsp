@@ -194,7 +194,7 @@ $(document).ready(function(){
 	  </div>  
 	 <!-- #m-informationForm end -->
 	 </div>
-		<!-- 메시지버튼 클릭 시 -->			
+		<!-- 	
 		<div class="card-body mb-3 container" id="senderForm">
 		  <div class="form-group row mt-3">
 		    <label for="recipient" class="col-sm-2 col-form-label col-form-label-sm">받는사람</label>
@@ -214,7 +214,7 @@ $(document).ready(function(){
 			  <button type="button" id="s-cancelbtn" class="btn btn-outline-dark mt-5 mx-1 rounded-0">취소</button>
 			</div>
 		</div>
-	
+	 -->
 		<!-- Section -->
 		</section>  
 		</div>
